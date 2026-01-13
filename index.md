@@ -1,23 +1,18 @@
 ---
-layout: home
-
-hero:
-  name: "Certification Notes"
-  text: "Personal study notes for tech certifications"
-  tagline: Sharing my learning journey - hope these notes help you too
-  actions:
-    - theme: brand
-      text: Browse Notes
-      link: /certifications/
-    - theme: alt
-      text: Study Tips
-      link: /resources/study-tips
+title: Certification Study Notes
+description: Comprehensive study notes for technology certifications
 ---
+
+# Certification Study Notes
 
 ## Available Notes
 
 **GitHub Certifications**
-- [GH-200: GitHub Actions](/certifications/github/gh-actions/) - Comprehensive study notes covering workflows, automation, actions, and enterprise management
+- [GH-200: GitHub Actions](/certifications/github/gh-actions/) - CI/CD workflows, automation, and best practices (Active Study)
+
+**AWS Certifications** ✅
+- [CLF-C02: AWS Cloud Practitioner](/certifications/aws/clf-c02/) - Completed Oct 2024
+- [AIF-C01: AWS AI Practitioner](/certifications/aws/aif-c01/) - Completed Jan 2026
 
 ---
 

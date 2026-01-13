@@ -1,0 +1,262 @@
+/**
+ * Custom theme for Certification Study Notes
+ * Clean, professional design optimized for readability
+ */
+
+:root {
+  /* Brand colors */
+  --vp-c-brand-1: #3c8772;
+  --vp-c-brand-2: #5aa897;
+  --vp-c-brand-3: #7bbfad;
+  --vp-c-brand-soft: rgba(60, 135, 114, 0.14);
+
+  /* Typography */
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  --vp-font-family-mono: 'Fira Code', 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Enhanced readability */
+.vp-doc {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.vp-doc h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  border-bottom: 2px solid var(--vp-c-brand-1);
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.vp-doc h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+/* Enhanced code blocks */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Inline code */
+.vp-doc :not(pre) > code {
+  background-color: var(--vp-c-bg-soft);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Custom containers for notes, tips, warnings */
+.vp-doc .custom-block {
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.vp-doc .custom-block.tip {
+  background-color: rgba(60, 135, 114, 0.1);
+  border-left: 4px solid var(--vp-c-brand-1);
+}
+
+.vp-doc .custom-block.warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  border-left: 4px solid #ffc107;
+}
+
+.vp-doc .custom-block.danger {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left: 4px solid #f44336;
+}
+
+/* Tables */
+.vp-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vp-doc table th {
+  background-color: var(--vp-c-brand-soft);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+}
+
+.vp-doc table td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc table tr:hover {
+  background-color: var(--vp-c-bg-soft);
+}
+
+/* Lists */
+.vp-doc ul, .vp-doc ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.vp-doc li {
+  margin: 0.5rem 0;
+}
+
+/* Task lists */
+.vp-doc .task-list-item {
+  list-style-type: none;
+  margin-left: -1.5rem;
+}
+
+.vp-doc .task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Links */
+.vp-doc a {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Blockquotes */
+.vp-doc blockquote {
+  border-left: 4px solid var(--vp-c-brand-1);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--vp-c-text-2);
+}
+
+/* Home page hero customization */
+.VPHome .VPHero {
+  text-align: center;
+}
+
+.VPHome .VPHero .container {
+  margin: 0 auto;
+}
+
+.VPHome .VPHero .name {
+  background: linear-gradient(120deg, var(--vp-c-brand-1), var(--vp-c-brand-3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.VPHome .VPHero .text {
+  text-align: center;
+}
+
+.VPHome .VPHero .tagline {
+  text-align: center;
+}
+
+.VPHome .VPHero .actions {
+  justify-content: center;
+}
+
+/* Sidebar enhancements */
+.VPSidebar {
+  padding: 1.5rem 0;
+}
+
+.VPSidebarItem .text {
+  font-weight: 500;
+}
+
+/* Search box - expand to use available space */
+.VPNavBar .content-body {
+  display: flex;
+  align-items: center;
+}
+
+.VPNavBarSearch {
+  flex: 1;
+  max-width: 600px;
+  padding: 0 2rem;
+}
+
+@media (min-width: 768px) {
+  .VPNavBarSearch {
+    order: -1; /* Move search before menu items */
+  }
+}
+
+/* Make search button wider */
+.VPNavBarSearch .DocSearch-Button {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .VPNavBarSearch {
+    flex: 0 1 auto;
+    max-width: none;
+  }
+}
+
+/* Badge styling */
+.vp-doc .badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85em;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+.vp-doc .badge.tip {
+  background-color: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc .badge.warn {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: #c17900;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vp-doc h1 {
+    font-size: 2rem;
+  }
+
+  .vp-doc h2 {
+    font-size: 1.5rem;
+  }
+
+  .vp-doc h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Print styles for study materials */
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPFooter,
+  .edit-link,
+  .prev-next {
+    display: none !important;
+  }
+
+  .vp-doc {
+    max-width: 100% !important;
+  }
+}

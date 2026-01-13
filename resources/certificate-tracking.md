@@ -44,14 +44,15 @@ Track your certification exam progress, study status, and completion dates.
 - [Study Notes](/certifications/github/gh-actions/notes)
 - [Exam Tips](/certifications/github/gh-actions/exam-tips)
 
+
 ---
 
 ## Future Certifications (Planned)
 
 | Certification | Provider | Status |
 |---------------|----------|--------|
-| AI-102: Azure AI Engineer | Microsoft Azure | Planned |
-| AIP-C01: AWS AI Practitioner | AWS | Planned |
+| AI-102: Azure AI Engineer | Microsoft Azure | Considered |
+| SAA-C03: AWS Solutions Architect | AWS | Considered |
 | More to be added... | Various | - |
 
 ---
@@ -60,7 +61,8 @@ Track your certification exam progress, study status, and completion dates.
 
 | Certification | Provider | Completion Date | Score | Validity |
 |---------------|----------|-----------------|-------|----------|
-| *(None yet)* | - | - | - | - |
+| CLF-C02: AWS Cloud Practitioner | AWS | Oct 25, 2024 | Passed | Valid until Oct 2027 |
+| AIF-C01: AWS AI Practitioner | AWS | Jan 2, 2026 | Passed | Valid until Jan 2029 |
 
 ---
 
@@ -72,10 +74,9 @@ Track your certification exam progress, study status, and completion dates.
 - **Target Exam Date**: Set your target date
 
 ### Next Steps
-1. Complete GH-200 study notes review
-2. Take practice exams
-3. Schedule exam when ready
-4. Plan next certification
+1. Complete GH-200 study notes review and practice exams
+2. Schedule GH-200 exam when ready
+3. Determine next certification path (Azure, more AWS, or GCP)
 
 ---
 

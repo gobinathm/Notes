@@ -13,12 +13,18 @@ Comprehensive study notes for various technology certifications, built with Vite
 - **Fast & Modern** - Powered by VitePress
 - **Dark Mode** - Easy on the eyes during late-night study sessions
 
-## Currently Available Certifications
+## Available Study Notes
 
+### Active Study
 - **GitHub Certifications**
-  - GH-200: GitHub Actions - CI/CD workflows, automation, and best practices
+  - [GH-200: GitHub Actions](/certifications/github/gh-actions/) - CI/CD workflows, automation, and best practices
 
-*More certifications coming soon!*
+### Completed Certifications ✅
+- **AWS Certifications**
+  - [CLF-C02: AWS Cloud Practitioner](/certifications/aws/clf-c02/) - Completed Oct 2024
+  - [AIF-C01: AWS AI Practitioner](/certifications/aws/aif-c01/) - Completed Jan 2026
+
+*Study notes remain available as reference material. More certifications to be added!*
 
 ## Getting Started
 
