@@ -123,12 +123,16 @@ runs:
 
 ### Workflow Commands
 
+<div v-pre>
+
 | Command | Purpose | Scope |
 |---------|---------|-------|
 | `$GITHUB_ENV` | Set environment variables | All subsequent steps in same job |
 | `$GITHUB_OUTPUT` | Set step outputs | Accessible via `${{ steps.id.outputs.key }}` |
 | `$GITHUB_STEP_SUMMARY` | Job summary markdown | Visible in workflow run UI |
 | `$GITHUB_PATH` | Add to PATH | Subsequent steps |
+
+</div>
 
 ### Annotations
 
@@ -144,6 +148,8 @@ echo "::add-mask::$SECRET_VALUE"    # Masks with ***
 ## 6. Variables, Secrets & Contexts
 
 ### Secrets vs Variables
+
+<div v-pre>
 
 | Feature | Secrets | Variables |
 |---------|---------|-----------|
@@ -176,6 +182,8 @@ ${{ job.status }}             # Job status
 ${{ steps.step-id.outputs.key }}  # Step output
 ```
 
+</div>
+
 ---
 
 ## 7. Optimization & Persistence
@@ -201,6 +209,8 @@ ${{ steps.step-id.outputs.key }}  # Step output
 
 **Use:** Speed up builds (e.g., `node_modules`, dependencies)
 
+<div v-pre>
+
 ```yaml
 - uses: actions/cache@v4
   with:
@@ -209,6 +219,8 @@ ${{ steps.step-id.outputs.key }}  # Step output
     restore-keys: |
       ${{ runner.os }}-node-
 ```
+
+</div>
 
 **Key Concepts:**
 - **key:** Exact match required
@@ -228,11 +240,15 @@ strategy:
 
 ### Concurrency
 
+<div v-pre>
+
 ```yaml
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 ```
+
+</div>
 
 **Use:** Ensure only one run of a specific group is active (prevents double-deployments).
 
@@ -285,7 +301,7 @@ Secrets only accessible when a job targets a specific environment.
 ❌ **DON'T:**
 - Expose secrets in logs
 - Use `pull_request_target` without review
-- Trust unchecked user input: `${{ github.event.issue.title }}`
+- Trust unchecked user input: <span v-pre>`${{ github.event.issue.title }}`</span>
 
 ---
 
@@ -302,6 +318,8 @@ Secrets only accessible when a job targets a specific environment.
 
 ### Reusable Workflow Example
 
+<div v-pre>
+
 ```yaml
 # .github/workflows/reusable.yml
 on:
@@ -317,6 +335,8 @@ jobs:
     steps:
       - run: echo "Deploying to ${{ inputs.environment }}"
 ```
+
+</div>
 
 ### Composite Action Example
 
@@ -369,6 +389,8 @@ Where should the secret be stored?
 
 ### Common Exam Traps
 
+<div v-pre>
+
 ::: warning Watch Out!
 - **Context vs Env vars:** `${{ env.VAR }}` vs `$VAR` in run commands
 - **Expression syntax:** Use `${{ }}` in workflow keys, `$` in shell
@@ -376,6 +398,8 @@ Where should the secret be stored?
 - **Action pinning:** Always use commit SHA in production, not `@main`
 - **pull_request_target:** Runs in base branch context (security risk!)
 :::
+
+</div>
 
 ### Quick Service Selection
 
