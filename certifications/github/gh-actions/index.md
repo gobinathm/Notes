@@ -53,6 +53,9 @@ Official exam domains and objectives outline
 ### 📝 [Study Notes](./notes.md)
 Detailed notes, examples, and key concepts
 
+### ⚡ [Quick Refresher](./quick-refresher.md)
+Last-minute cram session - review all key concepts in 15 minutes
+
 ### 🎯 [Exam Tips & Strategy](./exam-tips.md)
 Exam traps, decision matrices, and last-minute review
 

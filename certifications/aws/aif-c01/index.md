@@ -55,6 +55,9 @@ Official exam domains and objectives outline
 ### 📚 [Study Notes](./notes.md)
 Comprehensive study notes covering all exam topics
 
+### ⚡ [Quick Refresher](./quick-refresher.md)
+Last-minute cram session - review all key concepts in 15 minutes
+
 ### 💡 [Exam Tips](./exam-tips.md)
 Exam strategies, common traps, and study advice
 
@@ -70,43 +73,61 @@ Exam strategies, common traps, and study advice
 
 ---
 
-## Study Progress Tracker
+## Study Progress
 
-Track your progress through the study materials.
-
-### Domain 1: Fundamentals of AI and ML (20%)
-- [ ] 1.1: Explain basic AI concepts and terminologies
-- [ ] 1.2: Identify practical use cases for AI
-- [ ] 1.3: Describe the ML development lifecycle
-
-### Domain 2: Fundamentals of Generative AI (24%)
-- [ ] 2.1: Explain the basic concepts of generative AI
-- [ ] 2.2: Understand the capabilities and limitations of generative AI
-- [ ] 2.3: Describe AWS services for generative AI
-
-### Domain 3: Applications of Foundation Models (28%)
-- [ ] 3.1: Describe design considerations for applications that use foundation models
-- [ ] 3.2: Choose appropriate foundation models for specific use cases
-- [ ] 3.3: Describe fine-tuning and prompt engineering strategies
-- [ ] 3.4: Explain Retrieval Augmented Generation (RAG)
-
-### Domain 4: Guidelines for Responsible AI (14%)
-- [ ] 4.1: Explain development practices for responsible AI
-- [ ] 4.2: Recognize the importance of transparent and explainable models
-
-### Domain 5: Security, Compliance, and Governance for AI Solutions (14%)
-- [ ] 5.1: Explain methods to secure AI systems
-- [ ] 5.2: Recognize governance and compliance regulations for AI systems
-
----
-
-## Additional Study Tasks
-- [ ] Explore Amazon Bedrock hands-on
-- [ ] Try Amazon Q for business use cases
-- [ ] Review AWS AI/ML service use cases
-- [ ] Complete AWS AI/ML learning paths
-- [ ] Practice with SageMaker Studio
-- [ ] Review responsible AI best practices
+<ProgressTracker
+  title="AIF-C01 Study Progress"
+  storage-key="aif-c01-progress"
+  :items="[
+    {
+      id: 'domain-1',
+      label: 'Domain 1: Fundamentals of AI and ML (20%)',
+      children: [
+        { id: 'domain-1-1', label: '1.1: AI concepts and terminology' },
+        { id: 'domain-1-2', label: '1.2: Practical AI use cases' },
+        { id: 'domain-1-3', label: '1.3: ML development lifecycle' }
+      ]
+    },
+    {
+      id: 'domain-2',
+      label: 'Domain 2: Fundamentals of Generative AI (24%)',
+      children: [
+        { id: 'domain-2-1', label: '2.1: Generative AI concepts' },
+        { id: 'domain-2-2', label: '2.2: Capabilities and limitations' },
+        { id: 'domain-2-3', label: '2.3: AWS generative AI services' }
+      ]
+    },
+    {
+      id: 'domain-3',
+      label: 'Domain 3: Applications of Foundation Models (28%)',
+      children: [
+        { id: 'domain-3-1', label: '3.1: Design considerations' },
+        { id: 'domain-3-2', label: '3.2: Model selection' },
+        { id: 'domain-3-3', label: '3.3: Prompt engineering and fine-tuning' },
+        { id: 'domain-3-4', label: '3.4: RAG (Retrieval Augmented Generation)' }
+      ]
+    },
+    {
+      id: 'domain-4',
+      label: 'Domain 4: Guidelines for Responsible AI (14%)',
+      children: [
+        { id: 'domain-4-1', label: '4.1: Responsible AI practices' },
+        { id: 'domain-4-2', label: '4.2: Model explainability' }
+      ]
+    },
+    {
+      id: 'domain-5',
+      label: 'Domain 5: Security, Compliance, Governance (14%)',
+      children: [
+        { id: 'domain-5-1', label: '5.1: Securing AI systems' },
+        { id: 'domain-5-2', label: '5.2: Governance and compliance' }
+      ]
+    },
+    { id: 'bedrock', label: 'Explore Amazon Bedrock hands-on' },
+    { id: 'practice', label: 'Practice with AWS AI/ML services' },
+    { id: 'ready', label: 'Ready for certification' }
+  ]"
+/>
 
 ---
 

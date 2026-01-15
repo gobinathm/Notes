@@ -16,10 +16,23 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
-    ['meta', { name: 'og:type', content: 'website' }],
-    ['meta', { name: 'og:locale', content: 'en' }],
-    ['meta', { name: 'og:site_name', content: 'Tech Certification Study Notes' }],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }]
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'en' }],
+    ['meta', { property: 'og:site_name', content: 'Tech Certification Study Notes' }],
+    ['meta', { property: 'og:image', content: 'https://notes.gobinath.com/og-image.png' }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:image:alt', content: 'Tech Certification Study Notes - Your journey to certification success' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: 'https://notes.gobinath.com/og-image.png' }],
+    ['meta', { name: 'twitter:image:alt', content: 'Tech Certification Study Notes - Your journey to certification success' }],
+
+    // Umami Analytics (Privacy-First)
+    ['script', {
+      defer: '',
+      src: 'https://cloud.umami.is/script.js',
+      'data-website-id': '52b95d7a-5cf9-4278-a601-63b61c782c1f'
+    }]
   ],
 
   themeConfig: {
@@ -64,6 +77,7 @@ export default defineConfig({
                 { text: 'Overview', link: '/certifications/github/gh-actions/' },
                 { text: 'Exam Objectives', link: '/certifications/github/gh-actions/objectives' },
                 { text: 'Study Notes', link: '/certifications/github/gh-actions/notes' },
+                { text: 'Quick Refresher', link: '/certifications/github/gh-actions/quick-refresher' },
                 { text: 'Exam Tips', link: '/certifications/github/gh-actions/exam-tips' }
               ]
             }
@@ -90,6 +104,7 @@ export default defineConfig({
                 { text: 'Overview', link: '/certifications/aws/aif-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/aif-c01/objectives' },
                 { text: 'Study Notes', link: '/certifications/aws/aif-c01/notes' },
+                { text: 'Quick Refresher', link: '/certifications/aws/aif-c01/quick-refresher' },
                 { text: 'Exam Tips', link: '/certifications/aws/aif-c01/exam-tips' }
               ]
             }
@@ -111,13 +126,13 @@ export default defineConfig({
 
     // Social links
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yourusername/Notes' }
+      { icon: 'github', link: 'https://github.com/gobinathm/Notes' }
     ],
 
     // Footer
     footer: {
-      message: 'Study notes for personal learning and exam preparation',
-      copyright: 'Copyright © 2026-present'
+      message: 'Happy Studying! 🚀 • We use privacy-friendly analytics (no cookies, no personal data) • <a href="/privacy">Privacy Policy</a>',
+      copyright: 'Made with ❤️ and too much ☕ by Gobi • <a href="https://github.com/gobinathm/Notes/issues" target="_blank">Report an issue</a>'
     },
 
     // Search
@@ -130,7 +145,7 @@ export default defineConfig({
 
     // Edit link
     editLink: {
-      pattern: 'https://github.com/yourusername/Notes/edit/main/:path',
+      pattern: 'https://github.com/gobinathm/Notes/edit/main/:path',
       text: 'Edit this page on GitHub'
     },
 

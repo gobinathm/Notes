@@ -65,13 +65,17 @@ For the complete and official list of exam objectives, refer to the official exa
 
 ## Study Progress
 
-Track your progress:
-- [ ] Reviewed exam objectives
-- [ ] Studied all domains
-- [ ] Completed study notes
-- [ ] Reviewed exam tips
-- [ ] Practiced with Amazon Bedrock
-- [ ] Ready for certification
+<ProgressTracker
+  title="AIF-C01 Study Progress"
+  storage-key="aif-c01-progress"
+  :items="[
+    { id: 'objectives', label: 'Reviewed exam objectives' },
+    { id: 'notes', label: 'Completed study notes' },
+    { id: 'exam-tips', label: 'Reviewed exam tips' },
+    { id: 'bedrock', label: 'Practiced with Amazon Bedrock' },
+    { id: 'ready', label: 'Ready for certification' }
+  ]"
+/>
 
 ---
 

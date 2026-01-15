@@ -39,10 +39,10 @@ Foundational understanding of AI/ML concepts, AWS AI services, and responsible A
 ## Coming Soon
 
 More certifications will be added:
-- Microsoft Azure Certifications
-- Google Cloud Certifications
-- More AWS certifications
-- And more...
+- Microsoft Certified: Azure AI Engineer Associate
+- Generative AI Leader – Google Cloud Certification
+- AWS Certified Machine Learning Engineer – Associate
+- AWS Certified Generative AI Developer - Professional
 
 ---
 

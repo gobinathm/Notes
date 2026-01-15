@@ -69,45 +69,60 @@ Exam strategies, common traps, and study advice
 
 ---
 
-## Study Progress Tracker
+## Study Progress
 
-Track your progress through the study materials.
-
-### Domain 1: Cloud Concepts (24%)
-- [ ] 1.1: Define the benefits of the AWS Cloud
-- [ ] 1.2: Identify design principles of the AWS Cloud
-- [ ] 1.3: Understand the benefits of and strategies for migration to the AWS Cloud
-- [ ] 1.4: Understand concepts of cloud economics
-
-### Domain 2: Security and Compliance (30%)
-- [ ] 2.1: Understand the AWS shared responsibility model
-- [ ] 2.2: Understand AWS Cloud security, governance, and compliance concepts
-- [ ] 2.3: Identify AWS access management capabilities
-- [ ] 2.4: Identify components and resources for security
-
-### Domain 3: Cloud Technology and Services (34%)
-- [ ] 3.1: Define methods of deploying and operating in the AWS Cloud
-- [ ] 3.2: Define the AWS global infrastructure
-- [ ] 3.3: Identify AWS compute services
-- [ ] 3.4: Identify AWS database services
-- [ ] 3.5: Identify AWS network services
-- [ ] 3.6: Identify AWS storage services
-- [ ] 3.7: Identify AWS artificial intelligence and machine learning services
-- [ ] 3.8: Identify services from other in-scope AWS service categories
-
-### Domain 4: Billing, Pricing, and Support (12%)
-- [ ] 4.1: Compare AWS pricing models
-- [ ] 4.2: Understand resources for billing, budget, and cost management
-- [ ] 4.3: Identify AWS technical resources and AWS Support options
-
----
-
-## Additional Study Tasks
-- [ ] Complete AWS Cloud Practitioner Essentials course
-- [ ] Review all AWS Whitepapers
-- [ ] Take practice exams
-- [ ] Hands-on: Explore AWS Free Tier services
-- [ ] Review AWS Well-Architected Framework
+<ProgressTracker
+  title="CLF-C02 Study Progress"
+  storage-key="clf-c02-progress"
+  :items="[
+    {
+      id: 'domain-1',
+      label: 'Domain 1: Cloud Concepts (24%)',
+      children: [
+        { id: 'domain-1-1', label: '1.1: Benefits of AWS Cloud' },
+        { id: 'domain-1-2', label: '1.2: Design principles' },
+        { id: 'domain-1-3', label: '1.3: Migration strategies' },
+        { id: 'domain-1-4', label: '1.4: Cloud economics' }
+      ]
+    },
+    {
+      id: 'domain-2',
+      label: 'Domain 2: Security and Compliance (30%)',
+      children: [
+        { id: 'domain-2-1', label: '2.1: Shared responsibility model' },
+        { id: 'domain-2-2', label: '2.2: Security and compliance concepts' },
+        { id: 'domain-2-3', label: '2.3: IAM and access management' },
+        { id: 'domain-2-4', label: '2.4: Security services' }
+      ]
+    },
+    {
+      id: 'domain-3',
+      label: 'Domain 3: Cloud Technology and Services (34%)',
+      children: [
+        { id: 'domain-3-1', label: '3.1: Deployment methods' },
+        { id: 'domain-3-2', label: '3.2: Global infrastructure' },
+        { id: 'domain-3-3', label: '3.3: Compute services' },
+        { id: 'domain-3-4', label: '3.4: Database services' },
+        { id: 'domain-3-5', label: '3.5: Network services' },
+        { id: 'domain-3-6', label: '3.6: Storage services' },
+        { id: 'domain-3-7', label: '3.7: AI/ML and analytics' },
+        { id: 'domain-3-8', label: '3.8: Other AWS services' }
+      ]
+    },
+    {
+      id: 'domain-4',
+      label: 'Domain 4: Billing, Pricing, and Support (12%)',
+      children: [
+        { id: 'domain-4-1', label: '4.1: Pricing models' },
+        { id: 'domain-4-2', label: '4.2: Billing and cost management' },
+        { id: 'domain-4-3', label: '4.3: Support options' }
+      ]
+    },
+    { id: 'course', label: 'Complete AWS Cloud Practitioner Essentials' },
+    { id: 'practice', label: 'Hands-on practice with AWS Free Tier' },
+    { id: 'ready', label: 'Ready for certification' }
+  ]"
+/>
 
 ---
 

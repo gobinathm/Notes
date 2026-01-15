@@ -26,26 +26,45 @@ For the complete and official list of exam objectives, refer to the official exa
 
 The exam covers a broad range of AWS services. Key services to focus on include:
 
-**Compute:** EC2, Lambda, Elastic Beanstalk, ECS, EKS, Fargate
-**Storage:** S3, EBS, EFS, Storage Gateway, Backup
-**Database:** RDS, Aurora, DynamoDB, ElastiCache, Redshift
-**Networking:** VPC, CloudFront, Route 53, Direct Connect, VPN, ELB
-**Security:** IAM, KMS, WAF, Shield, GuardDuty, Security Hub
-**Management:** CloudWatch, CloudTrail, Config, Systems Manager, Trusted Advisor
-**Application Integration:** SNS, SQS, EventBridge
-**Developer Tools:** CodeCommit, CodeBuild, CodeDeploy, CodePipeline
+**Compute:** 
+- EC2, Lambda, Elastic Beanstalk, ECS, EKS, Fargate
+
+**Storage:** 
+- S3, EBS, EFS, Storage Gateway, Backup
+
+**Database:** 
+- RDS, Aurora, DynamoDB, ElastiCache, Redshift
+
+**Networking:** 
+- VPC, CloudFront, Route 53, Direct Connect, VPN, ELB
+
+**Security:** 
+- IAM, KMS, WAF, Shield, GuardDuty, Security Hub
+
+**Management:** 
+- CloudWatch, CloudTrail, Config, Systems Manager, Trusted Advisor
+
+**Application Integration:** 
+- SNS, SQS, EventBridge
+
+**Developer Tools:** 
+- CodeCommit, CodeBuild, CodeDeploy, CodePipeline
 
 ---
 
 ## Study Progress
 
-Track your progress:
-- [ ] Reviewed exam objectives
-- [ ] Studied all domains
-- [ ] Completed study notes
-- [ ] Reviewed exam tips
-- [ ] Practiced with AWS Free Tier
-- [ ] Ready for certification
+<ProgressTracker
+  title="CLF-C02 Study Progress"
+  storage-key="clf-c02-progress"
+  :items="[
+    { id: 'objectives', label: 'Reviewed exam objectives' },
+    { id: 'notes', label: 'Completed study notes' },
+    { id: 'exam-tips', label: 'Reviewed exam tips' },
+    { id: 'practice', label: 'Hands-on practice with AWS Free Tier' },
+    { id: 'ready', label: 'Ready for certification' }
+  ]"
+/>
 
 ---
 
