@@ -117,6 +117,7 @@ Exam traps, decision matrices, and last-minute review
 - [Actions Marketplace](https://github.com/marketplace?type=actions)
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
 - [Getting the Gist of GitHub Actions](https://gist.github.com/br3ndonland/f9c753eb27381f97336aa21b8d932be6#introduction)
+- [Github Actions Certification Exam Study Guide](https://www.youtube.com/playlist?list=PLIpE1hDb3gF2q77kD_V5jLzNktzL09JZM)
 
 ---
 

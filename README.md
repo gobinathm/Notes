@@ -1,32 +1,78 @@
 # Tech Certification Study Notes
 
-Comprehensive study notes for various technology certifications, built with VitePress and hosted on GitHub Pages.
+> Your journey to certification success 🚀
 
-## Features
+Comprehensive, open-source study notes for various technology certifications. Built with ❤️ and too much ☕ by Gobi.
 
-- **Clean, Professional Design** - Optimized for readability and study
-- **Progress Tracking** - Track your study progress with browser localStorage (private to you)
-- **Fully Searchable** - Built-in search to quickly find topics
-- **Mobile Responsive** - Study on any device
-- **SEO Optimized** - Better visibility in search engines
-- **Easy to Update** - Simple markdown files
-- **Fast & Modern** - Powered by VitePress
-- **Dark Mode** - Easy on the eyes during late-night study sessions
+**Live Site:** [notes.gobinath.com](https://notes.gobinath.com)
 
-## Available Study Notes
+---
 
-### Active Study
-- **GitHub Certifications**
-  - [GH-200: GitHub Actions](/certifications/github/gh-actions/) - CI/CD workflows, automation, and best practices
+## 📖 Available Certifications
 
-### Completed Certifications ✅
-- **AWS Certifications**
-  - [CLF-C02: AWS Cloud Practitioner](/certifications/aws/clf-c02/) - Completed Oct 2024
-  - [AIF-C01: AWS AI Practitioner](/certifications/aws/aif-c01/) - Completed Jan 2026
+### GitHub Certifications
+- **[GH-200: GitHub Actions](https://notes.gobinath.com/certifications/github/gh-actions/)** - CI/CD workflows, automation, and best practices
 
-*Study notes remain available as reference material. More certifications to be added!*
+### AWS Certifications
+- **[CLF-C02: AWS Cloud Practitioner](https://notes.gobinath.com/certifications/aws/clf-c02/)** - AWS fundamentals and cloud concepts
+- **[AIF-C01: AWS AI Practitioner](https://notes.gobinath.com/certifications/aws/aif-c01/)** - AI/ML fundamentals and AWS AI services
 
-## Getting Started
+*More certifications coming soon!*
+
+---
+
+## ✨ Features
+
+- 📚 **Comprehensive Study Notes** - In-depth coverage of all exam domains with examples
+- ⚡ **Quick Refreshers** - Last-minute cram sessions for rapid review (15-min reads)
+- 🎯 **Exam Tips & Strategies** - Common traps, decision trees, and proven strategies
+- 📊 **Progress Tracking** - Built-in study progress tracker with browser localStorage
+- 🔍 **Fully Searchable** - Fast local search to quickly find any topic
+- 🌙 **Dark Mode** - Easy on the eyes during late-night study sessions
+- 📱 **Mobile Responsive** - Study on any device, anywhere
+- 🔒 **Privacy-First** - Cookieless analytics, no personal data collected
+- ⚡ **Lightning Fast** - Static site generation with VitePress
+- 🎨 **Clean Design** - Optimized for readability and focused learning
+
+---
+
+## 📚 What's Included
+
+Each certification includes:
+
+### 📋 Overview Page
+- Exam information and official links
+- Exam format, duration, and passing score
+- Prerequisites and target audience
+- Additional learning resources
+
+### 🎯 Exam Objectives
+- Links to official study guides
+- Exam domain weighting breakdown
+- In-scope services and features (where applicable)
+
+### 📝 Study Notes
+- Detailed explanations of all exam topics
+- Code examples and practical scenarios
+- Best practices and common pitfalls
+- Decision trees and comparison tables
+
+### ⚡ Quick Refresher
+- Condensed review of all key concepts
+- Last-minute cram session (15-20 min read)
+- Decision trees for quick reference
+- High-frequency exam topics highlighted
+- "Last 5 minutes before exam" checklist
+
+### 💡 Exam Tips
+- Common exam traps to avoid
+- Strategy for different question types
+- Time management tips
+- Mental checklists
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -34,25 +80,26 @@ Comprehensive study notes for various technology certifications, built with Vite
 - Git installed
 - Basic knowledge of markdown
 
-### Installation
+### Local Development
 
-1. Clone the repository:
+1. **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/Notes.git
+git clone https://github.com/gobinathm/Notes.git
 cd Notes
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 ```bash
 npm install
 ```
 
-3. Start the development server:
+3. **Start the development server:**
 ```bash
 npm run docs:dev
 ```
 
-4. Open your browser and visit `http://localhost:5173`
+4. **Open your browser:**
+Visit `http://localhost:5173`
 
 ### Building for Production
 
@@ -60,7 +107,7 @@ npm run docs:dev
 npm run docs:build
 ```
 
-This will generate static files in `.vitepress/dist` directory.
+This generates static files in `.vitepress/dist` directory.
 
 ### Preview Production Build
 
@@ -68,7 +115,54 @@ This will generate static files in `.vitepress/dist` directory.
 npm run docs:preview
 ```
 
-## Adding New Certification Notes
+---
+
+## 📁 Project Structure
+
+```
+Notes/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml              # GitHub Actions deployment
+├── .vitepress/
+│   ├── config.mts                  # VitePress configuration
+│   └── theme/
+│       ├── index.ts                # Theme entry
+│       ├── custom.css              # Custom styles
+│       └── components/
+│           └── ProgressTracker.vue # Study progress tracker
+├── .templates/
+│   └── quick-refresher-template.md # Reusable template for new certs
+├── certifications/
+│   ├── index.md                    # Certifications overview
+│   ├── github/
+│   │   └── gh-actions/
+│   │       ├── index.md            # Overview
+│   │       ├── objectives.md       # Exam objectives
+│   │       ├── notes.md            # Detailed study notes
+│   │       ├── quick-refresher.md  # Last-minute review
+│   │       └── exam-tips.md        # Tips & strategies
+│   └── aws/
+│       ├── clf-c02/                # AWS Cloud Practitioner
+│       └── aif-c01/                # AWS AI Practitioner
+├── resources/
+│   ├── about.md
+│   ├── study-tips.md
+│   ├── exam-strategies.md
+│   └── certificate-tracking.md
+├── public/
+│   ├── og-image.png                # Social preview card
+│   ├── logo.svg                    # Site logo
+│   └── robots.txt                  # SEO configuration
+├── privacy.md                      # Privacy policy
+├── index.md                        # Home page
+├── package.json
+└── README.md
+```
+
+---
+
+## 📝 Adding New Certifications
 
 ### Step 1: Create Directory Structure
 
@@ -78,57 +172,98 @@ mkdir -p certifications/[provider]/[exam-code]
 
 Example:
 ```bash
-mkdir -p certifications/google/pca
+mkdir -p certifications/microsoft/az-900
 ```
 
-### Step 2: Copy Templates
+### Step 2: Copy and Customize Template
 
 ```bash
-# Copy all three template files
-cp TEMPLATE-index.md certifications/[provider]/[exam-code]/index.md
-cp TEMPLATE-objectives.md certifications/[provider]/[exam-code]/objectives.md
-cp TEMPLATE-notes.md certifications/[provider]/[exam-code]/notes.md
+# Copy the quick refresher template as a starting point
+cp .templates/quick-refresher-template.md certifications/[provider]/[exam-code]/quick-refresher.md
+
+# Create other required files
+touch certifications/[provider]/[exam-code]/index.md
+touch certifications/[provider]/[exam-code]/objectives.md
+touch certifications/[provider]/[exam-code]/notes.md
+touch certifications/[provider]/[exam-code]/exam-tips.md
 ```
 
-### Step 3: Fill in Your Content
+### Step 3: Fill in Content
 
-**index.md** - Main page with:
-- Exam information and official link
-- Overview and prerequisites
-- Links to objectives and notes pages
-- Progress tracker
+**index.md** - Overview page:
+- Exam information (code, duration, questions, passing score)
+- Note freshness section with prep date
+- Target audience and prerequisites
+- Links to all study materials
+- Study progress tracker
 - Additional resources
 
 **objectives.md** - Exam objectives:
-- Official exam domains
-- Specific objectives under each domain
-- Exam weighting breakdown
+- Link to official study guide
+- Exam weighting breakdown by domain
+- In-scope services/features (if applicable)
 
 **notes.md** - Detailed study notes:
-- Detailed explanations
-- Code examples
-- Best practices
+- Comprehensive coverage of all domains
+- Code examples and syntax
+- Best practices and anti-patterns
+- Visual aids (tables, diagrams)
 - Tips and warnings
-- Quick reference
+
+**quick-refresher.md** - Last-minute review:
+- Condensed key concepts by domain
+- Decision trees
+- Comparison tables
+- High-frequency topics
+- Common exam traps
+- "Last 5 minutes" checklist
+
+**exam-tips.md** - Strategy and tips:
+- Exam format overview
+- Question type strategies
+- Time management
+- Common traps to avoid
+- Mental preparation
 
 ### Step 4: Update Navigation
 
-Edit `.vitepress/config.mts` and add your certification to:
-1. Navigation bar (if needed)
-2. Sidebar configuration
+Edit `.vitepress/config.mts`:
 
-Example:
+1. **Add to navigation bar** (if new provider):
+```typescript
+nav: [
+  {
+    text: 'Certifications',
+    items: [
+      { text: 'All Certifications', link: '/certifications/' },
+      { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
+      { text: 'YOUR-CERT: Name', link: '/certifications/provider/code/' }
+    ]
+  }
+]
+```
+
+2. **Add to sidebar**:
 ```typescript
 sidebar: {
   '/certifications/': [
     {
-      text: 'Google Cloud',
+      text: 'Provider Name',
       collapsed: false,
       items: [
-        { text: 'Professional Cloud Architect', link: '/certifications/google/pca/' }
+        {
+          text: 'EXAM-CODE: Cert Name',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/certifications/provider/code/' },
+            { text: 'Exam Objectives', link: '/certifications/provider/code/objectives' },
+            { text: 'Study Notes', link: '/certifications/provider/code/notes' },
+            { text: 'Quick Refresher', link: '/certifications/provider/code/quick-refresher' },
+            { text: 'Exam Tips', link: '/certifications/provider/code/exam-tips' }
+          ]
+        }
       ]
-    },
-    // ... other providers
+    }
   ]
 }
 ```
@@ -136,74 +271,56 @@ sidebar: {
 ### Step 5: Update Index Pages
 
 Add your certification to:
-- `/certifications/index.md`
-- `/index.md` (home page)
+- `/certifications/index.md` - Main certifications listing
+- `/index.md` - Home page (if featured)
 
-## Project Structure
+---
 
-```
-Notes/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions deployment
-├── .vitepress/
-│   ├── config.mts              # VitePress configuration
-│   └── theme/
-│       ├── index.ts            # Theme entry
-│       └── custom.css          # Custom styles
-├── certifications/
-│   ├── index.md                # Certifications overview
-│   └── github/
-│       └── gh-actions/
-│           ├── index.md        # Exam info + progress
-│           ├── objectives.md   # Exam objectives
-│           ├── notes.md        # Study notes
-│           └── exam-tips.md    # Exam tips & strategies
-├── resources/
-│   ├── study-tips.md
-│   └── exam-strategies.md
-├── public/
-│   └── robots.txt              # SEO - Search engine directives
-├── ADDING_CERTIFICATIONS.md    # Guide for adding new certifications
-├── LICENSE                     # MIT License
-├── index.md                    # Home page
-├── package.json
-└── README.md
+## 🔧 Special Considerations
+
+### GitHub Actions Syntax in Markdown
+
+If your notes include GitHub Actions syntax with `${{ }}`, wrap those sections in `<div v-pre>` to prevent Vue template compilation errors:
+
+```markdown
+<div v-pre>
+
+```yaml
+steps:
+  - name: Example
+    run: echo "${{ github.repository }}"
 ```
 
-## Progress Tracking
+</div>
+```
 
-Each certification page includes a visual progress tracker that saves your progress locally in your browser using localStorage. This means:
+This prevents VitePress from trying to parse `${{ }}` as Vue template expressions during build.
 
-- ✅ Your progress is **private** - it never leaves your browser
-- ✅ Each certification tracks progress independently
-- ✅ Progress persists across browser sessions
-- ⚠️ Clearing browser data will reset your progress
-- ⚠️ Progress is not synced across devices
+---
+
+## 📊 Progress Tracking
+
+Each certification page includes a visual progress tracker powered by browser localStorage:
+
+- ✅ **100% Private** - Progress never leaves your browser
+- ✅ **Persistent** - Survives browser sessions
+- ✅ **Independent** - Each certification tracks separately
+- ⚠️ **Local Only** - Not synced across devices
+- ⚠️ **Browser Data** - Clearing cache resets progress
 
 ### Using the Progress Tracker
 
-The progress tracker appears at the bottom of each certification page and shows:
-- Visual progress bar with percentage
-- Completed vs total items count
-- Expandable domains with sub-topics
-- Reset button to clear all progress
-
-### Adding Progress Tracker to Your Notes
-
-Use the `ProgressTracker` component in your markdown files:
-
 ```vue
 <ProgressTracker
-  title="Your Exam Study Progress"
-  storage-key="your-exam-code-progress"
+  title="GH-200 Study Progress"
+  storage-key="gh-200-progress"
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: Topic Name',
+      label: 'Domain 1: Author and Maintain Workflows',
       children: [
-        { id: 'domain-1-1', label: 'Subtopic 1' },
-        { id: 'domain-1-2', label: 'Subtopic 2' }
+        { id: 'domain-1-1', label: 'Workflow syntax and structure' },
+        { id: 'domain-1-2', label: 'Events and triggers' }
       ]
     },
     { id: 'practice', label: 'Practice exam completed' }
@@ -211,187 +328,179 @@ Use the `ProgressTracker` component in your markdown files:
 />
 ```
 
-**Important:** Use a unique `storage-key` for each certification to keep progress separate.
+**Important:** Use a unique `storage-key` for each certification!
 
-## Markdown Features
+---
 
-VitePress supports extended markdown features:
+## 🎨 Markdown Features
+
+VitePress provides powerful markdown extensions:
+
+<div v-pre>
 
 ### Custom Containers
 
 ```markdown
 ::: tip Exam Tip
-Important information for the exam
+This concept appears frequently on the exam!
 :::
 
 ::: warning Common Pitfall
-Watch out for this mistake
+Many candidates get this wrong - watch out!
 :::
 
 ::: danger Critical
-This is critical information
+This is a must-know concept for the exam.
 :::
 ```
 
-### Code Blocks with Syntax Highlighting
+### Code Blocks with Highlighting
 
-```markdown
-\`\`\`python
-def hello_world():
-    print("Hello, World!")
-\`\`\`
+````markdown
+```javascript
+// JavaScript with syntax highlighting
+function hello() {
+  console.log("Hello, World!");
+}
 ```
+````
 
 ### Tables
 
 ```markdown
-| Feature | Description |
-|---------|-------------|
-| Search | Built-in search |
-| Dark Mode | Automatic theme switching |
+| Feature | Description | Use Case |
+|---------|-------------|----------|
+| Feature A | What it does | When to use |
+| Feature B | What it does | When to use |
 ```
 
 ### Task Lists
 
 ```markdown
-- [x] Completed task
-- [ ] Pending task
+- [x] Completed topic
+- [ ] Pending topic
+- [ ] Not started
 ```
 
-### Collapsible Sections
-
-```markdown
-<details>
-<summary>Click to expand</summary>
-
-Hidden content here
-
-</details>
-```
-
-## Deployment to GitHub Pages
-
-### Initial Setup
-
-1. **Create GitHub Repository**
-   - Go to GitHub and create a new repository named "Notes"
-   - Make it public
-
-2. **Update Configuration**
-
-   Edit `.vitepress/config.mts`:
-   ```typescript
-   export default defineConfig({
-     base: '/Notes/', // Your repo name
-     // ... other config
-   })
-   ```
-
-   Update `robots.txt`:
-   ```
-   Sitemap: https://[yourusername].github.io/Notes/sitemap.xml
-   ```
-
-3. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/yourusername/Notes.git
-   git push -u origin main
-   ```
-
-4. **Enable GitHub Pages**
-   - Go to repository Settings > Pages
-   - Source: GitHub Actions
-   - The site will automatically deploy when you push to main
-
-5. **Access Your Site**
-   - Your site will be available at: `https://yourusername.github.io/Notes/`
-
-### Updating Content
-
-Simply push changes to the main branch:
-
-```bash
-git add .
-git commit -m "Update certification notes"
-git push
-```
-
-GitHub Actions will automatically rebuild and deploy your site.
-
-## Customization
-
-### Changing Colors
-
-Edit `.vitepress/theme/custom.css`:
-
-```css
-:root {
-  --vp-c-brand-1: #your-color;
-  --vp-c-brand-2: #your-color;
-  --vp-c-brand-3: #your-color;
-}
-```
-
-### Adding Custom Components
-
-1. Create component in `.vitepress/theme/components/`
-2. Register in `.vitepress/theme/index.ts`
-
-### Modifying Navigation
-
-Edit `.vitepress/config.mts`:
-- `nav` - Top navigation bar
-- `sidebar` - Side navigation
-- `socialLinks` - Social media links
-
-## SEO Optimization
-
-The site includes:
-- Automatic sitemap generation
-- Meta tags for each page
-- Semantic HTML structure
-- robots.txt file
-- Open Graph tags
-- Clean URLs
-
-To improve SEO:
-1. Add descriptive titles and descriptions to each page
-2. Use proper heading hierarchy (H1 > H2 > H3)
-3. Include keywords naturally
-4. Add alt text to images
-5. Internal linking between related topics
-
-## Tips for Great Study Notes
-
-1. **Be Consistent** - Use the template for uniformity
-2. **Include Examples** - Code examples help understanding
-3. **Add Practice Questions** - Test your knowledge
-4. **Use Visual Aids** - Diagrams, tables, and charts
-5. **Link Resources** - Official docs and additional materials
-6. **Track Progress** - Use checkboxes for each topic
-7. **Update Regularly** - Keep notes current with exam changes
-
-## Contributing
-
-These are personal study notes, but feel free to:
-- Report issues or typos
-- Suggest improvements
-- Share your own study tips
-
-## Resources
-
-- [VitePress Documentation](https://vitepress.dev/)
-- [Markdown Guide](https://www.markdownguide.org/)
-- [GitHub Pages Documentation](https://docs.github.com/pages)
-
-## License
-
-These study notes are for personal educational use.
+</div>
 
 ---
 
-Happy studying! Good luck with your certifications! 🎓
+## 🔒 Privacy & Analytics
+
+This site uses **privacy-first analytics** with [Umami](https://umami.is/):
+
+- ✅ **No cookies** - GDPR compliant, no consent needed
+- ✅ **No personal data** - IP addresses not stored
+- ✅ **Anonymous** - Cannot identify individual users
+- ✅ **EU hosted** - Data stored in European servers
+
+**What we track:**
+- Page views (which study materials are most helpful)
+- Referrer sources (how you found the site)
+- General location (country only)
+- Device type (desktop/mobile/tablet)
+
+**What we DON'T track:**
+- Personal information
+- IP addresses
+- Cookies
+- Cross-site tracking
+
+See [Privacy Policy](https://notes.gobinath.com/privacy) for details.
+
+---
+
+## 🚀 Deployment
+
+The site is deployed to a custom domain using GitHub Pages.
+
+### Automatic Deployment
+
+Every push to the `main` branch triggers automatic deployment via GitHub Actions:
+
+```yaml
+# .github/workflows/deploy.yml
+- Build VitePress site
+- Deploy to GitHub Pages
+- Available at notes.gobinath.com
+```
+
+### Manual Deployment
+
+```bash
+npm run docs:build
+# Deploy contents of .vitepress/dist to your hosting provider
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. **Report Issues** - Found a typo or error? [Open an issue](https://github.com/gobinathm/Notes/issues)
+2. **Suggest Improvements** - Have ideas for better explanations? Share them!
+3. **Add Content** - Want to contribute notes for a certification? Submit a PR
+4. **Share Feedback** - Let us know what's working and what isn't
+
+### Contribution Guidelines
+
+- Follow the existing structure and templates
+- Use clear, concise language
+- Include examples where helpful
+- Cite official documentation
+- Test your changes locally before submitting
+
+---
+
+## 📚 Resources
+
+### VitePress & Documentation
+- [VitePress Documentation](https://vitepress.dev/)
+- [Markdown Guide](https://www.markdownguide.org/)
+- [Vue.js Documentation](https://vuejs.org/)
+
+### Certification Resources
+- [GitHub Certifications](https://examregistration.github.com/)
+- [AWS Certification](https://aws.amazon.com/certification/)
+- [Microsoft Learn](https://learn.microsoft.com/certifications/)
+
+### Deployment & Hosting
+- [GitHub Pages Documentation](https://docs.github.com/pages)
+- [Custom Domain Setup](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site)
+
+---
+
+## 📄 License
+
+These study notes are shared openly because documenting is the best way to learn.
+
+Feel free to use these notes for your own study, but please don't copy them wholesale for commercial purposes.
+
+---
+
+## 💬 Feedback
+
+Have questions or suggestions?
+
+- **Open an issue:** [GitHub Issues](https://github.com/gobinathm/Notes/issues)
+- **Website:** [notes.gobinath.com](https://notes.gobinath.com)
+
+---
+
+## 🙏 Acknowledgments
+
+Built with:
+- [VitePress](https://vitepress.dev/) - Fast static site generator
+- [Vue.js](https://vuejs.org/) - Progressive JavaScript framework
+- [Umami](https://umami.is/) - Privacy-first analytics
+- [GitHub Pages](https://pages.github.com/) - Free hosting
+
+Special thanks to the open-source community for making learning accessible to everyone!
+
+---
+
+**Happy Studying! Good luck with your certifications!** 🎓🚀
+
+*Made with ❤️ and too much ☕ by Gobi*
