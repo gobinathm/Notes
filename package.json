@@ -1,6 +1,12 @@
 {
   "name": "certification-study-notes",
   "version": "1.0.0",
+  "packageManager": "npm@10.0.0",
+  "engines": {
+    "npm": ">=10.0.0",
+    "pnpm": "please-use-npm",
+    "yarn": "please-use-npm"
+  },
   "description": "Study notes for various technology certifications",
   "type": "module",
   "scripts": {
