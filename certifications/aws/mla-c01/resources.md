@@ -82,6 +82,28 @@ description: "Learning resources for AWS Certified Machine Learning Engineer Ass
 
 ---
 
+## Module 9: Security
+
+- [Securing Amazon SageMaker Studio Connectivity Using a Private VPC](https://aws.amazon.com/blogs/machine-learning/securing-amazon-sagemaker-studio-connectivity-using-a-private-vpc/)
+- [CreateTrainingJob API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)
+- [InvokeEndpoint API - SageMaker Runtime](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html)
+- [Hugging Face SafeTensors](https://huggingface.co/docs/safetensors/en/index)
+- [Python PICKLE Format](https://docs.python.org/3/library/pickle.html)
+- [AWS ML Engineer Associate 4.3 Secure AWS ML Resources](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20398/aws-ml-engineer-associate-43-secure-aws-ml-resources)
+
+---
+
+## Module 10: Monitoring & Operations
+
+- [Going Faster with Continuous Delivery](https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/)
+- [AWS Builders' Library](https://aws.amazon.com/builders-library)
+- [SageMaker AI Operators for Kubernetes](https://docs.aws.amazon.com/sagemaker/latest/dg/kubernetes-sagemaker-operators.html)
+- [CreateEndpointConfig API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html)
+- [AWS ML Engineer Associate 4.1 Monitor Model Performance and Data Quality](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20446/aws-ml-engineer-associate-41-monitor-model-performance-and-data-quality)
+- [AWS ML Engineer Associate 4.2 Monitor and Optimize Infrastructure and Costs](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20450/aws-ml-engineer-associate-42-monitor-and-optimize-infrastructure-and-costs)
+
+---
+
 ## Case Studies
 
 - [Aviva: Scalable, Secure MLOps Platform using Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/how-aviva-built-a-scalable-secure-and-reliable-mlops-platform-using-amazon-sagemaker/)
