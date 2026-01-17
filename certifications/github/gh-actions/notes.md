@@ -66,6 +66,31 @@ on: [push, pull_request, workflow_dispatch]
 Know the difference between `push` and `pull_request` triggers and when each is appropriate.
 :::
 
+#### Combining `branches` and `paths` Filters
+
+When both `branches` and `paths` are used on the same trigger, they operate with **AND** logic. The workflow only triggers if **both** conditions are met.
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+```
+
+| Scenario | Branch | File Changed | Triggers? |
+|----------|--------|-------------|-----------|
+| A | `main` | `src/index.js` | Yes - both conditions met |
+| B | `main` | `README.md` | No - path condition failed |
+| C | `feature` | `src/index.js` | No - branch condition failed |
+
+::: warning Exam Tip
+- **Initial push of a new branch** that matches the branch filter will trigger the workflow regardless of the path filter, because GitHub has no previous state to compare file changes against.
+- **Draft PRs** with `pull_request` triggers won't run unless you include the `ready_for_review` activity type.
+- Using `branches-ignore` with `paths` still follows AND logic: branch must NOT be ignored AND path must match.
+:::
+
 **Key Event Keywords:**
 
 | Keyword | Purpose | When to Use |
@@ -4057,6 +4082,16 @@ steps:
 | **Timeout** | Workflow cancelled after timeout | Check `timeout-minutes:`, optimize long steps |
 | **Environment Issue** | Missing dependencies/files | Verify runner OS, check file paths, list directory |
 | **Secret Not Found** | Empty variable, auth failure | Verify secret name, check secret scope (repo/org/env) |
+
+**Exit Codes Reference:**
+
+| Exit Code | Meaning | Outcome in GitHub Actions |
+|-----------|---------|---------------------------|
+| 0 | Success | Step completes; workflow continues to the next step |
+| 1 | General Error | Step fails; workflow stops (unless `continue-on-error: true`) |
+| 127 | Command Not Found | Step fails; usually happens if a binary is missing or a path is wrong |
+| 130 | Terminated by User | Step fails; usually occurs if the process was interrupted (Ctrl+C) |
+| 137 | OOM / Killed | Step fails; typically means the runner ran out of memory or the process was force-killed |
 
 **Debugging Strategy:**
 
