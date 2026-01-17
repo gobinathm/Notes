@@ -34,6 +34,13 @@ Foundational understanding of AI/ML concepts, AWS AI services, and responsible A
 **Difficulty**: Beginner to Intermediate
 **Prerequisites**: Basic cloud computing, data analytics concepts
 
+### [MLA-C01: AWS Certified Machine Learning Engineer - Associate](./aws/mla-c01/)
+Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML services.
+
+**Status**: Active Study
+**Difficulty**: Intermediate to Advanced
+**Prerequisites**: 1 year AWS experience, SageMaker hands-on, ML fundamentals
+
 ---
 
 ## Coming Soon
@@ -41,7 +48,6 @@ Foundational understanding of AI/ML concepts, AWS AI services, and responsible A
 More certifications will be added:
 - Microsoft Certified: Azure AI Engineer Associate
 - Generative AI Leader – Google Cloud Certification
-- AWS Certified Machine Learning Engineer – Associate
 - AWS Certified Generative AI Developer - Professional
 
 ---

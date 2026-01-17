@@ -52,7 +52,8 @@ export default defineConfig({
           { text: 'All Certifications', link: '/certifications/' },
           { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
           { text: 'CLF-C02: AWS Cloud Practitioner', link: '/certifications/aws/clf-c02/' },
-          { text: 'AIF-C01: AWS AI Practitioner', link: '/certifications/aws/aif-c01/' }
+          { text: 'AIF-C01: AWS AI Practitioner', link: '/certifications/aws/aif-c01/' },
+          { text: 'MLA-C01: AWS ML Engineer', link: '/certifications/aws/mla-c01/' }
         ]
       },
       {
@@ -109,6 +110,15 @@ export default defineConfig({
                 { text: 'Study Notes', link: '/certifications/aws/aif-c01/notes' },
                 { text: 'Quick Refresher', link: '/certifications/aws/aif-c01/quick-refresher' },
                 { text: 'Exam Tips', link: '/certifications/aws/aif-c01/exam-tips' }
+              ]
+            },
+            {
+              text: 'MLA-C01: ML Engineer Associate',
+              collapsed: false,
+              items: [
+                { text: 'Overview', link: '/certifications/aws/mla-c01/' },
+                { text: 'Exam Objectives', link: '/certifications/aws/mla-c01/objectives' },
+                { text: 'Resources', link: '/certifications/aws/mla-c01/resources' }
               ]
             }
           ]
