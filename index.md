@@ -15,7 +15,8 @@ description: Comprehensive study notes for technology certifications
 - [AIF-C01: AWS AI Practitioner](/certifications/aws/aif-c01/) - ✅ Completed Jan 2026
 - [MLA-C01: AWS ML Engineer Associate](/certifications/aws/mla-c01/) - Active Study
 
----
+**Google Cloud Certifications**
+- [GCP-GAIL: Generative AI Leader](/certifications/google-cloud/gen-ai-leader/) - Active Study
 
 ## Why These Notes?
 

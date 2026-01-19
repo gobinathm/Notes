@@ -43,11 +43,21 @@ Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML servi
 
 ---
 
+## Google Cloud Certifications
+
+### [GCP-GAIL: Generative AI Leader](./google-cloud/gen-ai-leader/)
+Design, implement, and monitor Generative AI solutions using Vertex AI and Gemini models.
+
+**Status**: Active Study
+**Difficulty**: Intermediate
+**Prerequisites**: Cloud computing basics, Python/API familiarity, ML lifecycle understanding
+
+---
+
 ## Coming Soon
 
 More certifications will be added:
 - Microsoft Certified: Azure AI Engineer Associate
-- Generative AI Leader – Google Cloud Certification
 - AWS Certified Generative AI Developer - Professional
 
 ---

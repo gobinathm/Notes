@@ -53,7 +53,8 @@ export default defineConfig({
           { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
           { text: 'CLF-C02: AWS Cloud Practitioner', link: '/certifications/aws/clf-c02/' },
           { text: 'AIF-C01: AWS AI Practitioner', link: '/certifications/aws/aif-c01/' },
-          { text: 'MLA-C01: AWS ML Engineer', link: '/certifications/aws/mla-c01/' }
+          { text: 'MLA-C01: AWS ML Engineer', link: '/certifications/aws/mla-c01/' },
+          { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
         ]
       },
       {
@@ -119,6 +120,23 @@ export default defineConfig({
                 { text: 'Overview', link: '/certifications/aws/mla-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/mla-c01/objectives' },
                 { text: 'Resources', link: '/certifications/aws/mla-c01/resources' }
+              ]
+            }
+          ]
+        },
+        {
+          text: 'Google Cloud Certifications',
+          collapsed: false,
+          items: [
+            {
+              text: 'GCP-GAIL: Generative AI Leader',
+              collapsed: false,
+              items: [
+                { text: 'Overview', link: '/certifications/google-cloud/gen-ai-leader/' },
+                { text: 'Exam Objectives', link: '/certifications/google-cloud/gen-ai-leader/objectives' },
+                { text: 'Study Notes', link: '/certifications/google-cloud/gen-ai-leader/notes' },
+                { text: 'Quick Refresher', link: '/certifications/google-cloud/gen-ai-leader/quick-refresher' },
+                { text: 'Exam Tips', link: '/certifications/google-cloud/gen-ai-leader/exam-tips' }
               ]
             }
           ]
