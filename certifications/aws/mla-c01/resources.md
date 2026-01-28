@@ -7,59 +7,53 @@ description: "Learning resources for AWS Certified Machine Learning Engineer Ass
 
 [← Back to Overview](./index.md)
 
----
-
-## Module 3: Data Storage
-
-- [Amazon EFS now supports up to 2.5 million IOPS per file system](https://aws.amazon.com/about-aws/whats-new/2024/11/amazon-efs-up-to-2-5-million-iops-per-file-system/)
-- [Multi-Attach support now available on Amazon EBS Provisioned IOPS volume type, io2](https://aws.amazon.com/about-aws/whats-new/2020/12/multi-attach-support-now-available-on-amazon-ebs-provisioned-iops-volume-type-io2/)
-- [AWS ML Engineer Associate 1.1 Collect, Ingest, and Store Data](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19562/aws-ml-engineer-associate-11-collect-ingest-and-store-data)
+Resources organized by exam domain for focused study.
 
 ---
 
-## Module 4: Data Preparation
+## Domain 1: Data Preparation for ML (~28%)
 
-- [Registry of Open Data on AWS](https://registry.opendata.aws/)
-- [AWS Data Exchange](https://aws.amazon.com/data-exchange/)
-- [CreateTrainingJob API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)
-- [InvokeEndpoint API - SageMaker Runtime API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html)
-- [Hugging Face Safetensors](https://huggingface.co/docs/safetensors/en/index)
-- [Python PICKLE Format](https://docs.python.org/3/library/pickle.html)
+### AWS Skill Builder Courses
 - [AWS ML Engineer Associate 1.1 Collect, Ingest, and Store Data](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19562/aws-ml-engineer-associate-11-collect-ingest-and-store-data)
 - [AWS ML Engineer Associate 1.2 Transform Data](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19564/aws-ml-engineer-associate-12-transform-data)
 - [AWS ML Engineer Associate 1.3 Validate Data and Prepare for Modeling](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19563/aws-ml-engineer-associate-13-validate-data-and-prepare-for-modeling)
 
+### Documentation & Blogs
+- [Amazon EFS now supports up to 2.5 million IOPS per file system](https://aws.amazon.com/about-aws/whats-new/2024/11/amazon-efs-up-to-2-5-million-iops-per-file-system/)
+- [Multi-Attach support on Amazon EBS Provisioned IOPS io2](https://aws.amazon.com/about-aws/whats-new/2020/12/multi-attach-support-now-available-on-amazon-ebs-provisioned-iops-volume-type-io2/)
+- [Registry of Open Data on AWS](https://registry.opendata.aws/)
+- [AWS Data Exchange](https://aws.amazon.com/data-exchange/)
+
+### Data Formats & Serialization
+- [Hugging Face SafeTensors](https://huggingface.co/docs/safetensors/en/index)
+- [Python PICKLE Format](https://docs.python.org/3/library/pickle.html)
+
 ---
 
-## Module 5: Model Development
+## Domain 2: ML Model Development (~26%)
 
-- [Amazon SageMaker Autopilot](https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html)
-- [Machine Learning on AWS](https://aws.amazon.com/machine-learning/)
-- [Amazon SageMaker Pricing](https://aws.amazon.com/sagemaker/pricing/)
-- [Model Interpretability with Amazon SageMaker Clarify](https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html)
+### AWS Skill Builder Courses
 - [AWS ML Engineer Associate 2.1 Choose a Modeling Approach](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19651/aws-ml-engineer-associate-21-choose-a-modeling-approach)
 - [AWS ML Engineer Associate 2.2 Train Models](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19696/aws-ml-engineer-associate-22-train-models)
 - [AWS ML Engineer Associate 2.3 Refine Models](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19678/aws-ml-engineer-associate-23-refine-models)
 - [AWS ML Engineer Associate 2.4 Analyze Model Performance](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19653/aws-ml-engineer-associate-24-analyze-model-performance)
-- [AWS ML Engineer Associate 4.2 Monitor and Optimize Infrastructure and Costs](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20450/aws-ml-engineer-associate-42-monitor-and-optimize-infrastructure-and-costs)
 
----
+### Model Development
+- [Amazon SageMaker Autopilot](https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html)
+- [Machine Learning on AWS](https://aws.amazon.com/machine-learning/)
+- [Amazon SageMaker Pricing](https://aws.amazon.com/sagemaker/pricing/)
+- [Model Interpretability with Amazon SageMaker Clarify](https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-explainability.html)
 
-## Module 6: Model Training
-
+### Training & Infrastructure
 - [Train Machine Learning Models](https://docs.aws.amazon.com/sagemaker/latest/dg/train-model.html)
 - [EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/)
 - [AWS Neuron SDK](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/)
 - [Scaling Rufus with AWS Inferentia and Trainium for Prime Day](https://aws.amazon.com/blogs/machine-learning/scaling-rufus-the-amazon-generative-ai-powered-conversational-shopping-assistant-with-over-80000-aws-inferentia-and-aws-trainium-chips-for-prime-day/)
+- [Amazon SageMaker Pipelines](https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html)
+
+### Tuning & Evaluation
 - [What is Overfitting](https://aws.amazon.com/what-is/overfitting/)
 - [Efficiently Train, Tune, and Deploy Custom Ensembles with Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/efficiently-train-tune-and-deploy-custom-ensembles-using-amazon-sagemaker/)
-- [Amazon SageMaker Pipelines](https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html)
-- [AWS ML Engineer Associate 2.2 Train Models](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19696/aws-ml-engineer-associate-22-train-models)
-
----
-
-## Module 7: Model Tuning & Evaluation
-
 - [AWS Well Architected Framework: ML Lens - MLPER-09 Performance Trade-off Analysis](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/mlper-09.html)
 - [Multiclass Model Insights](https://docs.aws.amazon.com/machine-learning/latest/dg/multiclass-model-insights.html)
 - [MLU-EXPLAIN: ROC and AUC](https://mlu-explain.github.io/roc-auc)
@@ -67,40 +61,38 @@ description: "Learning resources for AWS Certified Machine Learning Engineer Ass
 - [Distributed Training in Amazon SageMaker AI](https://docs.aws.amazon.com/sagemaker/latest/dg/distributed-training.html)
 - [Automatic Model Tuning with SageMaker AI](https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html)
 - [Amazon SageMaker Automatic Model Tuning with Hyperband](https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-automatic-model-tuning-now-provides-up-to-three-times-faster-hyperparameter-tuning-with-hyperband/)
-- [AWS ML Engineer Associate 2.3 Refine Models](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19678/aws-ml-engineer-associate-23-refine-models)
-- [AWS ML Engineer Associate 2.4 Analyze Model Performance](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19653/aws-ml-engineer-associate-24-analyze-model-performance)
 
 ---
 
-## Module 8: Model Deployment
+## Domain 3: Deployment and Orchestration (~22%)
 
-- [Model Hosting Patterns Part 6: Best Practices in Testing and Updating Models](https://aws.amazon.com/blogs/machine-learning/part-6-model-hosting-patterns-in-amazon-sagemaker-best-practices-in-testing-and-updating-models-on-sagemaker/)
-- [Managed Spot Training in Amazon SageMaker AI](https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html)
-- [Lyft Case Study - Spot Instances](https://aws.amazon.com/solutions/case-studies/lyft-spot/)
+### AWS Skill Builder Courses
 - [AWS ML Engineer Associate 3.1 Select a Deployment Infrastructure](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20369/aws-ml-engineer-associate-31-select-a-deployment-infrastructure)
 - [AWS ML Engineer Associate 3.2 Create and Script Infrastructure](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20360/aws-ml-engineer-associate-32-create-and-script-infrastructure)
 
----
-
-## Module 9: Security
-
-- [Securing Amazon SageMaker Studio Connectivity Using a Private VPC](https://aws.amazon.com/blogs/machine-learning/securing-amazon-sagemaker-studio-connectivity-using-a-private-vpc/)
-- [CreateTrainingJob API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)
-- [InvokeEndpoint API - SageMaker Runtime](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html)
-- [Hugging Face SafeTensors](https://huggingface.co/docs/safetensors/en/index)
-- [Python PICKLE Format](https://docs.python.org/3/library/pickle.html)
-- [AWS ML Engineer Associate 4.3 Secure AWS ML Resources](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20398/aws-ml-engineer-associate-43-secure-aws-ml-resources)
-
----
-
-## Module 10: Monitoring & Operations
-
+### Documentation & Blogs
+- [Model Hosting Patterns Part 6: Best Practices in Testing and Updating Models](https://aws.amazon.com/blogs/machine-learning/part-6-model-hosting-patterns-in-amazon-sagemaker-best-practices-in-testing-and-updating-models-on-sagemaker/)
+- [Managed Spot Training in Amazon SageMaker AI](https://docs.aws.amazon.com/sagemaker/latest/dg/model-managed-spot-training.html)
+- [SageMaker AI Operators for Kubernetes](https://docs.aws.amazon.com/sagemaker/latest/dg/kubernetes-sagemaker-operators.html)
 - [Going Faster with Continuous Delivery](https://aws.amazon.com/builders-library/going-faster-with-continuous-delivery/)
 - [AWS Builders' Library](https://aws.amazon.com/builders-library)
-- [SageMaker AI Operators for Kubernetes](https://docs.aws.amazon.com/sagemaker/latest/dg/kubernetes-sagemaker-operators.html)
+
+### API References
+- [CreateTrainingJob API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html)
+- [InvokeEndpoint API - SageMaker Runtime](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html)
 - [CreateEndpointConfig API Reference](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html)
+
+---
+
+## Domain 4: Monitoring, Maintenance, and Security (~24%)
+
+### AWS Skill Builder Courses
 - [AWS ML Engineer Associate 4.1 Monitor Model Performance and Data Quality](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20446/aws-ml-engineer-associate-41-monitor-model-performance-and-data-quality)
 - [AWS ML Engineer Associate 4.2 Monitor and Optimize Infrastructure and Costs](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20450/aws-ml-engineer-associate-42-monitor-and-optimize-infrastructure-and-costs)
+- [AWS ML Engineer Associate 4.3 Secure AWS ML Resources](https://explore.skillbuilder.aws/learn/course/external/view/elearning/20398/aws-ml-engineer-associate-43-secure-aws-ml-resources)
+
+### Security
+- [Securing Amazon SageMaker Studio Connectivity Using a Private VPC](https://aws.amazon.com/blogs/machine-learning/securing-amazon-sagemaker-studio-connectivity-using-a-private-vpc/)
 
 ---
 
@@ -111,6 +103,7 @@ description: "Learning resources for AWS Certified Machine Learning Engineer Ass
 - [The Weather Company: Generative AI Case Study](https://aws.amazon.com/solutions/case-studies/the-weather-company-generativeai/)
 - [Lumi: Streamlining Loan Approvals with Amazon SageMaker AI](https://aws.amazon.com/blogs/machine-learning/how-lumi-streamlines-loan-approvals-with-amazon-sagemaker-ai/)
 - [BMW Group: Accelerating AI/ML Development with Amazon SageMaker Studio](https://aws.amazon.com/blogs/machine-learning/accelerating-ai-ml-development-at-bmw-group-with-amazon-sagemaker-studio/)
+- [Lyft Case Study - Spot Instances](https://aws.amazon.com/solutions/case-studies/lyft-spot/)
 - [Amazon SageMaker AI Customers](https://aws.amazon.com/sagemaker/ai/customers/)
 
 ---
