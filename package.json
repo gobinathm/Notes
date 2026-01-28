@@ -22,5 +22,8 @@
     "study-notes",
     "technology",
     "learning"
-  ]
+  ],
+  "dependencies": {
+    "html2pdf.js": "^0.14.0"
+  }
 }
