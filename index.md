@@ -8,7 +8,7 @@ description: Comprehensive study notes for technology certifications
 ## Available Notes
 
 **GitHub Certifications**
-- [GH-200: GitHub Actions](/certifications/github/gh-actions/) - CI/CD workflows, automation, and best practices (Active Study)
+- [GH-200: GitHub Actions](/certifications/github/gh-actions/) - ✅ Completed Jan 2026
 
 **AWS Certifications**
 - [CLF-C02: AWS Cloud Practitioner](/certifications/aws/clf-c02/) - ✅ Completed Oct 2024
