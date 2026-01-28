@@ -1,9 +1,9 @@
 ---
-title: "[CERT-CODE] - Exam Tips"
-description: "Exam strategies and tips for [CERT-CODE] [Certification Name]"
+title: "MLA-C01 - Exam Tips"
+description: "Exam strategies and tips for MLA-C01 AWS Machine Learning Engineer Associate"
 ---
 
-# [CERT-CODE]: Exam Tips & Strategy
+# MLA-C01: Exam Tips & Strategy
 
 [← Back to Overview](./index.md)
 

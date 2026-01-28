@@ -1,9 +1,9 @@
 ---
-title: "[CERT-CODE] - Study Notes"
-description: "Comprehensive study notes for [CERT-CODE] [Certification Name] exam"
+title: "MLA-C01 - Study Notes"
+description: "Comprehensive study notes for MLA-C01 AWS Machine Learning Engineer Associate exam"
 ---
 
-# [CERT-CODE]: Study Notes
+# MLA-C01: Study Notes
 
 [← Back to Overview](./index.md)
 

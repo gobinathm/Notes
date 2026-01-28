@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 
+const hostname = 'https://notes.gobinath.com'
+
 export default defineConfig({
   title: "Tech Certification Study Notes",
   description: "Comprehensive study notes for various technology certifications",
@@ -12,12 +14,26 @@ export default defineConfig({
 
   // SEO: Enable sitemap generation
   sitemap: {
-    hostname: 'https://notes.gobinath.com'
+    hostname
+  },
+
+  // SEO: Add canonical URL per page
+  transformPageData(pageData) {
+    const canonicalUrl = `${hostname}/${pageData.relativePath}`
+      .replace(/index\.md$/, '')
+      .replace(/\.md$/, '')
+
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: canonicalUrl }
+    ])
   },
 
   // Head tags for SEO
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { name: 'robots', content: 'index, follow' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],

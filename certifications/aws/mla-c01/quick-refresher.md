@@ -1,14 +1,14 @@
 ---
-title: "[CERT-CODE] - Quick Refresher"
-description: "Last-minute cram session for [Certification Name] exam"
+title: "MLA-C01 - Quick Refresher"
+description: "Last-minute cram session for AWS Machine Learning Engineer Associate exam"
 ---
 
-# [CERT-CODE]: [Certification Name] Last-Minute Refresher
+# MLA-C01: AWS Machine Learning Engineer Associate Last-Minute Refresher
 
 [← Back to Overview](./index.md)
 
 ::: danger Final Review
-This page is designed for the final "cram" session before stepping into the **[CERT-CODE]** exam.
+This page is designed for the final "cram" session before stepping into the **MLA-C01** exam.
 :::
 
 ---
