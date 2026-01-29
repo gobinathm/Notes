@@ -3,6 +3,8 @@ title: "GH-200 - Study Notes"
 description: "Detailed study notes for GH-200 GitHub Actions certification"
 ---
 
+<div v-pre>
+
 # GH-200: Study Notes
 
 Detailed notes, examples, and key concepts for GH-200 GitHub Actions certification.
@@ -133,7 +135,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: $&#123;&#123; env.NODE_VERSION }}
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies
         run: npm ci
@@ -195,7 +197,7 @@ jobs:
 ```yaml
 jobs:
   test:
-    runs-on: $&#123;&#123; matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -206,7 +208,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: $&#123;&#123; matrix.node }}
+          node-version: ${{ matrix.node }}
       - run: npm test
 ```
 
@@ -489,7 +491,7 @@ steps:
 - Need variables across multiple steps
 - Working with external tools/scripts
 
-**Use Contexts (e.g., `$&#123;&#123; github.sha }}`) When:**
+**Use Contexts (e.g., `${{ github.sha }}`) When:**
 - In YAML keys/values (not `run:` blocks)
 - In `if:` conditions
 - Passing to actions via `with:`
@@ -505,7 +507,7 @@ jobs:
       # ✅ Context in action input
       - uses: actions/checkout@v4
         with:
-          ref: $&#123;&#123; github.sha }}
+          ref: ${{ github.sha }}
 
       # ✅ Environment variable in shell
       - run: echo "SHA: $GITHUB_SHA"
@@ -513,7 +515,7 @@ jobs:
       # ✅ Context in env value
       - name: Use context
         env:
-          COMMIT: $&#123;&#123; github.sha }}
+          COMMIT: ${{ github.sha }}
         run: echo "Commit: $COMMIT"
 ```
 
@@ -655,7 +657,7 @@ Matrix values are NOT default variables but are accessible:
 ```yaml
 jobs:
   test:
-    runs-on: $&#123;&#123; matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -668,7 +670,7 @@ jobs:
           echo "Job ID: $GITHUB_JOB"
 
           # ❌ Matrix values not in default env
-          # Use context instead: $&#123;&#123; matrix.os }}
+          # Use context instead: ${{ matrix.os }}
 ```
 
 **Access Matrix in Shell:**
@@ -677,8 +679,8 @@ jobs:
 steps:
   - name: Use matrix values
     env:
-      MATRIX_OS: $&#123;&#123; matrix.os }}
-      MATRIX_NODE: $&#123;&#123; matrix.node }}
+      MATRIX_OS: ${{ matrix.os }}
+      MATRIX_NODE: ${{ matrix.node }}
     run: |
       echo "Testing on $MATRIX_OS with Node $MATRIX_NODE"
 ```
@@ -808,7 +810,7 @@ env:
   GITHUB_SHA: 'my-custom-sha'
 
   # ✅ Use your own prefix
-  MY_CUSTOM_SHA: $&#123;&#123; github.sha }}
+  MY_CUSTOM_SHA: ${{ github.sha }}
 ```
 
 **Variable Value Size Limits:**
@@ -875,14 +877,14 @@ steps:
 
 ```yaml
 # ❌ WRONG - Context doesn't work in shell
-- run: echo $&#123;&#123; github.repository }}
+- run: echo ${{ github.repository }}
 
 # ✅ CORRECT - Use environment variable
 - run: echo $GITHUB_REPOSITORY
 
 # ✅ OR - Pass via env
 - env:
-    REPO: $&#123;&#123; github.repository }}
+    REPO: ${{ github.repository }}
   run: echo $REPO
 ```
 
@@ -990,7 +992,7 @@ on: push
 
 # Only one deployment per branch at a time
 concurrency:
-  group: deploy-$&#123;&#123; github.ref }}
+  group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -1020,7 +1022,7 @@ All branches share the same group, so a push to `feature-A` would cancel a deplo
 ```yaml
 # ✅ CORRECT - Include branch in group
 concurrency:
-  group: deploy-$&#123;&#123; github.ref }}
+  group: deploy-${{ github.ref }}
 ```
 
 Now `feature-A` and `main` have separate groups.
@@ -1030,17 +1032,17 @@ Now `feature-A` and `main` have separate groups.
 
 | Strategy | Group | cancel-in-progress | Use Case |
 |----------|-------|-------------------|----------|
-| **Per branch** | `$&#123;&#123; github.workflow }}-$&#123;&#123; github.ref }}` | `true` | Keep only latest run per branch |
-| **Per PR** | `$&#123;&#123; github.workflow }}-pr-$&#123;&#123; github.event.pull_request.number }}` | `true` | One CI run per PR |
+| **Per branch** | `${{ github.workflow }}-${{ github.ref }}` | `true` | Keep only latest run per branch |
+| **Per PR** | `${{ github.workflow }}-pr-${{ github.event.pull_request.number }}` | `true` | One CI run per PR |
 | **Queue all** | `deploy-production` | `false` | Run all deploys in order |
-| **Single global** | `$&#123;&#123; github.workflow }}` | `false` | Only one workflow run at a time (any branch) |
+| **Single global** | `${{ github.workflow }}` | `false` | Only one workflow run at a time (any branch) |
 
 **Queue vs Cancel:**
 
 ```yaml
 # Cancel in progress (saves time, use for CI)
 concurrency:
-  group: ci-$&#123;&#123; github.ref }}
+  group: ci-${{ github.ref }}
   cancel-in-progress: true  # Cancel old runs
 
 # Queue (ensures all run, use for deployments)
@@ -1064,7 +1066,7 @@ jobs:
     runs-on: ubuntu-latest
     # Only one deploy at a time
     concurrency:
-      group: deploy-$&#123;&#123; github.ref }}
+      group: deploy-${{ github.ref }}
       cancel-in-progress: false
     steps:
       - run: ./deploy.sh
@@ -1113,8 +1115,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       # Define outputs at job level
-      version: $&#123;&#123; steps.get-version.outputs.version }}
-      artifact-url: $&#123;&#123; steps.upload.outputs.artifact-url }}
+      version: ${{ steps.get-version.outputs.version }}
+      artifact-url: ${{ steps.upload.outputs.artifact-url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -1139,10 +1141,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy version $&#123;&#123; needs.build.outputs.version }}
+      - name: Deploy version ${{ needs.build.outputs.version }}
         run: |
-          echo "Deploying version: $&#123;&#123; needs.build.outputs.version }}"
-          echo "Artifact URL: $&#123;&#123; needs.build.outputs.artifact-url }}"
+          echo "Deploying version: ${{ needs.build.outputs.version }}"
+          echo "Artifact URL: ${{ needs.build.outputs.artifact-url }}"
 ```
 
 **Step-by-Step:**
@@ -1165,9 +1167,9 @@ steps:
 
   - name: Use outputs
     run: |
-      echo "Result: $&#123;&#123; steps.calc.outputs.result }}"
-      echo "Status: $&#123;&#123; steps.calc.outputs.status }}"
-      echo "Time: $&#123;&#123; steps.calc.outputs.timestamp }}"
+      echo "Result: ${{ steps.calc.outputs.result }}"
+      echo "Status: ${{ steps.calc.outputs.status }}"
+      echo "Time: ${{ steps.calc.outputs.timestamp }}"
 ```
 
 **Passing Outputs Through Multiple Jobs:**
@@ -1176,7 +1178,7 @@ steps:
 jobs:
   build:
     outputs:
-      version: $&#123;&#123; steps.version.outputs.value }}
+      version: ${{ steps.version.outputs.value }}
     steps:
       - id: version
         run: echo "value=1.2.3" >> $GITHUB_OUTPUT
@@ -1185,8 +1187,8 @@ jobs:
     needs: build
     outputs:
       # Pass through from previous job
-      version: $&#123;&#123; needs.build.outputs.version }}
-      test-result: $&#123;&#123; steps.test.outputs.result }}
+      version: ${{ needs.build.outputs.version }}
+      test-result: ${{ steps.test.outputs.result }}
     steps:
       - id: test
         run: echo "result=passed" >> $GITHUB_OUTPUT
@@ -1197,8 +1199,8 @@ jobs:
     steps:
       - name: Deploy
         run: |
-          echo "Version: $&#123;&#123; needs.test.outputs.version }}"
-          echo "Tests: $&#123;&#123; needs.test.outputs.test-result }}"
+          echo "Version: ${{ needs.test.outputs.version }}"
+          echo "Tests: ${{ needs.test.outputs.test-result }}"
 ```
 
 **Matrix Outputs:**
@@ -1212,7 +1214,7 @@ jobs:
     outputs:
       # ⚠️ Matrix jobs can't reliably pass outputs
       # Only the last matrix job's output is available
-      version: $&#123;&#123; steps.version.outputs.value }}
+      version: ${{ steps.version.outputs.value }}
     steps:
       - id: version
         run: echo "value=1.0.0" >> $GITHUB_OUTPUT
@@ -1235,7 +1237,7 @@ Outputs are strings, not JSON:
     echo "data=$DATA" >> $GITHUB_OUTPUT
 
 - name: Use it
-  run: echo '$&#123;&#123; steps.set.outputs.data }}' | jq '.key'
+  run: echo '${{ steps.set.outputs.data }}' | jq '.key'
 ```
 :::
 
@@ -1368,9 +1370,9 @@ jobs:
     steps:
       - name: Send notification
         run: |
-          if [ "$&#123;&#123; needs.test.result }}" == "failure" ]; then
+          if [ "${{ needs.test.result }}" == "failure" ]; then
             echo "Tests failed"
-          elif [ "$&#123;&#123; needs.deploy.result }}" == "failure" ]; then
+          elif [ "${{ needs.deploy.result }}" == "failure" ]; then
             echo "Deployment failed"
           fi
 ```
@@ -1524,7 +1526,7 @@ jobs:
 | Option | Purpose | Example |
 |--------|---------|---------|
 | `image` | Docker image to use | `node:18`, `python:3.11`, `mcr.microsoft.com/dotnet/sdk:7.0` |
-| `credentials` | Private registry auth | `username: $&#123;&#123; secrets.DOCKER_USER }}` |
+| `credentials` | Private registry auth | `username: ${{ secrets.DOCKER_USER }}` |
 | `env` | Environment variables | `NODE_ENV: production` |
 | `ports` | Expose container ports | `- 8080:8080` |
 | `volumes` | Mount volumes | `- /path/on/host:/path/in/container` |
@@ -1539,8 +1541,8 @@ jobs:
     container:
       image: myregistry.azurecr.io/myapp:latest
       credentials:
-        username: $&#123;&#123; secrets.REGISTRY_USERNAME }}
-        password: $&#123;&#123; secrets.REGISTRY_PASSWORD }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
     steps:
       - run: ./test.sh
 ```
@@ -1932,7 +1934,7 @@ steps:
       release_name: Release v1.0.0
 
   - name: Use output
-    run: echo "Release URL: $&#123;&#123; steps.create_release.outputs.upload_url }}"
+    run: echo "Release URL: ${{ steps.create_release.outputs.upload_url }}"
 ```
 
 ---
@@ -1954,7 +1956,7 @@ jobs:
     with:
       environment: production
     secrets:
-      deploy-token: $&#123;&#123; secrets.DEPLOY_TOKEN }}
+      deploy-token: ${{ secrets.DEPLOY_TOKEN }}
 ```
 
 **Creating a Reusable Workflow:**
@@ -1976,9 +1978,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: $&#123;&#123; inputs.environment }}
+    environment: ${{ inputs.environment }}
     steps:
-      - run: echo "Deploying to $&#123;&#123; inputs.environment }}"
+      - run: echo "Deploying to ${{ inputs.environment }}"
 ```
 
 **Key Domain 2 Keywords:**
@@ -2046,7 +2048,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: $&#123;&#123; runner.os }}-node-$&#123;&#123; hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
       - run: npm ci  # Fast if cache hit!
       - run: npm run build
@@ -2305,7 +2307,7 @@ inputs:
 outputs:
   cache-hit:
     description: 'Whether cache was hit'
-    value: $&#123;&#123; steps.cache.outputs.cache-hit }}
+    value: ${{ steps.cache.outputs.cache-hit }}
 
 runs:
   using: 'composite'
@@ -2313,14 +2315,14 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: $&#123;&#123; inputs.node-version }}
+        node-version: ${{ inputs.node-version }}
 
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v3
       with:
         path: node_modules
-        key: $&#123;&#123; runner.os }}-node-$&#123;&#123; hashFiles('package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
@@ -2410,13 +2412,13 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - run: echo $&#123;&#123; secrets.API_KEY }}
+      - run: echo ${{ secrets.API_KEY }}
       # Uses: Environment secret (production)
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo $&#123;&#123; secrets.API_KEY }}
+      - run: echo ${{ secrets.API_KEY }}
       # Uses: Repository secret (no environment)
 ```
 
@@ -2441,8 +2443,8 @@ jobs:
       # Access via secrets context
       - name: Deploy to API
         env:
-          API_TOKEN: $&#123;&#123; secrets.API_TOKEN }}
-          DB_PASSWORD: $&#123;&#123; secrets.DB_PASSWORD }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           curl -H "Authorization: Bearer $API_TOKEN" \
             https://api.example.com/deploy
@@ -2451,7 +2453,7 @@ jobs:
       - name: Deploy with action
         uses: some/deploy-action@v1
         with:
-          api-key: $&#123;&#123; secrets.API_TOKEN }}
+          api-key: ${{ secrets.API_TOKEN }}
 ```
 
 ::: warning Secret Masking
@@ -2484,8 +2486,8 @@ jobs:
     steps:
       - name: Deploy
         env:
-          DEPLOY_TOKEN: $&#123;&#123; secrets.DEPLOY_TOKEN }}
-          API_URL: $&#123;&#123; secrets.API_URL }}
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          API_URL: ${{ secrets.API_URL }}
         run: ./deploy.sh
 
   deploy-production:
@@ -2495,8 +2497,8 @@ jobs:
     steps:
       - name: Deploy
         env:
-          DEPLOY_TOKEN: $&#123;&#123; secrets.DEPLOY_TOKEN }}  # Production token
-          API_URL: $&#123;&#123; secrets.API_URL }}              # Production URL
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}  # Production token
+          API_URL: ${{ secrets.API_URL }}              # Production URL
         run: ./deploy.sh
 ```
 
@@ -2556,7 +2558,7 @@ jobs:
     steps:
       - uses: actions/github-script@v7
         with:
-          github-token: $&#123;&#123; secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -2594,9 +2596,9 @@ steps:
   - name: Create issue
     run: |
       curl -X POST \
-        -H "Authorization: token $&#123;&#123; secrets.GITHUB_TOKEN }}" \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
         -H "Accept: application/vnd.github.v3+json" \
-        https://api.github.com/repos/$&#123;&#123; github.repository }}/issues \
+        https://api.github.com/repos/${{ github.repository }}/issues \
         -d '{"title":"Automated issue","body":"Created by workflow"}'
 ```
 
@@ -2638,7 +2640,7 @@ jobs:
       - name: Trigger another workflow
         run: |
           curl -X POST \
-            -H "Authorization: token $&#123;&#123; secrets.PAT_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/owner/repo/actions/workflows/deploy.yml/dispatches \
             -d '{"ref":"main"}'
@@ -2648,7 +2650,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: owner/private-repo
-          token: $&#123;&#123; secrets.PAT_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           path: private-repo
 ```
 
@@ -2721,9 +2723,9 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          client-id: $&#123;&#123; secrets.AZURE_CLIENT_ID }}
-          tenant-id: $&#123;&#123; secrets.AZURE_TENANT_ID }}
-          subscription-id: $&#123;&#123; secrets.AZURE_SUBSCRIPTION_ID }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy
         run: az webapp deploy --name myapp --resource-group mygroup
@@ -2741,8 +2743,8 @@ jobs:
   call-deploy:
     uses: org/repo/.github/workflows/deploy.yml@main
     secrets:
-      api-key: $&#123;&#123; secrets.API_KEY }}
-      db-password: $&#123;&#123; secrets.DB_PASSWORD }}
+      api-key: ${{ secrets.API_KEY }}
+      db-password: ${{ secrets.DB_PASSWORD }}
 
 # Reusable workflow (deploy.yml)
 on:
@@ -2759,8 +2761,8 @@ jobs:
     steps:
       - run: ./deploy.sh
         env:
-          API_KEY: $&#123;&#123; secrets.api-key }}
-          DB_PASS: $&#123;&#123; secrets.db-password }}
+          API_KEY: ${{ secrets.api-key }}
+          DB_PASS: ${{ secrets.db-password }}
 ```
 
 **Inherit All Secrets:**
@@ -2785,7 +2787,7 @@ jobs:
     steps:
       - run: ./deploy.sh
         env:
-          API_KEY: $&#123;&#123; secrets.api-key }}
+          API_KEY: ${{ secrets.api-key }}
 ```
 
 ---
@@ -2862,12 +2864,12 @@ on:
 
 ```yaml
 # ❌ BAD - Might leak in logs
-- run: echo "Token: $&#123;&#123; secrets.API_TOKEN }}"
+- run: echo "Token: ${{ secrets.API_TOKEN }}"
 
 # ✅ GOOD - Use intermediate variable
 - name: Use token
   env:
-    API_TOKEN: $&#123;&#123; secrets.API_TOKEN }}
+    API_TOKEN: ${{ secrets.API_TOKEN }}
   run: |
     # Token is masked if accidentally printed
     ./deploy.sh
@@ -2875,7 +2877,7 @@ on:
 # ✅ BEST - Don't print at all
 - name: Deploy
   env:
-    API_TOKEN: $&#123;&#123; secrets.API_TOKEN }}
+    API_TOKEN: ${{ secrets.API_TOKEN }}
   run: ./deploy.sh > /dev/null 2>&1
 ```
 
@@ -2885,8 +2887,8 @@ This is a classic exam question. **NEVER** pass secrets as command-line argument
 
 ```yaml
 # ❌ EXTREMELY DANGEROUS - DO NOT DO THIS
-- run: ./deploy.sh $&#123;&#123; secrets.API_TOKEN }}
-- run: curl -H "Authorization: $&#123;&#123; secrets.API_TOKEN }}" https://api.example.com
+- run: ./deploy.sh ${{ secrets.API_TOKEN }}
+- run: curl -H "Authorization: ${{ secrets.API_TOKEN }}" https://api.example.com
 
 Why this is dangerous:
 1. **Visible in process list** - Anyone on the system can see it (ps aux)
@@ -2901,18 +2903,18 @@ Why this is dangerous:
 # ✅ CORRECT - Pass via env
 - name: Deploy
   env:
-    API_TOKEN: $&#123;&#123; secrets.API_TOKEN }}
+    API_TOKEN: ${{ secrets.API_TOKEN }}
   run: ./deploy.sh  # Script reads from $API_TOKEN
 
 # ✅ CORRECT - For curl
 - name: API call
   env:
-    TOKEN: $&#123;&#123; secrets.API_TOKEN }}
+    TOKEN: ${{ secrets.API_TOKEN }}
   run: curl -H "Authorization: $TOKEN" https://api.example.com
 ```
 
 Exam question format:
-> "A developer passes a secret to a script as: `./deploy.sh $&#123;&#123; secrets.TOKEN }}`. What are the risks?"
+> "A developer passes a secret to a script as: `./deploy.sh ${{ secrets.TOKEN }}`. What are the risks?"
 
 Answer: Visible in process list, shell history, and audit logs. Should use env variables instead.
 :::
@@ -2929,17 +2931,17 @@ Know the correct syntax - this shows up in exam questions:
 steps:
   # ✅ CORRECT - Access secrets directly
   - env:
-      API_KEY: $&#123;&#123; secrets.API_KEY }}
-      DB_PASSWORD: $&#123;&#123; secrets.DB_PASSWORD }}
+      API_KEY: ${{ secrets.API_KEY }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
   # ✅ CORRECT - In with: parameters
   - uses: some-action@v1
     with:
-      token: $&#123;&#123; secrets.GITHUB_TOKEN }}
-      api-key: $&#123;&#123; secrets.API_KEY }}
+      token: ${{ secrets.GITHUB_TOKEN }}
+      api-key: ${{ secrets.API_KEY }}
 
   # ✅ CORRECT - Checking if secret exists
-  - if: $&#123;&#123; secrets.API_KEY != '' }}
+  - if: ${{ secrets.API_KEY != '' }}
     run: echo "API key is set"
 ```
 
@@ -2949,15 +2951,15 @@ steps:
 steps:
   # ❌ WRONG - No .environment namespace
   - env:
-      API_KEY: $&#123;&#123; secrets.environment.API_KEY }}  # Does not work!
+      API_KEY: ${{ secrets.environment.API_KEY }}  # Does not work!
 
   # ❌ WRONG - Can't nest secrets
   - env:
-      TOKEN: $&#123;&#123; secrets.prod.token }}  # Invalid syntax
+      TOKEN: ${{ secrets.prod.token }}  # Invalid syntax
 
   # ❌ WRONG - Not how environment secrets work
   - env:
-      KEY: $&#123;&#123; environment.secrets.API_KEY }}  # Wrong!
+      KEY: ${{ environment.secrets.API_KEY }}  # Wrong!
 ```
 
 **How Environment Secrets Actually Work:**
@@ -2969,17 +2971,17 @@ jobs:
     steps:
       # Access secrets normally - GitHub resolves from environment context
       - env:
-          API_KEY: $&#123;&#123; secrets.API_KEY }}  # Gets production's API_KEY
+          API_KEY: ${{ secrets.API_KEY }}  # Gets production's API_KEY
         run: ./deploy.sh
 ```
 
 ::: tip Exam Question Pattern
 "Which syntax correctly accesses a secret named `api_key`?"
 
-- ❌ `$&#123;&#123; secrets.environment.api_key }}`
-- ❌ `$&#123;&#123; environment.secrets.api_key }}`
-- ❌ `$&#123;&#123; secrets.prod.api_key }}`
-- ✅ `$&#123;&#123; secrets.api_key }}`
+- ❌ `${{ secrets.environment.api_key }}`
+- ❌ `${{ environment.secrets.api_key }}`
+- ❌ `${{ secrets.prod.api_key }}`
+- ✅ `${{ secrets.api_key }}`
 
 Answer: The last one. Secrets use flat namespace, no nesting.
 :::
@@ -3273,7 +3275,7 @@ steps:
 # ✅ CORRECT: Need PAT (GITHUB_TOKEN can't do this)
 steps:
   - env:
-      GH_TOKEN: $&#123;&#123; secrets.PAT_TOKEN }}
+      GH_TOKEN: ${{ secrets.PAT_TOKEN }}
     run: gh workflow run deploy.yml --repo other-org/other-repo
 ```
 
@@ -3287,7 +3289,7 @@ steps:
   - uses: actions/checkout@v4
   - uses: actions/github-script@v7
     with:
-      github-token: $&#123;&#123; secrets.GITHUB_TOKEN }}
+      github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ---
@@ -3338,7 +3340,7 @@ jobs:
       - name: Comment on PR
         uses: actions/github-script@v7
         with:
-          github-token: $&#123;&#123; secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({...})
 ```
@@ -3516,7 +3518,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/github-script@v7
         with:
-          github-token: $&#123;&#123; secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 **Pros:**
@@ -3540,11 +3542,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: orgname/other-repo
-          token: $&#123;&#123; secrets.PAT_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Trigger workflow in another repo
         env:
-          GH_TOKEN: $&#123;&#123; secrets.PAT_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: gh workflow run deploy.yml --repo orgname/other-repo
 ```
 
@@ -3741,7 +3743,7 @@ jobs:
     steps:
       - name: Deploy
         env:
-          API_KEY: $&#123;&#123; secrets.API_KEY }}  # Uses staging's API_KEY
+          API_KEY: ${{ secrets.API_KEY }}  # Uses staging's API_KEY
         run: ./deploy.sh
 
   deploy-production:
@@ -3749,7 +3751,7 @@ jobs:
     steps:
       - name: Deploy
         env:
-          API_KEY: $&#123;&#123; secrets.API_KEY }}  # Uses production's API_KEY
+          API_KEY: ${{ secrets.API_KEY }}  # Uses production's API_KEY
         run: ./deploy.sh
 ```
 
@@ -3777,7 +3779,7 @@ jobs:
     steps:
       - name: Deploy
         env:
-          API_KEY: $&#123;&#123; secrets.API_KEY }}  # Environment secret (masked)
+          API_KEY: ${{ secrets.API_KEY }}  # Environment secret (masked)
         run: ./deploy.sh
 ```
 
@@ -3817,7 +3819,7 @@ jobs:
           name: dist
       - name: Deploy to staging
         env:
-          DEPLOY_KEY: $&#123;&#123; secrets.DEPLOY_KEY }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: ./deploy.sh staging
 
   deploy-production:
@@ -3833,7 +3835,7 @@ jobs:
           name: dist
       - name: Deploy to production
         env:
-          DEPLOY_KEY: $&#123;&#123; secrets.DEPLOY_KEY }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: ./deploy.sh production
 ```
 
@@ -3867,7 +3869,7 @@ jobs:
     steps:
       - uses: actions/github-script@v7
         with:
-          github-token: $&#123;&#123; secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -3881,12 +3883,12 @@ jobs:
 
 ```yaml
 # ❌ BAD - Vulnerable to script injection
-- run: echo "Hello $&#123;&#123; github.event.issue.title }}"
+- run: echo "Hello ${{ github.event.issue.title }}"
 
 # ✅ GOOD - Use intermediate environment variable
 - name: Print title
   env:
-    TITLE: $&#123;&#123; github.event.issue.title }}
+    TITLE: ${{ github.event.issue.title }}
   run: echo "Hello $TITLE"
 ```
 
@@ -3955,8 +3957,8 @@ jobs:
       - name: Debug info
         run: |
           echo "::debug::This is a debug message"
-          echo "Repository: $&#123;&#123; github.repository }}"
-          echo "Event: $&#123;&#123; github.event_name }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Event: ${{ github.event_name }}"
 ```
 
 ::: tip Exam Tip
@@ -4042,16 +4044,16 @@ steps:
 ```yaml
 steps:
   - name: Dump GitHub context
-    run: echo '$&#123;&#123; toJSON(github) }}'
+    run: echo '${{ toJSON(github) }}'
 
   - name: Dump runner context
-    run: echo '$&#123;&#123; toJSON(runner) }}'
+    run: echo '${{ toJSON(runner) }}'
 
   - name: Dump job context
-    run: echo '$&#123;&#123; toJSON(job) }}'
+    run: echo '${{ toJSON(job) }}'
 
   - name: Dump steps context
-    run: echo '$&#123;&#123; toJSON(steps) }}'
+    run: echo '${{ toJSON(steps) }}'
 ```
 
 **Check Specific Variables:**
@@ -4060,12 +4062,12 @@ steps:
 steps:
   - name: Debug specific values
     run: |
-      echo "Event name: $&#123;&#123; github.event_name }}"
-      echo "Ref: $&#123;&#123; github.ref }}"
-      echo "Ref name: $&#123;&#123; github.ref_name }}"
-      echo "SHA: $&#123;&#123; github.sha }}"
-      echo "Actor: $&#123;&#123; github.actor }}"
-      echo "Triggered by: $&#123;&#123; github.triggering_actor }}"
+      echo "Event name: ${{ github.event_name }}"
+      echo "Ref: ${{ github.ref }}"
+      echo "Ref name: ${{ github.ref_name }}"
+      echo "SHA: ${{ github.sha }}"
+      echo "Actor: ${{ github.actor }}"
+      echo "Triggered by: ${{ github.triggering_actor }}"
 ```
 
 ---
@@ -4129,8 +4131,8 @@ steps:
     if: steps.might-fail.outcome == 'failure'
     run: |
       echo "Step failed, debugging..."
-      echo "Outcome: $&#123;&#123; steps.might-fail.outcome }}"
-      echo "Conclusion: $&#123;&#123; steps.might-fail.conclusion }}"
+      echo "Outcome: ${{ steps.might-fail.outcome }}"
+      echo "Conclusion: ${{ steps.might-fail.conclusion }}"
 ```
 
 ---
@@ -4146,12 +4148,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node: [16, 18, 20]
-    runs-on: $&#123;&#123; matrix.os }}
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Debug matrix
         run: |
-          echo "::notice::Testing on $&#123;&#123; matrix.os }} with Node $&#123;&#123; matrix.node }}"
-          echo "Matrix context: $&#123;&#123; toJSON(matrix) }}"
+          echo "::notice::Testing on ${{ matrix.os }} with Node ${{ matrix.node }}"
+          echo "Matrix context: ${{ toJSON(matrix) }}"
 
       - name: Run tests
         run: npm test
@@ -4161,14 +4163,14 @@ jobs:
       - name: Report failure
         if: steps.test.outcome == 'failure'
         run: |
-          echo "::error::Tests failed on $&#123;&#123; matrix.os }} with Node $&#123;&#123; matrix.node }}"
+          echo "::error::Tests failed on ${{ matrix.os }} with Node ${{ matrix.node }}"
 ```
 
 **Matrix Debugging Tips:**
 
 - Use `continue-on-error: true` to let all matrix combinations complete
 - Use `fail-fast: false` in strategy to prevent early cancellation
-- Add matrix values to job names: `name: Test ($&#123;&#123; matrix.os }}, Node $&#123;&#123; matrix.node }})`
+- Add matrix values to job names: `name: Test (${{ matrix.os }}, Node ${{ matrix.node }})`
 
 ---
 
@@ -4185,7 +4187,7 @@ jobs:
       debug: true
       environment: staging
     secrets:
-      token: $&#123;&#123; secrets.MY_TOKEN }}
+      token: ${{ secrets.MY_TOKEN }}
 ```
 
 **Reusable Workflow Debug Inputs:**
@@ -4208,9 +4210,9 @@ jobs:
         if: inputs.debug
         run: |
           echo "::group::Reusable Workflow Debug"
-          echo "Called from: $&#123;&#123; github.workflow }}"
-          echo "Caller repo: $&#123;&#123; github.repository }}"
-          echo "Inputs: $&#123;&#123; toJSON(inputs) }}"
+          echo "Called from: ${{ github.workflow }}"
+          echo "Caller repo: ${{ github.repository }}"
+          echo "Inputs: ${{ toJSON(inputs) }}"
           echo "::endgroup::"
 ```
 
@@ -4228,12 +4230,12 @@ steps:
       echo "" >> $GITHUB_STEP_SUMMARY
       echo "### Environment" >> $GITHUB_STEP_SUMMARY
       echo "- OS: $RUNNER_OS" >> $GITHUB_STEP_SUMMARY
-      echo "- Event: $&#123;&#123; github.event_name }}" >> $GITHUB_STEP_SUMMARY
-      echo "- Branch: $&#123;&#123; github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+      echo "- Event: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+      echo "- Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
       echo "" >> $GITHUB_STEP_SUMMARY
       echo "### Variables" >> $GITHUB_STEP_SUMMARY
       echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-      echo '$&#123;&#123; toJSON(github) }}' >> $GITHUB_STEP_SUMMARY
+      echo '${{ toJSON(github) }}' >> $GITHUB_STEP_SUMMARY
       echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 ```
 
@@ -4285,7 +4287,7 @@ steps:
     with:
       name: workspace-dump
       path: |
-        $&#123;&#123; github.workspace }}
+        ${{ github.workspace }}
         !node_modules/
         !.git/
 ```
@@ -4305,9 +4307,9 @@ runs:
       shell: bash
       run: |
         echo "::group::Action Inputs"
-        echo "input1: $&#123;&#123; inputs.input1 }}"
-        echo "input2: $&#123;&#123; inputs.input2 }}"
-        echo "All inputs: $&#123;&#123; toJSON(inputs) }}"
+        echo "input1: ${{ inputs.input1 }}"
+        echo "input2: ${{ inputs.input2 }}"
+        echo "All inputs: ${{ toJSON(inputs) }}"
         echo "::endgroup::"
 ```
 
@@ -4323,9 +4325,9 @@ steps:
 
   - name: Debug outputs
     run: |
-      echo "Output1: $&#123;&#123; steps.my-action.outputs.output1 }}"
-      echo "Output2: $&#123;&#123; steps.my-action.outputs.output2 }}"
-      echo "All outputs: $&#123;&#123; toJSON(steps.my-action.outputs) }}"
+      echo "Output1: ${{ steps.my-action.outputs.output1 }}"
+      echo "Output2: ${{ steps.my-action.outputs.output2 }}"
+      echo "All outputs: ${{ toJSON(steps.my-action.outputs) }}"
 ```
 
 ---
@@ -4360,8 +4362,8 @@ steps:
   - name: Debug step status
     if: always()
     run: |
-      echo "Outcome: $&#123;&#123; steps.test-step.outcome }}"
-      echo "Conclusion: $&#123;&#123; steps.test-step.conclusion }}"
+      echo "Outcome: ${{ steps.test-step.outcome }}"
+      echo "Conclusion: ${{ steps.test-step.conclusion }}"
 ```
 
 **Debug Complex Conditions:**
@@ -4370,11 +4372,11 @@ steps:
 steps:
   - name: Debug condition evaluation
     run: |
-      echo "Event: $&#123;&#123; github.event_name }}"
-      echo "Branch: $&#123;&#123; github.ref_name }}"
-      echo "Is main?: $&#123;&#123; github.ref == 'refs/heads/main' }}"
-      echo "Is push?: $&#123;&#123; github.event_name == 'push' }}"
-      echo "Combined: $&#123;&#123; github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
+      echo "Event: ${{ github.event_name }}"
+      echo "Branch: ${{ github.ref_name }}"
+      echo "Is main?: ${{ github.ref == 'refs/heads/main' }}"
+      echo "Is push?: ${{ github.event_name == 'push' }}"
+      echo "Combined: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}"
 
   - name: Conditional step
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -4399,7 +4401,7 @@ steps:
   - name: Calculate duration
     run: |
       END_TIME=$(date +%s)
-      DURATION=$((END_TIME - $&#123;&#123; steps.start.outputs.start_time }}))
+      DURATION=$((END_TIME - ${{ steps.start.outputs.start_time }}))
       echo "::notice::Build took ${DURATION} seconds"
 ```
 
@@ -4430,11 +4432,11 @@ steps:
 steps:
   - name: Check secret availability
     run: |
-      echo "MY_SECRET exists: $&#123;&#123; secrets.MY_SECRET != '' }}"
+      echo "MY_SECRET exists: ${{ secrets.MY_SECRET != '' }}"
       echo "MY_SECRET length: ${#MY_SECRET}"
       echo "MY_SECRET first char: ${MY_SECRET:0:1}"
     env:
-      MY_SECRET: $&#123;&#123; secrets.MY_SECRET }}
+      MY_SECRET: ${{ secrets.MY_SECRET }}
 ```
 
 **Debug GITHUB_TOKEN Permissions:**
@@ -4447,14 +4449,14 @@ permissions:
 steps:
   - name: Check token permissions
     env:
-      GH_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     run: |
       echo "::group::Token Info"
       gh api /rate_limit
       echo "::endgroup::"
 
       echo "::group::Test PR Write"
-      gh pr list --repo $&#123;&#123; github.repository }} || echo "Cannot list PRs"
+      gh pr list --repo ${{ github.repository }} || echo "Cannot list PRs"
       echo "::endgroup::"
 ```
 
@@ -4462,10 +4464,10 @@ steps:
 **NEVER** echo secret values directly:
 ```yaml
 # ❌ NEVER DO THIS
-run: echo "Secret: $&#123;&#123; secrets.MY_SECRET }}"
+run: echo "Secret: ${{ secrets.MY_SECRET }}"
 
 # ✅ DO THIS instead
-run: echo "Secret exists: $&#123;&#123; secrets.MY_SECRET != '' }}"
+run: echo "Secret exists: ${{ secrets.MY_SECRET != '' }}"
 ```
 GitHub automatically masks registered secrets, but avoid echoing them as best practice.
 :::
@@ -4715,7 +4717,7 @@ Answer: **NO** - GitHub Packages does not support RPM packages. Supports npm, Nu
 - name: Publish to GitHub Packages
   run: npm publish
   env:
-    NODE_AUTH_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN }}
+    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ---
@@ -4881,8 +4883,8 @@ steps:
 
   - name: Use outputs
     run: |
-      echo "Tag: $&#123;&#123; steps.version.outputs.tag }}"
-      echo "Number: $&#123;&#123; steps.version.outputs.number }}"
+      echo "Tag: ${{ steps.version.outputs.tag }}"
+      echo "Number: ${{ steps.version.outputs.number }}"
 ```
 
 **Why It's Important:** Outputs let you pass data from one step to another, or from a job to downstream jobs.
@@ -4990,7 +4992,7 @@ steps:
 
 ::: tip Why This Matters in the Exam
 Exam questions often ask: "How do you pass a value calculated in one step to another step?"
-Answer: Write to `$GITHUB_OUTPUT` in the first step, read via `$&#123;&#123; steps.step-id.outputs.output-name }}` in subsequent steps.
+Answer: Write to `$GITHUB_OUTPUT` in the first step, read via `${{ steps.step-id.outputs.output-name }}` in subsequent steps.
 :::
 
 ---
@@ -5101,7 +5103,7 @@ Prevent workflow command injection:
 steps:
   - name: Safely handle untrusted input
     env:
-      USER_INPUT: $&#123;&#123; github.event.comment.body }}
+      USER_INPUT: ${{ github.event.comment.body }}
     run: |
       # Stop processing workflow commands
       STOP_TOKEN=$(uuidgen)
@@ -5119,12 +5121,12 @@ steps:
 Without `::stop-commands::`, malicious input could execute workflow commands:
 ```yaml
 # ❌ VULNERABLE
-- run: echo "Comment: $&#123;&#123; github.event.comment.body }}"
+- run: echo "Comment: ${{ github.event.comment.body }}"
 # If comment contains "::add-mask::MY_SECRET", it would execute!
 
 # ✅ SAFE
 - env:
-    COMMENT: $&#123;&#123; github.event.comment.body }}
+    COMMENT: ${{ github.event.comment.body }}
   run: echo "Comment: $COMMENT"
 # Environment variables don't process workflow commands
 :::
@@ -5181,7 +5183,7 @@ steps:
 
       EOF
 
-      if [ "$&#123;&#123; steps.test.outcome }}" == "success" ]; then
+      if [ "${{ steps.test.outcome }}" == "success" ]; then
         echo "✅ **All tests passed**" >> $GITHUB_STEP_SUMMARY
       else
         echo "❌ **Some tests failed**" >> $GITHUB_STEP_SUMMARY
@@ -5189,9 +5191,9 @@ steps:
 
       echo "" >> $GITHUB_STEP_SUMMARY
       echo "### Details" >> $GITHUB_STEP_SUMMARY
-      echo "- Build: #$&#123;&#123; github.run_number }}" >> $GITHUB_STEP_SUMMARY
-      echo "- Commit: \`$&#123;&#123; github.sha }}\`" >> $GITHUB_STEP_SUMMARY
-      echo "- Author: @$&#123;&#123; github.actor }}" >> $GITHUB_STEP_SUMMARY
+      echo "- Build: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+      echo "- Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+      echo "- Author: @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
 ```
 
 **Dynamic Environment Setup:**
@@ -5201,7 +5203,7 @@ steps:
   - name: Setup environment
     run: |
       # Set environment based on branch
-      if [ "$&#123;&#123; github.ref }}" == "refs/heads/main" ]; then
+      if [ "${{ github.ref }}" == "refs/heads/main" ]; then
         echo "ENVIRONMENT=production" >> $GITHUB_ENV
         echo "API_URL=https://api.example.com" >> $GITHUB_ENV
       else
@@ -5268,3 +5270,5 @@ steps:
 [← Back to Overview](./index.md) | [← Exam Objectives](./objectives.md) | [Exam Tips →](./exam-tips.md)
 
 *Last Updated: 2026-01-09*
+
+</div>
