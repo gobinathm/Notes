@@ -43,6 +43,17 @@ Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML servi
 
 ---
 
+## Azure Certifications
+
+### [AB-731: Microsoft AI Transformation Leader](./azure/ab-731/)
+Drive AI adoption and transformation within organizations using Microsoft AI solutions.
+
+**Status**: Active Study
+**Difficulty**: Beginner to Intermediate
+**Prerequisites**: Business operations understanding, familiarity with Microsoft 365 (recommended)
+
+---
+
 ## Google Cloud Certifications
 
 ### [GCP-GAIL: Generative AI Leader](./google-cloud/gen-ai-leader/)
@@ -57,8 +68,8 @@ Design, implement, and monitor Generative AI solutions using Vertex AI and Gemin
 ## Coming Soon
 
 More certifications will be added:
-- Microsoft Certified: Azure AI Engineer Associate
-- AWS Certified Generative AI Developer - Professional
+- AI-102: Azure AI Engineer Associate
+- AIP-C01: AWS Certified AI Practitioner - Professional
 
 ---
 
@@ -73,7 +84,7 @@ These are **personal study notes** compiled from official documentation, practic
 - These notes supplement, not replace, official study materials
 - No guarantee of exam success is implied
 
-**Last Updated**: January 2026
+**Last Updated**: February 2026
 :::
 
 ---

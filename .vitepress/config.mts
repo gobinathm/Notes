@@ -75,6 +75,7 @@ export default defineConfig({
           { text: 'CLF-C02: AWS Cloud Practitioner', link: '/certifications/aws/clf-c02/' },
           { text: 'AIF-C01: AWS AI Practitioner', link: '/certifications/aws/aif-c01/' },
           { text: 'MLA-C01: AWS ML Engineer', link: '/certifications/aws/mla-c01/' },
+          { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
           { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
         ]
       },
@@ -141,6 +142,21 @@ export default defineConfig({
                 { text: 'Overview', link: '/certifications/aws/mla-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/mla-c01/objectives' },
                 { text: 'Resources', link: '/certifications/aws/mla-c01/resources' }
+              ]
+            }
+          ]
+        },
+        {
+          text: 'Azure Certifications',
+          collapsed: false,
+          items: [
+            {
+              text: 'AB-731: AI Transformation Leader',
+              collapsed: false,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ab-731/' },
+                { text: 'Study Notes', link: '/certifications/azure/ab-731/notes' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ab-731/cheatsheet' }
               ]
             }
           ]
