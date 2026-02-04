@@ -53,7 +53,7 @@ This site links to external resources (AWS, GitHub, etc.). Those sites have thei
 
 ## Questions?
 
-Contact us at [your-email@example.com] or open an issue on [GitHub](https://github.com/gobinathm/Notes/issues).
+open an issue on [GitHub](https://github.com/gobinathm/Notes/issues).
 
 ---
 

@@ -46,6 +46,11 @@ export default defineConfig({
     ['meta', { name: 'twitter:image', content: 'https://notes.gobinath.com/og-image.png' }],
     ['meta', { name: 'twitter:image:alt', content: 'Tech Certification Study Notes - Your journey to certification success' }],
 
+    // Fonts
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap', rel: 'stylesheet' }],
+
     // Umami Analytics (Privacy-First)
     ['script', {
       defer: '',
@@ -178,8 +183,8 @@ export default defineConfig({
 
     // Footer
     footer: {
-      message: 'Happy Studying! 🚀 • We use privacy-friendly analytics (no cookies, no personal data) • <a href="/privacy">Privacy Policy</a>',
-      copyright: 'Made with ❤️ and too much ☕ by Gobi • <a href="https://github.com/gobinathm/Notes/issues" target="_blank">Report an issue</a>'
+      message: 'Happy Studying! 🚀 • We use privacy-friendly analytics (no cookies, no personal data) • <a href="/privacy">Privacy Policy</a> • <a href="https://github.com/gobinathm/Notes/issues" target="_blank">Report an issue</a>',
+      copyright: '<span class="cursive-text">Made with ❤️ and too much ☕ by <span class="gradient-text">Gobi</span></span>'
     },
 
     // Search

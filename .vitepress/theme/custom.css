@@ -1,21 +1,99 @@
 /**
- * Custom theme for Certification Study Notes
- * Clean, professional design optimized for readability
+ * Custom CSS for Certification Study Notes
+ * ========================================
+ * This file aligns the design with gobinath.com.
+ * 
+ * TABLE OF CONTENTS:
+ * 1. CSS Variables & Configuration
+ * 2. Global Resets & Theming
+ * 3. Typography & Readability
+ * 4. Layout & Glassmorphism
+ * 5. Animations
+ * 6. UI Components (Badges, Alerts)
+ * 7. Header & Navigation
+ * 8. Footer Styling
  */
 
+/* =========================================
+   1. CSS Variables & Configuration
+   ========================================= */
 :root {
-  /* Brand colors */
-  --vp-c-brand-1: #3c8772;
-  --vp-c-brand-2: #5aa897;
-  --vp-c-brand-3: #7bbfad;
-  --vp-c-brand-soft: rgba(60, 135, 114, 0.14);
+  /* --- Brand Colors (derived from gobinath.com) --- */
+  --vp-c-brand-1: #10b981;
+  /* Emerald 500 - Primary Brand Color */
+  --vp-c-brand-2: #34d399;
+  /* Emerald 400 - Light Accent */
+  --vp-c-brand-3: #059669;
+  /* Emerald 600 - Darker Shade */
+  --vp-c-brand-soft: rgba(16, 185, 129, 0.14);
 
-  /* Typography */
-  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  /* --- Additional Accent Vars --- */
+  --color-accent: #10b981;
+  --color-accent-light: #34d399;
+  --color-accent-dim: rgba(16, 185, 129, 0.15);
+
+  /* --- Typography Config --- */
+  --vp-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   --vp-font-family-mono: 'Fira Code', 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-serif: 'Playfair Display', serif;
+  --font-cursive: 'Dancing Script', cursive;
 }
 
-/* Enhanced readability */
+/* =========================================
+   2. Global Resets & Theming
+   ========================================= */
+
+/* Ensure smooth scrolling globally */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Force transparency on body to allow HTML background to show through */
+body {
+  background: transparent !important;
+}
+
+.VPContent {
+  background-color: transparent !important;
+}
+
+/* --- Dark Mode Theme --- */
+html.dark {
+  --vp-c-bg: #0a0a0f !important;
+  /* Main Dark Background */
+  --vp-c-bg-alt: #121217;
+
+  background-color: #0a0a0f !important;
+  /* Mesh Gradient Background */
+  background-image:
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 9 UI Components, 92, 246, 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.15) 0, transparent 50%) !important;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+html.dark .glass-effect {
+  background-color: rgba(10, 10, 15, 0.7);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Light Mode Theme --- */
+html:not(.dark) {
+  background-color: #f8fafc !important;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.08) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.08) 0, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.08) 0, transparent 50%) !important;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+/* =========================================
+   3. Typography & Readability
+   ========================================= */
 .vp-doc {
   font-size: 16px;
   line-height: 1.7;
@@ -28,6 +106,7 @@
   border-bottom: 2px solid var(--vp-c-brand-1);
   padding-bottom: 0.5rem;
   margin-top: 1.5rem;
+  font-family: var(--vp-font-family-base);
 }
 
 .vp-doc h2 {
@@ -38,37 +117,128 @@
   border-top: 1px solid var(--vp-c-divider);
 }
 
-.vp-doc h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 2rem;
+/* Gradient Text Effect (Used in Header & Footer) */
+.gradient-text,
+.VPNavBarTitle .title {
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2), #a78bfa);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  animation: gradient-shift 6s ease infinite;
 }
 
-/* Enhanced code blocks */
+/* Cursive Text Utility */
+.cursive-text {
+  font-family: var(--font-cursive);
+  font-size: 1.1rem;
+}
+
+/* =========================================
+   4. Layout & Glassmorphism
+   ========================================= */
+
+/* Generic Glass Effect Class */
+.glass-effect {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --- Sidebar Glass Effect --- */
+.VPSidebar {
+  background-color: transparent !important;
+}
+
+.VPSidebar {
+  background-color: rgba(10, 10, 15, 0.6) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html:not(.dark) .VPSidebar {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* --- Navbar Glass Effect --- */
+.VPNavBar {
+  background-color: rgba(10, 10, 15, 0.6) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html:not(.dark) .VPNavBar {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   5. Animations
+   ========================================= */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero Title Animation */
+.VPHome .VPHero .name {
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2), #a78bfa);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* =========================================
+   6. UI Components (Badges, Alerts)
+   ========================================= */
+
+/* Code Blocks */
 .vp-doc div[class*='language-'] {
   border-radius: 8px;
   margin: 1.5rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Inline code */
-.vp-doc :not(pre) > code {
-  background-color: var(--vp-c-bg-soft);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.9em;
-  font-weight: 500;
-}
-
-/* Custom containers for notes, tips, warnings */
+/* Custom Alert Blocks (Tip, Warning, Danger) */
 .vp-doc .custom-block {
   border-radius: 8px;
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
+  backdrop-filter: blur(10px);
 }
 
 .vp-doc .custom-block.tip {
-  background-color: rgba(60, 135, 114, 0.1);
+  background-color: rgba(16, 185, 129, 0.1);
+  /* Brand tint */
   border-left: 4px solid var(--vp-c-brand-1);
 }
 
@@ -82,136 +252,7 @@
   border-left: 4px solid #f44336;
 }
 
-/* Tables */
-.vp-doc table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.vp-doc table th {
-  background-color: var(--vp-c-brand-soft);
-  font-weight: 600;
-  text-align: left;
-  padding: 0.75rem 1rem;
-}
-
-.vp-doc table td {
-  padding: 0.75rem 1rem;
-  border-top: 1px solid var(--vp-c-divider);
-}
-
-.vp-doc table tr:hover {
-  background-color: var(--vp-c-bg-soft);
-}
-
-/* Lists */
-.vp-doc ul, .vp-doc ol {
-  padding-left: 1.5rem;
-  margin: 1rem 0;
-}
-
-.vp-doc li {
-  margin: 0.5rem 0;
-}
-
-/* Task lists */
-.vp-doc .task-list-item {
-  list-style-type: none;
-  margin-left: -1.5rem;
-}
-
-.vp-doc .task-list-item input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
-
-/* Links */
-.vp-doc a {
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-/* Blockquotes */
-.vp-doc blockquote {
-  border-left: 4px solid var(--vp-c-brand-1);
-  padding-left: 1rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: var(--vp-c-text-2);
-}
-
-/* Home page hero customization */
-.VPHome .VPHero {
-  text-align: center;
-}
-
-.VPHome .VPHero .container {
-  margin: 0 auto;
-}
-
-.VPHome .VPHero .name {
-  background: linear-gradient(120deg, var(--vp-c-brand-1), var(--vp-c-brand-3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.VPHome .VPHero .text {
-  text-align: center;
-}
-
-.VPHome .VPHero .tagline {
-  text-align: center;
-}
-
-.VPHome .VPHero .actions {
-  justify-content: center;
-}
-
-/* Sidebar enhancements */
-.VPSidebar {
-  padding: 1.5rem 0;
-}
-
-.VPSidebarItem .text {
-  font-weight: 500;
-}
-
-/* Search box - expand to use available space */
-.VPNavBar .content-body {
-  display: flex;
-  align-items: center;
-}
-
-.VPNavBarSearch {
-  flex: 1;
-  max-width: 600px;
-  padding: 0 2rem;
-}
-
-@media (min-width: 768px) {
-  .VPNavBarSearch {
-    order: -1; /* Move search before menu items */
-  }
-}
-
-/* Make search button wider */
-.VPNavBarSearch .DocSearch-Button {
-  width: 100%;
-  max-width: 100%;
-}
-
-@media (max-width: 767px) {
-  .VPNavBarSearch {
-    flex: 0 1 auto;
-    max-width: none;
-  }
-}
-
-/* Badge styling */
+/* Badges */
 .vp-doc .badge {
   display: inline-block;
   padding: 0.25rem 0.5rem;
@@ -226,37 +267,45 @@
   color: var(--vp-c-brand-1);
 }
 
-.vp-doc .badge.warn {
-  background-color: rgba(255, 193, 7, 0.2);
-  color: #c17900;
+/* =========================================
+   7. Header & Navigation
+   ========================================= */
+
+/* Search Box Expansion */
+.VPNavBarSearch {
+  flex-grow: 1;
+  padding-left: 2rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .vp-doc h1 {
-    font-size: 2rem;
-  }
+.VPNavBarSearch .DocSearch-Button {
+  width: 100%;
+  margin: 0;
+}
 
-  .vp-doc h2 {
-    font-size: 1.5rem;
-  }
-
-  .vp-doc h3 {
-    font-size: 1.25rem;
+@media (min-width: 768px) {
+  .VPNavBarSearch {
+    flex-grow: 1;
+    max-width: 600px;
   }
 }
 
-/* Print styles for study materials */
-@media print {
-  .VPNav,
-  .VPSidebar,
-  .VPFooter,
-  .edit-link,
-  .prev-next {
-    display: none !important;
-  }
+/* =========================================
+   8. Footer Styling
+   ========================================= */
+.VPFooter .message {
+  font-size: 0.75rem;
+  /* Medium size as requested */
+}
 
-  .vp-doc {
-    max-width: 100% !important;
-  }
+.VPFooter .copyright {
+  font-size: 1rem;
+}
+
+.VPFooter a {
+  text-decoration-line: none;
+  transition: color 0.2s;
+}
+
+.VPFooter a:hover {
+  color: var(--vp-c-brand-1);
 }
