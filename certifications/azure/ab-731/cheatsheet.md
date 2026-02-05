@@ -9,7 +9,7 @@ head:
 
 # AB-731: Cheatsheet
 
-[← Overview](./index.md) · [← Notes](./notes.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
 
 ::: danger Exam Day Reference
 Print this or review 5 minutes before the exam.
@@ -136,4 +136,4 @@ Print this or review 5 minutes before the exam.
 Business exam, not technical. Think transformation leader.
 :::
 
-[← Overview](./index.md) · [← Notes](./notes.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)

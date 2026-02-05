@@ -78,4 +78,4 @@ Think like a transformation leader, not an engineer. Questions focus on business
 
 ---
 
-[Study Notes →](./notes.md) · [Cheatsheet →](./cheatsheet.md)
+[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md)

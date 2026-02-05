@@ -155,7 +155,10 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/certifications/azure/ab-731/' },
-                { text: 'Study Notes', link: '/certifications/azure/ab-731/notes' },
+                { text: 'Domain 1: Business Value', link: '/certifications/azure/ab-731/domain-1' },
+                { text: 'Domain 2: MS AI Solutions', link: '/certifications/azure/ab-731/domain-2' },
+                { text: 'Domain 3: Adoption', link: '/certifications/azure/ab-731/domain-3' },
+                { text: 'Exam Guide', link: '/certifications/azure/ab-731/exam-guide' },
                 { text: 'Cheatsheet', link: '/certifications/azure/ab-731/cheatsheet' }
               ]
             }
