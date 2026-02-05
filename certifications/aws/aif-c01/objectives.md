@@ -79,4 +79,4 @@ For the complete and official list of exam objectives, refer to the official exa
 
 ---
 
-[← Back to Overview](./index.md) | [Study Notes →](./notes.md) | [Exam Tips →](./exam-tips.md)
+[← Back to Overview](./index.md) | [Study Notes →](./domain-1.md) | [Exam Tips →](./exam-tips.md)

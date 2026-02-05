@@ -7,7 +7,7 @@ description: "Exam preparation strategies, tips, and gotchas for AIF-C01 AWS AI 
 
 Strategic guidance for exam preparation and taking the AIF-C01 AWS Certified AI Practitioner exam.
 
-[← Back to Overview](./index.md) | [← Objectives](./objectives.md) | [← Study Notes](./notes.md)
+[← Back to Overview](./index.md) | [← Objectives](./objectives.md) | [← Study Notes](./domain-1.md)
 
 ---
 
@@ -421,4 +421,4 @@ Day before:
 
 Good luck with your AI Practitioner exam! 🚀
 
-[← Back to Overview](./index.md) | [← Objectives](./objectives.md) | [← Study Notes](./notes.md)
+[← Back to Overview](./index.md) | [← Objectives](./objectives.md) | [← Study Notes](./domain-1.md)

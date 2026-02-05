@@ -267,6 +267,6 @@ This video provides a direct comparison between the two heavy-hitters of the exa
 Take a deep breath. You've studied. Trust your preparation. Good luck! 🍀
 :::
 
-[← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Exam Tips](./exam-tips.md)
+[← Back to Overview](./index.md) | [Study Notes](./domain-1.md) | [Exam Tips](./exam-tips.md)
 
 *Last Updated: 2026-01-14*

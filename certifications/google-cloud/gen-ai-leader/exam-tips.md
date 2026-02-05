@@ -263,6 +263,6 @@ Remember the Vertex AI workflow: **Discover** (Model Garden) → **Experiment** 
 
 ---
 
-[← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Quick Refresher](./quick-refresher.md)
+[← Back to Overview](./index.md) | [Study Notes](./domain-1.md) | [Quick Refresher](./quick-refresher.md)
 
 *Last Updated: 2026-01-17*

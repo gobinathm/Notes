@@ -48,7 +48,7 @@ The Generative AI Leader certification validates your ability to design, impleme
 ### 🎯 [Exam Objectives](./objectives.md)
 Official AI domains and model tuning objectives
 
-### 📚 [Study Notes](./notes.md)
+### 📚 [Study Notes](./domain-1.md)
 Detailed notes on Prompt Engineering, RAG, and Vertex AI
 
 ### ⚡ [Quick Refresher](./quick-refresher.md)

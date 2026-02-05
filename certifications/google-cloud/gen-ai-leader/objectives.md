@@ -80,4 +80,4 @@ description: "Official exam objectives for Google Cloud Generative AI Leader cer
 
 ---
 
-[← Back to Overview](./index.md) | [Study Notes →](./notes.md) | [Exam Tips →](./exam-tips.md)
+[← Back to Overview](./index.md) | [Study Notes →](./domain-1.md) | [Exam Tips →](./exam-tips.md)

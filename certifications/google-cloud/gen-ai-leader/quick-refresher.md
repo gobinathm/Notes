@@ -80,4 +80,4 @@ Vertex AI provides adjustable thresholds for:
 Trust your knowledge of the Vertex AI workflow: **Discover** (Model Garden) → **Experiment** (Studio) → **Customize** (Tuning/RAG) → **Deploy** (Endpoints). Good luck! 🍀
 :::
 
-[← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Exam Tips](./exam-tips.md)
+[← Back to Overview](./index.md) | [Study Notes](./domain-1.md) | [Exam Tips](./exam-tips.md)

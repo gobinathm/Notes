@@ -52,7 +52,7 @@ The AWS Certified AI Practitioner validates your understanding of AI/ML concepts
 ### 📋 [Exam Objectives](./objectives.md)
 Official exam domains and objectives outline
 
-### 📚 [Study Notes](./notes.md)
+### 📚 [Study Notes](./domain-1.md)
 Comprehensive study notes covering all exam topics
 
 ### ⚡ [Quick Refresher](./quick-refresher.md)
