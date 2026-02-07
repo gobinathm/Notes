@@ -2,6 +2,14 @@
 
 > Your journey to certification success 🚀
 
+![Tech Certification Study Notes](./public/og-image.png)
+
+[![GitHub license](https://img.shields.io/github/license/gobinathm/Notes.svg)](https://github.com/gobinathm/Notes/blob/main/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/gobinathm/Notes.svg)](https://GitHub.com/gobinathm/Notes/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/gobinathm/Notes.svg)](https://GitHub.com/gobinathm/Notes/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/gobinathm/Notes.svg)](https://GitHub.com/gobinathm/Notes/pulls/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 Comprehensive, open-source study notes for various technology certifications. Built with ❤️ and too much ☕ by Gobi.
 
 **Live Site:** [notes.gobinath.com](https://notes.gobinath.com)
@@ -16,23 +24,28 @@ Comprehensive, open-source study notes for various technology certifications. Bu
 ### AWS Certifications
 - **[CLF-C02: AWS Cloud Practitioner](https://notes.gobinath.com/certifications/aws/clf-c02/)** - AWS fundamentals and cloud concepts
 - **[AIF-C01: AWS AI Practitioner](https://notes.gobinath.com/certifications/aws/aif-c01/)** - AI/ML fundamentals and AWS AI services
+- **[MLA-C01: AWS ML Engineer Associate](https://notes.gobinath.com/certifications/aws/mla-c01/)** - Machine Learning engineering on AWS
 
-*More certifications coming soon!*
+### Azure Certifications
+- **[AB-731: AI Transformation Leader](https://notes.gobinath.com/certifications/azure/ab-731/)** - Strategic AI adoption and Microsoft AI solutions
+
+### Google Cloud Certifications
+- **[GCP-GAIL: Generative AI Leader](https://notes.gobinath.com/certifications/google-cloud/gen-ai-leader/)** - Vertex AI, RAG, and generative AI architecture
 
 ---
 
 ## ✨ Features
 
-- 📚 **Comprehensive Study Notes** - In-depth coverage of all exam domains with examples
-- ⚡ **Quick Refreshers** - Last-minute cram sessions for rapid review (15-min reads)
-- 🎯 **Exam Tips & Strategies** - Common traps, decision trees, and proven strategies
-- 📊 **Progress Tracking** - Built-in study progress tracker with browser localStorage
-- 🔍 **Fully Searchable** - Fast local search to quickly find any topic
-- 🌙 **Dark Mode** - Easy on the eyes during late-night study sessions
+- 📚 **Comprehensive Study Notes** - In-depth coverage of all exam domains
+- 🧠 **Interactive Flashcards** - Built-in quiz decks for quick-fire revision
+- ⚡ **Quick Refreshers** - Condensed reviews for rapid 15-min reads
+- 🔭 **Exam Lens & Traps** - Keyword detection tables and decision rules to avoid typical pitfalls
+- 🔄 **Build vs Buy vs Extend** - Strategic frameworks for enterprise AI selection
+- 📊 **Progress Tracking** - Private, local progress tracking for all sections
+- 🔍 **Fully Searchable** - Lightning-fast local search for all certificates
+- 🌙 **Dark Mode** - Optimized for late-night study sessions
 - 📱 **Mobile Responsive** - Study on any device, anywhere
-- 🔒 **Privacy-First** - Cookieless analytics, no personal data collected
-- ⚡ **Lightning Fast** - Static site generation with VitePress
-- 🎨 **Clean Design** - Optimized for readability and focused learning
+- 🔒 **Privacy-First** - Cookieless, anonymous analytics (Umami)
 
 ---
 
