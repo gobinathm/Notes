@@ -5,7 +5,7 @@ description: Comprehensive study notes for technology certifications
 
 # Certification Study Notes
 
-Free study notes for technology certifications. Written while preparing for exams, shared so they might help you too.
+Study notes I prepared while clearing technology certifications.
 
 **[Browse All Certifications](/certifications/)**
 
