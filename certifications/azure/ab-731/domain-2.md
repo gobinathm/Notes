@@ -40,6 +40,10 @@ Know the difference: M365 Copilot = productivity tool for users. Azure AI Foundr
 
 **Business Chat / M365 Chat**: Cross-app assistant. Queries emails, docs, meetings together.
 
+::: tip Exam Tip
+**Copilot Studio** is for **extending** Copilot. If a question asks how to give Copilot access to a non-Microsoft database (like Salesforce), the answer is usually **Copilot Studio (Connectors)**.
+:::
+
 ## Build vs Buy vs Extend (Strategic Selection)
 
 Microsoft recommends this sequence to minimize cost and time-to-value.
@@ -59,6 +63,10 @@ Three things to remember:
 1. **Tenant isolation** — Your data stays in your tenant.
 2. **Respects permissions** — Users only see what they already have access to.
 3. **Not used for training** — Microsoft doesn't train public models on your data.
+
+::: danger Critical
+**Tenant Isolation**: Your data is **NOT** used to train foundation models (like GPT-4). This is a foundational Microsoft promise you must know for the exam.
+:::
 
 ### Advanced Security
 - **Data Residence**: You can control where your data is stored (e.g., EU-only for GDPR).

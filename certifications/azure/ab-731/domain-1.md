@@ -11,6 +11,10 @@ head:
 
 [← Overview](./index.md) · [Next Domain →](./domain-2.md)
 
+::: tip Exam Tip
+The AB-731 exam is for **Business Leaders**, not developers. When in doubt, choose the answer that focuses on **Strategy, ROI, and Governance** over technical implementation or coding.
+:::
+
 ---
 
 ## GenAI vs Traditional AI
@@ -55,6 +59,10 @@ head:
 | Token | Text unit → affects cost |
 | Context window | Input + output limit |
 | Temperature | 0 = predictable, 1 = creative |
+
+::: danger Critical
+**Tokens** are the primary cost driver. Understand that context window limits (Input + Output) directly impact both the cost and the richness of the AI's response.
+:::
 
 ## Business Value Areas
 
@@ -118,6 +126,10 @@ This comparison focuses on **where the knowledge comes from**.
 |---------|------|---------|-------------|
 | **Adaptation** | **Fine-tuning** | Learning a new skill or language style from a textbook. | Nuanced behavior, specialized industry jargon. |
 | **Retrieval** | **RAG** | Taking an "open-book" exam with access to a library. | Facts, real-time data, and proprietary internal docs. |
+
+::: warning Common Pitfall
+**Fine-tuning is NOT for real-time data.** A common exam trap is asking how to provide an AI with today's stock prices. The answer is **RAG/Grounding**, not Fine-tuning.
+:::
 
 <FlashcardDeck 
   title="Model Customization Quiz"

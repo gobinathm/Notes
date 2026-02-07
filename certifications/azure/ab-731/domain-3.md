@@ -85,6 +85,10 @@ A successful transformation requires four key roles working together.
 - **Prioritize Use Cases** based on ROI and Feasibility.
 - Approve Responsible AI policies.
 
+::: warning Common Pitfall
+Questions about the **"First Step"** in an AI journey usually point to **Strategy and Governance (AI Council)**. Avoid jumping straight to "Running a Pilot" if governance hasn't been mentioned.
+:::
+
 ## Adoption Phases
 
 | Phase | Duration | Focus |
