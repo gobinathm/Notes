@@ -21,11 +21,11 @@ head:
 - **Exam Cost**: $75 USD
 - **Validity**: 3 years
 
-::: tip Note Freshness
-**Prepared**: January 2026
-**Last Updated**: 2026-02-05
+::: tip Certification Achieved ✅
+**Earned**: January 2, 2026
+**Credential**: [Verify Certificate](https://www.credly.com/badges/4f172763-a79b-44af-9439-e30871aacbb5/public_url)
 
-This is a newer certification (launched 2024). Content may evolve. Always verify with official documentation.
+**Notes Prepared**: January 2026 · **Last Updated**: 2026-02-05
 :::
 
 ## Overview
