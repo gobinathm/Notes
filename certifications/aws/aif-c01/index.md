@@ -23,7 +23,7 @@ head:
 
 ::: tip Note Freshness
 **Prepared**: January 2026
-**Last Updated**: 2026-01-13
+**Last Updated**: 2026-02-05
 
 This is a newer certification (launched 2024). Content may evolve. Always verify with official documentation.
 :::
@@ -47,19 +47,62 @@ The AWS Certified AI Practitioner validates your understanding of AI/ML concepts
 
 ---
 
+## Exam Objectives
+
+For the complete and official list of exam objectives, refer to the **[AWS Certified AI Practitioner (AIF-C01) Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-ai-practitioner/AWS-Certified-AI-Practitioner_Exam-Guide.pdf)**.
+
+### Exam Weighting
+
+| Domain | Weight | Focus Areas |
+|--------|--------|-------------|
+| Domain 1: Fundamentals of AI and ML | ~20% | AI concepts, ML types, lifecycle |
+| Domain 2: Fundamentals of Generative AI | ~24% | GenAI concepts, capabilities, AWS services |
+| Domain 3: Applications of Foundation Models | ~28% | Model selection, RAG, prompt engineering |
+| Domain 4: Guidelines for Responsible AI | ~14% | Fairness, explainability, best practices |
+| Domain 5: Security, Compliance, and Governance | ~14% | Security, compliance, governance |
+
+### In-Scope AWS AI/ML Services
+
+**Generative AI Services:**
+- **Amazon Bedrock**: Foundation models as a service
+- **Amazon Q**: AI-powered business assistant
+- **Amazon CodeWhisperer**: AI code suggestions
+- **PartyRock**: AI app builder
+
+**ML Services:**
+- **Amazon SageMaker**: End-to-end ML platform (Studio, JumpStart, Clarify, Model Monitor, Autopilot)
+- **Amazon Augmented AI (A2I)**: Human review workflows
+
+**AI Services:**
+- **Amazon Rekognition**: Image and video analysis
+- **Amazon Textract**: Document text extraction
+- **Amazon Comprehend**: NLP and sentiment analysis
+- **Amazon Translate**: Language translation
+- **Amazon Transcribe**: Speech-to-text
+- **Amazon Polly**: Text-to-speech
+- **Amazon Lex**: Conversational interfaces
+- **Amazon Personalize**: Recommendation systems
+- **Amazon Kendra**: Intelligent search
+
+**Supporting Services:**
+- **Amazon OpenSearch Service**: Vector database for RAG
+- **AWS Lambda**, **Amazon S3**, **AWS IAM**, **AWS CloudTrail**
+
+---
+
 ## Study Materials
 
-### 📋 [Exam Objectives](./objectives.md)
-Official exam domains and objectives outline
-
 ### 📚 [Study Notes](./domain-1.md)
-Comprehensive study notes covering all exam topics
+Comprehensive study notes covering all exam topics across 5 domains
 
-### ⚡ [Quick Refresher](./quick-refresher.md)
-Last-minute cram session - review all key concepts in 15 minutes
+### 🎯 [Exam Guide](./exam-guide.md)
+Exam traps, common pitfalls, and quick decision rules
+
+### 📄 [Cheatsheet](./cheatsheet.md)
+One-page exam day reference - print and review 5 minutes before the exam
 
 ### 💡 [Exam Tips](./exam-tips.md)
-Exam strategies, common traps, and study advice
+Exam strategies and study advice
 
 ---
 
@@ -131,4 +174,4 @@ Exam strategies, common traps, and study advice
 
 ---
 
-[Exam Objectives →](./objectives.md)
+[Start Study Notes →](./domain-1.md) · [Exam Guide →](./exam-guide.md) · [Cheatsheet →](./cheatsheet.md)

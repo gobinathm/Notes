@@ -157,4 +157,4 @@ head:
 
 ---
 
-[← Domain 4](./domain-4.md) · [Exam Tips →](./exam-tips.md)
+[← Domain 4](./domain-4.md) · [Exam Guide →](./exam-guide.md)
