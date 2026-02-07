@@ -42,23 +42,46 @@ head:
   ]"
 />
 
-## AI Council
+## AI Maturity Model (5 Stages)
 
-**Who's on it**: Executive sponsor, Legal, Business units, IT, HR/Training
+Organizations move through these stages as they adopt AI. For AB-731, know the sequence and focus of each.
 
-**What it does**: Sets strategy, approves projects, establishes policies, monitors risks
+| Stage | Name | Focus |
+|-------|------|-------|
+| **1** | **Awareness & Foundation** | Vision, executive sponsorship, establishing CoE. |
+| **2** | **Active Pilots** | Launching first use cases, building early skills. |
+| **3** | **Operationalize & Govern** | Moving pilots to production, formalizing policies. |
+| **4** | **Enterprise Adoption** | AI integrated into all business units and processes. |
+| **5** | **Business Transformation** | AI-first culture, driving innovation and new business models. |
 
-::: warning Trap
-Questions about "first steps" → Usually governance/council before technical implementation.
-:::
+## AI Adoption Team (The "A-Team")
+
+A successful transformation requires four key roles working together.
+
+| Role | Key Responsibility |
+|------|--------------------|
+| **Executive Sponsor** | Provides budget, authority, and organizational vision. The "Face" of AI. |
+| **AI Council** | Cross-functional oversight, risk management, and use case prioritization. |
+| **AI CoE (Center of Excellence)** | Technical/strategy experts who share best practices and drive outcomes. |
+| **Champions** | Peer evangelists who identify business pains and drive bottom-up adoption. |
+
+## AI Council: Deep Dive
+
+**Who's on it**: Executive sponsor, Legal/Compliance, Business leaders, IT, HR.
+
+**Key Tasks**:
+- Align AI strategy with business goals.
+- Mitigate risks (Bias, Privacy, Hallucinations).
+- **Prioritize Use Cases** based on ROI and Feasibility.
+- Approve Responsible AI policies.
 
 ## Adoption Phases
 
 | Phase | Duration | Focus |
 |-------|----------|-------|
-| Pilot | 4-8 weeks | 50-100 champions, gather feedback |
-| Expand | 8-12 weeks | More departments, refine |
-| Deploy | Ongoing | Organization-wide |
+| **Pilot** | 4-8 weeks | Small group (50-100), gather feedback, prove value. |
+| **Expand** | 8-12 weeks | Department-wide rollout, refine training. |
+| **Scale** | Ongoing | Organization-wide, regular success stories. |
 
 ## Change Management Essentials
 

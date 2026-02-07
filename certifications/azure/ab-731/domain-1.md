@@ -67,3 +67,20 @@ head:
 ::: warning Trap
 Questions often ask about ROI. Include *all* value types, not just cost savings.
 :::
+
+---
+
+## Model Customization Strategies
+
+When the base model isn't enough, leaders must choose how to customize it.
+
+| Strategy | Effort | Cost | Data Needs | Best Use Case |
+|----------|---------|------|------------|---------------|
+| **Prompt Engineering** | Low | Low | None | Controlling style, formatting, and simple tasks using instructions. |
+| **RAG** (Retrieval-Augmented Generation) | Medium | Medium | Knowledge Base | **Grounding** the model in your latest business data/documents. |
+| **Fine-tuning** | High | High | Labeled Dataset | Achieving a very specific style or deep domain expertise (rarely needed). |
+
+**Strategic Rule of Thumb:** 
+- Always start with **Prompt Engineering**.
+- Move to **RAG** if the model needs to "know" specific business data.
+- Only consider **Fine-tuning** if RAG and Prompts can't achieve the required tone or specialized format.

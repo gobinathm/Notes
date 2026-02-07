@@ -72,3 +72,18 @@ Three things to remember:
 - Access multiple models (OpenAI, Meta, Mistral)
 - Fine-tuning, RAG, prompt engineering tools
 - Enterprise security and compliance
+
+## Azure AI Services Deep Dive
+
+| Service | What it is | Where it is used (Use Case) |
+|---------|------------|----------------------------|
+| **Microsoft 365 Copilot** | AI assistant integrated into M365 apps (Word, Excel, Teams, etc.). | Everyday productivity, summarizing meetings, drafting emails, and document creation. |
+| **Azure AI Foundry (Studio)** | A unified platform for building, testing, and deploying custom AI solutions. | For developers/leaders to build custom AI apps using multiple models (OpenAI, Meta, etc.). |
+| **Azure OpenAI Service** | Cloud-based access to OpenAI's powerful models (GPT-4o, DALL-E) with enterprise security. | Generating text, code, and images; building advanced chatbots and RAG systems. |
+| **Azure AI Search** | A high-performance retrieval service for indexing and searching data. | **RAG (Retrieval-Augmented Generation)**—connecting AI models to your specific business data. |
+| **Azure AI Language** | Natural Language Processing (NLP) service for text analysis. | Sentiment analysis, key phrase extraction, summarization, and entity recognition. |
+| **Azure AI Vision** | Computer vision service for analyzing images and videos. | Object detection, OCR (extracting text from images), and content moderation. |
+| **Azure AI Speech** | Voice services for conversion between speech and text. | Transcription (Talk-to-Text), Speech Synthesis (Text-to-Talk), and real-time translation. |
+| **Azure AI Document Intelligence** | Intelligent document processing using AI. | Extracting tables and text from PDFs, invoices, receipts, and forms automatically. |
+| **Copilot Studio** | A low-code tool to create and customize Copilots. | Extending M365 Copilot or building custom standalone agents for specific business workflows. |
+| **Power Platform AI Builder** | Low-code AI capabilities for Power Apps and Power Automate. | Automating business processes with AI without deep coding knowledge. |
