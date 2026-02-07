@@ -13,11 +13,11 @@ A business-focused certification on driving AI adoption using Microsoft solution
 
 **Exam**: 45 min · ~60 questions · 700/1000 to pass · $99
 
-::: tip Note Freshness
-**Prepared**: February 2026
-**Last Updated**: 2026-02-03
+::: tip Certification Achieved ✅
+**Earned**: February 7, 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/67271D9ACA6E19F5?sharingId=DF3DC239EE30F0A4)
 
-Exam content may change. Always verify with official documentation.
+**Notes Prepared**: February 2026 · **Last Updated**: 2026-02-07
 :::
 
 ::: info This is NOT a technical exam

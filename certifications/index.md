@@ -48,9 +48,10 @@ Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML servi
 ### [AB-731: Microsoft AI Transformation Leader](./azure/ab-731/)
 Drive AI adoption and transformation within organizations using Microsoft AI solutions.
 
-**Status**: Active Study
+**Status**: ✅ Completed (Feb 7, 2026)
 **Difficulty**: Beginner to Intermediate
 **Prerequisites**: Business operations understanding, familiarity with Microsoft 365 (recommended)
+**Credential**: [Verify](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/67271D9ACA6E19F5?sharingId=DF3DC239EE30F0A4)
 
 ---
 
