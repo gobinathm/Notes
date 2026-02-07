@@ -5,28 +5,20 @@ description: Comprehensive study notes for technology certifications
 
 # Certification Study Notes
 
-## Available Notes
+Free study notes for technology certifications. Written while preparing for exams, shared so they might help you too.
 
-**GitHub Certifications**
-- [GH-200: GitHub Actions](/certifications/github/gh-actions/) - ✅ Completed Jan 2026
+**[Browse All Certifications](/certifications/)**
 
-**AWS Certifications**
-- [CLF-C02: AWS Cloud Practitioner](/certifications/aws/clf-c02/) - ✅ Completed Oct 2024
-- [AIF-C01: AWS AI Practitioner](/certifications/aws/aif-c01/) - ✅ Completed Jan 2026
-- [MLA-C01: AWS ML Engineer Associate](/certifications/aws/mla-c01/) - Active Study
+---
 
-**Azure Certifications**
-- [AB-731: AI Transformation Leader](/certifications/azure/ab-731/) - Active Study
+## What You'll Find
 
-**Google Cloud Certifications**
-- [GCP-GAIL: Generative AI Leader](/certifications/google-cloud/gen-ai-leader/) - Active Study
+- **Study notes** — Detailed coverage of all exam domains
+- **Cheatsheets** — One-page printable references for exam day
+- **Exam guides** — Traps, decision rules, and common pitfalls
+- **Exam tips** — Strategy, time management, and mental prep
+- **Progress tracking** — Track what you've covered (private, stored in your browser)
+- **Flashcards** — Interactive quiz decks for quick revision
+- **Full-text search** — Find anything across all certifications
 
-## Why These Notes?
-
-- 📚 **Exam-Focused**: Content aligned with actual exam objectives
-- 💡 **Decision Tables**: Quick reference for "which option to choose" scenarios
-- ⚠️ **Exam Traps**: Common mistakes and gotchas highlighted
-- 🎯 **Real Examples**: Practical code examples you'll see on the exam
-- ✅ **Progress Tracking**: Track your study progress per certification
-
-Good luck with your studies!
+All notes are free, no login required, and your progress never leaves your device.
