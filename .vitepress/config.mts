@@ -94,12 +94,12 @@ export default defineConfig({
     sidebar: {
       '/certifications/': [
         {
-          text: 'GitHub Certifications',
-          collapsed: false,
+          text: '📦 GitHub Certifications',
+          collapsed: true,
           items: [
             {
               text: 'GH-200: GitHub Actions',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/github/gh-actions/' },
                 { text: 'Exam Objectives', link: '/certifications/github/gh-actions/objectives' },
@@ -111,12 +111,12 @@ export default defineConfig({
           ]
         },
         {
-          text: 'AWS Certifications',
-          collapsed: false,
+          text: '☁️ AWS Certifications',
+          collapsed: true,
           items: [
             {
               text: 'CLF-C02: Cloud Practitioner',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/aws/clf-c02/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/clf-c02/objectives' },
@@ -126,7 +126,7 @@ export default defineConfig({
             },
             {
               text: 'AIF-C01: AI Practitioner',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/aws/aif-c01/' },
                 { text: 'Domain 1: AI & ML Fundamentals', link: '/certifications/aws/aif-c01/domain-1' },
@@ -141,7 +141,7 @@ export default defineConfig({
             },
             {
               text: 'MLA-C01: ML Engineer Associate',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/aws/mla-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/mla-c01/objectives' },
@@ -151,12 +151,12 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Azure Certifications',
-          collapsed: false,
+          text: '💎 Azure Certifications',
+          collapsed: true,
           items: [
             {
               text: 'AB-731: AI Transformation Leader',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/azure/ab-731/' },
                 { text: 'Domain 1: Business Value', link: '/certifications/azure/ab-731/domain-1' },
@@ -169,12 +169,12 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Google Cloud Certifications',
-          collapsed: false,
+          text: '🌈 Google Cloud Certifications',
+          collapsed: true,
           items: [
             {
               text: 'GCP-GAIL: Generative AI Leader',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/google-cloud/gen-ai-leader/' },
                 { text: 'Domain 1: Vertex AI Architecture', link: '/certifications/google-cloud/gen-ai-leader/domain-1' },
