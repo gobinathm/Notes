@@ -20,6 +20,8 @@ A business-focused certification on driving AI adoption using Microsoft solution
 **Notes Prepared**: February 2026 · **Last Updated**: 2026-02-07
 :::
 
+![AB-731 Exam Overview Infographic](/images/certifications/ab-731/infographic.png)
+
 ::: info This is NOT a technical exam
 Think like a transformation leader, not an engineer. Questions focus on business value, adoption strategy, and responsible AI governance.
 :::

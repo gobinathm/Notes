@@ -7,7 +7,7 @@ export default defineConfig({
   description: "Comprehensive study notes for various technology certifications",
 
   // Exclude repository files from VitePress processing
-  srcExclude: ['**/README.md', '.templates/**/*.md'],
+  srcExclude: ['**/README.md', '**/CONTRIBUTING.md', '**/ADDING_CERTIFICATIONS.md', '.templates/**/*.md'],
 
   // Clean URLs without .html extension
   cleanUrls: true,
