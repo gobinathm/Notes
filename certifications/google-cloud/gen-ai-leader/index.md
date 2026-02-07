@@ -21,7 +21,7 @@ head:
 
 ::: tip Note Freshness
 **Prepared**: January 2026
-**Last Updated**: 2026-01-17
+**Last Updated**: 2026-02-05
 
 Exam content regarding Gemini and Model Garden updates frequently. Always verify with official documentation.
 :::
@@ -43,19 +43,84 @@ The Generative AI Leader certification validates your ability to design, impleme
 
 ---
 
+## Exam Objectives
+
+### Key Resource Links
+
+| Resource | Description |
+|----------|-------------|
+| **[Official Exam Guide](https://cloud.google.com/learn/certification/generative-ai-leader)** | Lists the four domains: Fundamentals, Offerings, Techniques, and Business Strategy |
+| **[Official Learning Path](https://www.cloudskillsboost.google/paths/118)** | Free Skills Boost course series (~8 hours) specifically for the Leader exam |
+| **[Vertex AI Documentation](https://cloud.google.com/vertex-ai/docs)** | Product details - difference between Vertex AI Studio and Google AI Studio |
+
+### Exam Weighting
+
+| Domain | Weight | Focus Areas |
+|--------|--------|-------------|
+| Domain 1: Vertex AI Foundation | ~30% | Model Garden, Studio, API integration, model selection |
+| Domain 2: Prompt Engineering | ~25% | Few-shot, CoT, parameters (Temperature, Top-K, Top-P) |
+| Domain 3: Data & Customization | ~25% | RAG, Vector Search, Fine-tuning, Grounding |
+| Domain 4: Responsible AI & Ops | ~20% | Safety filters, evaluation, monitoring, bias mitigation |
+
+### In-Scope Services & Technologies
+
+**Gemini Model Family:**
+- **Gemini Ultra**: Most capable, complex reasoning and coding
+- **Gemini Pro**: General purpose, balanced performance
+- **Gemini Flash**: Speed optimized, high-throughput
+- **Gemini Nano**: On-device, mobile/edge deployment
+
+**Generative AI Studio:**
+- **Language**: Text generation, chat, code (Codey)
+- **Vision**: Image generation (Imagen), visual Q&A
+- **Speech**: Speech-to-Text (Chirp), Text-to-Speech
+
+**Model Garden:**
+- **First-party**: Gemini, Imagen, Codey, Chirp
+- **Open-source**: Llama, Mistral, Gemma
+- **Third-party**: Claude (Anthropic)
+
+**Model Customization:**
+- **Prompt Design**: Zero-shot, few-shot, chain of thought
+- **Fine-tuning (SFT)**: Supervised fine-tuning with JSONL datasets
+- **Grounding**: Google Search, custom data sources
+
+**RAG & Data Infrastructure:**
+- **Vertex AI Vector Search**: High-scale embedding search
+- **Embeddings API**: Text/image to vector conversion
+- **Document AI**: Document parsing and extraction
+
+**Operations & Evaluation:**
+- **AutoSxS**: Side-by-side model comparison
+- **Model Monitoring**: Drift detection, performance tracking
+- **Safety Filters**: Configurable content filtering thresholds
+
+---
+
 ## Study Materials
 
-### 🎯 [Exam Objectives](./objectives.md)
-Official AI domains and model tuning objectives
-
 ### 📚 [Study Notes](./domain-1.md)
-Detailed notes on Prompt Engineering, RAG, and Vertex AI
+Comprehensive study notes covering all exam topics across 4 domains
 
-### ⚡ [Quick Refresher](./quick-refresher.md)
-Last-minute cram session for Gemini and PaLM 2 parameters
+### 🎯 [Exam Guide](./exam-guide.md)
+Exam traps, common pitfalls, and quick decision rules
 
-### 💡 [Exam Tips & Strategy](./exam-tips.md)
-Distinguishing between Tuning vs. Distillation vs. RAG
+### 📄 [Cheatsheet](./cheatsheet.md)
+One-page exam day reference - print and review 5 minutes before the exam
+
+### 💡 [Exam Tips](./exam-tips.md)
+Exam strategies and study advice
+
+---
+
+## 📖 Official Resources
+
+- [Vertex AI Documentation](https://cloud.google.com/vertex-ai/docs)
+- [Generative AI on Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/overview)
+- [Model Garden Overview](https://cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models)
+- [Gemini API Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/overview)
+- [Google Cloud Skills Boost: Gen AI Learning Path](https://www.cloudskillsboost.google/paths/118)
+- [Google AI Principles](https://ai.google/responsibility/principles/)
 
 ---
 
@@ -90,34 +155,4 @@ Distinguishing between Tuning vs. Distillation vs. RAG
 
 ---
 
-## Additional Resources
-
-### Video Courses
-- [Google Generative AI Leader Certification Course – Pass the Exam!](https://www.youtube.com/watch?v=30diF8dKpAY)
-
-### Official Documentation
-- [Vertex AI Documentation](https://cloud.google.com/vertex-ai/docs)
-- [Generative AI on Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/overview)
-- [Model Garden Overview](https://cloud.google.com/vertex-ai/generative-ai/docs/model-garden/explore-models)
-- [Gemini API Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/overview)
-- [Video Understanding with Gemini](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/video-understanding)
-
-### Learning Paths
-- [Google Cloud Skills Boost: Gen AI Learning Path](https://www.cloudskillsboost.google/paths/118)
-- [Google Skills Learning Path](https://www.skills.google/paths/118)
-- [Introduction to Generative AI](https://www.cloudskillsboost.google/course_templates/536)
-- [Introduction to Large Language Models](https://www.cloudskillsboost.google/course_templates/539)
-- [Prompt Design in Vertex AI](https://www.cloudskillsboost.google/course_templates/976)
-
-### Hands-on Labs & Code
-- [Vertex AI Studio Lab](https://www.cloudskillsboost.google/focuses/63251)
-- [Build a RAG Application](https://www.cloudskillsboost.google/focuses/86572)
-- [Embeddings and Vector Search](https://cloud.google.com/vertex-ai/docs/vector-search/overview)
-- [GoogleCloudPlatform/generative-ai GitHub](https://github.com/GoogleCloudPlatform/generative-ai) - Sample code and notebooks for Gemini on Vertex AI
-
-### Responsible AI
-- [Google AI Principles](https://ai.google/responsibility/principles/)
-- [Responsible AI Practices](https://ai.google/responsibility/responsible-ai-practices/)
-- [Vertex AI Safety Filters](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/configure-safety-filters)
-
-*Last Updated: 2026-01-17*
+[Start Study Notes →](./domain-1.md) · [Exam Guide →](./exam-guide.md) · [Cheatsheet →](./cheatsheet.md)

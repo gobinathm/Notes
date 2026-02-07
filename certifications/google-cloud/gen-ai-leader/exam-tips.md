@@ -57,166 +57,20 @@ Buffer (15 min):
 
 ---
 
-## 🎯 Domain-Specific Tips
-
-### Domain 1: Vertex AI Foundation (~30%)
-
-**High-Frequency Topics:**
-- ⭐⭐⭐ Gemini model family differences (Ultra vs Pro vs Flash vs Nano)
-- ⭐⭐⭐ Model Garden navigation and model selection
-- ⭐⭐ Vertex AI Studio capabilities
-
-**Common Traps:**
-- Confusing **Gemini Pro** (general purpose) with **Gemini Flash** (speed optimized)
-- Not knowing that **Gemini Nano** is for on-device/mobile only
-- Forgetting Model Garden includes open-source models (Llama, Mistral)
-
-**Decision Matrix:**
-
-```
-Which Gemini model to use?
-├─ Complex reasoning, code generation? → Gemini Ultra
-├─ General tasks, good balance? → Gemini Pro
-├─ High-volume, low-latency? → Gemini Flash
-└─ On-device (mobile/edge)? → Gemini Nano
-```
-
 ---
 
-### Domain 2: Prompt Engineering (~25%)
+## 📚 Study Strategy
 
-**High-Frequency Topics:**
-- ⭐⭐⭐ Temperature, Top-K, Top-P parameters
-- ⭐⭐⭐ Few-shot vs Zero-shot prompting
-- ⭐⭐ Chain of Thought (CoT) prompting
+### High-Priority Focus Areas
 
-**Common Traps:**
-- **Temperature 0** = deterministic, **Temperature 1** = creative
-- Top-K limits vocabulary size, Top-P limits by probability
-- Few-shot requires examples; Zero-shot doesn't
+1. **Vertex AI Ecosystem**: Know the difference between **Vertex AI Studio** (enterprise) and **Google AI Studio** (prototyping).
+2. **Model Selection**: Understand the Gemini tiers (Pro, Flash, Ultra) and when to use open-source (Gemma/Llama).
+3. **Accuracy & Personalization**: Master the logic of **RAG vs. Grounding vs. Fine-tuning**.
+4. **Responsible AI**: Familiarize yourself with Google's 7 AI Principles and safety filter configurations.
 
-**Quick Reference:**
-
-| Parameter | Low Value | High Value |
-|-----------|-----------|------------|
-| **Temperature** | Factual, consistent | Creative, varied |
-| **Top-K** | Conservative vocabulary | Diverse vocabulary |
-| **Top-P** | Focused responses | Exploratory responses |
-
----
-
-### Domain 3: Data & Customization (~25%)
-
-**High-Frequency Topics:**
-- ⭐⭐⭐ RAG vs Fine-Tuning decision
-- ⭐⭐⭐ Vertex AI Vector Search (formerly Matching Engine)
-- ⭐⭐ Embeddings API usage
-
-**Common Traps:**
-- RAG = real-time data access; Fine-tuning = behavioral change
-- Grounding with Google Search ≠ RAG with your own data
-- Distillation creates smaller models from larger ones
-
-**Decision Matrix:**
-
-```
-How to customize model behavior?
-├─ Need real-time/changing data? → RAG + Vector Search
-├─ Need specific output format? → Few-shot prompting
-├─ Need domain-specific behavior? → Supervised Fine-Tuning
-├─ Need smaller, faster model? → Distillation
-└─ Need factual grounding? → Grounding with Google Search
-```
-
----
-
-### Domain 4: Responsible AI & Operations (~20%)
-
-**High-Frequency Topics:**
-- ⭐⭐⭐ Safety Filters and thresholds
-- ⭐⭐ AutoSxS (Side-by-Side evaluation)
-- ⭐⭐ Model monitoring and drift detection
-
-**Common Traps:**
-- If model refuses valid queries → Safety filters too strict
-- Google does NOT train foundation models on customer data
-- AutoSxS uses a judge model to compare two model outputs
-
----
-
-## 🚫 Common Exam Traps
-
-### Trap 1: RAG vs Fine-Tuning Confusion
-
-**Scenario:** "Company needs model to answer questions about their internal documents that update weekly"
-
-- ❌ Fine-tuning (data is changing)
-- ✅ RAG with Vector Search (real-time data access)
-
-**Rule:** If data changes frequently → RAG. If behavior needs to change → Fine-tuning.
-
----
-
-### Trap 2: Grounding vs RAG
-
-**Grounding with Google Search:**
-- Uses public web data
-- Good for factual accuracy on general topics
-
-**RAG with Vector Search:**
-- Uses YOUR private data
-- Good for enterprise/proprietary information
-
----
-
-### Trap 3: Model Selection
-
-**Question Pattern:** "Which model for [specific use case]?"
-
-| Use Case | Best Model |
-|----------|------------|
-| Complex code generation | Gemini Ultra |
-| General chatbot | Gemini Pro |
-| High-throughput API | Gemini Flash |
-| Mobile app | Gemini Nano |
-| Image generation | Imagen |
-| Speech-to-text | Chirp |
-
----
-
-### Trap 4: Parameter Tuning
-
-**"Model outputs are too random/unpredictable"**
-- ✅ Lower the temperature
-- ✅ Lower Top-K and Top-P
-
-**"Model outputs are too repetitive/boring"**
-- ✅ Raise the temperature
-- ✅ Raise Top-K and Top-P
-
----
-
-## 📊 Must-Know Comparisons
-
-### Customization Techniques
-
-| Technique | When to Use | Data Needed |
-|-----------|-------------|-------------|
-| **Prompt Design** | Quick iteration, no training | None |
-| **Few-shot** | Need specific format | 3-5 examples |
-| **Fine-tuning (SFT)** | Domain-specific behavior | 100+ examples (JSONL) |
-| **Distillation** | Need smaller/faster model | Teacher model outputs |
-| **RAG** | Access private/changing data | Vector database |
-
-### Vertex AI Services
-
-| Service | Purpose |
-|---------|---------|
-| **Model Garden** | Discover and deploy models |
-| **Vertex AI Studio** | Interactive prompt testing |
-| **Vector Search** | High-scale embedding search |
-| **Embeddings API** | Convert text to vectors |
-| **AutoSxS** | Compare model outputs |
+### What NOT to Over-Study
+- **Coding**: You don't need to write Python code for this exam.
+- **Deep ML Theory**: Focus on business scenarios and toolkit selection rather than mathematical optimization.
 
 ---
 
@@ -263,6 +117,6 @@ Remember the Vertex AI workflow: **Discover** (Model Garden) → **Experiment** 
 
 ---
 
-[← Back to Overview](./index.md) | [Study Notes](./domain-1.md) | [Quick Refresher](./quick-refresher.md)
+[← Back to Overview](./index.md) | [Study Notes](./domain-1.md) | [Exam Guide →](./exam-guide.md)
 
 *Last Updated: 2026-01-17*

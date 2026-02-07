@@ -55,4 +55,4 @@ head:
 
 ---
 
-[← Domain 3](./domain-3.md) · [Exam Tips →](./exam-tips.md)
+[← Domain 3](./domain-3.md) · [Exam Guide →](./exam-guide.md)
