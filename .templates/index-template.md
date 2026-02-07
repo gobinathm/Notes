@@ -34,28 +34,54 @@ The [Certification Name] certification validates your understanding of [brief de
 - [Role 1]
 - [Role 2]
 - [Role 3]
-- [Role 4]
 
 **Prerequisites:**
 - [Prerequisite 1]
 - [Prerequisite 2]
-- [Prerequisite 3]
+
+---
+
+## Exam Objectives
+
+For the complete and official list of exam objectives, refer to the **[Official Exam Guide](URL)**.
+
+### Exam Weighting
+
+| Domain | Weight | Focus Areas |
+|--------|--------|-------------|
+| Domain 1: [Name] | ~XX% | [Focus] |
+| Domain 2: [Name] | ~XX% | [Focus] |
+| Domain 3: [Name] | ~XX% | [Focus] |
+| Domain 4: [Name] | ~XX% | [Focus] |
+
+### In-Scope Services & Technologies
+
+- **[Category 1]**: [Service 1], [Service 2]
+- **[Category 2]**: [Service 3], [Service 4]
 
 ---
 
 ## Study Materials
 
-### 📋 [Exam Objectives](./objectives.md)
-Official exam domains and objectives outline
+### 📚 [Study Notes](./domain-1.md)
+Comprehensive study notes covering all exam topics across [X] domains
 
-### 📝 [Study Notes](./notes.md)
-Detailed notes, examples, and key concepts
+### 🎯 [Exam Guide](./exam-guide.md)
+Exam traps, common pitfalls, and quick decision rules
 
-### ⚡ [Quick Refresher](./quick-refresher.md)
-Last-minute cram session - review all key concepts in 15 minutes
+### 📄 [Cheatsheet](./cheatsheet.md)
+One-page exam day reference - print and review 5 minutes before the exam
 
-### 🎯 [Exam Tips & Strategy](./exam-tips.md)
-Exam traps, decision matrices, and last-minute review
+### 💡 [Exam Tips](./exam-tips.md)
+Exam strategies and study advice
+
+---
+
+## 📖 Official Resources
+
+- [Official Documentation](URL)
+- [Practice Exams](URL)
+- [Official Study Guide](URL)
 
 ---
 
@@ -67,29 +93,10 @@ Exam traps, decision matrices, and last-minute review
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: [Domain Name]',
+      label: 'Domain 1: [Name] (XX%)',
       children: [
-        { id: 'domain-1-1', label: '[Topic 1]' },
-        { id: 'domain-1-2', label: '[Topic 2]' },
-        { id: 'domain-1-3', label: '[Topic 3]' }
-      ]
-    },
-    {
-      id: 'domain-2',
-      label: 'Domain 2: [Domain Name]',
-      children: [
-        { id: 'domain-2-1', label: '[Topic 1]' },
-        { id: 'domain-2-2', label: '[Topic 2]' },
-        { id: 'domain-2-3', label: '[Topic 3]' }
-      ]
-    },
-    {
-      id: 'domain-3',
-      label: 'Domain 3: [Domain Name]',
-      children: [
-        { id: 'domain-3-1', label: '[Topic 1]' },
-        { id: 'domain-3-2', label: '[Topic 2]' },
-        { id: 'domain-3-3', label: '[Topic 3]' }
+        { id: 'topic-1-1', label: '1.1: [Topic]' },
+        { id: 'topic-1-2', label: '1.2: [Topic]' }
       ]
     },
     { id: 'practice', label: 'Hands-on practice completed' },
@@ -99,14 +106,4 @@ Exam traps, decision matrices, and last-minute review
 
 ---
 
-## Additional Resources
-
-- [Official Documentation Link]
-- [Official Training Link]
-- [Community Forum Link]
-- [Practice Exam Link]
-- [Other Resource Link]
-
----
-
-*Last Updated: [YYYY-MM-DD]*
+[Start Study Notes →](./domain-1.md) · [Exam Guide →](./exam-guide.md) · [Cheatsheet →](./cheatsheet.md)
