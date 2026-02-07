@@ -13,7 +13,9 @@ Browse study notes for various technology certifications organized by provider.
 CI/CD workflows, automation, and GitHub Actions best practices.
 
 **Status**: Active Study
+
 **Difficulty**: Intermediate
+
 **Prerequisites**: Git, GitHub, YAML, CI/CD basics
 
 ---
@@ -24,21 +26,27 @@ CI/CD workflows, automation, and GitHub Actions best practices.
 Foundational understanding of AWS Cloud, services, and cloud concepts.
 
 **Status**: ✅ Completed (Oct 25, 2024)
+
 **Difficulty**: Beginner
+
 **Prerequisites**: Basic IT knowledge, 6 months AWS exposure (recommended)
 
 ### [AIF-C01: AWS Certified AI Practitioner](./aws/aif-c01/)
 Foundational understanding of AI/ML concepts, AWS AI services, and responsible AI practices.
 
 **Status**: ✅ Completed (Jan 2, 2026)
+
 **Difficulty**: Beginner to Intermediate
+
 **Prerequisites**: Basic cloud computing, data analytics concepts
 
 ### [MLA-C01: AWS Certified Machine Learning Engineer - Associate](./aws/mla-c01/)
 Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML services.
 
 **Status**: Active Study
+
 **Difficulty**: Intermediate to Advanced
+
 **Prerequisites**: 1 year AWS experience, SageMaker hands-on, ML fundamentals
 
 ---
@@ -49,8 +57,11 @@ Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML servi
 Drive AI adoption and transformation within organizations using Microsoft AI solutions.
 
 **Status**: ✅ Completed (Feb 7, 2026)
+
 **Difficulty**: Beginner to Intermediate
+
 **Prerequisites**: Business operations understanding, familiarity with Microsoft 365 (recommended)
+
 **Credential**: [Verify](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/67271D9ACA6E19F5?sharingId=DF3DC239EE30F0A4)
 
 ---
@@ -61,16 +72,10 @@ Drive AI adoption and transformation within organizations using Microsoft AI sol
 Design, implement, and monitor Generative AI solutions using Vertex AI and Gemini models.
 
 **Status**: Active Study
+
 **Difficulty**: Intermediate
+
 **Prerequisites**: Cloud computing basics, Python/API familiarity, ML lifecycle understanding
-
----
-
-## Coming Soon
-
-More certifications will be added:
-- AI-102: Azure AI Engineer Associate
-- AIP-C01: AWS Certified AI Practitioner - Professional
 
 ---
 
