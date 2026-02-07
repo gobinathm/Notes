@@ -20,6 +20,11 @@ head:
 | Analyzes, classifies, predicts | Creates new content |
 | Spam filter, fraud detection | Write emails, generate images |
 
+## Foundation vs Specialized Models
+
+- **Foundation Models**: Large, generic models (like GPT-4o) pre-trained on massive data. They "know everything" generally.
+- **Specialized Models**: Models fine-tuned for a specific task (e.g., medical diagnosis, legal coding). They are more efficient for niche tasks.
+
 ## Key Terms
 
 <FlashcardDeck 
@@ -84,3 +89,54 @@ When the base model isn't enough, leaders must choose how to customize it.
 - Always start with **Prompt Engineering**.
 - Move to **RAG** if the model needs to "know" specific business data.
 - Only consider **Fine-tuning** if RAG and Prompts can't achieve the required tone or specialized format.
+
+---
+
+## Model Weight Updates & Terminology
+
+A common exam trap is confusing which customization method actually changes the model itself.
+
+| Term | Are Weights Updated? | Core Concept |
+|------|----------------------|--------------|
+| **Pre-training** | **YES** (Extensive) | Creating the model from scratch on massive datasets. This is where the model "learns" language. |
+| **Fine-tuning** | **YES** (Targeted) | Taking a pre-trained model and continuing training on a small, specific dataset to adapt its behavior/style. |
+| **RAG** | **NO** | The model remains frozen. It uses external data as "context" in the prompt to ground its answers. |
+| **Prompt Engineering** | **NO** | Providing instructions and examples to guide the model's existing knowledge. |
+
+::: important Terminology Tip
+- **Grounding**: Providing context via RAG so the model doesn't hallucinate. (No weight change)
+- **Transfer Learning**: The underlying principle of Fine-tuning—building on top of a pre-trained model. (Weight change)
+:::
+
+---
+
+## Adaptation vs Retrieval (Fine-tuning vs RAG)
+
+This comparison focuses on **where the knowledge comes from**.
+
+| Concept | Term | Analogy | Best for... |
+|---------|------|---------|-------------|
+| **Adaptation** | **Fine-tuning** | Learning a new skill or language style from a textbook. | Nuanced behavior, specialized industry jargon. |
+| **Retrieval** | **RAG** | Taking an "open-book" exam with access to a library. | Facts, real-time data, and proprietary internal docs. |
+
+<FlashcardDeck 
+  title="Model Customization Quiz"
+  :cards="[
+    {
+      question: 'Which method uses a Knowledge Base to ground answers without updating weights?',
+      answer: '<strong>RAG</strong> (Retrieval-Augmented Generation).'
+    },
+    {
+      question: 'Which method updates weights to learn a specific style or jargon permanently?',
+      answer: '<strong>Fine-tuning</strong>.'
+    },
+    {
+      question: 'What is the underlying principle of Fine-tuning?',
+      answer: '<strong>Transfer Learning</strong> (building on a pre-trained model).'
+    },
+    {
+      question: 'Which customization method is the most expensive and complex?',
+      answer: '<strong>Fine-tuning</strong>.'
+    }
+  ]"
+/>

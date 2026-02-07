@@ -24,20 +24,30 @@ head:
 | **Transparency** | Be understandable |
 | **Accountability** | People own AI decisions |
 
+### Reliability & Grounding (Avoiding Fabrications)
+
+- **Fabrication / Hallucination**: When a model generates facts that sound true but are false.
+- **Grounding**: Connecting the model to verifiable data sources (e.g., via RAG) to ensure accuracy.
+- **Groundedness Detection**: A specific Azure AI tool (Content Safety) that checks if an AI's response is actually supported by the source document.
+
 <FlashcardDeck 
-  title="Responsible AI Principles"
+  title="Responsible AI & Grounding"
   :cards="[
     {
       question: 'Mnemonic for Responsible AI Principles?',
       answer: '<strong>FRPITA</strong>: Fairness, Reliability, Privacy, Inclusiveness, Transparency, Accountability'
     },
     {
-      question: 'What does Fairness mean in Responsible AI?',
-      answer: '<strong>Treat all people equitably</strong>. AI systems should not discriminate or show bias against any group.'
+      question: 'What is an AI Hallucination (Fabrication)?',
+      answer: 'When a model generates factually incorrect information that sounds convincing.'
     },
     {
-      question: 'What does Accountability mean in Responsible AI?',
-      answer: '<strong>People own AI decisions</strong>. Humans remain responsible for outcomes, not the AI system.'
+      question: 'What does Grounding do?',
+      answer: 'Connects the model to verifiable data (e.g., your own docs) to prevent fabrications and ensure accuracy.'
+    },
+    {
+      question: 'Who owns the final decision in an AI system?',
+      answer: 'The human user. This is the <strong>Accountability</strong> principle.'
     }
   ]"
 />
@@ -99,3 +109,25 @@ A successful transformation requires four key roles working together.
 | Quality | Error reduction |
 | Satisfaction | User feedback score |
 | Business | ROI achieved |
+
+<FlashcardDeck 
+  title="Adoption & Maturity Checklist"
+  :cards="[
+    {
+      question: 'What is the first stage of the AI Maturity Model?',
+      answer: '<strong>Awareness & Foundation</strong> (Vision & executive sponsorship).'
+    },
+    {
+      question: 'Who is responsible for budget and vision in the adoption team?',
+      answer: 'The <strong>Executive Sponsor</strong>.'
+    },
+    {
+      question: 'Which group prioritizes AI use cases and manages risks?',
+      answer: 'The <strong>AI Council</strong>.'
+    },
+    {
+      question: 'Who are the \'Champions\' in an AI transformation?',
+      answer: 'Peer evangelists who drive adoption from the bottom-up across departments.'
+    }
+  ]"
+/>

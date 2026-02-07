@@ -60,6 +60,21 @@ Don't just mention adoption numbers. Include:
 - User satisfaction
 - Business outcomes
 
+---
+
+## How AB-731 Wants You to Think (Exam Lens)
+
+You need to mentally override implementation habits and follow keyword detection:
+
+| If the question says… | Lock-in answer |
+|----------------------|----------------|
+| “Update weights” | **Fine-tuning** |
+| “Learn new jargon permanently” | **Fine-tuning** |
+| “Use internal docs at runtime” | **RAG** |
+| “Reduce hallucinations cheaply” | **RAG** |
+
+---
+
 ## Decision Quick Reference
 
 ### "Which Microsoft AI solution?"

@@ -40,13 +40,30 @@ Know the difference: M365 Copilot = productivity tool for users. Azure AI Foundr
 
 **Business Chat / M365 Chat**: Cross-app assistant. Queries emails, docs, meetings together.
 
-## Copilot Security Model
+## Build vs Buy vs Extend (Strategic Selection)
+
+Microsoft recommends this sequence to minimize cost and time-to-value.
+
+| Approach | Tool | Best For... | Investment |
+|----------|------|-------------|------------|
+| **Buy** | M365 Copilot | Standard productivity, off-the-shelf value. | Low (Licensing) |
+| **Extend** | Copilot Studio | Connecting Copilot to custom data/APIs. | Medium (Low-code) |
+| **Build** | Azure AI Foundry | High-customization, unique business logic. | High (Pro-code) |
+
+---
+
+## Copilot Security & Compliance
 
 Three things to remember:
 
-1. **Tenant isolation** — Your data stays in your tenant
-2. **Respects permissions** — Users only see what they already have access to
-3. **Not used for training** — Microsoft doesn't train public models on your data
+1. **Tenant isolation** — Your data stays in your tenant.
+2. **Respects permissions** — Users only see what they already have access to.
+3. **Not used for training** — Microsoft doesn't train public models on your data.
+
+### Advanced Security
+- **Data Residence**: You can control where your data is stored (e.g., EU-only for GDPR).
+- **Sovereign Clouds**: Specialized environments for high-security governments (e.g., Azure Government).
+- **Content Security**: Built-in filters to block harmful content (hate, violence, self-harm) at the gateway.
 
 <FlashcardDeck 
   title="Copilot Security"
@@ -62,6 +79,10 @@ Three things to remember:
     {
       question: 'Where does my organization\'s data stay?',
       answer: '<strong>In your tenant</strong>. Tenant isolation ensures your data never leaves your Microsoft 365 environment.'
+    },
+    {
+      question: 'What is a Sovereign Cloud?',
+      answer: 'A separate, air-gapped or specialized cloud environment for high-security or government data requirements.'
     }
   ]"
 />
@@ -84,6 +105,6 @@ Three things to remember:
 | **Azure AI Language** | Natural Language Processing (NLP) service for text analysis. | Sentiment analysis, key phrase extraction, summarization, and entity recognition. |
 | **Azure AI Vision** | Computer vision service for analyzing images and videos. | Object detection, OCR (extracting text from images), and content moderation. |
 | **Azure AI Speech** | Voice services for conversion between speech and text. | Transcription (Talk-to-Text), Speech Synthesis (Text-to-Talk), and real-time translation. |
-| **Azure AI Document Intelligence** | Intelligent document processing using AI. | Extracting tables and text from PDFs, invoices, receipts, and forms automatically. |
+| **Azure AI Document Intelligence** | Intelligent document processing using AI. | Extracting **key-value pairs**, tables, and text from PDFs, invoices, and forms automatically. |
 | **Copilot Studio** | A low-code tool to create and customize Copilots. | Extending M365 Copilot or building custom standalone agents for specific business workflows. |
 | **Power Platform AI Builder** | Low-code AI capabilities for Power Apps and Power Automate. | Automating business processes with AI without deep coding knowledge. |

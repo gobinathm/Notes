@@ -129,9 +129,13 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/certifications/aws/aif-c01/' },
-                { text: 'Exam Objectives', link: '/certifications/aws/aif-c01/objectives' },
-                { text: 'Study Notes', link: '/certifications/aws/aif-c01/notes' },
-                { text: 'Quick Refresher', link: '/certifications/aws/aif-c01/quick-refresher' },
+                { text: 'Domain 1: AI & ML Fundamentals', link: '/certifications/aws/aif-c01/domain-1' },
+                { text: 'Domain 2: Generative AI', link: '/certifications/aws/aif-c01/domain-2' },
+                { text: 'Domain 3: Foundation Models', link: '/certifications/aws/aif-c01/domain-3' },
+                { text: 'Domain 4: Responsible AI', link: '/certifications/aws/aif-c01/domain-4' },
+                { text: 'Domain 5: Security & Governance', link: '/certifications/aws/aif-c01/domain-5' },
+                { text: 'Exam Guide', link: '/certifications/aws/aif-c01/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/aws/aif-c01/cheatsheet' },
                 { text: 'Exam Tips', link: '/certifications/aws/aif-c01/exam-tips' }
               ]
             },
@@ -173,9 +177,12 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: 'Overview', link: '/certifications/google-cloud/gen-ai-leader/' },
-                { text: 'Exam Objectives', link: '/certifications/google-cloud/gen-ai-leader/objectives' },
-                { text: 'Study Notes', link: '/certifications/google-cloud/gen-ai-leader/notes' },
-                { text: 'Quick Refresher', link: '/certifications/google-cloud/gen-ai-leader/quick-refresher' },
+                { text: 'Domain 1: Vertex AI Architecture', link: '/certifications/google-cloud/gen-ai-leader/domain-1' },
+                { text: 'Domain 2: Data & RAG', link: '/certifications/google-cloud/gen-ai-leader/domain-2' },
+                { text: 'Domain 3: Model Customization', link: '/certifications/google-cloud/gen-ai-leader/domain-3' },
+                { text: 'Domain 4: GenAIOps', link: '/certifications/google-cloud/gen-ai-leader/domain-4' },
+                { text: 'Exam Guide', link: '/certifications/google-cloud/gen-ai-leader/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/google-cloud/gen-ai-leader/cheatsheet' },
                 { text: 'Exam Tips', link: '/certifications/google-cloud/gen-ai-leader/exam-tips' }
               ]
             }
