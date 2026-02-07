@@ -111,7 +111,7 @@ A common exam trap is confusing which customization method actually changes the 
 | **RAG** | **NO** | The model remains frozen. It uses external data as "context" in the prompt to ground its answers. |
 | **Prompt Engineering** | **NO** | Providing instructions and examples to guide the model's existing knowledge. |
 
-::: important Terminology Tip
+::: info Terminology Tip
 - **Grounding**: Providing context via RAG so the model doesn't hallucinate. (No weight change)
 - **Transfer Learning**: The underlying principle of Fine-tuning—building on top of a pre-trained model. (Weight change)
 :::
