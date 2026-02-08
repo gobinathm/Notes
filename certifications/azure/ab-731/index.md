@@ -22,6 +22,17 @@ A business-focused certification on driving AI adoption using Microsoft solution
 
 ![AB-731 Exam Overview Infographic](/images/certifications/ab-731/infographic.png)
 
+## Audio Refresher
+
+A podcast-style walkthrough of key exam tactics — generated using [NotebookLM](https://notebooklm.google.com/). Made to listen on the drive to the exam center as a last-minute refresher.
+
+<audio controls preload="metadata" style="width: 100%; margin: 0.5rem 0 1rem;">
+  <source src="/audio/certifications/ab-731/exam-tactics.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+<a href="/audio/certifications/ab-731/exam-tactics.m4a" download="AB-731_Exam_Tactics.m4a" class="download-link">Download audio (M4A)</a>
+
 ::: info This is NOT a technical exam
 Think like a transformation leader, not an engineer. Questions focus on business value, adoption strategy, and responsible AI governance.
 :::

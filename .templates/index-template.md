@@ -77,6 +77,23 @@ Exam strategies and study advice
 
 ---
 
+<!-- Optional: Add an audio refresher if available.
+     Generate using NotebookLM or similar tool.
+     Place the file at: public/audio/certifications/[provider]/[cert-code]/exam-tactics.m4a
+
+## Audio Refresher
+
+A podcast-style walkthrough of key exam tactics — generated using [NotebookLM](https://notebooklm.google.com/). Made to listen on the drive to the exam center as a last-minute refresher.
+
+<audio controls preload="metadata" style="width: 100%; margin: 0.5rem 0 1rem;">
+  <source src="/audio/certifications/[provider]/[cert-code]/exam-tactics.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
+
+<a href="/audio/certifications/[provider]/[cert-code]/exam-tactics.m4a" download="[CERT-CODE]_Exam_Tactics.m4a" class="download-link">Download audio (M4A)</a>
+
+End of optional audio section -->
+
 ## 📖 Official Resources
 
 - [Official Documentation](URL)

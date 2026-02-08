@@ -629,6 +629,26 @@ html:not(.dark) .styled-details {
   line-height: 1.5;
 }
 
+/* =========================================
+   13. Audio Download Link
+   ========================================= */
+.download-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--vp-c-brand-1) !important;
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+
+.download-link:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
 @media (max-width: 640px) {
   .cert-grid {
     grid-template-columns: 1fr;
