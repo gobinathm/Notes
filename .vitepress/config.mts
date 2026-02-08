@@ -70,7 +70,6 @@ export default defineConfig({
       {
         text: 'Certifications',
         items: [
-          { text: 'All Certifications', link: '/certifications/' },
           { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
           { text: 'CLF-C02: AWS Cloud Practitioner', link: '/certifications/aws/clf-c02/' },
           { text: 'AIF-C01: AWS AI Practitioner', link: '/certifications/aws/aif-c01/' },
