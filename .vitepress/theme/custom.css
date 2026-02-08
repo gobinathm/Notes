@@ -507,6 +507,128 @@ html:not(.dark) .feature-item {
   border-color: rgba(16, 185, 129, 0.12);
 }
 
+/* =========================================
+   11. Study Plan Timeline
+   ========================================= */
+.prep-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+}
+
+.prep-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  border-radius: 1px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  position: relative;
+}
+
+.timeline-marker {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-content {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex: 1;
+}
+
+html:not(.dark) .timeline-content {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================
+   12. Styled Collapsible Details
+   ========================================= */
+.styled-details {
+  margin: 0.75rem 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+html:not(.dark) .styled-details {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.styled-details summary {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-1);
+  transition: background 0.2s;
+  list-style: none;
+}
+
+.styled-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.styled-details summary::before {
+  content: '▸ ';
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.styled-details[open] summary::before {
+  content: '▾ ';
+}
+
+.styled-details summary:hover {
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.styled-details > :not(summary) {
+  padding: 0 1rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+/* Cert card list items (for checklist cards) */
+.cert-card ul {
+  margin: 0 !important;
+  padding-left: 1.2rem !important;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+
+.cert-card li {
+  margin: 0.2rem 0 !important;
+  line-height: 1.5;
+}
+
 @media (max-width: 640px) {
   .cert-grid {
     grid-template-columns: 1fr;
@@ -514,5 +636,9 @@ html:not(.dark) .feature-item {
 
   .features-grid {
     grid-template-columns: 1fr;
+  }
+
+  .prep-timeline {
+    padding-left: 1.5rem;
   }
 }

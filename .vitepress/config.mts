@@ -34,7 +34,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
-    ['meta', { name: 'theme-color', content: '#3c8772' }],
+    ['meta', { name: 'theme-color', content: '#10b981' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
     ['meta', { property: 'og:site_name', content: 'Tech Certification Study Notes' }],
@@ -78,15 +78,7 @@ export default defineConfig({
           { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
         ]
       },
-      {
-        text: 'Resources',
-        items: [
-          { text: 'About', link: '/resources/about' },
-          { text: 'Study Tips', link: '/resources/study-tips' },
-          { text: 'Exam Strategies', link: '/resources/exam-strategies' },
-          { text: 'Certificate Tracking', link: '/resources/certificate-tracking' }
-        ]
-      }
+      { text: 'Exam Playbook', link: '/resources/exam-prep-guide' }
     ],
 
     // Sidebar navigation
@@ -190,12 +182,9 @@ export default defineConfig({
       ],
       '/resources/': [
         {
-          text: 'Study Resources',
+          text: 'Exam Playbook',
           items: [
-            { text: 'About', link: '/resources/about' },
-            { text: 'Study Tips', link: '/resources/study-tips' },
-            { text: 'Exam Strategies', link: '/resources/exam-strategies' },
-            { text: 'Certificate Tracking', link: '/resources/certificate-tracking' }
+            { text: 'Overview', link: '/resources/exam-prep-guide' }
           ]
         }
       ]
