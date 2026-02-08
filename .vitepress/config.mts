@@ -70,12 +70,27 @@ export default defineConfig({
       {
         text: 'Certifications',
         items: [
-          { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
-          { text: 'CLF-C02: AWS Cloud Practitioner', link: '/certifications/aws/clf-c02/' },
-          { text: 'AIF-C01: AWS AI Practitioner', link: '/certifications/aws/aif-c01/' },
-          { text: 'MLA-C01: AWS ML Engineer', link: '/certifications/aws/mla-c01/' },
-          { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
-          { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
+          {
+            text: 'Microsoft',
+            items: [
+              { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
+              { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' }
+            ]
+          },
+          {
+            text: 'AWS',
+            items: [
+              { text: 'MLA-C01: ML Engineer', link: '/certifications/aws/mla-c01/' },
+              { text: 'AIF-C01: AI Practitioner', link: '/certifications/aws/aif-c01/' },
+              { text: 'CLF-C02: Cloud Practitioner', link: '/certifications/aws/clf-c02/' }
+            ]
+          },
+          {
+            text: 'Google Cloud',
+            items: [
+              { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
+            ]
+          }
         ]
       },
       { text: 'Exam Playbook', link: '/resources/exam-prep-guide' }
