@@ -2,20 +2,41 @@
 import DefaultTheme from 'vitepress/theme'
 import ShareButtons from './ShareButtons.vue'
 import ExportPDF from './ExportPDF.vue'
-import { useData } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
+import { computed } from 'vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
+const route = useRoute()
+
+const isStudyContent = computed(() => {
+  const path = route.path
+  // Show on certification study pages, not on index/overview pages
+  return path.startsWith('/certifications/') && path !== '/certifications/' && path !== '/certifications'
+})
+
+const showShare = computed(() => {
+  // Explicit frontmatter overrides path-based logic
+  if (frontmatter.value.share === true) return true
+  if (frontmatter.value.share === false) return false
+  return isStudyContent.value
+})
+
+const showPdf = computed(() => {
+  if (frontmatter.value.pdf === true) return true
+  if (frontmatter.value.pdf === false) return false
+  return isStudyContent.value
+})
 </script>
 
 <template>
   <Layout>
     <template #doc-after>
-      <div class="doc-actions" v-if="frontmatter.share !== false || frontmatter.pdf !== false">
+      <div class="doc-actions" v-if="showShare || showPdf">
         <div class="doc-actions-row">
-          <ExportPDF v-if="frontmatter.pdf !== false" />
+          <ExportPDF v-if="showPdf" />
         </div>
-        <ShareButtons v-if="frontmatter.share !== false" />
+        <ShareButtons v-if="showShare" />
       </div>
     </template>
   </Layout>

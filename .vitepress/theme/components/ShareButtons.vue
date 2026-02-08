@@ -8,10 +8,11 @@ const route = useRoute()
 const copied = ref(false)
 
 const pageUrl = computed(() => {
+  const path = route.path
   if (typeof window !== 'undefined') {
-    return window.location.href
+    return `${window.location.origin}${path}`
   }
-  return `${site.value.base}${route.path}`
+  return `${site.value.base}${path}`
 })
 
 const pageTitle = computed(() => {
@@ -144,17 +145,19 @@ const openShare = (url: string) => {
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   text-decoration: none;
 }
 
 .share-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .share-btn:active {
@@ -162,28 +165,69 @@ const openShare = (url: string) => {
 }
 
 .share-btn.twitter {
-  background-color: #000000;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.share-btn.twitter:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .share-btn.linkedin {
-  background-color: #0A66C2;
+  background: rgba(10, 102, 194, 0.2);
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.1);
+}
+.share-btn.linkedin:hover {
+  background: rgba(10, 102, 194, 0.35);
+  box-shadow: 0 6px 20px rgba(10, 102, 194, 0.25);
 }
 
 .share-btn.reddit {
-  background-color: #FF4500;
+  background: rgba(255, 69, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 69, 0, 0.1);
+}
+.share-btn.reddit:hover {
+  background: rgba(255, 69, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.25);
 }
 
 .share-btn.facebook {
-  background-color: #1877F2;
+  background: rgba(24, 119, 242, 0.2);
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.1);
+}
+.share-btn.facebook:hover {
+  background: rgba(24, 119, 242, 0.35);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.25);
 }
 
 .share-btn.email {
-  background-color: #6B7280;
+  background: rgba(107, 114, 128, 0.2);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.1);
+}
+.share-btn.email:hover {
+  background: rgba(107, 114, 128, 0.35);
+  box-shadow: 0 6px 20px rgba(107, 114, 128, 0.25);
 }
 
 .share-btn.copy {
-  background-color: var(--vp-c-brand-1);
+  background: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
 }
+.share-btn.copy:hover {
+  background: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
+}
+
+/* Light mode: slightly more opaque for visibility */
+:not(.dark) .share-btn {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+:not(.dark) .share-btn.twitter { color: #000; }
+:not(.dark) .share-btn.linkedin { color: #0A66C2; }
+:not(.dark) .share-btn.reddit { color: #FF4500; }
+:not(.dark) .share-btn.facebook { color: #1877F2; }
+:not(.dark) .share-btn.email { color: #6B7280; }
+:not(.dark) .share-btn.copy { color: #10b981; }
 
 @media (max-width: 640px) {
   .share-buttons {
@@ -195,11 +239,5 @@ const openShare = (url: string) => {
   .share-icons {
     flex-wrap: wrap;
   }
-}
-
-/* Dark mode adjustments */
-.dark .share-btn.twitter {
-  background-color: #ffffff;
-  color: #000000;
 }
 </style>
