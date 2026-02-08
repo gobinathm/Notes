@@ -28,6 +28,25 @@ Print this or review 5 minutes before the exam.
 
 ---
 
+## Licensing At-A-Glance
+
+- **M365 Copilot**: $30/user/mo (Enterprise/Business).
+- **Copilot Pro**: $20/user/mo (Personal/Family).
+- **Copilot Studio**: $200/mo (Build custom agents).
+- **Azure OpenAI**: Pay-as-you-go (per token) or PTU (reserved).
+
+---
+
+## Readiness Pillars (LC DIS)
+
+- **L**eadership alignment
+- **C**ulture & change management
+- **D**ata maturity & foundation
+- **I**nfrastructure capacity
+- **S**kills & literacy
+
+---
+
 ## M365 Copilot Apps
 
 | App | Does |

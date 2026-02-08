@@ -102,6 +102,27 @@ Three things to remember:
 - Fine-tuning, RAG, prompt engineering tools
 - Enterprise security and compliance
 
+## Licensing & Pricing (Cost Models)
+
+Understanding costs is critical for a transformation leader.
+
+### Microsoft 365 Copilot
+| Tier | Cost (Approx.) | Target |
+|------|----------------|--------|
+| **Copilot Chat** | Included | Standard business/enterprise licenses. |
+| **Copilot Pro** | $20/user/mo | Individuals, Family, and Personal plans. |
+| **M365 Copilot** | $30/user/mo | Business & Enterprise. (No min. seat requirement). |
+| **Copilot Studio** | $200/mo | For building and publishing custom agents. |
+
+::: tip Exam Tip
+**Role-based Copilots** (Sales, Service, Finance) are now generally **included** in the $30/mo M365 Copilot license. You don't need a separate add-on anymore.
+:::
+
+### Azure AI Services
+- **Pay-As-You-Go**: Charged per 1,000 tokens (Input vs. Output). Flexible but variable.
+- **PTU (Provisioned Throughput)**: Reserved capacity for high-volume, predictable workloads. Costs are more predictable but require a commitment.
+- **Storage & Search**: Additional costs for Azure AI Search (indexing) and Data Storage.
+
 ## Azure AI Services Deep Dive
 
 | Service | What it is | Where it is used (Use Case) |

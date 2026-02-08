@@ -64,6 +64,15 @@ The AB-731 exam is for **Business Leaders**, not developers. When in doubt, choo
 **Tokens** are the primary cost driver. Understand that context window limits (Input + Output) directly impact both the cost and the richness of the AI's response.
 :::
 
+## Data Maturity: The Prerequisite
+
+Before seeing ROI, an organization must have a foundation of **Data Maturity**.
+
+- **Quality**: AI is only as good as the data it's grounded in ("Garbage In, Garbage Out").
+- **Accessibility**: Data must be broken out of siloes so the AI can "see" it (via RAG).
+- **Security**: Robust permissions ensured *before* AI deployment to prevent oversharing.
+- **Labels**: For specialized tasks, high-quality labeled data is required for Fine-tuning.
+
 ## Business Value Areas
 
 - **Productivity**: Draft emails, summarize meetings, analyze data
@@ -71,14 +80,13 @@ The AB-731 exam is for **Business Leaders**, not developers. When in doubt, choo
 - **Automation**: Handle routine tasks (FAQs, document processing)
 - **Customer experience**: Personalized, faster responses
 
-## ROI Thinking
-
-**Costs**: Licensing, implementation, training, change management
-
-**Value**: Time saved, costs reduced, revenue gained, risks avoided
+**Value Types**:
+- **Efficiency**: Time saved, faster completion of routine tasks.
+- **Growth**: New business models, personalized customer insights.
+- **Risk Mitigation**: Better compliance tracking, early anomaly detection.
 
 ::: warning Trap
-Questions often ask about ROI. Include *all* value types, not just cost savings.
+Questions often ask about ROI. Include *all* value types (Efficiency, Growth, and Risk), not just cost savings.
 :::
 
 ---

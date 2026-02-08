@@ -64,6 +64,16 @@ Organizations move through these stages as they adopt AI. For AB-731, know the s
 | **4** | **Enterprise Adoption** | AI integrated into all business units and processes. |
 | **5** | **Business Transformation** | AI-first culture, driving innovation and new business models. |
 
+## Organizational Readiness (The "Go/No-Go" Check)
+
+Before widespread adoption, a leader must assess readiness across these pillars:
+
+- **Leadership Alignment**: Vision, budget, and executive sponsorship are secured.
+- **Data Readiness**: Data is high-quality, accessible, and secured.
+- **Cultural Readiness**: Openness to change, willingness to experiment, and trust in AI.
+- **Skill Readiness**: Employees are trained on prompt engineering and AI literacy.
+- **Infrastructure**: Technical capacity (Azure/M365) is ready for AI workloads.
+
 ## AI Adoption Team (The "A-Team")
 
 A successful transformation requires four key roles working together.
@@ -96,6 +106,17 @@ Questions about the **"First Step"** in an AI journey usually point to **Strateg
 | **Pilot** | 4-8 weeks | Small group (50-100), gather feedback, prove value. |
 | **Expand** | 8-12 weeks | Department-wide rollout, refine training. |
 | **Scale** | Ongoing | Organization-wide, regular success stories. |
+
+## Barriers to AI Adoption
+
+Watch out for these common obstacles that can stall a transformation:
+
+- **Data Siloes**: Fragmented data makes grounding (RAG) impossible.
+- **Talent Shortage**: Lack of internal AI literacy or strategy experts.
+- **Unclear ROI**: Difficulty proving the business case or tangible value.
+- **Compliance & Privacy**: Concerns over data leaks or regulatory rules (GDPR).
+- **Cultural Resistance**: Fear of job loss or general "AI skepticism."
+- **Legacy Systems**: Outdated tech that can't integrate with modern AI APIs.
 
 ## Change Management Essentials
 
