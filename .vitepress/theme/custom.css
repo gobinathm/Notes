@@ -433,6 +433,16 @@ html:not(.dark) .provider-tag.github {
   color: #24292e;
 }
 
+.provider-tag.python {
+  background: rgba(55, 118, 171, 0.15);
+  color: #3776AB;
+}
+
+.provider-tag.pmi {
+  background: rgba(0, 102, 179, 0.15);
+  color: #0066B3;
+}
+
 /* Cert metadata row */
 .cert-meta {
   display: flex;

@@ -9,12 +9,14 @@ I study for certs by writing notes. Here's everything I've put together so far.
 
 ## What's Inside Each Certification
 
+These started as plain markdown files. When I decided to share them as a site, I added interactive features to make them more useful for anyone studying.
+
 <div class="features-grid">
   <div class="feature-item">📝 <strong>Study Notes</strong> — All exam domains covered</div>
   <div class="feature-item">📋 <strong>Cheatsheets</strong> — One-page reference for exam day</div>
   <div class="feature-item">🎯 <strong>Exam Guides</strong> — Traps, decision rules, pitfalls</div>
   <div class="feature-item">💡 <strong>Exam Tips</strong> — Strategy and time management</div>
-  <div class="feature-item">📊 <strong>Progress Tracking</strong> — Private, stored in your browser</div>
+  <div class="feature-item">📊 <strong>Progress Tracking</strong> — Track what you've covered, stored in your browser, never leaves your device</div>
   <div class="feature-item">🃏 <strong>Flashcards</strong> — Interactive quiz decks</div>
 </div>
 
@@ -108,8 +110,15 @@ I study for certs by writing notes. Here's everything I've put together so far.
 ## On the Radar
 
 <div class="planned-list">
+  <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-900: GitHub Foundations</span>
+  <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-100: GitHub Administration</span>
+  <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-300: GitHub Copilot</span>
   <span class="planned-chip"><span class="provider-tag azure">Azure</span> AI-102: Azure AI Engineer</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> SAA-C03: Solutions Architect</span>
+  <span class="planned-chip"><span class="provider-tag aws">AWS</span> AIP-C01: GenAI Developer Professional</span>
+  <span class="planned-chip"><span class="provider-tag python">Python</span> PCEP: Entry-Level Python Programmer</span>
+  <span class="planned-chip"><span class="provider-tag python">Python</span> PCAP: Associate Python Programmer</span>
+  <span class="planned-chip"><span class="provider-tag pmi">PMI</span> GenAI for Project Managers</span>
 </div>
 
 ::: info Note
