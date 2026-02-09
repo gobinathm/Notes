@@ -52,11 +52,23 @@ I study for certs by writing notes. Here's everything I've put together so far.
   </div>
 </div>
 
+<div class="cert-card studying">
+  <span class="provider-tag azure">Azure</span>
+  <h3><a href="./certifications/azure/ab-730/">AB-730: AI Business Professional</a></h3>
+  <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
+  <div class="cert-prereqs">Microsoft 365 familiarity, basic business process understanding</div>
+  <div class="cert-meta">
+    <span class="difficulty beginner">Beginner</span>
+  </div>
+</div>
+
 </div>
 
 ## Completed
 
 <div class="cert-grid">
+
+
 
 <div class="cert-card completed">
   <span class="provider-tag azure">Azure</span>

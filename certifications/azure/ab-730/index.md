@@ -1,0 +1,68 @@
+---
+title: "AB-730 - Microsoft AI Business Professional"
+description: "Study notes for AB-730 Microsoft AI Business Professional certification exam"
+head:
+  - - meta
+    - name: keywords
+      content: ab-730, microsoft, ai business professional, copilot, certification, study notes
+---
+
+# AB-730: Microsoft AI Business Professional
+
+A practical certification for business professionals focused on using **Microsoft 365 Copilot** to drive productivity, content creation, and data analysis. Unlike AB-731 (which is about leadership and strategy), AB-730 is about **using** the tools effectively in daily tasks.
+
+**Exam**: 45 min · ~50 questions · 700/1000 to pass · $99
+
+::: info Practical AI Usage
+This exam validates your ability to write effective prompts, manage AI conversations, and use Copilot across Word, Excel, PowerPoint, Outlook, and Teams.
+:::
+
+---
+
+## Study Progress
+
+<ProgressTracker
+  title="AB-730 Study Progress"
+  storage-key="ab-730-progress"
+  :items="[
+    {
+      id: 'domain-1',
+      label: 'Domain 1: GenAI Fundamentals (25-30%)',
+      children: [
+        { id: 'd1-llm', label: 'How LLMs work in M365' },
+        { id: 'd1-risks', label: 'AI Risks & Responsible usage' }
+      ]
+    },
+    {
+      id: 'domain-2',
+      label: 'Domain 2: Manage Prompts & Conversations (35-40%)',
+      children: [
+        { id: 'd2-writing', label: 'Effective prompt engineering' },
+        { id: 'd2-context', label: 'Using files & context' }
+      ]
+    },
+    {
+      id: 'domain-3',
+      label: 'Domain 3: Draft & Analyze Content (25-30%)',
+      children: [
+        { id: 'd3-apps', label: 'Copilot in M365 Apps' },
+        { id: 'd3-agents', label: 'Using Copilot Agents' }
+      ]
+    },
+    { id: 'notes', label: 'Completed study notes' },
+    { id: 'cheatsheet', label: 'Reviewed cheatsheet' },
+    { id: 'ready', label: 'Ready for exam' }
+  ]"
+/>
+
+---
+
+## Official Resources
+
+- [AB-730 Exam Page & Study Guide](https://learn.microsoft.com/en-us/credentials/certifications/exams/ab-730/)
+- [Microsoft 365 Copilot Help & Learning](https://support.microsoft.com/en-us/copilot)
+- [Copilot Lab (Prompt Gallery)](https://copilot.cloud.microsoft/prompts)
+
+---
+
+[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md)

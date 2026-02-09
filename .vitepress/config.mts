@@ -73,6 +73,7 @@ export default defineConfig({
           {
             text: 'Microsoft',
             items: [
+              { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
               { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' }
             ]
@@ -160,6 +161,18 @@ export default defineConfig({
           text: '💎 Azure Certifications',
           collapsed: true,
           items: [
+            {
+              text: 'AB-730: AI Business Professional',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ab-730/' },
+                { text: 'Domain 1: Fundamentals', link: '/certifications/azure/ab-730/domain-1' },
+                { text: 'Domain 2: Prompts', link: '/certifications/azure/ab-730/domain-2' },
+                { text: 'Domain 3: Content', link: '/certifications/azure/ab-730/domain-3' },
+                { text: 'Exam Guide', link: '/certifications/azure/ab-730/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ab-730/cheatsheet' }
+              ]
+            },
             {
               text: 'AB-731: AI Transformation Leader',
               collapsed: true,

@@ -10,6 +10,7 @@ Study notes I prepared while clearing technology certifications.
 
 | Certification | Provider | Status |
 |---|---|---|
+| [AB-730: AI Business Professional](https://notes.gobinath.com/certifications/azure/ab-730/) | Microsoft | In Progress |
 | [AB-731: AI Transformation Leader](https://notes.gobinath.com/certifications/azure/ab-731/) | Microsoft | Passed Feb 2026 |
 | [AIF-C01: AWS AI Practitioner](https://notes.gobinath.com/certifications/aws/aif-c01/) | AWS | Passed Jan 2026 |
 | [GH-200: GitHub Actions](https://notes.gobinath.com/certifications/github/gh-actions/) | GitHub | Passed Jan 2026 |
