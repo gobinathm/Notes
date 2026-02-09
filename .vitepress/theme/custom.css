@@ -508,6 +508,33 @@ html:not(.dark) .feature-item {
 }
 
 /* =========================================
+   10b. Planned Certification Chips
+   ========================================= */
+.planned-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.25rem 0;
+}
+
+.planned-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+html:not(.dark) .planned-chip {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
    11. Study Plan Timeline
    ========================================= */
 .prep-timeline {

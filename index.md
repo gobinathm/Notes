@@ -105,6 +105,13 @@ I study for certs by writing notes. Here's everything I've put together so far.
 
 </div>
 
+## On the Radar
+
+<div class="planned-list">
+  <span class="planned-chip"><span class="provider-tag azure">Azure</span> AI-102: Azure AI Engineer</span>
+  <span class="planned-chip"><span class="provider-tag aws">AWS</span> SAA-C03: Solutions Architect</span>
+</div>
+
 ::: info Note
 These are personal study notes — always cross-check with official documentation before your exam.
 :::
