@@ -9,55 +9,20 @@ head:
 
 # GH-200: GitHub Actions
 
-## Exam Information
+CI/CD workflows, automation, and GitHub Actions best practices. Covers workflow authoring, reusable workflows, custom actions, secrets management, and security.
 
-- **Provider**: GitHub
-- **Exam Code**: GH-200
-- **Official Exam Page**: [GitHub Certifications](https://examregistration.github.com/)
-- **Exam Duration**: 120 minutes
-- **Number of Questions**: ~75 questions
-- **Passing Score**: 700/1000
-- **Exam Format**: Multiple choice, multiple select
+**Exam**: 120 min · ~75 questions · 700/1000 to pass
 
-::: tip Note Freshness
-**Prepared**: January 2026
-**Last Updated**: 2026-01-09
+::: tip Certification Achieved ✅
+**Earned**: January 28, 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/1D482C674772339)
 
-Exam content may change. Always verify with official documentation.
+**Notes Prepared**: January 2026 · **Last Updated**: 2026-01-28
 :::
 
-## Overview
-
-The GitHub Actions certification validates your understanding of CI/CD workflows, automation, and GitHub Actions best practices.
-
-**Target Audience:**
-- DevOps Engineers
-- Software Developers
-- CI/CD specialists
-- Release Engineers
-- Anyone automating software workflows
-
-**Prerequisites:**
-- Basic Git and GitHub knowledge
-- Understanding of YAML syntax
-- Familiarity with software development workflows
-- Basic command-line experience
-
----
-
-## Study Materials
-
-### 📋 [Exam Objectives](./objectives.md)
-Official exam domains and objectives outline
-
-### 📝 [Study Notes](./notes.md)
-Detailed notes, examples, and key concepts
-
-### ⚡ [Quick Refresher](./quick-refresher.md)
-Last-minute cram session - review all key concepts in 15 minutes
-
-### 🎯 [Exam Tips & Strategy](./exam-tips.md)
-Exam traps, decision matrices, and last-minute review
+::: info CI/CD and automation focused
+Think like a DevOps engineer building reliable, secure pipelines. Questions focus on workflow syntax, action authoring, and operational best practices.
+:::
 
 ---
 
@@ -69,7 +34,7 @@ Exam traps, decision matrices, and last-minute review
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: Author and Maintain Workflows',
+      label: 'Domain 1: Author and Maintain Workflows (~40%)',
       children: [
         { id: 'domain-1-1', label: 'Workflow syntax and structure' },
         { id: 'domain-1-2', label: 'Events and triggers' },
@@ -78,7 +43,7 @@ Exam traps, decision matrices, and last-minute review
     },
     {
       id: 'domain-2',
-      label: 'Domain 2: Consume Workflows',
+      label: 'Domain 2: Consume Workflows (~20%)',
       children: [
         { id: 'domain-2-1', label: 'Actions marketplace' },
         { id: 'domain-2-2', label: 'Reusable workflows' },
@@ -87,7 +52,7 @@ Exam traps, decision matrices, and last-minute review
     },
     {
       id: 'domain-3',
-      label: 'Domain 3: Author and Maintain Actions',
+      label: 'Domain 3: Author and Maintain Actions (~25%)',
       children: [
         { id: 'domain-3-1', label: 'Creating actions' },
         { id: 'domain-3-2', label: 'Action metadata' },
@@ -96,7 +61,7 @@ Exam traps, decision matrices, and last-minute review
     },
     {
       id: 'domain-4',
-      label: 'Domain 4: Manage GitHub Actions',
+      label: 'Domain 4: Manage GitHub Actions (~15%)',
       children: [
         { id: 'domain-4-1', label: 'Secrets management' },
         { id: 'domain-4-2', label: 'Runners and environments' },
@@ -110,15 +75,18 @@ Exam traps, decision matrices, and last-minute review
 
 ---
 
-## Additional Resources
+## Official Resources
 
 - [GitHub Actions Documentation](https://docs.github.com/actions)
 - [GitHub Skills - Actions](https://skills.github.com/)
 - [Actions Marketplace](https://github.com/marketplace?type=actions)
+
+## External Resources
+
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
 - [Getting the Gist of GitHub Actions](https://gist.github.com/br3ndonland/f9c753eb27381f97336aa21b8d932be6#introduction)
-- [Github Actions Certification Exam Study Guide](https://www.youtube.com/playlist?list=PLIpE1hDb3gF2q77kD_V5jLzNktzL09JZM)
+- [GitHub Actions Certification Exam Study Guide](https://www.youtube.com/playlist?list=PLIpE1hDb3gF2q77kD_V5jLzNktzL09JZM)
 
 ---
 
-*Last Updated: 2026-01-09*
+[Study Notes →](./notes.md) · [Quick Refresher →](./quick-refresher.md) · [Exam Tips →](./exam-tips.md)

@@ -13,7 +13,7 @@ A practical certification for business professionals focused on using **Microsof
 
 **Exam**: 45 min · ~50 questions · 700/1000 to pass · $99
 
-::: info Practical AI Usage
+::: info This is a hands-on usage exam
 This exam validates your ability to write effective prompts, manage AI conversations, and use Copilot across Word, Excel, PowerPoint, Outlook, and Teams.
 :::
 
@@ -62,6 +62,11 @@ This exam validates your ability to write effective prompts, manage AI conversat
 - [AB-730 Exam Page & Study Guide](https://learn.microsoft.com/en-us/credentials/certifications/exams/ab-730/)
 - [Microsoft 365 Copilot Help & Learning](https://support.microsoft.com/en-us/copilot)
 - [Copilot Lab (Prompt Gallery)](https://copilot.cloud.microsoft/prompts)
+
+## External Resources
+
+- [Microsoft Learn: Copilot Training](https://learn.microsoft.com/en-us/training/)
+- [Copilot Adoption Guide](https://adoption.microsoft.com/en-us/copilot/)
 
 ---
 

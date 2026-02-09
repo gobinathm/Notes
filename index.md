@@ -43,16 +43,6 @@ I study for certs by writing notes. Here's everything I've put together so far.
 </div>
 
 <div class="cert-card studying">
-  <span class="provider-tag github">GitHub</span>
-  <h3><a href="./certifications/github/gh-actions/">GH-200: GitHub Actions</a></h3>
-  <p>CI/CD workflows, automation, and GitHub Actions best practices.</p>
-  <div class="cert-prereqs">Git, GitHub, YAML, CI/CD basics</div>
-  <div class="cert-meta">
-    <span class="difficulty intermediate">Intermediate</span>
-  </div>
-</div>
-
-<div class="cert-card studying">
   <span class="provider-tag azure">Azure</span>
   <h3><a href="./certifications/azure/ab-730/">AB-730: AI Business Professional</a></h3>
   <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
@@ -68,8 +58,6 @@ I study for certs by writing notes. Here's everything I've put together so far.
 
 <div class="cert-grid">
 
-
-
 <div class="cert-card completed">
   <span class="provider-tag azure">Azure</span>
   <h3><a href="./certifications/azure/ab-731/">AB-731: AI Transformation Leader</a></h3>
@@ -78,6 +66,17 @@ I study for certs by writing notes. Here's everything I've put together so far.
   <div class="cert-meta">
     <span class="difficulty beginner">Beginner–Intermediate</span>
     <span class="date">Feb 2026</span>
+  </div>
+</div>
+
+<div class="cert-card completed">
+  <span class="provider-tag github">GitHub</span>
+  <h3><a href="./certifications/github/gh-actions/">GH-200: GitHub Actions</a></h3>
+  <p>CI/CD workflows, automation, and GitHub Actions best practices.</p>
+  <div class="cert-prereqs">Git, GitHub, YAML, CI/CD basics</div>
+  <div class="cert-meta">
+    <span class="difficulty intermediate">Intermediate</span>
+    <span class="date">Jan 2026</span>
   </div>
 </div>
 
@@ -102,6 +101,7 @@ I study for certs by writing notes. Here's everything I've put together so far.
     <span class="date">Oct 2024</span>
   </div>
 </div>
+
 
 </div>
 
