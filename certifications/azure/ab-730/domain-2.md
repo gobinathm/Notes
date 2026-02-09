@@ -28,6 +28,21 @@ A good prompt gives the AI clear guardrails. Microsoft recommends the **Goal, Co
 Be **Specific**. Vague prompts like "Write an email" give poor results. Prompts that include a specific audience (e.g., "for a senior executive") are much more effective.
 :::
 
+## Prompt Management & Copilot Lab
+
+Effective prompt engineering isn't just about writing; it's about reuse and refinement.
+
+- **Copilot Lab**: A prompt gallery where you can find, save, and share effective prompts within your organization. 
+- **Saving Prompts**: You can "favorite" prompts in the Lab to quickly reuse them across different Microsoft 365 apps.
+- **Sharing**: You can share prompts with colleagues to help standardized on high-quality outputs for common tasks.
+
+## Memory & Instructions
+
+Copilot maintains context within a single conversation session.
+
+- **Memory**: Copilot remembers the previous parts of the chat, allowing for follow-up questions (e.g., "Now make that shorter").
+- **Custom Instructions**: (In some versions/agents) You can provide overarching instructions that Copilot should always follow (e.g., "Always use a friendly tone").
+
 ## Using Context & Files
 
 Copilot is most powerful when it uses your existing data.
@@ -39,7 +54,7 @@ Copilot is most powerful when it uses your existing data.
 ## Managing Conversations
 
 - **Saving Chats**: Most Copilot chats are saved in a sidebar so you can return to them.
-- **Sharing**: You can often copy or share Copilot responses directly to email or Teams.
+- **Sharing**: You can copy or share Copilot responses directly to email or Teams.
 - **Verifying**: Always use the **Cite** links (citations) to verify where the AI got its information.
 
 ::: danger Critical

@@ -50,6 +50,12 @@ head:
 **Need specific company data?**
 → Grounding (Graph). Use `/` to link files.
 
+**Need to collaborate on AI output?**
+→ Copilot Pages (Canvas).
+
+**Need to reuse high-quality prompts?**
+→ Copilot Lab (Gallery).
+
 **Need special business logic?**
 → Copilot Agents.
 

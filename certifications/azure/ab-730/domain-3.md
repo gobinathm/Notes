@@ -42,8 +42,27 @@ The exam tests your knowledge of **which** Copilot feature to use for specific b
 
 ### 👥 Microsoft Teams
 - **Meeting Recap**: Summarize key points and action items during or after a meeting.
+- **During the Meeting**: Ask "Am I being mentioned?" or "What's the sentiment of the discussion?" to stay informed in real-time.
 - **Catch Up**: Ask "What happened before I joined?"
 - **Search**: Find information across your chats and channels.
+
+---
+
+## Copilot Pages & Data Movement
+
+### 📄 Copilot Pages
+**Copilot Pages** is a dynamic, persistent canvas for AI-powered collaboration.
+
+- **From Chat to Page**: You can take content from a Copilot chat and "pin" it to a Page.
+- **Collaborative Editing**: Multiple users can work on a Page simultaneously, refining the AI-generated content together.
+- **Persistent Knowledge**: Unlike a chat, a Page is designed to be shared and edited over time.
+
+### 🔄 Data Movement Between Apps
+The exam tests how you leverage AI across the ecosystem.
+
+- **Excel to PPT**: Use Copilot to analyze data in Excel, then "Copy/Paste" the insights into a PowerPoint prompt to generate visual slides.
+- **Word to PPT**: Directly use the "Create from file" feature in PowerPoint to transform a Word report into a presentation.
+- **Consistency**: AI helps maintain the same tone and data accuracy when moving content from a summary (Outlook) to a proposal (Word).
 
 ---
 
