@@ -4,6 +4,7 @@ import ProgressTracker from './components/ProgressTracker.vue'
 import ShareButtons from './components/ShareButtons.vue'
 import ExportPDF from './components/ExportPDF.vue'
 import CustomLayout from './components/CustomLayout.vue'
+import ImageModal from './components/ImageModal.vue'
 
 import Flashcard from './components/Flashcard.vue'
 import FlashcardDeck from './components/FlashcardDeck.vue'
@@ -17,5 +18,6 @@ export default {
     app.component('ExportPDF', ExportPDF)
     app.component('Flashcard', Flashcard)
     app.component('FlashcardDeck', FlashcardDeck)
+    app.component('ImageModal', ImageModal)
   }
 }

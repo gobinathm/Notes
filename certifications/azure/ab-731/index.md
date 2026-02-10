@@ -20,7 +20,10 @@ A business-focused certification on driving AI adoption using Microsoft solution
 **Notes Prepared**: February 2026 · **Last Updated**: 2026-02-07
 :::
 
-![AB-731 Exam Overview Infographic](/images/certifications/ab-731/infographic.png)
+<ImageModal 
+  src="/images/certifications/ab-731/infographic.png" 
+  alt="AB-731 Exam Overview Infographic" 
+/>
 
 ## Audio Refresher
 

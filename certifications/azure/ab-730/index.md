@@ -17,7 +17,10 @@ A practical certification for business professionals focused on using **Microsof
 This exam validates your ability to write effective prompts, manage AI conversations, and use Copilot across Word, Excel, PowerPoint, Outlook, and Teams.
 :::
 
-![AB-730 Exam Overview Infographic](/images/certifications/ab-730/infographic.png)
+<ImageModal 
+  src="/images/certifications/ab-730/infographic.png" 
+  alt="AB-730 Exam Overview Infographic" 
+/>
 
 ---
 
