@@ -1,5 +1,9 @@
 <template>
   <div class="image-modal-container">
+    <div v-if="aiLabel" class="image-header">
+      <AITag :label="aiLabel" />
+    </div>
+    
     <div class="image-thumbnail" @click="openModal">
       <img :src="src" :alt="alt" />
       <div class="overlay">
@@ -15,6 +19,9 @@
           </button>
           
           <div class="modal-image-wrapper">
+            <div v-if="aiLabel" class="modal-ai-tag">
+              <AITag :label="aiLabel" />
+            </div>
             <img :src="src" :alt="alt" class="modal-image" />
           </div>
 
@@ -32,6 +39,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import AITag from './AITag.vue'
 
 const props = defineProps({
   src: {
@@ -41,6 +49,10 @@ const props = defineProps({
   alt: {
     type: String,
     default: 'Infographic'
+  },
+  aiLabel: {
+    type: String,
+    default: ''
   }
 })
 
@@ -80,12 +92,33 @@ onUnmounted(() => {
 <style scoped>
 .image-modal-container {
   margin: 2rem 0;
+  padding: 1rem;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-modal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  opacity: 0.7;
+}
+
+.image-header {
+  margin-bottom: 1rem;
 }
 
 .image-thumbnail {
   position: relative;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--vp-c-divider);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -93,7 +126,7 @@ onUnmounted(() => {
 }
 
 .image-thumbnail:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
@@ -108,7 +141,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,8 +157,8 @@ onUnmounted(() => {
 .overlay-text {
   color: white;
   font-weight: 600;
-  font-size: 1.1rem;
-  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  padding: 0.6rem 1.25rem;
   border: 2px solid white;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.1);
@@ -174,10 +207,18 @@ onUnmounted(() => {
 }
 
 .modal-image-wrapper {
+  position: relative;
   overflow: auto;
   border-radius: 8px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   background: white;
+}
+
+.modal-ai-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
 }
 
 .modal-image {
@@ -239,6 +280,10 @@ onUnmounted(() => {
   
   .modal-backdrop {
     padding: 1rem;
+  }
+
+  .image-modal-container {
+    padding: 0.75rem;
   }
 }
 </style>
