@@ -13,68 +13,84 @@ head:
 
 ---
 
-## Effective Prompt Engineering
+## ✍️ Prompt Engineering Fundamentals
 
-A good prompt gives the AI clear guardrails. Microsoft recommends the **Goal, Context, Source, and Expectation** framework.
+Mastering the **Goal, Context, Source, and Expectation** framework is essentially the "API" for talking to Copilot.
 
-| Element | Purpose | Example |
-|---------|---------|---------|
-| **Goal** | What do you want? | "Write a summary..." |
-| **Context** | Why do you need it? | "...for our project kickoff meeting." |
-| **Source** | What data to use? | "...based on the attached agenda." |
-| **Expectation** | Style, tone, or length? | "Keep it under 200 words and use bullet points." |
+- **Goal**: What exactly do you want the AI to do? (e.g., "Summarize this transcript")
+- **Context**: Why are you doing this? (e.g., "for a stakeholder report")
+- **Source**: Which data should be used? (e.g., "referencing /MeetingNotes.docx")
+- **Expectation**: What should the output look like? (e.g., "use professional bullet points")
 
 ::: tip Exam Tip
-Be **Specific**. Vague prompts like "Write an email" give poor results. Prompts that include a specific audience (e.g., "for a senior executive") are much more effective.
+Vague prompts lead to vague results. Always specify a **Persona** (e.g., "as a Data Analyst") to improve the weighting of the AI response.
 :::
 
-## Prompt Management & Copilot Lab
+---
 
-Effective prompt engineering isn't just about writing; it's about reuse and refinement.
+## 🚀 Advanced Prompt Management
 
-- **Copilot Lab**: A prompt gallery where you can find, save, and share effective prompts within your organization. 
-- **Saving Prompts**: You can "favorite" prompts in the Lab to quickly reuse them across different Microsoft 365 apps.
-- **Sharing**: You can share prompts with colleagues to help standardized on high-quality outputs for common tasks.
+Managing prompts is about building a library of high-quality AI directives using **Copilot Lab**.
 
-## Memory & Instructions
+- **Saving & Favoriting**: Use the "Star" icon in the UI to save effective prompts to your personal library.
+- **Sharing**: You can share prompts via a unique link or by publishing them to your **Organization's Prompt Gallery**.
+- **Scheduling**: For recurring tasks (like weekly status reports), you can **Schedule** prompts to run automatically on a set cadence.
 
-Copilot maintains context within a single conversation session.
+---
 
-- **Memory**: Copilot remembers the previous parts of the chat, allowing for follow-up questions (e.g., "Now make that shorter").
-- **Custom Instructions**: (In some versions/agents) You can provide overarching instructions that Copilot should always follow (e.g., "Always use a friendly tone").
+## 🔍 Context and Grounding
 
-## Using Context & Files
+Copilot is most powerful when it uses your specific data as the "Truth" for its answers.
 
-Copilot is most powerful when it uses your existing data.
+| Type | How to use | Example |
+|------|------------|---------|
+| **Files** | Use the `/` symbol or paperclip | `/Product_Specs.pdf` |
+| **Web Search** | Toggle the "Web" search switch | "Latest news on AI regs..." |
+| **App Context** | Automatic based on current view | Draft a reply to *this* email. |
 
-- **Referencing Files**: You can type `/` or use the paperclip icon in Copilot Chat to point to specific Word docs, PDFs, or PPTs.
-- **Web Context**: You can toggle "Web" mode to allow Copilot to pull real-time information from the internet.
-- **App Context**: Copilot knows which app you are in (e.g., drafting a reply to the *current* email in Outlook).
+---
 
-## Managing Conversations
+## 💬 Conversation Management
 
-- **Saving Chats**: Most Copilot chats are saved in a sidebar so you can return to them.
-- **Sharing**: You can copy or share Copilot responses directly to email or Teams.
-- **Verifying**: Always use the **Cite** links (citations) to verify where the AI got its information.
+Don't treat your chats as disposable; manage them like a persistent knowledge base.
 
-::: danger Critical
-**Citations**: If Copilot generalizes a fact, look for the small number icons. These link directly to the source document or email. Always click them if the fact is critical!
-:::
+- **History Management**: Use the sidebar to search for past interactions. You can **Rename** chats for better organization or **Delete** them for privacy hygiene.
+- **New Topic**: Always use the "New Topic" button to reset the **Short-term Memory** and prevent old context from "polluting" new questions.
+- **Notebooks**: Add AI interactions to your **Copilot Notebook** for long-form refinement. Notebooks support larger context windows and persistent collaborative editing.
+
+---
+
+## 🛠️ The Agent Ecosystem
+
+Agents are specialized, task-specific versions of Copilot. Knowing how to select and configure them is a core exam objective.
+
+### Finding and Creating Agents
+- **Agent Store**: Enable verified third-party agents (e.g., Adobe, ServiceNow) from the store.
+- **Templates**: Start building agents using **Templates** designed for specific roles (HR, IT, Project Management).
+- **Sharing**: Once built, custom agents can be shared with individual team members or the whole organization.
+
+### Configuring Agents (Copilot Studio)
+1.  **Knowledge Sources**: Ground the agent in specific **SharePoint Sites**, **OneDrive Folders**, or manual file uploads.
+2.  **Capabilities**: Toggle features like **Web Search** (real-time info) or **Image Generation**.
+3.  **Instruction & Tone**: Define a specific persona and behavior for the agent to follow.
+4.  **Suggested Prompts**: Pre-fill "Starter prompts" to help users know what to ask.
+
+---
 
 <FlashcardDeck 
-  title="Prompting Quiz"
+  title="Domain 2: Quick Recap"
   :cards="[
     {
-      question: 'What are the 4 elements of a perfect prompt?',
-      answer: '<strong>Goal, Context, Source, and Expectation.</strong>'
+      question: 'Where do you go to save and share high-quality prompts?',
+      answer: '<strong>Copilot Lab</strong>.'
     },
     {
-      question: 'How do you reference a file in Copilot Chat?',
-      answer: 'Type <strong>/</strong> followed by the file name or use the attachment icon.'
+      question: 'How do you prevent a new chat from being influenced by old context?',
+      answer: 'Use the <strong>New Topic</strong> button to clear the short-term memory.'
     },
     {
-      question: 'What should you check to verify the source of AI information?',
-      answer: 'Check the <strong>Citations</strong> (links to source files/emails).'
+      question: 'What is the primary way to ground a custom agent in your data?',
+      answer: 'By adding <strong>Knowledge Sources</strong> like SharePoint or specific files.'
     }
   ]"
 />

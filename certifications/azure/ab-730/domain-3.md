@@ -77,6 +77,33 @@ The exam tests how you leverage AI across the ecosystem.
 If a question asks how to automate a specific multi-step workflow involving a non-Microsoft app, look for **Copilot Agents** or **Copilot Studio** in the answers.
 :::
 
+## Memory & Instructions
+
+Copilot's ability to "remember" and follow specific directives is key for collaborative drafting and long-term analysis.
+
+- **Conversation Memory**: Within a single session, Copilot retains context. You can reference previous answers without repeating your constraints (e.g., "Now take the summary provided above and turn it into 5 bullet points").
+- **Custom Instructions**: You can set persistent preferences for how Copilot should behave across all chats (e.g., "Always keep responses professional and under 150 words" or "Always prefer data from the Finance folder").
+
+## Explicit Data Movement Workflows
+
+The exam frequently tests these specific "bridge" workflows between M365 apps:
+
+| From App | To App | Workflow / Feature | Exam Catch |
+|----------|--------|---------------------|------------|
+| **Excel** | **Word** | Analyze trends in Excel → Prompt Word to "Draft a report based on these Excel insights." | Must manually provide the insights/summary from Excel to Word. |
+| **Word** | **PowerPoint**| **Create from File** | Use the Word file's URL or name directly in the PPT prompt. |
+| **Teams** | **Outlook** | Meeting Recap → **Share to Outlook** | One-click transition for sending action items to stakeholders. |
+| **Outlook** | **OneNote** | Email Summary → Save to OneNote | Capture decision threads into a persistent project notebook. |
+
+## Exam-Tested Tips (Domain 3)
+
+| Scenario | Correct Action | Why? |
+|----------|----------------|------|
+| Need content from a PDF for a PPT | Use **Create from File** in PPT | PPT can ingest Word/PDF files to build slides. |
+| Data is in a spreadsheet but Copilot won't analyze | Convert to **Excel Table** | Copilot *requires* the Table object to perform analysis. |
+| Mixed sentiment in a long Teams chat | Ask Copilot for a **Sentiment Summary** | Teams Copilot is unique in its ability to detect "mood" and "unresolved questions." |
+| Need a shared space for AI brainstorming | Use **Copilot Pages** | Pages are built for team-based, persistent AI collaboration. |
+
 <FlashcardDeck 
   title="App Usage Quiz"
   :cards="[

@@ -34,6 +34,14 @@ The AB-730 exam is for **Business Users**. It values **Safety, Efficiency, and H
 | "Tone is too dry" | **Rewrite** feature (Word/Outlook) |
 | "Long email train" | **Summary by Copilot** |
 | "Unreliable output" | **Human review** |
+| "Reuse a good prompt" | **Copilot Lab** (save/favorite) |
+| "Weekly recurring task" | **Schedule** a prompt |
+| "Old chat context leaking" | **New Topic** button |
+| "Extend AI to custom data" | **Copilot Agent** (Copilot Studio) |
+| "Find an existing AI tool" | **Agent Store** |
+| "Collaborate on AI output" | **Copilot Pages** |
+| "Long-form prompt editing" | **Copilot Notebook** |
+| "Restricted file not showing" | **DLP** or **Sensitivity Labels** |
 
 ---
 
@@ -49,7 +57,7 @@ The AB-730 exam is for **Business Users**. It values **Safety, Efficiency, and H
 
 ## Final Strategy
 
-- **Read the citatons**: In scenario questions, check if they mention where the data is coming from. 
+- **Read the citations**: In scenario questions, check if they mention where the data is coming from.
 - **Be the User**: Imagine yourself actually clicking the buttons in Word or Teams.
 - **Responsible AI**: When in doubt, pick the most responsible/secure option.
 

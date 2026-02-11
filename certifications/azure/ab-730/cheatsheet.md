@@ -54,19 +54,44 @@ head:
 → Copilot Pages (Canvas).
 
 **Need to reuse high-quality prompts?**
-→ Copilot Lab (Gallery).
+→ Copilot Lab (save, share, schedule).
 
 **Need special business logic?**
-→ Copilot Agents.
+→ Custom Agent (Copilot Studio).
+
+**Need an existing AI tool?**
+→ Agent Store (third-party agents).
+
+**Need long-form prompt editing?**
+→ Copilot Notebook.
+
+**File not appearing in results?**
+→ DLP policy or Sensitivity Label blocking it.
+
+---
+
+## Agent Quick Reference
+
+| Need | Use |
+|------|-----|
+| Pre-built third-party agent | **Agent Store** |
+| Role-based starting point | **Template** |
+| Custom data grounding | **Knowledge Sources** (SharePoint/OneDrive) |
+| Control behavior/tone | **Instructions** in Copilot Studio |
+| Help users get started | **Suggested Prompts** |
 
 ---
 
 ## Terminology Check
 
 - **Microsoft Graph**: The "brain" connecting your files/emails to AI.
+- **Semantic Index**: Meaning-based search over your data (not just keywords).
 - **Grounding**: Providing context to keep the AI accurate.
 - **Fabrication**: Confidence in a lie (Hallucination).
 - **Tenant**: Your private organization boundary in Azure/M365.
+- **DLP**: Data Loss Prevention — blocks sensitive files from AI results.
+- **Sensitivity Labels**: Classification tags (e.g., "Confidential") that restrict access.
+- **Copilot Notebook**: Long-form, persistent workspace for prompt refinement.
 
 ---
 
