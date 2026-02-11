@@ -1,29 +1,47 @@
 ---
 title: "[CERT-CODE] - Exam Guide"
 description: "Traps, common pitfalls, and quick decision rules for the [CERT-CODE] exam"
+head:
+  - - meta
+    - name: keywords
+      content: [cert-code], exam guide, exam traps, tips
 ---
 
-# Exam Guide & Traps
+# [CERT-CODE]: Exam Guide
 
-[← Domain [N]](./domain-[n].md) · [Cheatsheet →](./cheatsheet.md)
+[← Overview](./index.md) · [Cheatsheet →](./cheatsheet.md)
+
+---
+
+## How the Exam Wants You to Think
+
+The [CERT-CODE] exam is for **[target role]**. It values **[core principles]**.
+
+### Answer Philosophy
+1.  **[Principle 1]**: [Description]
+2.  **[Principle 2]**: [Description]
+3.  **[Principle 3]**: [Description]
+
+---
+
+## Keyword Detection Table
+
+| If you see... | Look for this in the answer... |
+|---------------|--------------------------------|
+| "[Keyword 1]" | **[Concept/Service A]** |
+| "[Keyword 2]" | **[Concept/Service B]** |
+| "[Keyword 3]" | **[Concept/Service C]** |
+| "[Keyword 4]" | **[Concept/Service D]** |
 
 ---
 
 ## Exam Traps
 
-### Trap 1: [Name]
-[Description of the trap]
-
-- ❌ [Incorrect common assumption]
-- ✅ [Correct exam logic]
-
-### Trap 2: [Name]
-[Description]
-
-| If question mentions... | Think... |
-|------------------------|----------|
-| [Keyword 1] | [Answer 1] |
-| [Keyword 2] | [Answer 2] |
+::: warning Look out for these!
+- **[Trap 1]**: [Description of what candidates get wrong]
+- **[Trap 2]**: [Description]
+- **[Trap 3]**: [Description]
+:::
 
 ---
 
@@ -45,11 +63,12 @@ description: "Traps, common pitfalls, and quick decision rules for the [CERT-COD
 
 ---
 
-## Exam Day Reminders
-- [Reminder 1]
-- [Reminder 2]
-- [Reminder 3]
+## Final Strategy
+
+- **[Strategy 1]**: [Advice]
+- **[Strategy 2]**: [Advice]
+- **[Strategy 3]**: [Advice]
 
 ---
 
-[← Domain [N]](./domain-[n].md) · [Cheatsheet →](./cheatsheet.md)
+[← Overview](./index.md) · [Cheatsheet →](./cheatsheet.md)

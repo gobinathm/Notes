@@ -58,19 +58,28 @@ Notes/
 │       ├── index.ts                # Theme entry
 │       ├── custom.css              # Custom styles
 │       └── components/
-│           ├── ProgressTracker.vue  # Study progress tracker
-│           └── FlashcardDeck.vue   # Interactive flashcards
+│           ├── ProgressTracker.vue  # Study progress tracker (localStorage)
+│           ├── FlashcardDeck.vue   # Interactive flip cards
+│           ├── AIAudioPlayer.vue   # Audio player with download link
+│           ├── ImageModal.vue      # Lightbox for infographics
+│           ├── ExportPDF.vue       # PDF export
+│           └── ShareButtons.vue    # Social sharing
 ├── .templates/                     # Templates for new certifications
 ├── certifications/
 │   ├── index.md                    # Certifications overview
-│   ├── github/gh-actions/          # GitHub Actions cert
 │   ├── aws/clf-c02/                # AWS Cloud Practitioner
 │   ├── aws/aif-c01/                # AWS AI Practitioner
 │   ├── aws/mla-c01/                # AWS ML Engineer
+│   ├── azure/ab-730/               # Microsoft AI Business Professional
 │   ├── azure/ab-731/               # Microsoft AI Transformation Leader
+│   ├── github/gh-actions/          # GitHub Actions cert
 │   └── google-cloud/gen-ai-leader/ # GCP Generative AI Leader
 ├── resources/                      # General study resources
-├── public/                         # Static assets (images, logo, robots.txt)
+├── public/
+│   ├── audio/certifications/       # Audio refreshers (M4A per cert)
+│   ├── images/certifications/      # Infographics (PNG per cert)
+│   └── ...                         # Favicon, logo, robots.txt
+├── scripts/new-cert.sh             # Scaffold a new certification
 ├── index.md                        # Home page
 ├── privacy.md                      # Privacy policy
 └── README.md
@@ -80,20 +89,32 @@ Notes/
 
 ## Adding a New Certification
 
-### Step 1: Create the directory
+### Step 1: Scaffold using the script (recommended)
+
+```bash
+./scripts/new-cert.sh <provider> <exam-code> "Certification Name"
+# Example:
+./scripts/new-cert.sh aws saa-c03 "AWS Solutions Architect Associate"
+```
+
+Or manually:
 
 ```bash
 mkdir -p certifications/[provider]/[exam-code]
-```
-
-### Step 2: Copy templates
-
-```bash
 cp .templates/index-template.md certifications/[provider]/[exam-code]/index.md
 cp .templates/domain-template.md certifications/[provider]/[exam-code]/domain-1.md
-cp .templates/cheatsheet-template.md certifications/[provider]/[exam-code]/cheatsheet.md
 cp .templates/exam-guide-template.md certifications/[provider]/[exam-code]/exam-guide.md
-cp .templates/exam-tips-template.md certifications/[provider]/[exam-code]/exam-tips.md
+cp .templates/cheatsheet-template.md certifications/[provider]/[exam-code]/cheatsheet.md
+```
+
+Copy `domain-template.md` once per exam domain.
+
+### Step 2: Add static assets
+
+```bash
+mkdir -p public/audio/certifications/[exam-code]
+mkdir -p public/images/certifications/[exam-code]
+# Place: exam-tactics.m4a (audio) and infographic.png (image)
 ```
 
 ### Step 3: Fill in the content
@@ -102,13 +123,18 @@ Each certification should include:
 
 | File | Purpose |
 |---|---|
-| `index.md` | Overview — exam info, official links, study progress tracker |
-| `domain-*.md` | Study notes per exam domain |
-| `cheatsheet.md` | One-page printable reference |
-| `exam-guide.md` | Exam traps, decision rules, common pitfalls |
-| `exam-tips.md` | Strategy, time management, mental prep |
+| `index.md` | Overview, exam info, `<ImageModal>`, `<AIAudioPlayer>`, `<ProgressTracker>`, resources |
+| `domain-*.md` | Study notes per domain with `<FlashcardDeck>` |
+| `exam-guide.md` | Keyword detection table, exam traps, decision rules |
+| `cheatsheet.md` | One-page reference: mnemonics, lookup table, terminology |
 
-### Step 4: Update VitePress config
+**ProgressTracker children** should be granular — one child per section heading in the domain notes, not just one per domain.
+
+### Step 4: Cross-check against the vendor's official study guide
+
+Verify that domain notes, exam-guide keyword table, and cheatsheet terminology cover all skills listed in the vendor's published exam objectives.
+
+### Step 5: Update VitePress config
 
 Edit `.vitepress/config.mts`:
 
@@ -131,7 +157,7 @@ Edit `.vitepress/config.mts`:
 }
 ```
 
-### Step 5: Update certifications index
+### Step 6: Update certifications index
 
 Add your certification to `/certifications/index.md` with status, difficulty, and prerequisites.
 
@@ -201,7 +227,7 @@ Each cert index page should include a `<ProgressTracker>` with a unique `storage
 
 ### FlashcardDeck Component
 
-Use flashcards for key terms and quick-fire revision:
+Use flashcards in domain pages for key terms and quick-fire revision:
 
 ```vue
 <FlashcardDeck
@@ -212,6 +238,28 @@ Use flashcards for key terms and quick-fire revision:
       answer: '<strong>X</strong>: Definition here.'
     }
   ]"
+/>
+```
+
+### AIAudioPlayer Component
+
+Add to `index.md` for NotebookLM audio refreshers:
+
+```vue
+<AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/[cert-code]/exam-tactics.m4a">
+  <source src="/audio/certifications/[cert-code]/exam-tactics.m4a" type="audio/mp4">
+</AIAudioPlayer>
+```
+
+### ImageModal Component
+
+Add to `index.md` for exam infographics:
+
+```vue
+<ImageModal
+  src="/images/certifications/[cert-code]/infographic.png"
+  alt="[CERT-CODE] Exam Overview Infographic"
+  ai-label="Generated by NotebookLM"
 />
 ```
 

@@ -1,47 +1,61 @@
 ---
 title: "[CERT-CODE] - Cheatsheet"
 description: "One-page exam day reference for [CERT-CODE]"
+head:
+  - - meta
+    - name: keywords
+      content: [cert-code], cheatsheet, quick reference, exam
 ---
 
-# [CERT-CODE] Cheatsheet
+# [CERT-CODE]: Cheatsheet
 
-::: danger Exam Day Reference
-Print this or review 5 minutes before the exam.
-:::
-
-[← Exam Guide](./exam-guide.md) · [Exam Tips →](./exam-tips.md)
-
----
-
-## Quick Lookup Table
-
-| Need | Service/Solution |
-|------|------------------|
-| [Requirement 1] | [Service A] |
-| [Requirement 2] | [Service B] |
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
 
 ---
 
-## Mnemonics for Memorization
+## [Core Framework / Mnemonic]
 
-### [Mnemonic Name] ([MNEMONIC])
-- **[M]**: [Word 1]
-- **[N]**: [Word 2]
-- **[E]**: [Word 3]
-
----
-
-## Workflow Summary
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+- **[Letter]** — [Concept]
+- **[Letter]** — [Concept]
+- **[Letter]** — [Concept]
+- **[Letter]** — [Concept]
 
 ---
 
-## Decision Trees
-- [Tree 1]
-- [Tree 2]
+## Key Feature Lookup
+
+| [Category] | Key Value |
+|------------|-----------|
+| **[Item 1]** | [What it does / when to use] |
+| **[Item 2]** | [What it does / when to use] |
+| **[Item 3]** | [What it does / when to use] |
 
 ---
 
-[← Exam Guide](./exam-guide.md) · [Exam Tips →](./exam-tips.md)
+## Quick Decision Rules
+
+**[Scenario 1]?**
+→ [Answer / action]
+
+**[Scenario 2]?**
+→ [Answer / action]
+
+**[Scenario 3]?**
+→ [Answer / action]
+
+**[Scenario 4]?**
+→ [Answer / action]
+
+---
+
+## Terminology Check
+
+- **[Term 1]**: [Definition]
+- **[Term 2]**: [Definition]
+- **[Term 3]**: [Definition]
+- **[Term 4]**: [Definition]
+- **[Term 5]**: [Definition]
+
+---
+
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
