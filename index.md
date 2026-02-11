@@ -18,6 +18,7 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="feature-item">💡 <strong>Exam Tips</strong> — Strategy and time management</div>
   <div class="feature-item">📊 <strong>Progress Tracking</strong> — Track what you've covered, stored in your browser, never leaves your device</div>
   <div class="feature-item">🃏 <strong>Flashcards</strong> — Interactive quiz decks</div>
+  <div class="feature-item">🤖 <strong>AI Study Assistant</strong> — Ask questions about any page or generate flashcards on demand, powered by Google Gemini</div>
 </div>
 
 ## Currently Studying

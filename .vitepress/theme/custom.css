@@ -292,9 +292,19 @@ html:not(.dark) .VPNavBar {
 /* =========================================
    8. Footer Styling
    ========================================= */
+
+/* Show footer on all pages including those with sidebars */
+.VPFooter.has-sidebar {
+  display: block !important;
+}
+
 .VPFooter .message {
   font-size: 0.75rem;
-  /* Medium size as requested */
+  line-height: 2;
+}
+
+.VPFooter .message a {
+  padding: 2px 0;
 }
 
 .VPFooter .copyright {

@@ -275,7 +275,7 @@ export default defineConfig({
 
     // Footer
     footer: {
-      message: 'Happy Studying! 🚀 • We use privacy-friendly analytics (no cookies, no personal data) • <a href="/privacy">Privacy Policy</a> • <a href="https://github.com/gobinathm/Notes/issues" target="_blank">Report an issue</a>',
+      message: 'Happy Studying! 🚀 • Privacy-friendly analytics — no cookies, no personal data<br><a href="/privacy">Privacy Policy</a> • <a href="/ai-disclaimer">AI Disclaimer</a> • <a href="https://github.com/gobinathm/Notes/issues" target="_blank">Report an issue</a>',
       copyright: '<span class="cursive-text">Made with ❤️ and too much ☕ by <span class="gradient-text">Gobi</span></span>'
     },
 

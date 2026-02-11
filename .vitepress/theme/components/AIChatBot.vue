@@ -343,7 +343,7 @@ const exampleQuestions = [
 
         <!-- Footer -->
         <div class="chatbot-footer">
-          <div>Powered by <strong>Google Gemini</strong></div>
+          <div>Powered by <strong>Google Gemini</strong> · <a href="/ai-disclaimer">AI Disclaimer</a></div>
           <div>AI responses may be inaccurate. Verify with official study materials.</div>
         </div>
       </div>
@@ -833,6 +833,15 @@ html.dark .message-bubble :deep(pre) {
 
 .chatbot-footer strong {
   color: var(--vp-c-text-2);
+}
+
+.chatbot-footer a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+}
+
+.chatbot-footer a:hover {
+  text-decoration: underline;
 }
 
 /* Mobile */
