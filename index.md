@@ -26,6 +26,16 @@ These started as plain markdown files. When I decided to share them as a site, I
 <div class="cert-grid">
 
 <div class="cert-card studying">
+  <span class="provider-tag azure">Azure</span>
+  <h3><a href="./certifications/azure/ab-730/">AB-730: AI Business Professional</a></h3>
+  <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
+  <div class="cert-prereqs">Microsoft 365 familiarity, basic business process understanding</div>
+  <div class="cert-meta">
+    <span class="difficulty beginner">Beginner</span>
+  </div>
+</div>
+
+<div class="cert-card studying">
   <span class="provider-tag aws">AWS</span>
   <h3><a href="./certifications/aws/mla-c01/">MLA-C01: ML Engineer Associate</a></h3>
   <p>Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML services.</p>
@@ -47,11 +57,11 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="cert-card studying">
   <span class="provider-tag azure">Azure</span>
-  <h3><a href="./certifications/azure/ab-730/">AB-730: AI Business Professional</a></h3>
-  <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
-  <div class="cert-prereqs">Microsoft 365 familiarity, basic business process understanding</div>
+  <h3><a href="./certifications/azure/ai-102/">AI-102: Microsoft Certified: Azure AI Engineer Associate</a></h3>
+  <p>Design, implement, and monitor Generative AI solutions using Vertex AI and Gemini models.</p>
+  <div class="cert-prereqs">Cloud computing basics, Python/API familiarity, ML lifecycle understanding</div>
   <div class="cert-meta">
-    <span class="difficulty beginner">Beginner</span>
+    <span class="difficulty intermediate">Intermediate</span>
   </div>
 </div>
 
@@ -105,7 +115,6 @@ These started as plain markdown files. When I decided to share them as a site, I
   </div>
 </div>
 
-
 </div>
 
 ## On the Radar
@@ -114,7 +123,7 @@ These started as plain markdown files. When I decided to share them as a site, I
   <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-900: GitHub Foundations</span>
   <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-100: GitHub Administration</span>
   <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-300: GitHub Copilot</span>
-  <span class="planned-chip"><span class="provider-tag azure">Azure</span> AI-102: Azure AI Engineer</span>
+  <span class="planned-chip"><span class="provider-tag azure">Azure</span> DP-700: Microsoft Certified: Fabric Data Engineer Associate</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> SAA-C03: Solutions Architect</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> AIP-C01: GenAI Developer Professional</span>
   <span class="planned-chip"><span class="provider-tag python">Python</span> PCEP: Entry-Level Python Programmer</span>
