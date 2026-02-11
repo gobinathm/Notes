@@ -2,9 +2,10 @@
 import DefaultTheme from 'vitepress/theme'
 import ShareButtons from './ShareButtons.vue'
 import ExportPDF from './ExportPDF.vue'
-import AIChatBot from './AIChatBot.vue'
+import { defineAsyncComponent, computed } from 'vue'
 import { useData, useRoute } from 'vitepress'
-import { computed } from 'vue'
+
+const AIChatBot = defineAsyncComponent(() => import('./AIChatBot.vue'))
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
