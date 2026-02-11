@@ -62,6 +62,7 @@ Notes/
 │           ├── FlashcardDeck.vue   # Interactive flip cards
 │           ├── AIAudioPlayer.vue   # Audio player with download link
 │           ├── ImageModal.vue      # Lightbox for infographics
+│           ├── AIChatBot.vue       # AI study assistant (Gemini API)
 │           ├── ExportPDF.vue       # PDF export
 │           └── ShareButtons.vue    # Social sharing
 ├── .templates/                     # Templates for new certifications
@@ -79,9 +80,13 @@ Notes/
 │   ├── audio/certifications/       # Audio refreshers (M4A per cert)
 │   ├── images/certifications/      # Infographics (PNG per cert)
 │   └── ...                         # Favicon, logo, robots.txt
+├── worker/                         # Cloudflare Worker (Gemini API proxy)
+│   ├── src/index.js                # Worker entry point
+│   └── wrangler.toml               # Wrangler config
 ├── scripts/new-cert.sh             # Scaffold a new certification
 ├── index.md                        # Home page
 ├── privacy.md                      # Privacy policy
+├── ai-disclaimer.md                # AI study assistant disclaimer
 └── README.md
 ```
 
@@ -297,7 +302,8 @@ See [Privacy Policy](https://notes.gobinath.com/privacy) for details.
 
 ## Deployment
 
-Every push to `main` triggers automatic deployment to GitHub Pages via GitHub Actions. The site is available at [notes.gobinath.com](https://notes.gobinath.com).
+- **Site**: Every push to `main` triggers automatic deployment to GitHub Pages via GitHub Actions. The site is available at [notes.gobinath.com](https://notes.gobinath.com).
+- **Worker**: Changes to `worker/` trigger a separate GitHub Actions workflow that deploys the Cloudflare Worker via `wrangler-action`.
 
 ---
 
@@ -305,5 +311,7 @@ Every push to `main` triggers automatic deployment to GitHub Pages via GitHub Ac
 
 - [VitePress](https://vitepress.dev/) — Static site generator
 - [Vue.js](https://vuejs.org/) — Component framework
+- [Google Gemini](https://ai.google.dev/) — AI study assistant
+- [Cloudflare Workers](https://workers.cloudflare.com/) — API proxy
 - [Umami](https://umami.is/) — Privacy-first analytics
 - [GitHub Pages](https://pages.github.com/) — Hosting
