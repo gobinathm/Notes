@@ -5,7 +5,7 @@
     </div>
     
     <div class="image-thumbnail" @click="openModal">
-      <img :src="src" :alt="alt" />
+      <img :src="src" :alt="alt" loading="lazy" />
       <div class="overlay">
         <span class="overlay-text">🔍 Click to Enlarge</span>
       </div>

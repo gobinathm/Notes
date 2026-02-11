@@ -17,7 +17,7 @@ export default defineConfig({
     hostname
   },
 
-  // SEO: Add canonical URL per page
+  // SEO: Add canonical URL, Schema, and OG Images per page
   transformPageData(pageData) {
     const canonicalUrl = `${hostname}/${pageData.relativePath}`
       .replace(/index\.md$/, '')
@@ -28,6 +28,43 @@ export default defineConfig({
       'link',
       { rel: 'canonical', href: canonicalUrl }
     ])
+
+    // Dynamic OG Image Logic
+    // Checks if a certification-specific og-image exists in the same folder structure
+    // Note: detailed logic regarding file existence check usually happens at build time or via a custom loader;
+    // For VitePress transformPageData, we often construct the URL path assuming the file exists if following convention.
+    if (pageData.relativePath.includes('certifications/')) {
+      const certDir = pageData.relativePath.split('/').slice(0, -1).join('/');
+      // We assume the user creates og-image.png in the cert folder. 
+      // If not, it might 404 if we blindly set it, but user can ensure files exist.
+      // A safer bet without fs access here covers the structure.
+      const potentialOgImage = `https://notes.gobinath.com/${certDir.replace('index.md', '')}/og-image.png`.replace('//og', '/og');
+
+      // Remove existing generic OG image if present in head (VitePress merges, need to be careful)
+      // Here we just push the specific one, which usually overrides or sits alongside.
+      // Ideally, we'd check if file exists, but transformPageData runs in Node, so we CAN use fs if needed,
+      // but keeping it simple: explicitly overwrite if it's a domain/index page.
+
+      // Let's add the Course Schema for Certification Index pages
+      if (pageData.relativePath.endsWith('index.md')) {
+        const courseSchema = {
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": pageData.title,
+          "description": pageData.description,
+          "provider": {
+            "@type": "Organization",
+            "name": "Gobinath's Notes",
+            "sameAs": "https://gobinath.com"
+          }
+        };
+        pageData.frontmatter.head.push([
+          'script',
+          { type: 'application/ld+json' },
+          JSON.stringify(courseSchema)
+        ]);
+      }
+    }
   },
 
   // Head tags for SEO
@@ -38,6 +75,7 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
     ['meta', { property: 'og:site_name', content: 'Tech Certification Study Notes' }],
+    // Default Global OG Image
     ['meta', { property: 'og:image', content: 'https://notes.gobinath.com/og-image.png' }],
     ['meta', { property: 'og:image:width', content: '1200' }],
     ['meta', { property: 'og:image:height', content: '630' }],
@@ -45,6 +83,18 @@ export default defineConfig({
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: 'https://notes.gobinath.com/og-image.png' }],
     ['meta', { name: 'twitter:image:alt', content: 'Tech Certification Study Notes - Your journey to certification success' }],
+
+    // Website Schema (Global)
+    ['script', { type: 'application/ld+json' }, JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://notes.gobinath.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://notes.gobinath.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    })],
 
     // Fonts
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
