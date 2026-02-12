@@ -121,6 +121,7 @@ export default defineConfig({
             items: [
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
+              { text: 'AI-102: Azure AI Engineer Associate', link: '/certifications/azure/ai-102/' },
               { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' }
             ]
           },
@@ -147,9 +148,48 @@ export default defineConfig({
     sidebar: {
       '/certifications/': [
         {
-          text: '📦 GitHub Certifications',
+          text: '🔷 Microsoft Certifications',
           collapsed: true,
           items: [
+            {
+              text: 'AB-730: AI Business Professional',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ab-730/' },
+                { text: 'Domain 1: Fundamentals', link: '/certifications/azure/ab-730/domain-1' },
+                { text: 'Domain 2: Prompts', link: '/certifications/azure/ab-730/domain-2' },
+                { text: 'Domain 3: Content', link: '/certifications/azure/ab-730/domain-3' },
+                { text: 'Exam Guide', link: '/certifications/azure/ab-730/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ab-730/cheatsheet' }
+              ]
+            },
+            {
+              text: 'AB-731: AI Transformation Leader',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ab-731/' },
+                { text: 'Domain 1: Business Value', link: '/certifications/azure/ab-731/domain-1' },
+                { text: 'Domain 2: MS AI Solutions', link: '/certifications/azure/ab-731/domain-2' },
+                { text: 'Domain 3: Adoption', link: '/certifications/azure/ab-731/domain-3' },
+                { text: 'Exam Guide', link: '/certifications/azure/ab-731/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ab-731/cheatsheet' }
+              ]
+            },
+            {
+              text: 'AI-102: Azure AI Engineer Associate',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ai-102/' },
+                { text: 'Domain 1: Plan & Manage', link: '/certifications/azure/ai-102/domain-1' },
+                { text: 'Domain 2: Content Moderation', link: '/certifications/azure/ai-102/domain-2' },
+                { text: 'Domain 3: Computer Vision', link: '/certifications/azure/ai-102/domain-3' },
+                { text: 'Domain 4: NLP Solutions', link: '/certifications/azure/ai-102/domain-4' },
+                { text: 'Domain 5: Generative AI', link: '/certifications/azure/ai-102/domain-5' },
+                { text: 'Domain 6: Doc Intelligence', link: '/certifications/azure/ai-102/domain-6' },
+                { text: 'Exam Guide', link: '/certifications/azure/ai-102/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ai-102/cheatsheet' }
+              ]
+            },
             {
               text: 'GH-200: GitHub Actions',
               collapsed: true,
@@ -199,36 +239,6 @@ export default defineConfig({
                 { text: 'Overview', link: '/certifications/aws/mla-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/mla-c01/objectives' },
                 { text: 'Resources', link: '/certifications/aws/mla-c01/resources' }
-              ]
-            }
-          ]
-        },
-        {
-          text: '💎 Azure Certifications',
-          collapsed: true,
-          items: [
-            {
-              text: 'AB-730: AI Business Professional',
-              collapsed: true,
-              items: [
-                { text: 'Overview', link: '/certifications/azure/ab-730/' },
-                { text: 'Domain 1: Fundamentals', link: '/certifications/azure/ab-730/domain-1' },
-                { text: 'Domain 2: Prompts', link: '/certifications/azure/ab-730/domain-2' },
-                { text: 'Domain 3: Content', link: '/certifications/azure/ab-730/domain-3' },
-                { text: 'Exam Guide', link: '/certifications/azure/ab-730/exam-guide' },
-                { text: 'Cheatsheet', link: '/certifications/azure/ab-730/cheatsheet' }
-              ]
-            },
-            {
-              text: 'AB-731: AI Transformation Leader',
-              collapsed: true,
-              items: [
-                { text: 'Overview', link: '/certifications/azure/ab-731/' },
-                { text: 'Domain 1: Business Value', link: '/certifications/azure/ab-731/domain-1' },
-                { text: 'Domain 2: MS AI Solutions', link: '/certifications/azure/ab-731/domain-2' },
-                { text: 'Domain 3: Adoption', link: '/certifications/azure/ab-731/domain-3' },
-                { text: 'Exam Guide', link: '/certifications/azure/ab-731/exam-guide' },
-                { text: 'Cheatsheet', link: '/certifications/azure/ab-731/cheatsheet' }
               ]
             }
           ]
