@@ -1,112 +1,101 @@
 ---
-title: "[CERT-CODE] - [Certification Name]"
-description: "Study notes for [CERT-CODE] [Certification Name] exam"
+title: "AI-102 - Designing and Implementing a Microsoft Azure AI Solution"
+description: "Study notes for AI-102 Azure AI Engineer Associate certification exam"
 head:
   - - meta
     - name: keywords
-      content: "cert-code, keywords, certification, exam, study notes"
+      content: ai-102, microsoft, azure ai engineer, computer vision, nlp, generative ai, certification, study notes
 ---
 
-# [CERT-CODE]: [Certification Name]
+# AI-102: Azure AI Engineer Associate
 
-## Exam Information
+This certification validates your expertise in **building, managing, and deploying AI solutions** that leverage Azure AI Services. It covers the full spectrum of AI engineering, from traditional computer vision and NLP to cutting-edge Generative AI solutions.
 
-- **Provider**: [Provider Name]
-- **Exam Code**: [CERT-CODE]
-- **Official Exam Page**: [Link to official exam page]
-- **Exam Duration**: [XX] minutes
-- **Number of Questions**: ~[XX] questions
-- **Passing Score**: [XXX/1000 or XX%]
-- **Exam Format**: Multiple choice, multiple select
+**Exam**: 100-120 min · ~40-60 questions · 700/1000 to pass · $165
 
-::: tip Note Freshness
-**Prepared**: [Month Year]
-**Last Updated**: [YYYY-MM-DD]
-
-Exam content may change. Always verify with official documentation.
+::: info Role-Based Certification
+This exam is for **Software Developers** and **AI Engineers** who need to assemble AI capabilities into their applications. It focuses on using APIs and SDKs (Python/C#), not just theoretical concepts.
 :::
-
-## Overview
-
-The [Certification Name] certification validates your understanding of [brief description of what the exam covers].
-
-**Target Audience:**
-- [Role 1]
-- [Role 2]
-- [Role 3]
-- [Role 4]
-
-**Prerequisites:**
-- [Prerequisite 1]
-- [Prerequisite 2]
-- [Prerequisite 3]
-
----
-
-## Study Materials
-
-### 📋 [Exam Objectives](./objectives.md)
-Official exam domains and objectives outline
-
-### 📝 [Study Notes](./notes.md)
-Detailed notes, examples, and key concepts
-
-### ⚡ [Quick Refresher](./quick-refresher.md)
-Last-minute cram session - review all key concepts in 15 minutes
-
-### 🎯 [Exam Tips & Strategy](./exam-tips.md)
-Exam traps, decision matrices, and last-minute review
-
----
 
 ## Study Progress
 
 <ProgressTracker
-  title="[Certification Name] Study Progress"
-  storage-key="[cert-code]-progress"
+  title="AI-102 Study Progress"
+  storage-key="ai-102-progress"
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: [Domain Name]',
+      label: 'Domain 1: Plan & Manage AI Solutions (15-20%)',
       children: [
-        { id: 'domain-1-1', label: '[Topic 1]' },
-        { id: 'domain-1-2', label: '[Topic 2]' },
-        { id: 'domain-1-3', label: '[Topic 3]' }
+        { id: 'd1-deploy', label: 'Deploy Azure AI Services resources' },
+        { id: 'd1-security', label: 'Manage security & authentication' },
+        { id: 'd1-monitor', label: 'Monitor & troubleshoot (Log Analytics)' },
+        { id: 'd1-content-safety', label: 'Implement Content Safety' }
       ]
     },
     {
       id: 'domain-2',
-      label: 'Domain 2: [Domain Name]',
+      label: 'Domain 2: Implement Content Moderation (10-15%)',
       children: [
-        { id: 'domain-2-1', label: '[Topic 1]' },
-        { id: 'domain-2-2', label: '[Topic 2]' },
-        { id: 'domain-2-3', label: '[Topic 3]' }
+        { id: 'd2-text-mod', label: 'Analyze text for sensitivity' },
+        { id: 'd2-image-mod', label: 'Detect objects & faces in images' },
+        { id: 'd2-video', label: 'Video indexing & retrieval' }
       ]
     },
     {
       id: 'domain-3',
-      label: 'Domain 3: [Domain Name]',
+      label: 'Domain 3: Computer Vision Solutions (15-20%)',
       children: [
-        { id: 'domain-3-1', label: '[Topic 1]' },
-        { id: 'domain-3-2', label: '[Topic 2]' },
-        { id: 'domain-3-3', label: '[Topic 3]' }
+        { id: 'd3-analysis', label: 'Image analysis (tags, captions, OCR)' },
+        { id: 'd3-custom-vision', label: 'Custom image classification & detection' },
+        { id: 'd3-face', label: 'Face detection & recognition' }
       ]
     },
-    { id: 'practice', label: 'Hands-on practice completed' },
-    { id: 'ready', label: 'Ready for certification' }
+    {
+      id: 'domain-4',
+      label: 'Domain 4: Natural Language Processing (30-35%)',
+      children: [
+        { id: 'd4-language', label: 'Language service (NER, PII, Sentiment)' },
+        { id: 'd4-clu', label: 'Conversational Language Understanding (CLU)' },
+        { id: 'd4-translator', label: 'Speech & Text Translation' },
+        { id: 'd4-speech', label: 'Speech-to-Text & Text-to-Speech' }
+      ]
+    },
+    {
+      id: 'domain-5',
+      label: 'Domain 5: Generative AI Solutions (15-20%)',
+      children: [
+        { id: 'd5-oai-provision', label: 'Provision Azure OpenAI Service' },
+        { id: 'd5-chat-completions', label: 'Implement Chat Completions' },
+        { id: 'd5-data', label: 'Add your own data (RAG)' }
+      ]
+    },
+    {
+      id: 'domain-6',
+      label: 'Domain 6: Document Intelligence & Mining (10-15%)',
+      children: [
+        { id: 'd6-di', label: 'Document Intelligence models (Receipts, Layout)' },
+        { id: 'd6-km', label: 'Knowledge Mining (Azure AI Search)' }
+      ]
+    },
+    { id: 'exam-guide', label: 'Reviewed exam guide' },
+    { id: 'cheatsheet', label: 'Reviewed cheatsheet' },
+    { id: 'ready', label: 'Ready for exam' }
   ]"
 />
 
 ---
 
-## Additional Resources
+## Official Resources
 
-- [Official Documentation Link]
-- [Official Training Link]
-- [Community Forum Link]
-- [Practice Exam Link]
-- [Other Resource Link]
+- [AI-102 Exam Detail Page](https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-102/)
+- [Microsoft Learn: AI Engineer Path](https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-with-azure-ai-services/)
+- [Azure AI Services Documentation](https://learn.microsoft.com/en-us/azure/ai-services/)
+
+## External Resources
+
+- [GitHub: MicrosoftLearning/AI-102-AIEngineer](https://github.com/MicrosoftLearning/AI-102-AIEngineer)
 
 ---
 
-*Last Updated: [YYYY-MM-DD]*
+[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md)
