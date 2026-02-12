@@ -19,20 +19,31 @@ const pageTitle = computed(() => {
   return frontmatter.value.title || title.value || 'Study Notes'
 })
 
-const encodedUrl = computed(() => encodeURIComponent(pageUrl.value))
 const encodedTitle = computed(() => encodeURIComponent(pageTitle.value))
 
+function utmUrl(source: string) {
+  const url = new URL(pageUrl.value)
+  url.searchParams.set('utm_source', source)
+  url.searchParams.set('utm_medium', 'social')
+  url.searchParams.set('utm_campaign', 'share_button')
+  return encodeURIComponent(url.toString())
+}
+
 const shareLinks = computed(() => ({
-  twitter: `https://twitter.com/intent/tweet?url=${encodedUrl.value}&text=${encodedTitle.value}`,
-  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl.value}`,
-  reddit: `https://reddit.com/submit?url=${encodedUrl.value}&title=${encodedTitle.value}`,
-  facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl.value}`,
-  email: `mailto:?subject=${encodedTitle.value}&body=Check out these study notes: ${encodedUrl.value}`
+  twitter: `https://twitter.com/intent/tweet?url=${utmUrl('twitter')}&text=${encodedTitle.value}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${utmUrl('linkedin')}`,
+  reddit: `https://reddit.com/submit?url=${utmUrl('reddit')}&title=${encodedTitle.value}`,
+  facebook: `https://www.facebook.com/sharer/sharer.php?u=${utmUrl('facebook')}`,
+  email: `mailto:?subject=${encodedTitle.value}&body=Check out these study notes: ${utmUrl('email')}`
 }))
 
 const copyLink = async () => {
   if (typeof navigator !== 'undefined') {
-    await navigator.clipboard.writeText(pageUrl.value)
+    const url = new URL(pageUrl.value)
+    url.searchParams.set('utm_source', 'copy_link')
+    url.searchParams.set('utm_medium', 'social')
+    url.searchParams.set('utm_campaign', 'share_button')
+    await navigator.clipboard.writeText(url.toString())
     copied.value = true
     setTimeout(() => {
       copied.value = false
