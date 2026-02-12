@@ -96,12 +96,11 @@ export default defineConfig({
       }
     })],
 
-    // Fonts
-    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
-    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap', rel: 'stylesheet' }],
+    // Fonts — self-hosted (Inter bundled by VitePress, Dancing Script in /fonts/)
+    ['link', { rel: 'preload', href: '/fonts/dancing-script-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
 
     // Umami Analytics (Privacy-First)
+    ['link', { rel: 'preconnect', href: 'https://api-gateway.umami.dev' }],
     ['script', {
       defer: '',
       src: 'https://cloud.umami.is/script.js',

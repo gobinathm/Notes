@@ -80,10 +80,11 @@ The AI assistant is a **supplementary study tool**, not a replacement for offici
 - Generated flashcards may not perfectly match exam objectives
 - The assistant does not have access to the latest exam updates unless the page content has been updated
 
-## Powered By
+## Built With
 
-- **[Google Gemini](https://ai.google.dev/)** (Flash-Lite) — AI language model
-- **[Cloudflare Workers](https://workers.cloudflare.com/)** — Serverless proxy
+- **[Google Gemini](https://ai.google.dev/)** (Flash-Lite) — AI language model powering the assistant
+- **[Cloudflare Workers](https://workers.cloudflare.com/)** — Serverless API proxy
+- **[Claude Code](https://claude.ai/claude-code)** — The entire AI assistant feature (component, worker, integration, and this page) was built with Claude Code by Anthropic
 
 ## Questions?
 
