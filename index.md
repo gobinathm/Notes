@@ -26,16 +26,6 @@ These started as plain markdown files. When I decided to share them as a site, I
 <div class="cert-grid">
 
 <div class="cert-card studying">
-  <span class="provider-tag azure">Azure</span>
-  <h3><a href="./certifications/azure/ab-730/">AB-730: AI Business Professional</a></h3>
-  <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
-  <div class="cert-prereqs">Microsoft 365 familiarity, basic business process understanding</div>
-  <div class="cert-meta">
-    <span class="difficulty beginner">Beginner</span>
-  </div>
-</div>
-
-<div class="cert-card studying">
   <span class="provider-tag aws">AWS</span>
   <h3><a href="./certifications/aws/mla-c01/">MLA-C01: ML Engineer Associate</a></h3>
   <p>Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML services.</p>
@@ -70,6 +60,17 @@ These started as plain markdown files. When I decided to share them as a site, I
 ## Completed
 
 <div class="cert-grid">
+
+<div class="cert-card completed">
+  <span class="provider-tag azure">Azure</span>
+  <h3><a href="./certifications/azure/ab-730">AB-730: AI Business Professional</a></h3>
+  <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
+  <div class="cert-prereqs">Microsoft 365 familiarity, basic business process understanding</div>
+  <div class="cert-meta">
+    <span class="difficulty beginner">Beginner</span>
+    <span class="date">Feb 2026</span>
+  </div>
+</div>
 
 <div class="cert-card completed">
   <span class="provider-tag azure">Azure</span>
