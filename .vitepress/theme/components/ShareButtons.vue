@@ -2,7 +2,7 @@
 import { useData, useRoute } from 'vitepress'
 import { computed, ref } from 'vue'
 
-const { frontmatter, title, site } = useData()
+const { frontmatter, title, theme } = useData()
 const route = useRoute()
 
 const copied = ref(false)
@@ -12,7 +12,8 @@ const pageUrl = computed(() => {
   if (typeof window !== 'undefined') {
     return `${window.location.origin}${path}`
   }
-  return `${site.value.base}${path}`
+  const hostname = theme.value.hostname || 'https://notes.gobinath.com'
+  return `${hostname}${path}`
 })
 
 const pageTitle = computed(() => {

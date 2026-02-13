@@ -109,6 +109,7 @@ export default defineConfig({
     // Logo and site title
     logo: '/logo.svg',
     siteTitle: 'Study Notes',
+    hostname,
 
     // Navigation
     nav: [
