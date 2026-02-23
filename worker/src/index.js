@@ -4,11 +4,9 @@
  * Handles CORS, rate limiting, and input validation.
  */
 
-const ALLOWED_ORIGINS = [
+const PROD_ORIGINS = [
   'https://notes.gobinath.com',
   'https://gobinathmallaiyan.github.io',
-  'http://localhost:5173',
-  'http://localhost:4173',
 ];
 
 const GEMINI_URL =
@@ -104,7 +102,7 @@ function buildFlashcardPrompt(pageContent) {
     system_instruction: {
       parts: [
         {
-          text: `You are a flashcard generator for certification exam preparation. Given study notes, create 8-12 high-quality flashcards that test key concepts. Return ONLY a valid JSON array of objects with "question" (string) and "answer" (string with HTML formatting like <strong>, <em>, <br>, <ul><li>). Focus on: definitions, comparisons, decision rules, and exam-relevant facts. Do not wrap the JSON in markdown code fences.`,
+          text: `You are a flashcard generator for certification exam preparation. Given study notes, create 8-12 high-quality flashcards that test key concepts. Return ONLY a valid JSON array of objects with "question" (string) and "answer" (string using markdown formatting like **bold**, *italic*, and - bullet points for lists). Focus on: definitions, comparisons, decision rules, and exam-relevant facts. Do not wrap the JSON in markdown code fences.`,
         },
       ],
     },
@@ -127,6 +125,10 @@ function buildFlashcardPrompt(pageContent) {
 
 export default {
   async fetch(request, env) {
+    const ALLOWED_ORIGINS = env.ENVIRONMENT === 'development'
+      ? [...PROD_ORIGINS, 'http://localhost:5173', 'http://localhost:4173']
+      : PROD_ORIGINS;
+
     const origin = request.headers.get('Origin') || '';
     const allowedOrigin = ALLOWED_ORIGINS.find((o) => origin.startsWith(o)) || ALLOWED_ORIGINS[0];
 

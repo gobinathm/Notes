@@ -45,6 +45,40 @@ npm run docs:build    # Build static files to .vitepress/dist
 npm run docs:preview  # Preview the production build
 ```
 
+### AI Study Assistant (Worker Development)
+
+The AI chatbot uses a Cloudflare Worker as a proxy to Google Gemini. The frontend at `http://localhost:5173` calls the **deployed** production worker by default — you don't need to run the worker locally just to work on content or styling.
+
+If you want to test AI features locally (against a local worker), follow these steps:
+
+**Prerequisites**: [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) (`npm install -g wrangler`) and a [Google Gemini API key](https://aistudio.google.com/app/apikey).
+
+**1. Create `worker/.dev.vars`** (this file is gitignored — never commit it):
+```
+ENVIRONMENT=development
+GEMINI_API_KEY=your-gemini-api-key-here
+```
+
+**2. Run the worker locally:**
+```bash
+cd worker
+npm install
+wrangler dev
+```
+The worker runs at `http://localhost:8787` by default.
+
+**3. Point the frontend at your local worker:**
+
+In `.vitepress/theme/components/AIChatBot.vue`, temporarily change:
+```js
+const WORKER_URL = 'http://localhost:8787'
+```
+**Revert this change before submitting a PR.**
+
+**Why `.dev.vars`?**
+
+The worker uses environment-gated CORS. In production (`ENVIRONMENT=production`, set in `wrangler.toml`), only `notes.gobinath.com` is allowed as a request origin. Setting `ENVIRONMENT=development` in `.dev.vars` tells the worker to also accept `localhost` origins when running via `wrangler dev`. The `.dev.vars` file is read automatically by `wrangler dev` and is gitignored to prevent secrets from being committed.
+
 ---
 
 ## Project Structure

@@ -49,3 +49,4 @@ coverage/
 
 # Wrangler
 worker/.wrangler/
+worker/.dev.vars

@@ -15,6 +15,8 @@ const flashcards = ref([])
 const loading = ref(false)
 const hasInteracted = ref(false)
 const chatBody = ref(null)
+const lastRequestTime = ref(0)
+const MIN_REQUEST_INTERVAL = 3000
 
 const isStudyPage = computed(() => {
   const path = route.path
@@ -57,6 +59,15 @@ function extractPageContent() {
   clone.querySelectorAll('script, style, .ai-chatbot, .flashcard-deck, nav, .header-anchor').forEach(el => el.remove())
   const text = clone.textContent || ''
   return text.slice(0, 40_000)
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
 }
 
 function parseMarkdown(md) {
@@ -111,8 +122,12 @@ async function sendQuestion(q) {
   const userQuestion = q || question.value.trim()
   if (!userQuestion || loading.value) return
 
+  const now = Date.now()
+  if (now - lastRequestTime.value < MIN_REQUEST_INTERVAL) return
+  lastRequestTime.value = now
+
   question.value = ''
-  messages.value.push({ role: 'user', text: userQuestion })
+  messages.value.push({ role: 'user', text: escapeHtml(userQuestion) })
   loading.value = true
   await scrollToBottom()
 
@@ -142,6 +157,11 @@ async function sendQuestion(q) {
 
 async function generateFlashcards() {
   if (loading.value) return
+
+  const now = Date.now()
+  if (now - lastRequestTime.value < MIN_REQUEST_INTERVAL) return
+  lastRequestTime.value = now
+
   loading.value = true
   flashcards.value = []
 
@@ -156,9 +176,12 @@ async function generateFlashcards() {
     })
     const data = await res.json()
     if (data.error) {
-      flashcards.value = [{ question: 'Error', answer: data.error }]
+      flashcards.value = [{ question: 'Error', answer: escapeHtml(data.error) }]
     } else {
-      flashcards.value = data.flashcards
+      flashcards.value = data.flashcards.map(c => ({
+        question: c.question,
+        answer: parseMarkdown(c.answer),
+      }))
     }
   } catch {
     flashcards.value = [{ question: 'Error', answer: 'Failed to reach the AI service.' }]
