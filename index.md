@@ -55,6 +55,36 @@ These started as plain markdown files. When I decided to share them as a site, I
   </div>
 </div>
 
+<div class="cert-card studying">
+  <span class="provider-tag github">GitHub</span>
+  <h3><a href="./certifications/github/gh-100/">GH-100: GitHub Administration</a></h3>
+  <p>Configure and manage GitHub Enterprise, user identities, permissions, secure development workflows, and GitHub Actions at an organizational scale.</p>
+  <div class="cert-prereqs">GitHub experience, Git fundamentals, basic enterprise IT administration</div>
+  <div class="cert-meta">
+    <span class="difficulty intermediate">Intermediate</span>
+  </div>
+</div>
+
+<div class="cert-card studying">
+  <span class="provider-tag github">GitHub</span>
+  <h3><a href="./certifications/github/gh-300/">GH-300: GitHub Copilot</a></h3>
+  <p>Apply responsible AI practices, effective prompt engineering, and GitHub Copilot features to improve software development productivity and code quality.</p>
+  <div class="cert-prereqs">GitHub experience, software development fundamentals, familiarity with IDE workflows</div>
+  <div class="cert-meta">
+    <span class="difficulty intermediate">Intermediate</span>
+  </div>
+</div>
+
+<div class="cert-card studying">
+  <span class="provider-tag github">GitHub</span>
+  <h3><a href="./certifications/github/gh-500/">GH-500: GitHub Advanced Security</a></h3>
+  <p>Configure and use GHAS features — secret scanning, Dependabot, dependency review, and CodeQL code scanning — to secure the software supply chain.</p>
+  <div class="cert-prereqs">GitHub experience, software development fundamentals, basic security awareness</div>
+  <div class="cert-meta">
+    <span class="difficulty intermediate">Intermediate</span>
+  </div>
+</div>
+
 </div>
 
 ## Completed
@@ -122,8 +152,6 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="planned-list">
   <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-900: GitHub Foundations</span>
-  <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-100: GitHub Administration</span>
-  <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-300: GitHub Copilot</span>
   <span class="planned-chip"><span class="provider-tag azure">Azure</span> DP-700: Microsoft Certified: Fabric Data Engineer Associate</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> SAA-C03: Solutions Architect</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> AIP-C01: GenAI Developer Professional</span>

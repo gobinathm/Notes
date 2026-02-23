@@ -123,7 +123,10 @@ export default defineConfig({
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
               { text: 'AI-102: Azure AI Engineer Associate', link: '/certifications/azure/ai-102/' },
-              { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' }
+              { text: 'GH-100: GitHub Administration', link: '/certifications/github/gh-100/' },
+              { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
+              { text: 'GH-300: GitHub Copilot', link: '/certifications/github/gh-300/' },
+              { text: 'GH-500: GitHub Advanced Security', link: '/certifications/github/gh-500/' }
             ]
           },
           {
@@ -192,6 +195,22 @@ export default defineConfig({
               ]
             },
             {
+              text: 'GH-100: GitHub Administration',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/github/gh-100/' },
+                { text: 'Domain 1: Support GitHub Enterprise', link: '/certifications/github/gh-100/domain-1' },
+                { text: 'Domain 2: User Identities & Auth', link: '/certifications/github/gh-100/domain-2' },
+                { text: 'Domain 3: Deployment & Licensing', link: '/certifications/github/gh-100/domain-3' },
+                { text: 'Domain 4: Access & Permissions', link: '/certifications/github/gh-100/domain-4' },
+                { text: 'Domain 5: Secure Development', link: '/certifications/github/gh-100/domain-5' },
+                { text: 'Domain 6: GitHub Actions', link: '/certifications/github/gh-100/domain-6' },
+                { text: 'Exam Guide', link: '/certifications/github/gh-100/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/github/gh-100/cheatsheet' },
+                { text: 'Exam Tips', link: '/certifications/github/gh-100/exam-tips' }
+              ]
+            },
+            {
               text: 'GH-200: GitHub Actions',
               collapsed: true,
               items: [
@@ -200,6 +219,37 @@ export default defineConfig({
                 { text: 'Study Notes', link: '/certifications/github/gh-actions/notes' },
                 { text: 'Quick Refresher', link: '/certifications/github/gh-actions/quick-refresher' },
                 { text: 'Exam Tips', link: '/certifications/github/gh-actions/exam-tips' }
+              ]
+            },
+            {
+              text: 'GH-300: GitHub Copilot',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/github/gh-300/' },
+                { text: 'Domain 1: Use Copilot Responsibly', link: '/certifications/github/gh-300/domain-1' },
+                { text: 'Domain 2: Copilot Features', link: '/certifications/github/gh-300/domain-2' },
+                { text: 'Domain 3: Data & Architecture', link: '/certifications/github/gh-300/domain-3' },
+                { text: 'Domain 4: Prompt Engineering', link: '/certifications/github/gh-300/domain-4' },
+                { text: 'Domain 5: Developer Productivity', link: '/certifications/github/gh-300/domain-5' },
+                { text: 'Domain 6: Privacy & Safeguards', link: '/certifications/github/gh-300/domain-6' },
+                { text: 'Exam Guide', link: '/certifications/github/gh-300/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/github/gh-300/cheatsheet' },
+                { text: 'Exam Tips', link: '/certifications/github/gh-300/exam-tips' }
+              ]
+            },
+            {
+              text: 'GH-500: GitHub Advanced Security',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/github/gh-500/' },
+                { text: 'Domain 1: GHAS Features & Functionality', link: '/certifications/github/gh-500/domain-1' },
+                { text: 'Domain 2: Secret Scanning', link: '/certifications/github/gh-500/domain-2' },
+                { text: 'Domain 3: Dependabot & Dependency Review', link: '/certifications/github/gh-500/domain-3' },
+                { text: 'Domain 4: Code Scanning & CodeQL', link: '/certifications/github/gh-500/domain-4' },
+                { text: 'Domain 5: Best Practices & Corrective Measures', link: '/certifications/github/gh-500/domain-5' },
+                { text: 'Exam Guide', link: '/certifications/github/gh-500/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/github/gh-500/cheatsheet' },
+                { text: 'Exam Tips', link: '/certifications/github/gh-500/exam-tips' }
               ]
             }
           ]
