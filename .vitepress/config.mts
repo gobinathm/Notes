@@ -123,6 +123,7 @@ export default defineConfig({
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
               { text: 'AI-102: Azure AI Engineer Associate', link: '/certifications/azure/ai-102/' },
+              { text: 'GH-900: GitHub Fundamentals', link: '/certifications/github/gh-900/' },
               { text: 'GH-100: GitHub Administration', link: '/certifications/github/gh-100/' },
               { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
               { text: 'GH-300: GitHub Copilot', link: '/certifications/github/gh-300/' },

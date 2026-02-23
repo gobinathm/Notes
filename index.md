@@ -92,6 +92,17 @@ These started as plain markdown files. When I decided to share them as a site, I
 <div class="cert-grid">
 
 <div class="cert-card completed">
+  <span class="provider-tag github">GitHub</span>
+  <h3><a href="./certifications/github/gh-99/">GH-900: GitHub Foundations</a></h3>
+  <p>foundational topics, products, and concepts of collaborating, contributing, and working on GitHub</p>
+  <div class="cert-prereqs">Git, GitHub, YAML, CI/CD basics</div>
+  <div class="cert-meta">
+    <span class="difficulty intermediate">Beginner</span>
+    <span class="date">Feb 2026</span>
+  </div>
+</div>
+
+<div class="cert-card completed">
   <span class="provider-tag azure">Azure</span>
   <h3><a href="./certifications/azure/ab-730">AB-730: AI Business Professional</a></h3>
   <p>Leverage Microsoft 365 Copilot and AI tools to enhance daily business productivity and analysis.</p>
