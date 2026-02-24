@@ -115,35 +115,40 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: 'https://gobinath.com' },
       {
-        text: 'Certifications',
+        text: 'Microsoft',
         items: [
           {
-            text: 'Microsoft',
+            text: 'Azure',
             items: [
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
               { text: 'AI-102: Azure AI Engineer Associate', link: '/certifications/azure/ai-102/' },
-              { text: 'GH-900: GitHub Fundamentals', link: '/certifications/github/gh-900/' },
-              { text: 'GH-100: GitHub Administration', link: '/certifications/github/gh-100/' },
-              { text: 'GH-200: GitHub Actions', link: '/certifications/github/gh-actions/' },
-              { text: 'GH-300: GitHub Copilot', link: '/certifications/github/gh-300/' },
-              { text: 'GH-500: GitHub Advanced Security', link: '/certifications/github/gh-500/' }
             ]
           },
           {
-            text: 'AWS',
+            text: 'GitHub',
             items: [
-              { text: 'MLA-C01: ML Engineer', link: '/certifications/aws/mla-c01/' },
-              { text: 'AIF-C01: AI Practitioner', link: '/certifications/aws/aif-c01/' },
-              { text: 'CLF-C02: Cloud Practitioner', link: '/certifications/aws/clf-c02/' }
-            ]
-          },
-          {
-            text: 'Google Cloud',
-            items: [
-              { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
+              { text: 'GH-900: Fundamentals', link: '/certifications/github/gh-900/' },
+              { text: 'GH-100: Administration', link: '/certifications/github/gh-100/' },
+              { text: 'GH-200: Actions', link: '/certifications/github/gh-actions/' },
+              { text: 'GH-300: Copilot', link: '/certifications/github/gh-300/' },
+              { text: 'GH-500: Advanced Security', link: '/certifications/github/gh-500/' },
             ]
           }
+        ]
+      },
+      {
+        text: 'AWS',
+        items: [
+          { text: 'MLA-C01: ML Engineer', link: '/certifications/aws/mla-c01/' },
+          { text: 'AIF-C01: AI Practitioner', link: '/certifications/aws/aif-c01/' },
+          { text: 'CLF-C02: Cloud Practitioner', link: '/certifications/aws/clf-c02/' }
+        ]
+      },
+      {
+        text: 'Google Cloud',
+        items: [
+          { text: 'GCP-GAIL: Generative AI Leader', link: '/certifications/google-cloud/gen-ai-leader/' }
         ]
       },
       { text: 'Exam Playbook', link: '/resources/exam-prep-guide' }

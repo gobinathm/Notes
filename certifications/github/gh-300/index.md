@@ -110,6 +110,15 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
 - [GitHub Copilot Fundamentals — Microsoft Learn](https://learn.microsoft.com/en-us/training/paths/copilot/)
 - [Responsible AI with GitHub Copilot](https://learn.microsoft.com/en-us/training/modules/responsible-ai-with-github-copilot/)
 - [Prompt Engineering for Copilot Chat](https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat)
+- [GitHub Copilot Certification Exam Preparation (GH-300)](https://github.com/timothywarner-org/copilot-cert-prep)
+- [FREE GH-300 GitHub Copilot Practice Exams – Sampler](https://portal.tutorialsdojo.com/product/free-gh-300-github-copilot-practice-exams-sampler/)
+- [Microsoft GitHub Copilot (GH-300) Certification Sample Questions](https://www.edusum.com/microsoft/microsoft-github-copilot-gh-300-certification-sample-questions)
+- [Microsoft GitHub Copilot (GH-300) Practice Tests](https://ghcertified.com/practice_tests/copilot/?questions=38)
+- [GH-300 Practice Questions | GitHub Copilot Exam | Part 1](https://www.youtube.com/watch?v=OgDICXYPN7k)
+- [GH-300 GitHub Copilot Certification Practice Q&A | Microsoft GH-300 Exam Pass](https://www.youtube.com/watch?v=yUsqv9Iox4c)
+- [GH-300: GitHub Copilot - Microsoft Learn Video Training](https://aka.ms/GH-300onYouTube)
+- [GitHub CoPilot | GH 300 certification | Resources to Study | Fees | Scheduling | Mock Test](https://www.youtube.com/watch?v=3swCEhu15Q0)
+
 
 ---
 
