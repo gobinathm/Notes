@@ -75,7 +75,7 @@ GitHub's license picker is available when creating a repo. You can also add a LI
 
 Tells Git which files and directories to ignore (not track). Common patterns:
 
-```gitignore
+```ini
 # Dependencies
 node_modules/
 vendor/

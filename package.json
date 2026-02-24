@@ -27,6 +27,7 @@
     "html2pdf.js": "^0.14.0"
   },
   "overrides": {
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.27.3",
+    "jspdf": "^4.2.0"
   }
 }
