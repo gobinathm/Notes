@@ -180,7 +180,7 @@ Teams can be **nested** (parent/child hierarchy) and support `@org/team-name` me
   storage-key="gh-900-domain-6-cards"
   :cards="[
     {
-      question: 'What does branch protection rule \"Require status checks\" do?',
+      question: 'What does the branch protection rule Require Status Checks do?',
       answer: 'Prevents merging a PR until specified CI checks (e.g., GitHub Actions workflows) have passed.'
     },
     {
