@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/gobinathm/Notes/security/advisories/new
+    about: Report a security issue privately — do not use a public issue.
+  - name: General question or discussion
+    url: https://github.com/gobinathm/Notes/discussions
+    about: Ask a question or start a discussion about the study notes.
