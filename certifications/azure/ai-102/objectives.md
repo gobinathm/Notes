@@ -1,62 +1,57 @@
 ---
-title: "[CERT-CODE] - Exam Objectives"
-description: "Official exam objectives for [CERT-CODE] [Certification Name]"
+title: "AI-102 Exam Objectives (2025)"
+description: "Official exam domain breakdown and objectives for the AI-102 Azure AI Engineer Associate exam"
+head:
+  - - meta
+    - name: keywords
+      content: ai-102, exam objectives, domain weights, azure ai engineer, 2025 exam structure
 ---
 
-# [CERT-CODE]: Exam Objectives
+# AI-102 Exam Objectives (2025 Update)
 
-For the complete and official list of exam objectives, refer to the official study guide:
+The AI-102 exam was restructured in late 2024/early 2025 to emphasize Generative AI and Agentic solutions. The current domains and weights are:
 
-**[Study guide for [CERT-CODE]: [Certification Name]]([Link to official study guide])**
+## 1. Plan and manage an Azure AI solution (20-25%)
+- Select the appropriate Microsoft AI Foundry Services.
+- Plan and manage Microsoft AI Foundry hubs and projects.
+- Manage costs for Microsoft AI Foundry Services.
+- Manage security for Microsoft AI Foundry hubs and projects.
+- Integrate Microsoft AI Foundry Services into a CI/CD pipeline.
+- Plan and manage diagnostic settings and alerts.
+- Design a responsible AI governance framework.
+- Implement AI solutions responsibly (Content Safety, Prompt Shields).
 
----
+## 2. Implement generative AI solutions (15-20%)
+- Select foundational models from the Model Catalog.
+- Implement and manage Large Multimodal Models (LMMs).
+- Implement and customize prompt flows.
+- Evaluate generative AI model performance.
+- Configure prompt engineering and fine-tuning.
+- Integrate model reflection and feedback collection.
 
-## Exam Weighting
+## 3. Implement an agentic solution (5-10%)
+- Implement an agent using Microsoft AI Agent Service.
+- Implement tools and code interpreters.
+- Orchestrate multi-agent interactions.
+- Test and deploy agentic solutions.
 
-| Domain | Weight | Focus Areas |
-|--------|--------|-------------|
-| Domain 1: [Domain Name] | ~XX% | [Brief description] |
-| Domain 2: [Domain Name] | ~XX% | [Brief description] |
-| Domain 3: [Domain Name] | ~XX% | [Brief description] |
-| Domain 4: [Domain Name] | ~XX% | [Brief description] |
+## 4. Implement computer vision solutions (10-15%)
+- Analyze images using Azure Vision in Foundry Tools.
+- Extract insights from video and live streams.
+- Analyze movement using spatial analysis.
+- Detect and recognize faces.
+- Implement Custom Vision classification and object detection.
 
----
+## 5. Implement natural language processing solutions (15-20%)
+- Analyze text using Language services.
+- Implement Conversational Language Understanding (CLU).
+- Implement Custom Question Answering.
+- Process speech and implement translation.
+- Integrate generative AI speaking capabilities.
 
-## In-Scope [Services/Technologies/Features]
-
-<!-- Delete this section if not applicable (e.g., for AWS/cloud certifications) -->
-
-### [Category 1]
-- **[Service/Tool A]**: Brief description
-- **[Service/Tool B]**: Brief description
-- **[Service/Tool C]**: Brief description
-
-### [Category 2]
-- **[Service/Tool A]**: Brief description
-- **[Service/Tool B]**: Brief description
-- **[Service/Tool C]**: Brief description
-
-### [Category 3]
-- **[Service/Tool A]**: Brief description
-- **[Service/Tool B]**: Brief description
-- **[Service/Tool C]**: Brief description
-
----
-
-## Study Progress
-
-<ProgressTracker
-  title="[CERT-CODE] Study Progress"
-  storage-key="[cert-code]-progress"
-  :items="[
-    { id: 'objectives', label: 'Reviewed exam objectives' },
-    { id: 'notes', label: 'Completed study notes' },
-    { id: 'exam-tips', label: 'Reviewed exam tips' },
-    { id: 'practice', label: 'Completed practice exercises' },
-    { id: 'ready', label: 'Ready for certification' }
-  ]"
-/>
-
----
-
-[← Back to Overview](./index.md) | [Study Notes →](./notes.md) | [Exam Tips →](./exam-tips.md)
+## 6. Implement knowledge mining and information extraction (15-20%)
+- Implement an enrichment pipeline in Azure AI Search.
+- Implement vector and hybrid search.
+- Implement integrated vectorization.
+- Implement Document Intelligence models.
+- Implement Azure Content Understanding OCR pipelines.

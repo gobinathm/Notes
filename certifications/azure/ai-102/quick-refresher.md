@@ -1,179 +1,42 @@
 ---
-title: "[CERT-CODE] - Quick Refresher"
-description: "Last-minute cram session for [Certification Name] exam"
+title: "AI-102 Quick Refresher"
+description: "5-minute summary of all six AI-102 domains for last-minute exam review"
+head:
+  - - meta
+    - name: keywords
+      content: ai-102, quick refresher, last minute review, 5 minute summary, azure ai engineer
 ---
 
-# [CERT-CODE]: [Certification Name] Last-Minute Refresher
+# AI-102 Quick Refresher
 
-[← Back to Overview](./index.md)
+## ⏱️ 5-Minute Summary
 
-::: danger Final Review
-This page is designed for the final "cram" session before stepping into the **[CERT-CODE]** exam.
-:::
+### 1. Plan & Manage
+- Identity: **Managed Identity** + **RBAC**.
+- Security: **Key Vault** for keys, **Private Endpoints** for networking.
+- Governance: **Responsible AI** (Fairness, Safety, Transparency, etc.).
 
----
+### 2. Generative AI
+- Tool: **Prompt Flow**.
+- Flow: **Standard** (generic), **Chat** (history), **Evaluation** (metrics).
+- **Temperature**: Higher = more creative; 0 = deterministic.
 
-## 🏗️ Domain 1: [Domain Name] (~XX%)
+### 3. Agentic Solutions
+- Service: **Azure AI Agent Service**.
+- Features: **Tools**, **Code Interpreter**, **File Search**.
+- Pattern: **Reasoning Loop** for multi-step tasks.
 
-### Key Concept 1
+### 4. Vision
+- Branding: **Azure Vision in Foundry Tools**.
+- **Video Indexer**: Extracts facial IDs, brands, and sentiment.
+- **Spatial Analysis**: Real-time people movement/dwell time.
 
-**Definition:** Brief explanation
+### 5. NLP & Speech
+- **CLU**: Intent + Entity extraction.
+- **Custom QA**: Multi-turn support, alternate phrasing.
+- **Speech**: Neural voices, Wake Words, Real-time translation.
 
-**Important Points:**
-- Point 1
-- Point 2
-- Point 3
-
-### Key Concept 2
-
-| Item | Description | When to Use |
-|------|-------------|-------------|
-| Option A | What it does | Scenario |
-| Option B | What it does | Scenario |
-
----
-
-## ✨ Domain 2: [Domain Name] (~XX%)
-
-### Key Concept
-
-**Quick Reference:**
-
-```
-Code example or syntax
-```
-
-### Comparison Table
-
-| Feature | Option 1 | Option 2 | Option 3 |
-|---------|----------|----------|----------|
-| **Speed** | Fast | Medium | Slow |
-| **Cost** | Low | Medium | High |
-| **Use Case** | Scenario 1 | Scenario 2 | Scenario 3 |
-
----
-
-## 🛠️ Service/Tool Comparison
-
-| Service | Primary Use Case | Key Feature |
-|---------|-----------------|-------------|
-| **Service A** | What it does | Main benefit |
-| **Service B** | What it does | Main benefit |
-| **Service C** | What it does | Main benefit |
-
----
-
-## 🎯 Decision Trees
-
-### When to Use X vs Y?
-
-```
-Question to ask?
-├─ Condition A → Use Option 1
-├─ Condition B → Use Option 2
-└─ Condition C → Use Option 3
-```
-
-### Selection Criteria
-
-```
-What's the requirement?
-├─ Need Speed? → Choose Fast Option
-│  ├─ With Security? → Option A
-│  └─ Without? → Option B
-└─ Need Cost Savings? → Choose Cheap Option
-```
-
----
-
-## 🔑 Key Acronyms
-
-| Acronym | Full Form | Quick Definition |
-|---------|-----------|------------------|
-| **ABC** | Full Name | What it means |
-| **XYZ** | Full Name | What it means |
-
----
-
-## 🛡️ Best Practices
-
-### ✅ DO
-
-- Best practice 1
-- Best practice 2
-- Best practice 3
-
-### ❌ DON'T
-
-- Anti-pattern 1
-- Anti-pattern 2
-- Anti-pattern 3
-
----
-
-## 💡 Final Minute Tips
-
-### High-Frequency Topics
-
-1. ⭐⭐⭐ **Topic 1** (appears most frequently)
-2. ⭐⭐⭐ **Topic 2**
-3. ⭐⭐ **Topic 3**
-4. ⭐⭐ **Topic 4**
-5. ⭐ **Topic 5**
-
-### Common Exam Traps
-
-::: warning Watch Out!
-- **Trap 1:** What confuses people
-- **Trap 2:** Common misconception
-- **Trap 3:** Easy to forget detail
-- **Trap 4:** Similar but different concepts
-:::
-
-### Quick Service Selection
-
-**Question asks about...**
-- "Easy/Quick/Simple" → Service A
-- "Full Control/Custom" → Service B
-- "Specific Feature" → Service C
-- "Cost Optimization" → Service D
-
----
-
-## 📊 Limits & Constraints
-
-| Resource | Limit | Important Note |
-|----------|-------|---------------|
-| Limit 1 | Value | Why it matters |
-| Limit 2 | Value | Why it matters |
-| Limit 3 | Value | Why it matters |
-
----
-
-## ⚡ Last 5 Minutes Before Exam
-
-### Must Remember
-
-1. **Key Fact 1** - Critical concept
-2. **Key Fact 2** - Important distinction
-3. **Key Fact 3** - Common pattern
-4. **Key Fact 4** - Service comparison
-5. **Key Fact 5** - Limit to know
-
-### Quick Mental Check
-
-- Can you explain [Core Concept 1]? ✓
-- Do you know when to use [Tool A] vs [Tool B]? ✓
-- Can you name the [X] key principles? ✓
-- Do you understand [Important Feature]? ✓
-- Can you describe [Common Pattern]? ✓
-
----
-
-::: tip You've Got This!
-Take a deep breath. Review the decision trees. Trust your preparation. Good luck! 🍀
-:::
-
-[← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Exam Tips](./exam-tips.md)
-
-*Last Updated: [Date]*
+### 6. Search & Mining
+- **Integrated Vectorization**: Auto-embeds data for vector search.
+- **Hybrid Search**: Best for accuracy (Keyword + Vector + Semantic).
+- **Doc Intelligence**: Use **Custom Neural** for complex/unstructured documents.

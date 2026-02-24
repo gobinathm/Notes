@@ -162,7 +162,7 @@ These started as plain markdown files. When I decided to share them as a site, I
 ## On the Radar
 
 <div class="planned-list">
-  <span class="planned-chip"><span class="provider-tag github">GitHub</span> GH-900: GitHub Foundations</span>
+  <span class="planned-chip"><span class="provider-tag azure">azure</span> AI-900: Azure AI Foundations</span>
   <span class="planned-chip"><span class="provider-tag azure">Azure</span> DP-700: Microsoft Certified: Fabric Data Engineer Associate</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> SAA-C03: Solutions Architect</span>
   <span class="planned-chip"><span class="provider-tag aws">AWS</span> AIP-C01: GenAI Developer Professional</span>

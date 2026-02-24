@@ -9,13 +9,15 @@ head:
 
 # AI-102: Azure AI Engineer Associate
 
-This certification validates your expertise in **building, managing, and deploying AI solutions** that leverage Azure AI Services. It covers the full spectrum of AI engineering, from traditional computer vision and NLP to cutting-edge Generative AI solutions.
+This certification validates your expertise in **building, managing, and deploying AI solutions** that leverage Microsoft AI solutions. It covers the full spectrum of AI engineering, from traditional computer vision and NLP to cutting-edge Generative AI and Agentic solutions.
 
 **Exam**: 100-120 min · ~40-60 questions · 700/1000 to pass · $165
 
 ::: info Role-Based Certification
 This exam is for **Software Developers** and **AI Engineers** who need to assemble AI capabilities into their applications. It focuses on using APIs and SDKs (Python/C#), not just theoretical concepts.
 :::
+
+---
 
 ## Study Progress
 
@@ -25,60 +27,64 @@ This exam is for **Software Developers** and **AI Engineers** who need to assemb
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: Plan & Manage AI Solutions (15-20%)',
+      label: 'Domain 1: Plan and manage an Azure AI solution (20-25%)',
+      link: 'https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-with-azure-ai-services/',
       children: [
-        { id: 'd1-deploy', label: 'Deploy Azure AI Services resources' },
-        { id: 'd1-security', label: 'Manage security & authentication' },
-        { id: 'd1-monitor', label: 'Monitor & troubleshoot (Log Analytics)' },
-        { id: 'd1-content-safety', label: 'Implement Content Safety' }
+        { id: 'd1-foundry', label: 'Microsoft AI Foundry Hubs & Projects', link: 'https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects' },
+        { id: 'd1-security', label: 'Security, Auth & Governance', link: 'https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/secure-resources' },
+        { id: 'd1-monitoring', label: 'Monitoring & Troubleshooting', link: 'https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-diagnostics' },
+        { id: 'd1-responsible', label: 'Responsible AI & Content Safety', link: 'https://learn.microsoft.com/en-us/training/modules/embrace-responsible-ai-principles-practices/' }
       ]
     },
     {
       id: 'domain-2',
-      label: 'Domain 2: Implement Content Moderation (10-15%)',
+      label: 'Domain 2: Implement generative AI solutions (15-20%)',
+      link: 'https://learn.microsoft.com/en-us/training/paths/develop-generative-ai-solutions-azure-openai/',
       children: [
-        { id: 'd2-text-mod', label: 'Analyze text for sensitivity' },
-        { id: 'd2-image-mod', label: 'Detect objects & faces in images' },
-        { id: 'd2-video', label: 'Video indexing & retrieval' }
+        { id: 'd2-prompt-flow', label: 'Prompt Flow & Evaluation', link: 'https://learn.microsoft.com/en-us/training/modules/create-prompt-flows-azure-ai-studio/' },
+        { id: 'd2-openai', label: 'Azure OpenAI & RAG (On Your Data)', link: 'https://learn.microsoft.com/en-us/training/modules/use-own-data-azure-openai/' },
+        { id: 'd2-fine-tuning', label: 'Prompt Engineering & Fine-tuning', link: 'https://learn.microsoft.com/en-us/training/modules/get-started-openai-fine-tuning/' }
       ]
     },
     {
       id: 'domain-3',
-      label: 'Domain 3: Computer Vision Solutions (15-20%)',
+      label: 'Domain 3: Implement an agentic solution (5-10%)',
+      link: 'https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview',
       children: [
-        { id: 'd3-analysis', label: 'Image analysis (tags, captions, OCR)' },
-        { id: 'd3-custom-vision', label: 'Custom image classification & detection' },
-        { id: 'd3-face', label: 'Face detection & recognition' }
+        { id: 'd3-foundry-agents', label: 'Azure AI Agent Service', link: 'https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/create-agents' },
+        { id: 'd3-agent-framework', label: 'Microsoft Agent Framework', link: 'https://learn.microsoft.com/en-us/training/modules/build-agentic-ai-solutions-azure-ai-foundry/' }
       ]
     },
     {
       id: 'domain-4',
-      label: 'Domain 4: Natural Language Processing (30-35%)',
+      label: 'Domain 4: Implement computer vision solutions (10-15%)',
+      link: 'https://learn.microsoft.com/en-us/training/paths/create-computer-vision-solutions-azure-ai/',
       children: [
-        { id: 'd4-language', label: 'Language service (NER, PII, Sentiment)' },
-        { id: 'd4-clu', label: 'Conversational Language Understanding (CLU)' },
-        { id: 'd4-translator', label: 'Speech & Text Translation' },
-        { id: 'd4-speech', label: 'Speech-to-Text & Text-to-Speech' }
+        { id: 'd4-vision', label: 'Azure Vision in Foundry Tools', link: 'https://learn.microsoft.com/en-us/training/modules/analyze-images-computer-vision/' },
+        { id: 'd4-video', label: 'Video Indexer & Spatial Analysis', link: 'https://learn.microsoft.com/en-us/training/modules/analyze-video-with-azure-video-indexer/' },
+        { id: 'd4-face', label: 'Face API & Recognition', link: 'https://learn.microsoft.com/en-us/training/modules/detect-analyze-faces/' }
       ]
     },
     {
       id: 'domain-5',
-      label: 'Domain 5: Generative AI Solutions (15-20%)',
+      label: 'Domain 5: Implement natural language processing solutions (15-20%)',
+      link: 'https://learn.microsoft.com/en-us/training/paths/create-nlp-solutions-azure-ai/',
       children: [
-        { id: 'd5-oai-provision', label: 'Provision Azure OpenAI Service' },
-        { id: 'd5-chat-completions', label: 'Implement Chat Completions' },
-        { id: 'd5-data', label: 'Add your own data (RAG)' }
+        { id: 'd5-language', label: 'Language Service & CLU', link: 'https://learn.microsoft.com/en-us/training/modules/analyze-text-with-azure-ai-language/' },
+        { id: 'd5-qa', label: 'Custom Question Answering', link: 'https://learn.microsoft.com/en-us/training/modules/create-question-answering-solution-azure-ai-language/' },
+        { id: 'd5-speech-translator', label: 'Speech & Translator', link: 'https://learn.microsoft.com/en-us/training/paths/create-speech-solutions-azure-ai/' }
       ]
     },
     {
       id: 'domain-6',
-      label: 'Domain 6: Document Intelligence & Mining (10-15%)',
+      label: 'Domain 6: Implement knowledge mining and information extraction (15-20%)',
+      link: 'https://learn.microsoft.com/en-us/training/paths/implement-knowledge-mining-azure-ai-search/',
       children: [
-        { id: 'd6-di', label: 'Document Intelligence models (Receipts, Layout)' },
-        { id: 'd6-km', label: 'Knowledge Mining (Azure AI Search)' }
+        { id: 'd6-search', label: 'Azure AI Search & Custom Skills', link: 'https://learn.microsoft.com/en-us/training/modules/create-azure-ai-search-solution/' },
+        { id: 'd6-intelligence', label: 'Document Intelligence & Content Understanding', link: 'https://learn.microsoft.com/en-us/training/paths/extract-data-with-document-intelligence/' }
       ]
     },
-    { id: 'exam-guide', label: 'Reviewed exam guide' },
+    { id: 'notes', label: 'Completed study notes' },
     { id: 'cheatsheet', label: 'Reviewed cheatsheet' },
     { id: 'ready', label: 'Ready for exam' }
   ]"
@@ -90,7 +96,7 @@ This exam is for **Software Developers** and **AI Engineers** who need to assemb
 
 - [AI-102 Exam Detail Page](https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-102/)
 - [Microsoft Learn: AI Engineer Path](https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-with-azure-ai-services/)
-- [Azure AI Services Documentation](https://learn.microsoft.com/en-us/azure/ai-services/)
+- [Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
 
 ## External Resources
 
@@ -99,3 +105,4 @@ This exam is for **Software Developers** and **AI Engineers** who need to assemb
 ---
 
 [Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md)
+

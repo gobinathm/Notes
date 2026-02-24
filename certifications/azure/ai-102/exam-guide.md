@@ -1,98 +1,163 @@
 ---
-title: "AI-102 Exam Guide"
-description: "Detailed breakdown of the AI-102 exam domains"
+title: "AI-102 - Exam Guide"
+description: "Keyword detection table, exam traps, and decision rules for the AI-102 Azure AI Engineer Associate exam"
+head:
+  - - meta
+    - name: keywords
+      content: ai-102, exam guide, exam traps, azure ai engineer, keyword detection, tips
 ---
 
-# AI-102 Exam Skills Outline
+# AI-102: Exam Guide
 
-## Domain 1: Plan and Manage an Azure AI Solution (15-20%)
-
-### Select and Deploy Resources
-- Choose between **Multi-Service** resources and **Single-Service** resources.
-- Create resources using Azure Portal, CLI, or ARM/Bicep.
-- Manage costs and billing (Free tier vs Standard).
-
-### Manage Security and Monitoring
-- Implement **Managed Identities** to avoid key management.
-- Configure **Virtual Networks (VNETs)** and **Private Endpoints**.
-- Rotate keys using **Key Vault**.
-- Configure **Diagnostic Settings** to send logs to **Log Analytics**.
-- Define RBAC roles describing least privilege access.
+[← Overview](./index.md) · [Cheatsheet →](./cheatsheet.md)
 
 ---
 
-## Domain 2: Implement Content Moderation (10-15%)
+## How the Exam Wants You to Think
 
-### Text and Image Moderation
-- Use **Azure AI Content Safety**.
-- Detect hate, violence, self-harm, and sexual content.
-- Implement **Blocklists** for specific terms.
-- Manage severity thresholds (Low, Medium, High).
+The AI-102 exam is for **Azure AI Engineers** — developers who build and deploy AI solutions using Microsoft's services and SDKs. It values **implementation knowledge**: which service to use, how to configure it, and how to integrate it into applications.
 
----
+### Answer Philosophy
 
-## Domain 3: Computer Vision Solutions (15-20%)
-
-### Image Analysis
-- Use the **Image Analysis 4.0 API**.
-- Extract tags, captions, and objects.
-- Perform **OCR (Optical Character Recognition)** on images and PDFs.
-
-### Custom Vision
-- Provision Custom Vision training and prediction resources.
-- Label data and train models (Classification and Object Detection).
-- Evaluate model performance (Precision, Recall, mAP).
-- Publish and export models (e.g., to Docker/IoT Edge).
-
-### Face Analysis
-- Detect faces and attributes (blur, exposure, accessories).
-- Implement Face Verification (1:1) and Identification (1:N).
-- *Note: Emotion detection and other sensitive attributes are retired.*
+1. **Choose the managed service over DIY** — Microsoft wants you to use Azure AI services rather than build from scratch. RAG over custom training; prebuilt models over custom when possible.
+2. **Foundry is the platform** — Everything lives in Microsoft AI Foundry. Hubs manage shared infrastructure; Projects are your workspace. When in doubt, the answer involves Foundry.
+3. **SDK over REST** — The exam prefers `DefaultAzureCredential()` and the Foundry SDK over raw REST calls or hardcoded keys.
+4. **Async patterns for heavy operations** — OCR Read API, Document Translation, and batch operations all follow the `202 → Operation-Location → GET` async pattern.
 
 ---
 
-## Domain 4: Natural Language Processing (30-35%)
+## Keyword Detection Table
 
-### Language Service
-- Extract **Key Phrases** and **Named Entities (NER)**.
-- Analyze **Sentiment** and **PII (Personally Identifiable Information)**.
-- Build **Custom NER** projects.
-
-### Conversational Language Understanding (CLU)
-- Design schema: Utterances, Entities, Intents.
-- Train, test, and publish CLU applications.
-- Version management and deployment slots.
-
-### Speech Services
-- Implement **Speech-to-Text** (Real-time and Batch).
-- Implement **Text-to-Speech** (Neural voices, SSML).
-- Identify speakers (Speaker Recognition).
+| If you see... | Look for this in the answer... |
+|---------------|--------------------------------|
+| "avoid hardcoded keys" / "keyless auth" | **Managed Identity + DefaultAzureCredential()** |
+| "predictable latency" / "high throughput" | **Provisioned Throughput (PTU)** |
+| "data residency" / "offline" / "edge" | **Docker container deployment** |
+| "build, test, deploy AI apps" | **Microsoft AI Foundry Project** |
+| "shared compute, connections, security" | **Microsoft AI Foundry Hub** |
+| "ground the model in your own data" | **RAG (On Your Data / AI Search)** |
+| "specific tone, format, or rare domain" | **Fine-tuning** |
+| "visual LLM workflow" / "evaluate prompts" | **Prompt Flow** |
+| "block prompt injection attacks" | **Prompt Shields** |
+| "autonomous multi-step task" | **AI Agent Service** |
+| "agent uses Python to solve math" | **Code Interpreter tool** |
+| "agent searches uploaded documents" | **File Search tool** |
+| "multiple agents collaborating" | **Multi-agent orchestration** |
+| "handwritten text extraction" | **Read API (OCR 4.0)** |
+| "locate objects with bounding boxes" | **Custom Vision — Object Detection** |
+| "1:1 face comparison" | **Face Verification** |
+| "1:N face comparison against known people" | **Face Identification + PersonGroup** |
+| "recognize spoken intent / wake word" | **Speech SDK — Intent Recognition / Keyword** |
+| "translate entire Word/PDF, preserve layout" | **Document Translation (async)** |
+| "utterance → intent + entities" | **CLU (Conversational Language Understanding)** |
+| "multi-turn Q&A from documents" | **Custom Question Answering** |
+| "text from images/tables in complex docs" | **Content Understanding / Document Intelligence** |
+| "enrich documents with AI before indexing" | **Azure AI Search Skillset** |
+| "Power BI analytics from enriched docs" | **Knowledge Store — Table Projections** |
+| "custom extract logic in skillset" | **Custom Skill (Azure Function)** |
+| "keyword + vector combined search" | **Hybrid Search** |
+| "re-rank to surface single best answer" | **Semantic Ranking** |
 
 ---
 
-## Domain 5: Generative AI Solutions (15-20%)
+## Exam Traps
 
-### Azure OpenAI Service
-- Provision and deploy models.
-- Use **Chat Completions API**.
-- Configure parameters (`temperature`, `top_p`, `max_tokens`).
-- Implement **Function Calling**.
-- Apply **Content Filters** for safety.
+::: warning Watch out for these common mistakes!
 
-### RAG (Retrieval Augmented Generation)
-- Connect Azure OpenAI to data sources (Azure AI Search, Blob Storage).
-- Index data for retrieval.
+- **RAG vs Fine-tuning**: RAG = runtime context injection (fast, cheap, updatable). Fine-tuning = baked-in knowledge (expensive, slow, better for tone/format). The exam frequently asks "which approach?" — if the data changes often → RAG. If the style/format must be rigid → Fine-tuning.
+
+- **Hub vs Project**: Hub = shared infrastructure (compute, connections, role assignments). Project = your workspace inside a hub. A question about "setting up shared compute for multiple teams" → Hub. "Building a specific chatbot" → Project.
+
+- **PTU vs Standard**: Standard = pay-per-token, variable latency. PTU = reserved capacity, consistent latency, higher fixed cost. Exam uses "predictable latency" or "guaranteed throughput" as the signal for PTU.
+
+- **Content Understanding vs Document Intelligence**: Content Understanding (new) handles multimodal pipelines (images, video, audio + docs) with AI summarization. Document Intelligence = forms and structured extraction with prebuilt/custom models. Both extract from documents but different use cases.
+
+- **Custom Skill interface**: A Custom Skill must follow the exact input/output schema expected by Azure AI Search. The skill receives a `values` array and must return a `values` array with the same record keys. Forgetting this schema is a common mistake.
+
+- **Async OCR pattern**: The Read API returns `202 Accepted` with an `Operation-Location` header. You must then `GET` that URL and poll until `status: succeeded`. Many candidates try to use the response from the initial POST.
+
+- **PersonGroup vs FaceList**: PersonGroup (and LargePersonGroup) is for Identification (1:N — "who is this?"). FaceList (and LargeFaceList) is for Find-Similar (1:N — "find faces similar to this one"). The training step is required for PersonGroup, not FaceList.
+
+- **Semantic Ranking vs Vector Search**: Vector search finds semantically similar documents using embeddings. Semantic ranking re-ranks already-retrieved results using an LLM to surface the single best answer. They are not the same — Semantic Ranking is a post-retrieval step.
+
+- **Content filters scope**: Azure OpenAI content filters apply to the model's inputs AND outputs. Azure AI Content Safety is a separate standalone service for user-generated content moderation. Don't confuse the two.
+:::
 
 ---
 
-## Domain 6: Document Intelligence & Mining (10-15%)
+## Decision Quick Reference
 
-### Document Intelligence
-- Use **Prebuilt Models** (Invoice, Receipt, ID Card).
-- Train **Custom Models** (template-based vs neural).
-- Compose models for complex scenarios.
+### "Which generative AI approach?"
 
-### Knowledge Mining (AI Search)
-- Configure **Indexers** to pull data.
-- Define **Skillsets** to enrich data (OCR, Entity Extraction).
-- Query using **Vector Search** and **Semantic Ranking**.
+```
+Data changes often, reduce hallucinations → RAG (On Your Data)
+Specific tone, format, domain jargon    → Fine-tuning
+Visual workflow, test prompt variants   → Prompt Flow
+Autonomous multi-step reasoning         → AI Agent Service
+```
+
+### "Which vision service?"
+
+```
+General image analysis, OCR, tagging   → Image Analysis 4.0 (Azure Vision)
+Custom categories / bounding boxes     → Custom Vision
+Video insights (faces, brands, topics) → Video Indexer
+Real-time movement in video feed       → Spatial Analysis
+Face verification / identification     → Face API
+```
+
+### "Which NLP service?"
+
+```
+Analyze existing text (sentiment, NER) → Language Service
+Understand spoken intent / commands    → CLU + Speech SDK
+Q&A from documents                     → Custom Question Answering
+Translate text or documents            → Translator Service
+```
+
+### "Which search / extraction approach?"
+
+```
+Search structured and unstructured data → Azure AI Search
+Extract fields from forms and invoices  → Document Intelligence
+AI-enriched extraction pipeline         → AI Search Skillset
+New multimodal document pipeline        → Content Understanding
+```
+
+### "Which authentication?"
+
+```
+Production app, avoid key rotation   → Managed Identity (DefaultAzureCredential)
+Simple testing / scripts             → Subscription key
+Cross-service access, audit trail    → RBAC roles
+```
+
+---
+
+## 2025 Exam Domain Weights
+
+| Domain | Weight |
+|--------|--------|
+| 1: Plan and manage an Azure AI solution | 20-25% |
+| 2: Implement generative AI solutions | 15-20% |
+| 3: Implement an agentic solution | 5-10% |
+| 4: Implement computer vision solutions | 10-15% |
+| 5: Implement NLP solutions | 15-20% |
+| 6: Implement knowledge mining and information extraction | 15-20% |
+
+::: tip High-Value Focus
+Domains 1, 5, and 6 each carry 15-20%+ weight and together represent over half the exam. Domain 3 (Agentic) is new and lightly weighted — know the concepts but do not over-invest.
+:::
+
+---
+
+## Final Strategy
+
+- **Know your async patterns cold** — Read API, Document Translation, and batch operations all follow `202 → Operation-Location → GET`. This pattern comes up repeatedly.
+- **"Foundry" is the answer to "where"** — Hubs, projects, Prompt Flow, model catalog, deployments. When a question is about the platform or portal → AI Foundry.
+- **Eliminate third-party answers** — If a choice involves building something from scratch when an Azure service exists, it is almost certainly wrong.
+- **D1 + D5 + D6 = 50-65% of the exam** — Prioritise Plan & Manage, NLP, and Knowledge Mining for maximum return on study time.
+
+---
+
+[← Overview](./index.md) · [Cheatsheet →](./cheatsheet.md)

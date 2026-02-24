@@ -19,28 +19,40 @@
         class="progress-item"
         :class="{ completed: isCompleted(item.id) }"
       >
-        <label>
-          <input
-            type="checkbox"
-            :checked="isCompleted(item.id)"
-            @change="toggleItem(item.id)"
-          />
-          <span>{{ item.label }}</span>
-        </label>
+        <div class="item-content">
+          <label>
+            <input
+              type="checkbox"
+              :checked="isCompleted(item.id)"
+              @change="toggleItem(item.id)"
+            />
+            <span v-if="!item.link">{{ item.label }}</span>
+            <a v-else :href="item.link" target="_blank" rel="noopener noreferrer" class="item-link" @click.stop>
+              {{ item.label }}
+              <span class="external-icon">↗</span>
+            </a>
+          </label>
+        </div>
         <ul v-if="item.children && item.children.length > 0" class="progress-subitems">
           <li
             v-for="(child, childIndex) in item.children"
             :key="childIndex"
             :class="{ completed: isCompleted(child.id) }"
           >
-            <label>
-              <input
-                type="checkbox"
-                :checked="isCompleted(child.id)"
-                @change="toggleItem(child.id)"
-              />
-              <span>{{ child.label }}</span>
-            </label>
+            <div class="item-content">
+              <label>
+                <input
+                  type="checkbox"
+                  :checked="isCompleted(child.id)"
+                  @change="toggleItem(child.id)"
+                />
+                <span v-if="!child.link">{{ child.label }}</span>
+                <a v-else :href="child.link" target="_blank" rel="noopener noreferrer" class="item-link" @click.stop>
+                  {{ child.label }}
+                  <span class="external-icon">↗</span>
+                </a>
+              </label>
+            </div>
           </li>
         </ul>
       </div>
@@ -246,9 +258,29 @@ const resetProgress = () => {
   flex-shrink: 0;
 }
 
-.progress-subitems li.completed label span {
+.progress-subitems li.completed label span,
+.progress-subitems li.completed label a {
   text-decoration: line-through;
   color: var(--vp-c-text-3);
+}
+
+.item-link {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.item-link:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
+.external-icon {
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+  opacity: 0.7;
+  display: inline-block;
 }
 
 .progress-actions {
