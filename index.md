@@ -93,7 +93,7 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="cert-card completed">
   <span class="provider-tag github">GitHub</span>
-  <h3><a href="./certifications/github/gh-99/">GH-900: GitHub Foundations</a></h3>
+  <h3><a href="./certifications/github/gh-900/">GH-900: GitHub Foundations</a></h3>
   <p>foundational topics, products, and concepts of collaborating, contributing, and working on GitHub</p>
   <div class="cert-prereqs">Git, GitHub, YAML, CI/CD basics</div>
   <div class="cert-meta">

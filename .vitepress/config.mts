@@ -201,6 +201,23 @@ export default defineConfig({
               ]
             },
             {
+              text: 'GH-900: GitHub Foundations',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/github/gh-900/' },
+                { text: 'Domain 1: Intro to Git & GitHub', link: '/certifications/github/gh-900/domain-1' },
+                { text: 'Domain 2: Repositories', link: '/certifications/github/gh-900/domain-2' },
+                { text: 'Domain 3: Collaboration', link: '/certifications/github/gh-900/domain-3' },
+                { text: 'Domain 4: Modern Development', link: '/certifications/github/gh-900/domain-4' },
+                { text: 'Domain 5: Project Management', link: '/certifications/github/gh-900/domain-5' },
+                { text: 'Domain 6: Security & Admin', link: '/certifications/github/gh-900/domain-6' },
+                { text: 'Domain 7: GitHub Community', link: '/certifications/github/gh-900/domain-7' },
+                { text: 'Exam Guide', link: '/certifications/github/gh-900/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/github/gh-900/cheatsheet' },
+                { text: 'Exam Tips', link: '/certifications/github/gh-900/exam-tips' }
+              ]
+            },
+            {
               text: 'GH-100: GitHub Administration',
               collapsed: true,
               items: [
