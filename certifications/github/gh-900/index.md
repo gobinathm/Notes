@@ -17,6 +17,13 @@ Validates foundational knowledge of GitHub — Git basics, repositories, collabo
 No prior certification required. Suitable for developers, students, project managers, and anyone who uses GitHub regularly. Tests practical understanding of GitHub features and workflows.
 :::
 
+::: tip Certification Achieved ✅
+**Earned**: February 21, 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/E7D2A8584DC72468?sharingId=DF3DC239EE30F0A4)
+
+**Notes Prepared**: February 2026 · **Last Updated**: 2026-02-22
+:::
+
 <ImageModal
   src="/images/certifications/gh-900/infographic.png"
   alt="GH-900 Exam Overview Infographic"

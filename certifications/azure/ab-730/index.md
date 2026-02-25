@@ -17,6 +17,14 @@ A practical certification for business professionals focused on using **Microsof
 This exam validates your ability to write effective prompts, manage AI conversations, and use Copilot across Word, Excel, PowerPoint, Outlook, and Teams.
 :::
 
+::: tip Certification Achieved ✅
+**Earned**: February 12, 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/55756E5374B9F0DD?sharingId=DF3DC239EE30F0A4)
+
+**Notes Prepared**: February 2026 · **Last Updated**: 2026-02-13
+:::
+
+
 <ImageModal
   src="/images/certifications/ab-730/infographic.png"
   alt="AB-730 Exam Overview Infographic"
