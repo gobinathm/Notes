@@ -1,112 +1,52 @@
 ---
-title: "[CERT-CODE] - [Certification Name]"
-description: "Study notes for [CERT-CODE] [Certification Name] exam"
-head:
-  - - meta
-    - name: keywords
-      content: "cert-code, keywords, certification, exam, study notes"
+title: "AIP-C01: AWS Certified Generative AI Developer – Professional"
+description: "Study notes and resources for the AWS AIP-C01 certification"
 ---
 
-# [CERT-CODE]: [Certification Name]
+# AIP-C01: Generative AI Developer – Professional
 
-## Exam Information
+Welcome to my study notes for the **AWS Certified Generative AI Developer – Professional** exam. This certification validates the ability to integrate foundation models (FMs) into AWS applications, focusing on Bedrock, SageMaker, RAG, and Agentic solutions.
 
-- **Provider**: [Provider Name]
-- **Exam Code**: [CERT-CODE]
-- **Official Exam Page**: [Link to official exam page]
-- **Exam Duration**: [XX] minutes
-- **Number of Questions**: ~[XX] questions
-- **Passing Score**: [XXX/1000 or XX%]
-- **Exam Format**: Multiple choice, multiple select
-
-::: tip Note Freshness
-**Prepared**: [Month Year]
-**Last Updated**: [YYYY-MM-DD]
-
-Exam content may change. Always verify with official documentation.
+::: info Exam Tip
+This is a Professional-level exam. It requires deep architectural reasoning, cost optimization strategies, and hands-on familiarity with the Amazon Bedrock API (InvokeModel, Streaming, etc.) and OpenSearch Serverless for vector storage.
 :::
-
-## Overview
-
-The [Certification Name] certification validates your understanding of [brief description of what the exam covers].
-
-**Target Audience:**
-- [Role 1]
-- [Role 2]
-- [Role 3]
-- [Role 4]
-
-**Prerequisites:**
-- [Prerequisite 1]
-- [Prerequisite 2]
-- [Prerequisite 3]
-
----
-
-## Study Materials
-
-### 📋 [Exam Objectives](./objectives.md)
-Official exam domains and objectives outline
-
-### 📝 [Study Notes](./notes.md)
-Detailed notes, examples, and key concepts
-
-### ⚡ [Quick Refresher](./quick-refresher.md)
-Last-minute cram session - review all key concepts in 15 minutes
-
-### 🎯 [Exam Tips & Strategy](./exam-tips.md)
-Exam traps, decision matrices, and last-minute review
 
 ---
 
 ## Study Progress
 
 <ProgressTracker
-  title="[Certification Name] Study Progress"
-  storage-key="[cert-code]-progress"
+  title="AIP-C01 Study Progress"
+  storage-key="aip-c01-progress"
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: [Domain Name]',
+      label: 'Domain 1: Foundation Model Integration, Data Management, and Compliance (31%)',
+      link: 'https://explore.skillbuilder.aws/learn/course/external/view/elearning/19541/aws-certified-generative-ai-developer-professional-official-question-set',
       children: [
-        { id: 'domain-1-1', label: '[Topic 1]' },
-        { id: 'domain-1-2', label: '[Topic 2]' },
-        { id: 'domain-1-3', label: '[Topic 3]' }
+        { id: 'd1-integration', label: 'FM Integration & Configuration' },
+        { id: 'd1-data', label: 'Data Management & Pipelines' },
+        { id: 'd1-compliance', label: 'Adherence to Compliance Standards' },
+        { id: 'd1-prompt', label: 'Prompt Engineering Strategies' }
       ]
     },
-    {
-      id: 'domain-2',
-      label: 'Domain 2: [Domain Name]',
-      children: [
-        { id: 'domain-2-1', label: '[Topic 1]' },
-        { id: 'domain-2-2', label: '[Topic 2]' },
-        { id: 'domain-2-3', label: '[Topic 3]' }
-      ]
-    },
-    {
-      id: 'domain-3',
-      label: 'Domain 3: [Domain Name]',
-      children: [
-        { id: 'domain-3-1', label: '[Topic 1]' },
-        { id: 'domain-3-2', label: '[Topic 2]' },
-        { id: 'domain-3-3', label: '[Topic 3]' }
-      ]
-    },
-    { id: 'practice', label: 'Hands-on practice completed' },
-    { id: 'ready', label: 'Ready for certification' }
+    { id: 'exam-guide', label: 'Reviewed Exam Guide', link: './exam-guide' },
+    { id: 'cheatsheet', label: 'Reviewed Cheatsheet', link: './cheatsheet' }
   ]"
 />
 
 ---
 
-## Additional Resources
+## Domains
 
-- [Official Documentation Link]
-- [Official Training Link]
-- [Community Forum Link]
-- [Practice Exam Link]
-- [Other Resource Link]
+- **[Domain 1: FM Integration & Data Management](./domain-1.md)**
+- Domain 2: Implementation and Integration (Coming Soon)
+- Domain 3: AI Safety, Security, and Governance (Coming Soon)
+- Domain 4: Operational Efficiency and Optimization (Coming Soon)
+- Domain 5: Testing, Validation, and Troubleshooting (Coming Soon)
 
----
+## Resources
 
-*Last Updated: [YYYY-MM-DD]*
+- [Official Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-generative-ai-developer-professional/AWS-Certified-Generative-AI-Developer-Professional_Exam-Guide.pdf)
+- [Amazon Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
+- [AWS Skill Builder: Exam Prep](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19541/aws-certified-generative-ai-developer-professional-official-question-set)
