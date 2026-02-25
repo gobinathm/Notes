@@ -116,14 +116,15 @@ Create → Running → Stopped (idle) → Deleted
 
 ### Limitations vs Codespaces
 
-| Feature | github.dev | Codespaces |
-|---------|-----------|------------|
-| Terminal | ❌ No | ✅ Yes |
-| Run code | ❌ No | ✅ Yes |
-| Extensions | Limited | Full VS Code |
-| Cost | Free | Compute-based billing |
-| Speed to open | Instant | ~30-60 seconds |
-| Use case | Quick edits, file browsing | Full development |
+| Feature          | GitHub Codespaces                                                                 | github.dev                                                                 |
+|------------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| Primary Use      | Full development (running, building, and debugging code).                        | Quick edits and browsing files.                                           |
+| Environment      | A dedicated, customizable virtual machine (VM) and Docker container hosted in the cloud. | Runs entirely in your browser's sandbox; no cloud compute is attached.    |
+| Terminal Access  | Yes, full integrated terminal access is available.                                | No terminal access.                                                        |
+| Code Execution   | Yes, you can run and debug your application with the power of the cloud VM.      | No, you cannot build or run code within the environment itself.           |
+| Cost             | Billed per hour of use and per GB of storage, with a free monthly quota for personal accounts. | Entirely free for everyone on GitHub.com.                                 |
+| Setup Time       | Takes a few moments to spin up the VM and configure the container based on a devcontainer.json file. | Opens instantly with a single key press (press . on any GitHub repository page). |
+| Extensions       | Supports most extensions available from the Visual Studio Code Marketplace.       | Only supports a subset of "web extensions" that can run in the browser.   |
 
 ::: warning Exam Trap
 This is the most tested comparison in Domain 4. Remember: **github.dev = editor only, no terminal.** If a question mentions running tests, starting a server, or using a terminal → the answer is **Codespaces**.
