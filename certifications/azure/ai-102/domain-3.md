@@ -140,8 +140,8 @@ The exam may ask where agents are deployed. Agents live in a **Project** (your w
   { front: 'What is the reasoning loop sequence?', back: 'Receive goal → Plan (tool needed?) → Execute tool → Observe result → Repeat or Respond.' },
   { front: 'Name the three multi-agent orchestration patterns.', back: 'Hierarchical (manager delegates to workers), Sequential (pipeline), Group Chat / Joint (agents discuss together).' },
   { front: 'What tool prevents a runaway agent from looping forever?', back: 'Max turns constraint — sets a budget on how many tool-calling iterations the agent can perform.' },
-  { front: 'What AI Foundry feature captures every step of an agent\'s reasoning loop?', back: 'Foundry Tracing — records tool calls, inputs, outputs, and latency for each step.' },
-  { front: 'A question says \"agent must search uploaded PDFs\". Which tool?', back: 'File Search — built into the agent loop, retrieves information from uploaded documents via vector search.' }
+  { front: 'What AI Foundry feature captures every step of an agent’s reasoning loop?', back: 'Foundry Tracing — records tool calls, inputs, outputs, and latency for each step.' },
+  { front: 'A question says “agent must search uploaded PDFs”. Which tool?', back: 'File Search — built into the agent loop, retrieves information from uploaded documents via vector search.' }
 ]" />
 
 ---

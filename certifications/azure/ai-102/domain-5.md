@@ -159,11 +159,11 @@ Document Translation is async — submit → get `Operation-Location` header →
 
 <FlashcardDeck storage-key="ai-102-domain-5-cards" :cards="[
   { front: 'What is the difference between CLU and Custom Question Answering?', back: 'CLU maps utterances to intents + entities (structured action). Custom QA matches questions to stored answers (information retrieval). CLU = do something; Custom QA = know something.' },
-  { front: 'What Language Service feature disambiguates \"Mercury\" as planet vs element?', back: 'Entity Linking — connects recognized entities to Wikipedia knowledge base entries to resolve ambiguity.' },
+  { front: 'What Language Service feature disambiguates “Mercury” as planet vs element?', back: 'Entity Linking — connects recognized entities to Wikipedia knowledge base entries to resolve ambiguity.' },
   { front: 'Name the CLU lifecycle stages in order.', back: 'Design → Label utterances → Train → Test → Deploy → Consume via SDK/REST.' },
   { front: 'What does a Custom QA confidence threshold do?', back: 'Rejects (or flags) answers whose match score falls below the threshold, preventing the service from returning wrong answers on poor matches.' },
   { front: 'What Speech SDK class detects a wake word locally on-device?', back: 'KeywordRecognizer — runs offline, no cloud needed. Different from IntentRecognizer which requires a CLU model and cloud call.' },
-  { front: 'A question says \"translate entire Word file, preserve layout\". What service?', back: 'Document Translation (part of Translator Service) — async operation that preserves the original document layout.' },
+  { front: 'A question says “translate entire Word file, preserve layout”. What service?', back: 'Document Translation (part of Translator Service) — async operation that preserves the original document layout.' },
   { front: 'What is Active Learning in Custom QA?', back: 'A feature that surfaces low-confidence questions for human review, allowing you to add alternate phrasings and improve accuracy over time.' },
   { front: 'How do you improve CLU accuracy for a new model version without disrupting production?', back: 'Deploy the new version to the staging slot, test it, then swap to the production slot when ready.' }
 ]" />
