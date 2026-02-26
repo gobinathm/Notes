@@ -42,52 +42,58 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
     {
       id: 'domain-1',
       label: 'Domain 1: Use GitHub Copilot Responsibly (15–20%)',
+      link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features',
       children: [
-        { id: 'd1-risks', label: 'Risks & limitations of Generative AI' },
-        { id: 'd1-ethics', label: 'Ethical & responsible AI usage' },
-        { id: 'd1-validate', label: 'Validating AI output & operating responsibly' }
+        { id: 'd1-risks', label: 'Risks & limitations of Generative AI', link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-github-copilot-chat-in-github' },
+        { id: 'd1-ethics', label: 'Ethical & responsible AI usage', link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-copilot-coding-agent-on-githubcom' },
+        { id: 'd1-validate', label: 'Validating AI output & operating responsibly', link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features' }
       ]
     },
     {
       id: 'domain-2',
       label: 'Domain 2: Use GitHub Copilot Features (25–30%)',
+      link: 'https://github.com/features/copilot',
       children: [
-        { id: 'd2-ide', label: 'Copilot in the IDE (inline, chat, plan mode)' },
-        { id: 'd2-cli', label: 'GitHub Copilot CLI' },
-        { id: 'd2-features', label: 'Agent Mode, Edit Mode, MCP, Spaces, Spark' },
-        { id: 'd2-org', label: 'Org-wide policy management & audit logs' }
+        { id: 'd2-ide', label: 'Copilot in the IDE (inline, chat, plan mode)', link: 'https://docs.github.com/en/copilot/using-github-copilot/getting-code-suggestions-in-your-ide-with-github-copilot' },
+        { id: 'd2-cli', label: 'GitHub Copilot CLI', link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-github-copilot-in-the-cli' },
+        { id: 'd2-features', label: 'Agent Mode, Edit Mode, MCP, Spaces, Spark', link: 'https://docs.github.com/en/copilot/using-github-copilot/using-copilot-coding-agent-to-work-on-tasks' },
+        { id: 'd2-org', label: 'Org-wide policy management & audit logs', link: 'https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization' }
       ]
     },
     {
       id: 'domain-3',
       label: 'Domain 3: GitHub Copilot Data & Architecture (10–15%)',
+      link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features',
       children: [
-        { id: 'd3-dataflow', label: 'Data usage, flow, and proxy filtering' },
-        { id: 'd3-lifecycle', label: 'Suggestion lifecycle & LLM limitations' }
+        { id: 'd3-dataflow', label: 'Data usage, flow, and proxy filtering', link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features/responsible-use-of-github-copilot-chat-in-github' },
+        { id: 'd3-lifecycle', label: 'Suggestion lifecycle & LLM limitations', link: 'https://github.com/timothywarner-org/copilot-cert-prep' }
       ]
     },
     {
       id: 'domain-4',
       label: 'Domain 4: Prompt Engineering & Context Crafting (10–15%)',
+      link: 'https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat',
       children: [
-        { id: 'd4-prompts', label: 'Prompt structure, zero-shot & few-shot' },
-        { id: 'd4-engineering', label: 'Prompt engineering principles & chat history' }
+        { id: 'd4-prompts', label: 'Prompt structure, zero-shot & few-shot', link: 'https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat' },
+        { id: 'd4-engineering', label: 'Prompt engineering principles & chat history', link: 'https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat' }
       ]
     },
     {
       id: 'domain-5',
       label: 'Domain 5: Improve Developer Productivity (10–15%)',
+      link: 'https://docs.github.com/en/copilot/using-github-copilot',
       children: [
-        { id: 'd5-codegen', label: 'Code generation, refactoring & documentation' },
-        { id: 'd5-testing', label: 'Unit tests, security improvements & edge cases' }
+        { id: 'd5-codegen', label: 'Code generation, refactoring & documentation', link: 'https://docs.github.com/en/copilot/using-github-copilot/getting-code-suggestions-in-your-ide-with-github-copilot' },
+        { id: 'd5-testing', label: 'Unit tests, security improvements & edge cases', link: 'https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-for-pull-requests/creating-a-pull-request-summary-with-github-copilot' }
       ]
     },
     {
       id: 'domain-6',
       label: 'Domain 6: Privacy, Content Exclusions & Safeguards (10–15%)',
+      link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features',
       children: [
-        { id: 'd6-exclusions', label: 'Content exclusions & editor settings' },
-        { id: 'd6-safeguards', label: 'Duplication detection, security warnings' }
+        { id: 'd6-exclusions', label: 'Content exclusions & editor settings', link: 'https://docs.github.com/en/copilot/managing-copilot/configuring-and-auditing-content-exclusion/excluding-content-from-github-copilot' },
+        { id: 'd6-safeguards', label: 'Duplication detection, security warnings', link: 'https://docs.github.com/en/copilot/responsible-use-of-github-copilot-features' }
       ]
     },
     { id: 'exam-guide', label: 'Reviewed exam guide & traps' },
@@ -111,6 +117,8 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
 - [Responsible AI with GitHub Copilot](https://learn.microsoft.com/en-us/training/modules/responsible-ai-with-github-copilot/)
 - [Prompt Engineering for Copilot Chat](https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/prompt-engineering-for-copilot-chat)
 - [GitHub Copilot Certification Exam Preparation (GH-300)](https://github.com/timothywarner-org/copilot-cert-prep)
+- [GitHub Copilot Certification Study Resources (teamcmcbot)](https://github.com/teamcmcbot/github-copilot-certification)
+- [GH-300 GitHub Copilot Certification — Udemy Course](https://www.udemy.com/course/gh-300-github-copilot-certification-complete-exam-preparati/)
 - [FREE GH-300 GitHub Copilot Practice Exams – Sampler](https://portal.tutorialsdojo.com/product/free-gh-300-github-copilot-practice-exams-sampler/)
 - [Microsoft GitHub Copilot (GH-300) Certification Sample Questions](https://www.edusum.com/microsoft/microsoft-github-copilot-gh-300-certification-sample-questions)
 - [Microsoft GitHub Copilot (GH-300) Practice Tests](https://ghcertified.com/practice_tests/copilot/?questions=38)
