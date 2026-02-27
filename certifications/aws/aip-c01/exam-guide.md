@@ -1,9 +1,15 @@
 ---
 title: "AIP-C01: Exam Guide"
 description: "Domain breakdown and key topics for the AWS Certified Generative AI Developer – Professional exam"
+head:
+  - - meta
+    - name: keywords
+      content: aip-c01, aws, exam guide, domains, bedrock, generative ai, exam objectives, foundation model, rag, guardrails
 ---
 
 # AIP-C01: Exam Guide
+
+[← Back to Overview](./index.md)
 
 The **AWS Certified Generative AI Developer – Professional** (AIP-C01) exam measures your ability to build, deploy, and monitor generative AI applications on AWS.
 

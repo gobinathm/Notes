@@ -1,179 +1,179 @@
 ---
-title: "[CERT-CODE] - Quick Refresher"
-description: "Last-minute cram session for [Certification Name] exam"
+title: "AIP-C01 - Quick Refresher"
+description: "Last-minute cram session for AIP-C01 AWS Certified Generative AI Developer – Professional"
+head:
+  - - meta
+    - name: keywords
+      content: aip-c01, aws, quick refresher, last minute, bedrock, generative ai, rag, guardrails, provisioned throughput, opensearch
 ---
 
-# [CERT-CODE]: [Certification Name] Last-Minute Refresher
+# AIP-C01: AWS Generative AI Developer Last-Minute Refresher
 
 [← Back to Overview](./index.md)
 
 ::: danger Final Review
-This page is designed for the final "cram" session before stepping into the **[CERT-CODE]** exam.
+This page is designed for the final "cram" session before stepping into the **AIP-C01** exam.
 :::
 
 ---
 
-## 🏗️ Domain 1: [Domain Name] (~XX%)
+## Domain 1: FM Integration, Data Management, and Compliance (~31%)
 
-### Key Concept 1
+### FM Selection Quick Guide
 
-**Definition:** Brief explanation
+| FM | Vendor | Best For |
+|----|--------|----------|
+| **Claude** | Anthropic | Reasoning, large context (up to 200k tokens) |
+| **Llama** | Meta | Open-source, fine-tuning |
+| **Mistral** | Mistral AI | Efficient, high performance for size |
+| **Titan** | AWS | Embeddings, summarization, AWS-native |
+
+### RAG Pipeline
 
 **Important Points:**
-- Point 1
-- Point 2
-- Point 3
-
-### Key Concept 2
-
-| Item | Description | When to Use |
-|------|-------------|-------------|
-| Option A | What it does | Scenario |
-| Option B | What it does | Scenario |
+- S3 → chunking → embedding → OpenSearch Serverless (vector store)
+- Knowledge Bases manage this pipeline fully managed
+- pgvector on Aurora PostgreSQL = alternative vector store
+- Chunking options: fixed-size, semantic, hierarchical
 
 ---
 
-## ✨ Domain 2: [Domain Name] (~XX%)
+## Domain 2: Implementation and Integration (~26%)
 
-### Key Concept
-
-**Quick Reference:**
+### API Quick Reference
 
 ```
-Code example or syntax
+Which API?
+├─ Full synchronous response → InvokeModel
+├─ Streaming / low latency → InvokeModelWithResponseStream
+└─ Multi-step agentic workflow → InvokeAgent
 ```
 
 ### Comparison Table
 
-| Feature | Option 1 | Option 2 | Option 3 |
-|---------|----------|----------|----------|
-| **Speed** | Fast | Medium | Slow |
-| **Cost** | Low | Medium | High |
-| **Use Case** | Scenario 1 | Scenario 2 | Scenario 3 |
+| Feature | Knowledge Base (RAG) | Bedrock Agents |
+|---------|---------------------|----------------|
+| **Use Case** | Document Q&A, retrieval | Multi-step workflows, tool use |
+| **FM + Retrieval** | Yes (automatic) | Yes (optional) |
+| **External API calls** | No | Yes (via Action Groups + Lambda) |
+| **Best For** | Static knowledge lookup | Dynamic reasoning + actions |
 
 ---
 
-## 🛠️ Service/Tool Comparison
+## Domain 3: AI Safety, Security, and Governance (~20%)
 
-| Service | Primary Use Case | Key Feature |
-|---------|-----------------|-------------|
-| **Service A** | What it does | Main benefit |
-| **Service B** | What it does | Main benefit |
-| **Service C** | What it does | Main benefit |
+### Guardrails Quick Facts
 
----
+- Applies to **both inputs and outputs**
+- Features: content filters, PII redaction, denied topics, word filters
+- Must be explicitly applied via `guardrailIdentifier` in API calls
+- Does NOT automatically apply to all Bedrock calls
 
-## 🎯 Decision Trees
-
-### When to Use X vs Y?
+### Security Decision Tree
 
 ```
-Question to ask?
-├─ Condition A → Use Option 1
-├─ Condition B → Use Option 2
-└─ Condition C → Use Option 3
-```
+Data must stay private / no public internet?
+└─ Yes → VPC Endpoint (PrivateLink) for Bedrock
 
-### Selection Criteria
+Need to restrict access to Bedrock models?
+└─ Yes → IAM resource-based policies
 
-```
-What's the requirement?
-├─ Need Speed? → Choose Fast Option
-│  ├─ With Security? → Option A
-│  └─ Without? → Option B
-└─ Need Cost Savings? → Choose Cheap Option
+Need to audit all FM API calls?
+└─ Yes → AWS CloudTrail (not CloudWatch)
+
+Need operational metrics (latency, errors)?
+└─ Yes → Amazon CloudWatch
 ```
 
 ---
 
-## 🔑 Key Acronyms
+## Domain 4: Operational Efficiency and Optimization (~12%)
 
-| Acronym | Full Form | Quick Definition |
-|---------|-----------|------------------|
-| **ABC** | Full Name | What it means |
-| **XYZ** | Full Name | What it means |
+### Provisioned Throughput vs On-Demand
 
----
-
-## 🛡️ Best Practices
-
-### ✅ DO
-
-- Best practice 1
-- Best practice 2
-- Best practice 3
-
-### ❌ DON'T
-
-- Anti-pattern 1
-- Anti-pattern 2
-- Anti-pattern 3
+| | Provisioned Throughput | On-Demand |
+|-|------------------------|-----------|
+| **Traffic** | Predictable, consistent | Sporadic, unpredictable |
+| **Pricing** | Fixed (per MU/hour) | Pay per token |
+| **Commitment** | 1 or 6 months | None |
+| **Best For** | Production 24/7 | Dev/test, bursts |
 
 ---
 
-## 💡 Final Minute Tips
+## Domain 5: Testing, Validation, and Troubleshooting (~11%)
 
-### High-Frequency Topics
+### Model Evaluation Metrics
 
-1. ⭐⭐⭐ **Topic 1** (appears most frequently)
-2. ⭐⭐⭐ **Topic 2**
-3. ⭐⭐ **Topic 3**
-4. ⭐⭐ **Topic 4**
-5. ⭐ **Topic 5**
+| Metric | What It Measures |
+|--------|-----------------|
+| **Groundedness** | Is the response grounded in the retrieved context? |
+| **Relevance** | Is the response relevant to the user's question? |
+| **Accuracy** | Is the response factually correct? |
+| **Fluency** | Is the response well-written and natural? |
 
-### Common Exam Traps
+---
 
-::: warning Watch Out!
-- **Trap 1:** What confuses people
-- **Trap 2:** Common misconception
-- **Trap 3:** Easy to forget detail
-- **Trap 4:** Similar but different concepts
-:::
-
-### Quick Service Selection
+## Key Service Decision Rules
 
 **Question asks about...**
-- "Easy/Quick/Simple" → Service A
-- "Full Control/Custom" → Service B
-- "Specific Feature" → Service C
-- "Cost Optimization" → Service D
+- "Predictable throughput" → Provisioned Throughput
+- "Content moderation / filter" → Guardrails for Amazon Bedrock
+- "PII detection/redaction" → Guardrails (PII filter)
+- "Vector storage for RAG" → OpenSearch Serverless (or Aurora pgvector)
+- "Multi-step reasoning / tool use" → Bedrock Agents
+- "Audit logging / compliance trail" → AWS CloudTrail
+- "Operational monitoring / dashboards" → Amazon CloudWatch
+- "Private FM access, no internet" → VPC Endpoint (PrivateLink)
+- "Low latency / streaming response" → InvokeModelWithResponseStream
 
 ---
 
-## 📊 Limits & Constraints
+## Key Acronyms
 
-| Resource | Limit | Important Note |
-|----------|-------|---------------|
-| Limit 1 | Value | Why it matters |
-| Limit 2 | Value | Why it matters |
-| Limit 3 | Value | Why it matters |
+| Acronym | Full Form | Quick Definition |
+|---------|-----------|-----------------|
+| **FM** | Foundation Model | Pre-trained large AI model (Claude, Llama, etc.) |
+| **RAG** | Retrieval-Augmented Generation | FM + vector store retrieval |
+| **PTU** | Provisioned Throughput Unit | Reserved Bedrock model capacity |
+| **PII** | Personally Identifiable Information | Data that identifies an individual |
+| **MU** | Model Unit | Unit of Bedrock Provisioned Throughput |
 
 ---
 
-## ⚡ Last 5 Minutes Before Exam
+## Common Exam Traps
+
+::: warning Watch Out!
+- **InvokeModel vs Streaming**: InvokeModel = full synchronous; `InvokeModelWithResponseStream` = chunk-by-chunk
+- **Guardrails scope**: Guardrails filter BOTH inputs AND outputs — not just one
+- **CloudTrail vs CloudWatch**: CloudTrail = audit/compliance; CloudWatch = operational metrics
+- **OpenSearch Serverless**: The go-to for Knowledge Bases — not standard OpenSearch managed cluster
+- **PTU timing**: On-demand is better for sporadic traffic — don't default to PTU
+:::
+
+---
+
+## Last 5 Minutes Before Exam
 
 ### Must Remember
 
-1. **Key Fact 1** - Critical concept
-2. **Key Fact 2** - Important distinction
-3. **Key Fact 3** - Common pattern
-4. **Key Fact 4** - Service comparison
-5. **Key Fact 5** - Limit to know
+1. **Guardrails** — apply to both inputs AND outputs; must be explicitly applied per call
+2. **PTU** — predictable traffic only; 1- or 6-month commitment
+3. **RAG vector store** — OpenSearch Serverless (primary), pgvector on Aurora (alternative)
+4. **InvokeModelWithResponseStream** — for low-latency streaming UX
+5. **CloudTrail** — required for compliance/audit; CloudWatch for ops monitoring
 
 ### Quick Mental Check
 
-- Can you explain [Core Concept 1]? ✓
-- Do you know when to use [Tool A] vs [Tool B]? ✓
-- Can you name the [X] key principles? ✓
-- Do you understand [Important Feature]? ✓
-- Can you describe [Common Pattern]? ✓
+- Can you explain the difference between RAG and fine-tuning? ✓
+- Do you know when to use InvokeModel vs InvokeModelWithResponseStream? ✓
+- Can you describe what Guardrails filters cover? ✓
+- Do you understand when PTU is preferred over on-demand? ✓
+- Can you pick the right vector store for a Knowledge Base? ✓
 
 ---
 
 ::: tip You've Got This!
-Take a deep breath. Review the decision trees. Trust your preparation. Good luck! 🍀
+Take a deep breath. Review the decision trees. Trust your preparation. **Good luck!**
 :::
 
 [← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Exam Tips](./exam-tips.md)
-
-*Last Updated: [Date]*

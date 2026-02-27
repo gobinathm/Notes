@@ -1,6 +1,10 @@
 ---
 title: "Domain 1: FM Integration & Data Management"
 description: "Detailed notes on Foundation Model integration, data management, and compliance for AIP-C01"
+head:
+  - - meta
+    - name: keywords
+      content: aip-c01, domain 1, foundation model, bedrock, rag, vector store, opensearch, prompt engineering, data management, compliance, data residency
 ---
 
 # Domain 1: FM Integration, Data Management, and Compliance (31%)

@@ -1,9 +1,13 @@
 ---
-title: "[CERT-CODE] - Exam Tips"
-description: "Exam strategies and tips for [CERT-CODE] [Certification Name]"
+title: "AIP-C01 - Exam Tips"
+description: "Exam strategies and tips for AIP-C01 AWS Certified Generative AI Developer – Professional"
+head:
+  - - meta
+    - name: keywords
+      content: aip-c01, aws, exam tips, strategy, bedrock, generative ai, professional exam, rag, guardrails, provisioned throughput
 ---
 
-# [CERT-CODE]: Exam Tips & Strategy
+# AIP-C01: Exam Tips & Strategy
 
 [← Back to Overview](./index.md)
 
@@ -13,14 +17,14 @@ This page contains strategies, tips, and common traps to help you succeed on exa
 
 ---
 
-## 📋 Exam Format Overview
+## Exam Format Overview
 
 **Exam Details:**
-- Duration: [XX] minutes
-- Questions: ~[XX] questions
+- Duration: 170 minutes
+- Questions: ~85 questions
 - Format: Multiple choice, multiple select
-- Passing Score: [XXX/1000 or XX%]
-- Languages: [Available languages]
+- Passing Score: 750/1000
+- Languages: English
 
 **Question Types:**
 1. **Single Answer** - Choose the ONE best answer
@@ -29,24 +33,24 @@ This page contains strategies, tips, and common traps to help you succeed on exa
 
 ---
 
-## ⏱️ Time Management Strategy
+## Time Management Strategy
 
 ### Recommended Pacing
 
-- **Total Time:** [XX] minutes
-- **Questions:** ~[XX]
-- **Time per Question:** ~[X.X] minutes
-- **Review Time:** [XX] minutes at the end
+- **Total Time:** 170 minutes
+- **Questions:** ~85
+- **Time per Question:** ~2.0 minutes
+- **Review Time:** 20 minutes at the end
 
 ### Time Allocation
 
 ```
-First Pass (XX min):
+First Pass (130 min):
 ├─ Answer all easy questions immediately
 ├─ Mark difficult questions for review
-└─ Don't spend more than [X] minutes on any question
+└─ Don't spend more than 3 minutes on any question
 
-Review Pass (XX min):
+Review Pass (20 min):
 ├─ Review marked questions
 ├─ Check flagged answers
 └─ Final verification of all answers
@@ -57,12 +61,12 @@ Review Pass (XX min):
 1. ✅ **Read questions carefully** - Don't rush, but don't overthink
 2. ✅ **Flag and move on** - If unsure, mark for review and continue
 3. ✅ **Answer easy ones first** - Build confidence and save time
-4. ✅ **Leave buffer time** - Reserve [XX] minutes for final review
+4. ✅ **Leave buffer time** - Reserve 20 minutes for final review
 5. ❌ **Don't get stuck** - No single question is worth failing
 
 ---
 
-## 🎯 Question-Answering Strategies
+## Question-Answering Strategies
 
 ### Single-Answer Questions
 
@@ -96,39 +100,46 @@ Multiple-answer questions may have 4-5 correct answers but only ask for 2-3. Cho
 
 **Strategy:**
 1. Read the scenario carefully - note requirements
-2. Identify key constraints (budget, time, compliance, etc.)
+2. Identify key constraints (budget, time, compliance, latency, etc.)
 3. Eliminate options that don't meet requirements
 4. Choose solution that best fits all criteria
 
 **Requirements Keywords:**
-- "minimum cost" → Choose cheapest viable option
-- "quickly" / "fastest" → Prioritize speed over complexity
-- "scalable" → Choose solutions that can grow
-- "compliant" → Must meet regulatory requirements
-- "existing infrastructure" → Don't introduce new services
+- "minimum cost" → Choose on-demand or token-efficient option
+- "predictable throughput" → Provisioned Throughput
+- "low latency" → Streaming (`InvokeModelWithResponseStream`)
+- "compliant" / "data residency" → Private endpoints + region selection
+- "existing infrastructure" → Don't introduce new unrelated services
 
 ---
 
-## 🚫 Common Exam Traps
+## Common Exam Traps
 
-### Trap 1: Over-Engineering
+### Trap 1: Confusing InvokeModel vs InvokeModelWithResponseStream
 
-**Problem:** Choosing complex solutions when simple ones work
+**Problem:** Both call a foundation model, but for different use cases.
 
-**Example:**
-- ❌ Question asks for "quick deployment" → Answer suggests complex multi-step setup
-- ✅ Look for simpler, faster solutions
-
-**How to Avoid:**
-- Read requirements carefully
-- Don't assume complexity = better
-- If it says "simple" or "quick", choose the straightforward option
+**How to Choose:**
+```
+Need full response? → InvokeModel (synchronous)
+Need streaming / low-latency feel? → InvokeModelWithResponseStream
+```
 
 ---
 
-### Trap 2: Missing Keywords
+### Trap 2: OpenSearch Serverless vs Standard OpenSearch
 
-**Problem:** Ignoring important qualifiers in questions
+**Problem:** Questions may describe a scenario where either could work.
+
+**How to Choose:**
+- Knowledge Bases / RAG → **OpenSearch Serverless** (managed, scales to zero)
+- Full-text search with custom config → OpenSearch managed cluster
+
+---
+
+### Trap 3: Missing Keywords
+
+**Problem:** Ignoring important qualifiers in questions.
 
 **Common Missed Keywords:**
 - "MOST cost-effective" (not just "works")
@@ -143,163 +154,136 @@ Multiple-answer questions may have 4-5 correct answers but only ask for 2-3. Cho
 
 ---
 
-### Trap 3: Assumption-Based Answers
+### Trap 4: Assumption-Based Answers
 
-**Problem:** Adding context not in the question
+**Problem:** Adding context not in the question.
 
 **Example:**
 - ❌ "They probably need high availability" (not stated)
 - ✅ Only answer what's explicitly asked or required
 
-**How to Avoid:**
-- Answer ONLY what's asked
-- Don't add requirements not mentioned
-- If in doubt, choose the simpler solution
-
 ---
 
-### Trap 4: Similar-Looking Options
+### Trap 5: Similar-Looking Options
 
-**Problem:** Two answers that seem almost identical
+**Problem:** Two answers that seem almost identical.
 
 **Strategy:**
 1. Read both options word-by-word
 2. Find the ONE difference
 3. That difference is the key to the question
 
-**Example:**
-```
-Option A: [Service] with [Feature 1]
-Option B: [Service] with [Feature 2]
-
-The question is testing your knowledge of Feature 1 vs Feature 2
-```
-
 ---
 
-### Trap 5: "All of the Above" / "None of the Above"
+## Domain-Specific Tips
 
-**Strategy:**
-- If you can identify even ONE wrong option, eliminate "All of the above"
-- If you can identify even ONE correct option, eliminate "None of the above"
-- These are often wrong answers designed to trap hasty readers
-
----
-
-## 🔍 Domain-Specific Tips
-
-### Domain 1: [Domain Name]
+### Domain 1: FM Integration, Data Management, and Compliance (31%)
 
 **High-Frequency Topics:**
-- ⭐⭐⭐ [Topic A] - Appears in ~XX% of questions
-- ⭐⭐⭐ [Topic B] - Critical to understand
-- ⭐⭐ [Topic C] - Frequently tested
+- ⭐⭐⭐ FM selection criteria (latency, context window, cost)
+- ⭐⭐⭐ Knowledge Bases + OpenSearch Serverless vector store setup
+- ⭐⭐ Chunking strategies for RAG pipelines
+- ⭐⭐ Data residency and private endpoint configuration
 
 **Common Traps:**
-- Confusing [Concept A] with [Concept B]
-- Forgetting [Important limitation]
-- Not knowing when to use [Tool/Service X] vs [Tool/Service Y]
+- Choosing fine-tuning when RAG is more appropriate (or vice versa)
+- Forgetting that pgvector on Aurora is a valid alternative to OpenSearch Serverless
 
 **Decision Matrix:**
 
 ```
-Question about [Scenario]?
-├─ Need [Feature A]? → Use [Solution 1]
-├─ Need [Feature B]? → Use [Solution 2]
-└─ Need [Feature C]? → Use [Solution 3]
+Which FM to choose?
+├─ Large context window needed? → Claude (up to 200k tokens)
+├─ Open-source / fine-tuning? → Llama (Meta)
+├─ Efficient / high performance? → Mistral
+└─ AWS-native / embeddings? → Titan
 ```
 
 ---
 
-### Domain 2: [Domain Name]
+### Domain 2: Implementation and Integration (26%)
 
 **High-Frequency Topics:**
-- ⭐⭐⭐ [Topic A]
-- ⭐⭐⭐ [Topic B]
-- ⭐⭐ [Topic C]
+- ⭐⭐⭐ Bedrock Agents for multi-step agentic workflows
+- ⭐⭐⭐ RAG architecture and retrieval optimization
+- ⭐⭐ API integration patterns (InvokeModel, streaming)
 
 **Common Traps:**
-- [Specific trap for this domain]
-- [Another common mistake]
+- Not knowing when to use Bedrock Agents vs a simple Knowledge Base query
+- Confusing chunking strategies — fixed-size vs semantic chunking trade-offs
 
 **Quick Reference:**
 
 | Scenario | Best Solution | Why |
 |----------|---------------|-----|
-| [Scenario A] | [Solution] | [Reason] |
-| [Scenario B] | [Solution] | [Reason] |
-| [Scenario C] | [Solution] | [Reason] |
+| Multi-step reasoning, tool use | Bedrock Agents | Orchestrates actions + API calls |
+| Document Q&A, retrieval | Knowledge Bases (RAG) | Retrieves relevant chunks |
+| Direct FM call, no retrieval | InvokeModel | Simple synchronous call |
+| Real-time streaming response | InvokeModelWithResponseStream | Low-latency UX |
 
 ---
 
-### Domain 3: [Domain Name]
+### Domain 3: AI Safety, Security, and Governance (20%)
 
 **High-Frequency Topics:**
-- ⭐⭐⭐ [Topic A]
-- ⭐⭐ [Topic B]
-- ⭐ [Topic C]
+- ⭐⭐⭐ Guardrails: content filters, PII detection, denied topics
+- ⭐⭐⭐ IAM least-privilege for Bedrock access
+- ⭐⭐ VPC endpoints / PrivateLink for private connectivity
 
 **Common Traps:**
-- [Specific trap]
-- [Another trap]
+- Thinking Guardrails block prompts — they filter both inputs and outputs
+- Confusing CloudTrail (audit logging) with CloudWatch (operational monitoring)
 
 ---
 
-### Domain 4: [Domain Name]
+### Domain 4: Operational Efficiency and Optimization (12%)
 
 **High-Frequency Topics:**
-- ⭐⭐⭐ [Topic A]
-- ⭐⭐ [Topic B]
+- ⭐⭐⭐ Provisioned Throughput vs on-demand pricing
+- ⭐⭐ Token efficiency and prompt optimization
+- ⭐ Batch inference for high-volume, non-real-time workloads
 
 **Common Traps:**
-- [Security-related trap]
-- [Compliance-related trap]
+- Choosing PTUs when on-demand is more cost-effective for sporadic usage
+- Not knowing the PTU commitment period (1 month or 6 months)
 
----
-
-## 📊 High-Frequency Concepts
-
-### Must-Know Comparisons
-
-#### [Concept A] vs [Concept B]
-
-| Feature | [Concept A] | [Concept B] |
-|---------|-------------|-------------|
-| **Use Case** | [When to use A] | [When to use B] |
-| **Cost** | [Cost profile] | [Cost profile] |
-| **Setup Time** | [Time] | [Time] |
-| **Best For** | [Scenario] | [Scenario] |
-
-**Exam Question Pattern:**
-- "Which option provides [feature]?" → Usually [Concept B]
-- "What's the most cost-effective?" → Usually [Concept A]
-
----
-
-#### [Service X] vs [Service Y] vs [Service Z]
+**Decision Matrix:**
 
 ```
-Need to choose between services?
-├─ Full control required? → [Service X]
-├─ Easy setup, less control? → [Service Y]
-└─ Managed, hands-off? → [Service Z]
+Which throughput model?
+├─ Predictable, consistent traffic? → Provisioned Throughput (PTU)
+├─ Sporadic / unpredictable traffic? → On-demand (token-based)
+└─ Batch, non-time-sensitive? → Batch inference
 ```
 
 ---
 
-## 💡 Last-Minute Review Checklist
+### Domain 5: Testing, Validation, and Troubleshooting (11%)
+
+**High-Frequency Topics:**
+- ⭐⭐⭐ Model evaluation: automated metrics (Groundedness, Accuracy, Relevance)
+- ⭐⭐ Human-based evaluation workflows
+- ⭐⭐ CloudWatch dashboards and alarms for Bedrock
+
+**Common Traps:**
+- Not knowing the built-in evaluation metrics in Bedrock's model evaluation feature
+- Forgetting that CloudTrail is required for compliance audit trails (not just CloudWatch)
+
+---
+
+## Last-Minute Review Checklist
 
 ### 24 Hours Before Exam
 
 - [ ] Review [Quick Refresher](./quick-refresher.md) page
-- [ ] Skim through decision trees
+- [ ] Skim through decision trees above
 - [ ] Review high-frequency topics (marked ⭐⭐⭐)
 - [ ] Check common exam traps one more time
 - [ ] Get good sleep (seriously!)
 
 ### 1 Hour Before Exam
 
-- [ ] Review key acronyms and definitions
+- [ ] Review key service comparisons (InvokeModel vs Streaming, PTU vs on-demand)
 - [ ] Skim comparison tables
 - [ ] Read through "Common Traps" section
 - [ ] Take 5 deep breaths and relax
@@ -315,7 +299,7 @@ Need to choose between services?
 
 ---
 
-## 🎓 Mental Preparation
+## Mental Preparation
 
 ### The Night Before
 
@@ -345,51 +329,32 @@ Need to choose between services?
 - Forget ID or confirmation
 - Drink too much coffee (bathroom breaks!)
 
-### During the Exam
-
-**Stay Calm:**
-- If stuck, flag and move on
-- Don't panic if questions seem hard
-- Trust your preparation
-- Breathe deeply if stressed
-
-**Positive Self-Talk:**
-- "I've prepared well for this"
-- "I know this material"
-- "One question at a time"
-- "I can review flagged questions later"
-
 ---
 
-## 🔑 Key Formulas/Facts to Remember
-
-<!-- Customize based on exam type -->
+## Key Facts to Remember
 
 ### Important Numbers
 
-- [Limit 1]: [Value]
-- [Limit 2]: [Value]
-- [Limit 3]: [Value]
+- **AIP-C01 Duration**: 170 minutes
+- **Questions**: ~85
+- **Passing Score**: 750/1000
+- **Price**: $300
+- **Domain 1 weight**: 31% (highest — focus here)
+- **Bedrock context window (Claude)**: up to 200k tokens
 
-### Critical Acronyms
+### Critical Service Decision Rules
 
-- **[ABC]**: [Full form] - [What it means]
-- **[XYZ]**: [Full form] - [What it means]
-- **[DEF]**: [Full form] - [What it means]
-
-### Essential Commands/Syntax
-
-```[language]
-# [Most commonly tested command]
-[syntax]
-
-# [Second most common]
-[syntax]
-```
+- **PII in prompts/responses** → Guardrails (PII detection filter)
+- **Content moderation** → Guardrails for Amazon Bedrock
+- **Vector storage for RAG** → OpenSearch Serverless (default) or Aurora pgvector
+- **Predictable throughput** → Provisioned Throughput
+- **Audit trail** → AWS CloudTrail
+- **Operational monitoring** → Amazon CloudWatch
+- **Multi-step agentic workflow** → Amazon Bedrock Agents
 
 ---
 
-## 🎯 Final Tips
+## Final Tips
 
 1. **Read Carefully** - Most mistakes come from misreading questions
 2. **Eliminate First** - Remove obviously wrong answers before choosing
@@ -403,11 +368,9 @@ Need to choose between services?
 ---
 
 ::: tip You've Got This!
-You've studied hard. Trust your preparation. Read carefully. Think critically. **Good luck!** 🍀
+You've studied hard. Trust your preparation. Read carefully. Think critically. **Good luck!**
 :::
 
 ---
 
 [← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Quick Refresher](./quick-refresher.md)
-
-*Last Updated: [YYYY-MM-DD]*

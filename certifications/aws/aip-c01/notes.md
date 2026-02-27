@@ -1,308 +1,184 @@
 ---
-title: "[CERT-CODE] - Study Notes"
-description: "Comprehensive study notes for [CERT-CODE] [Certification Name] exam"
+title: "AIP-C01 - Study Notes"
+description: "Comprehensive study notes for AIP-C01 AWS Certified Generative AI Developer – Professional"
+head:
+  - - meta
+    - name: keywords
+      content: aip-c01, aws, study notes, bedrock, generative ai, rag, agentic ai, guardrails, opensearch, foundation model
 ---
 
-# [CERT-CODE]: Study Notes
+# AIP-C01: Study Notes
 
 [← Back to Overview](./index.md)
 
 ::: tip Study Strategy
-These notes cover all exam domains comprehensively. Use the [Quick Refresher](./quick-refresher.md) for last-minute review.
+These notes cover all exam domains comprehensively. Use the [Quick Refresher](./quick-refresher.md) for last-minute review. Domain 1 has dedicated notes at [Domain 1 →](./domain-1.md).
 :::
 
 ---
 
-## Domain 1: [Domain Name] (~XX%)
+## Domain 1: FM Integration, Data Management, and Compliance (~31%)
 
-### [Topic 1.1]
-
-**Overview:**
-[Brief explanation of the concept]
-
-**Key Points:**
-- Point 1
-- Point 2
-- Point 3
-
-**Example:**
-```[language]
-# Code example or configuration
-[example code]
-```
-
-::: tip Exam Tip
-[Helpful tip for the exam]
-:::
+See dedicated notes: **[Domain 1: FM Integration & Data Management →](./domain-1.md)**
 
 ---
 
-### [Topic 1.2]
+## Domain 2: Implementation and Integration (~26%)
+
+### 2.1 Agentic AI & Bedrock Agents
 
 **Overview:**
-[Brief explanation of the concept]
-
-**Comparison Table:**
-
-| Feature | Option A | Option B | Option C |
-|---------|----------|----------|----------|
-| **Use Case** | When to use A | When to use B | When to use C |
-| **Pros** | Advantage | Advantage | Advantage |
-| **Cons** | Limitation | Limitation | Limitation |
-
-**When to Use:**
-- Use **Option A** when: [scenario]
-- Use **Option B** when: [scenario]
-- Use **Option C** when: [scenario]
-
-::: warning Common Pitfall
-[Something candidates often get wrong]
-:::
-
----
-
-### [Topic 1.3]
-
-**Overview:**
-[Brief explanation]
-
-**Best Practices:**
-- ✅ DO: [Best practice 1]
-- ✅ DO: [Best practice 2]
-- ✅ DO: [Best practice 3]
-- ❌ DON'T: [Anti-pattern 1]
-- ❌ DON'T: [Anti-pattern 2]
-
----
-
-## Domain 2: [Domain Name] (~XX%)
-
-### [Topic 2.1]
-
-**Overview:**
-[Brief explanation]
+Amazon Bedrock Agents enable multi-step reasoning workflows by orchestrating FM calls, API actions, and knowledge base retrievals.
 
 **Key Concepts:**
 
-1. **[Concept A]**
-   - Definition: [What it is]
-   - Use case: [When to use]
-   - Example: [Brief example]
+1. **Action Groups**
+   - Definition: Lambda functions that Agents can invoke to interact with external systems
+   - Use case: Querying a database, calling a REST API, writing to S3
+   - Example: An HR Agent calls a Lambda to fetch employee leave balance
 
-2. **[Concept B]**
-   - Definition: [What it is]
-   - Use case: [When to use]
-   - Example: [Brief example]
+2. **Knowledge Base Integration**
+   - Definition: RAG pipeline attached to an Agent to retrieve relevant context
+   - Use case: Document Q&A, policy lookup, customer support
+   - Example: Agent retrieves relevant docs from OpenSearch before answering
 
-3. **[Concept C]**
-   - Definition: [What it is]
-   - Use case: [When to use]
-   - Example: [Brief example]
-
----
-
-### [Topic 2.2]
-
-**Syntax/Configuration:**
-
-```[language]
-# Basic structure
-[code example]
-```
-
-**Common Patterns:**
-
-```[language]
-# Pattern 1: [Pattern name]
-[code example]
-
-# Pattern 2: [Pattern name]
-[code example]
-```
-
-::: danger Critical Concept
-[Very important concept for the exam]
-:::
+3. **Orchestration Trace**
+   - Definition: Step-by-step trace of Agent reasoning and tool calls
+   - Use case: Debugging agentic behavior
+   - Example: `enableTrace: true` in InvokeAgent API call
 
 ---
 
-### [Topic 2.3]
+### 2.2 RAG Architecture & Chunking Strategies
+
+**Overview:**
+Retrieval-Augmented Generation combines FM inference with context retrieval from a vector store to ground responses in real data.
+
+**Chunking Strategies:**
+
+| Strategy | Description | Best For |
+|----------|-------------|----------|
+| **Fixed-size** | Split by token count (e.g., 300 tokens) | Simple docs, consistent structure |
+| **Semantic** | Split by topic/meaning | Long-form content, varied structure |
+| **Hierarchical** | Parent + child chunk structure | Complex docs with sections |
+
+**When to Use:**
+- Use **Fixed-size** when: documents have uniform structure
+- Use **Semantic** when: documents vary widely in structure
+- Use **Hierarchical** when: you need both broad context and fine-grained retrieval
+
+---
+
+### 2.3 API Integration Patterns
 
 **Decision Tree:**
 
 ```
-[Question to ask]?
-├─ [Condition A] → Use [Solution A]
-├─ [Condition B] → Use [Solution B]
-└─ [Condition C] → Use [Solution C]
+Which Bedrock API to call?
+├─ Need a complete, synchronous response? → InvokeModel
+├─ Need streaming / low-latency UX? → InvokeModelWithResponseStream
+└─ Multi-step agentic workflow? → InvokeAgent
 ```
 
 ---
 
-## Domain 3: [Domain Name] (~XX%)
+## Domain 3: AI Safety, Security, and Governance (~20%)
 
-### [Topic 3.1]
+### 3.1 Guardrails for Amazon Bedrock
 
 **Overview:**
-[Brief explanation]
+Guardrails apply content filters and safety controls to both inputs (prompts) and outputs (responses) from foundation models.
 
-**Step-by-Step Process:**
+**Step-by-Step: Creating a Guardrail**
 
-1. **Step 1: [Action]**
-   - What: [Description]
-   - Why: [Reason]
-   - How: [Implementation]
+1. **Define Content Filters**
+   - What: Configure sensitivity levels for harmful categories (hate, violence, sexual, insults)
+   - Why: Prevent inappropriate content from being generated or passed through
 
-2. **Step 2: [Action]**
-   - What: [Description]
-   - Why: [Reason]
-   - How: [Implementation]
+2. **Configure PII Redaction**
+   - What: Detect and mask/block PII (names, emails, SSNs, credit cards)
+   - Why: Compliance with data privacy regulations
 
-3. **Step 3: [Action]**
-   - What: [Description]
-   - Why: [Reason]
-   - How: [Implementation]
+3. **Set Denied Topics**
+   - What: Specify topics the FM should refuse to discuss (e.g., competitor products)
+   - Why: Business policy enforcement
 
-**Example Implementation:**
-
-```[language]
-# Complete example
-[detailed code example]
-```
+4. **Apply to Inference**
+   - What: Pass `guardrailIdentifier` and `guardrailVersion` in API calls
+   - Why: Guardrails are only active when explicitly applied
 
 ---
 
-### [Topic 3.2]
+### 3.2 IAM & VPC Security
 
 **Service/Tool Comparison:**
 
-| Service | Primary Use | Key Feature | Pricing Model |
-|---------|-------------|-------------|---------------|
-| **[Service A]** | [Use case] | [Main feature] | [Pricing] |
-| **[Service B]** | [Use case] | [Main feature] | [Pricing] |
-| **[Service C]** | [Use case] | [Main feature] | [Pricing] |
-
-**Selection Guide:**
-- Choose **[Service A]** for: [scenario]
-- Choose **[Service B]** for: [scenario]
-- Choose **[Service C]** for: [scenario]
+| Method | Primary Use | Key Feature | When to Use |
+|--------|-------------|-------------|-------------|
+| **IAM Policies** | Access control | Least-privilege resource access | Always — required baseline |
+| **VPC Endpoints (PrivateLink)** | Private connectivity | No public internet routing | Compliance, data residency |
+| **Resource Policies** | Cross-account access | Bedrock model access from other accounts | Multi-account architectures |
 
 ---
 
-## Domain 4: [Domain Name] (~XX%)
+## Domain 4: Operational Efficiency and Optimization (~12%)
 
-### [Topic 4.1]
+### 4.1 Cost Optimization Strategies
 
-**Security Best Practices:**
+**Provisioned Throughput vs On-Demand:**
 
-✅ **DO:**
-- [Security best practice 1]
-- [Security best practice 2]
-- [Security best practice 3]
+✅ **Use Provisioned Throughput when:**
+- Traffic is predictable and consistent
+- You need guaranteed model units (MUs) available
+- Running 24/7 workloads where PTU commitment is cheaper than on-demand
 
-❌ **DON'T:**
-- [Security anti-pattern 1]
-- [Security anti-pattern 2]
-- [Security anti-pattern 3]
+❌ **Avoid Provisioned Throughput when:**
+- Traffic is sporadic or unpredictable
+- Testing or development workloads
+- Short-lived experiments
 
-**Common Security Mistakes:**
-1. [Mistake 1] - Why it's dangerous
-2. [Mistake 2] - Why it's dangerous
-3. [Mistake 3] - Why it's dangerous
+**Token Efficiency Best Practices:**
+- ✅ DO: Keep system prompts concise — every token costs money
+- ✅ DO: Use streaming to improve perceived latency without changing cost
+- ✅ DO: Set `maxTokens` explicitly to prevent runaway responses
+- ❌ DON'T: Repeat the full conversation history when only recent context is needed
 
 ---
 
-### [Topic 4.2]
-
-**Monitoring & Troubleshooting:**
+### 4.2 Monitoring & Troubleshooting
 
 **Common Issues:**
 
 | Issue | Cause | Solution |
 |-------|-------|----------|
-| [Problem 1] | [Root cause] | [How to fix] |
-| [Problem 2] | [Root cause] | [How to fix] |
-| [Problem 3] | [Root cause] | [How to fix] |
-
-**Debugging Process:**
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-4. [Step 4]
+| ThrottlingException | Exceeded on-demand TPS | Switch to Provisioned Throughput or reduce request rate |
+| High latency | Synchronous InvokeModel | Switch to InvokeModelWithResponseStream |
+| Poor RAG retrieval | Low relevance scores | Tune chunking strategy or embedding model |
+| Guardrail blocking valid content | Filter sensitivity too high | Reduce filter strength or update denied topics |
 
 ---
 
 ## Quick Reference
 
-### Important Commands/Syntax
-
-```[language]
-# [Category 1]
-[command/syntax 1]
-[command/syntax 2]
-
-# [Category 2]
-[command/syntax 3]
-[command/syntax 4]
-```
-
 ### Key Acronyms
 
 | Acronym | Full Form | Meaning |
 |---------|-----------|---------|
-| **[ABC]** | [Full name] | [Brief explanation] |
-| **[XYZ]** | [Full name] | [Brief explanation] |
-| **[DEF]** | [Full name] | [Brief explanation] |
+| **FM** | Foundation Model | Large pre-trained AI model (Claude, Llama, Titan, etc.) |
+| **RAG** | Retrieval-Augmented Generation | FM + context retrieval from a vector store |
+| **PTU** | Provisioned Throughput Unit | Reserved model capacity for predictable performance |
+| **PII** | Personally Identifiable Information | Data that can identify an individual |
+| **MU** | Model Unit | Unit of Bedrock Provisioned Throughput |
 
-### Important Limits & Quotas
+### Important Bedrock Limits & Notes
 
-| Resource | Default Limit | Adjustable? |
-|----------|---------------|-------------|
-| [Resource 1] | [Limit] | [Yes/No] |
-| [Resource 2] | [Limit] | [Yes/No] |
-| [Resource 3] | [Limit] | [Yes/No] |
-
----
-
-## Practice Questions
-
-### Question 1
-[Question text]
-
-**Answer:** [Correct answer]
-
-**Explanation:** [Why this is correct and others are wrong]
-
----
-
-### Question 2
-[Question text]
-
-**Answer:** [Correct answer]
-
-**Explanation:** [Why this is correct and others are wrong]
-
----
-
-### Question 3
-[Question text]
-
-**Answer:** [Correct answer]
-
-**Explanation:** [Why this is correct and others are wrong]
-
----
-
-## Additional Resources
-
-- [Official Documentation]
-- [Tutorial/Guide Link]
-- [Video Resource]
-- [Blog Post]
-- [Community Resource]
+| Resource | Key Detail |
+|----------|------------|
+| Claude context window | Up to 200k tokens |
+| PTU commitment period | 1 month or 6 months |
+| OpenSearch Serverless vector dimensions | Up to 16,000 dimensions |
+| Bedrock Knowledge Base chunk size | Configurable (default ~300 tokens) |
 
 ---
 
 [← Back to Overview](./index.md) | [Quick Refresher →](./quick-refresher.md) | [Exam Tips →](./exam-tips.md)
-
-*Last Updated: [YYYY-MM-DD]*

@@ -1,13 +1,19 @@
 ---
-title: "[CERT-CODE] - Exam Objectives"
-description: "Official exam objectives for [CERT-CODE] [Certification Name]"
+title: "AIP-C01 - Exam Objectives"
+description: "Official exam objectives for AIP-C01 AWS Certified Generative AI Developer – Professional"
+head:
+  - - meta
+    - name: keywords
+      content: aip-c01, aws, exam objectives, generative ai, bedrock, domains, certification, foundation model, rag, guardrails, opensearch
 ---
 
-# [CERT-CODE]: Exam Objectives
+# AIP-C01: Exam Objectives
+
+[← Back to Overview](./index.md)
 
 For the complete and official list of exam objectives, refer to the official study guide:
 
-**[Study guide for [CERT-CODE]: [Certification Name]]([Link to official study guide])**
+**[Study guide for AIP-C01: AWS Certified Generative AI Developer – Professional](https://d1.awsstatic.com/training-and-certification/docs-generative-ai-developer-professional/AWS-Certified-Generative-AI-Developer-Professional_Exam-Guide.pdf)**
 
 ---
 
@@ -15,39 +21,48 @@ For the complete and official list of exam objectives, refer to the official stu
 
 | Domain | Weight | Focus Areas |
 |--------|--------|-------------|
-| Domain 1: [Domain Name] | ~XX% | [Brief description] |
-| Domain 2: [Domain Name] | ~XX% | [Brief description] |
-| Domain 3: [Domain Name] | ~XX% | [Brief description] |
-| Domain 4: [Domain Name] | ~XX% | [Brief description] |
+| Domain 1: FM Integration, Data Management, and Compliance | 31% | FM selection, data pipelines, vector stores, prompt engineering, compliance |
+| Domain 2: Implementation and Integration | 26% | Bedrock Agents, RAG architecture, chunking, API integration |
+| Domain 3: AI Safety, Security, and Governance | 20% | Guardrails, IAM policies, VPC endpoints, traceability, auditability |
+| Domain 4: Operational Efficiency and Optimization | 12% | Token efficiency, cost optimization, Provisioned Throughput (PTUs) |
+| Domain 5: Testing, Validation, and Troubleshooting | 11% | Model evaluation, CloudWatch metrics, CloudTrail auditing, debugging |
 
 ---
 
-## In-Scope [Services/Technologies/Features]
+## In-Scope AWS Services
 
-<!-- Delete this section if not applicable (e.g., for AWS/cloud certifications) -->
+### Core AI/ML Services
+- **Amazon Bedrock**: Managed foundation model service — InvokeModel, Knowledge Bases, Agents, Guardrails
+- **Amazon SageMaker**: Model training, fine-tuning, and custom model deployment
+- **Amazon Comprehend**: NLP service for text analysis and entity recognition
 
-### [Category 1]
-- **[Service/Tool A]**: Brief description
-- **[Service/Tool B]**: Brief description
-- **[Service/Tool C]**: Brief description
+### Storage & Vector Databases
+- **Amazon OpenSearch Serverless**: Primary vector store for RAG knowledge bases
+- **Amazon S3**: Data ingestion, storage, and staging for RAG pipelines
+- **Aurora PostgreSQL (pgvector)**: Alternative vector store using pgvector extension
 
-### [Category 2]
-- **[Service/Tool A]**: Brief description
-- **[Service/Tool B]**: Brief description
-- **[Service/Tool C]**: Brief description
+### Compute & Integration
+- **AWS Lambda**: Orchestration and integration layer for Bedrock Agents
+- **Amazon API Gateway**: Expose Bedrock-powered APIs to external consumers
+- **Amazon ECS / EKS**: Container-based deployment for GenAI application backends
 
-### [Category 3]
-- **[Service/Tool A]**: Brief description
-- **[Service/Tool B]**: Brief description
-- **[Service/Tool C]**: Brief description
+### Security & Governance
+- **AWS IAM**: Least-privilege access control for Bedrock resources
+- **AWS PrivateLink / VPC Endpoints**: Private connectivity to Bedrock without public internet
+- **AWS CloudTrail**: Audit logging of all Bedrock API calls
+- **Amazon CloudWatch**: Operational metrics, alarms, and dashboards for monitoring
+
+### Search & Retrieval
+- **Amazon Kendra**: Enterprise search for document retrieval (alternative RAG source)
+- **Amazon Bedrock Knowledge Bases**: Managed RAG pipeline integrating S3 + OpenSearch
 
 ---
 
 ## Study Progress
 
 <ProgressTracker
-  title="[CERT-CODE] Study Progress"
-  storage-key="[cert-code]-progress"
+  title="AIP-C01 Objectives Progress"
+  storage-key="aip-c01-objectives-progress"
   :items="[
     { id: 'objectives', label: 'Reviewed exam objectives' },
     { id: 'notes', label: 'Completed study notes' },
