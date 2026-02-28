@@ -17,6 +17,14 @@ An intermediate certification for developers, DevOps engineers, and tech manager
 Think like a developer who uses GitHub Copilot daily. Questions test your ability to apply Copilot effectively — writing good prompts, using the right feature for the task, and maintaining responsible AI practices.
 :::
 
+::: tip Certification Achieved ✅
+**Earned**: February 28, 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/2237B962A36FD6D3?sharingId=DF3DC239EE30F0A4)
+
+**Notes Prepared**: February 2026 · **Last Updated**: 2026-02-27
+:::
+
+
 <ImageModal
   src="/images/certifications/gh-300/infographic.png"
   alt="GH-300 Exam Overview Infographic"

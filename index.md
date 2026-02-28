@@ -9,11 +9,11 @@ description: Study notes from technology certifications I've cleared and ones I'
   <p class="cert-hero-subtitle">I study for certs by writing notes. When I decided to share them, I added interactive tools to make them more useful for anyone studying alongside me.</p>
   <div class="cert-hero-stats">
     <div class="cert-stat">
-      <span class="cert-stat-num">6</span>
+      <span class="cert-stat-num">7</span>
       <span class="cert-stat-label">Passed</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">7</span>
+      <span class="cert-stat-num">6</span>
       <span class="cert-stat-label">In Progress</span>
     </div>
     <div class="cert-stat">
@@ -21,7 +21,7 @@ description: Study notes from technology certifications I've cleared and ones I'
       <span class="cert-stat-label">Planned</span>
     </div>
   </div>
-  <p class="cert-hero-since">Journey started · October 2024</p>
+  <p class="cert-hero-since">Journey started · Jan 2026</p>
 </div>
 
 ## What's Inside Each Certification
@@ -44,24 +44,6 @@ These started as plain markdown files. When I decided to share them as a site, I
 </div>
 
 <div class="cert-grid">
-
-<div class="cert-card studying">
-  <div class="cert-ribbon intermediate">Intermediate</div>
-  <span class="provider-tag github">GitHub</span>
-  <h3><a href="./certifications/github/gh-300/">GH-300: GitHub Copilot</a></h3>
-  <p>Apply responsible AI practices, effective prompt engineering, and GitHub Copilot features to improve software development productivity and code quality.</p>
-  <div class="cert-prereqs">GitHub experience, software development fundamentals, familiarity with IDE workflows</div>
-  <div class="cert-dates">
-    <div class="cert-date-item study-by">
-      <span class="date-label">Study by</span>
-      <span class="date-val">Feb 28</span>
-    </div>
-    <div class="cert-date-item exam-target">
-      <span class="date-label">Exam</span>
-      <span class="date-val">Feb 28</span>
-    </div>
-  </div>
-</div>
 
 <div class="cert-card studying">
   <div class="cert-ribbon intermediate">Intermediate</div>
@@ -218,6 +200,10 @@ These started as plain markdown files. When I decided to share them as a site, I
       <span class="cert-tl-dot"></span>
     </div>
     <div class="cert-tl-entries">
+      <div class="cert-tl-entry beginner">
+        <span class="provider-tag github">GitHub</span>
+        <a class="cert-tl-name" href="./certifications/github/gh-300/">GH-300: GitHub Copilot</a>
+      </div>
       <div class="cert-tl-entry beginner">
         <span class="provider-tag github">GitHub</span>
         <a class="cert-tl-name" href="./certifications/github/gh-900/">GH-900: GitHub Foundations</a>
