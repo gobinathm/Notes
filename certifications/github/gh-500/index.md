@@ -17,6 +17,12 @@ An intermediate certification for developers, security engineers, and DevSecOps 
 Think like a security-aware developer or DevSecOps engineer. Questions test your ability to configure GHAS features, interpret their results, and apply corrective measures — not just define what they are.
 :::
 
+::: info Currently Studying ⏳
+**Target Date**: TBD
+
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-02
+:::
+
 <ImageModal
   src="/images/certifications/gh-500/infographic.png"
   alt="GH-500 Exam Overview Infographic"
@@ -42,51 +48,56 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
     {
       id: 'domain-1',
       label: 'Domain 1: Describe GHAS Features and Functionality (15%)',
+      link: 'https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security',
       children: [
-        { id: 'd1-overview', label: 'What GHAS includes and licensing requirements' },
-        { id: 'd1-features', label: 'Secret scanning, Dependabot, code scanning overview' },
-        { id: 'd1-plans', label: 'GHEC vs GHES GHAS availability' }
+        { id: 'd1-overview', label: 'What GHAS includes and licensing requirements', link: 'https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security' },
+        { id: 'd1-features', label: 'Secret scanning, Dependabot, code scanning overview', link: 'https://docs.github.com/en/code-security/getting-started/github-security-features' },
+        { id: 'd1-plans', label: 'GHEC vs GHES GHAS availability', link: 'https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security' }
       ]
     },
     {
       id: 'domain-2',
       label: 'Domain 2: Configure and Use Secret Scanning (15%)',
+      link: 'https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning',
       children: [
-        { id: 'd2-enable', label: 'Enabling secret scanning at repo, org, and enterprise level' },
-        { id: 'd2-push', label: 'Push protection — block secrets before commit' },
-        { id: 'd2-patterns', label: 'Custom patterns, partner patterns, and validity checks' },
-        { id: 'd2-alerts', label: 'Managing and remediating secret scanning alerts' }
+        { id: 'd2-enable', label: 'Enabling secret scanning at repo, org, and enterprise level', link: 'https://docs.github.com/en/code-security/secret-scanning/configuring-secret-scanning-for-your-repositories' },
+        { id: 'd2-push', label: 'Push protection — block secrets before commit', link: 'https://docs.github.com/en/code-security/secret-scanning/push-protection-for-repositories-and-organizations' },
+        { id: 'd2-patterns', label: 'Custom patterns, partner patterns, and validity checks', link: 'https://docs.github.com/en/code-security/secret-scanning/custom-patterns-and-partner-patterns' },
+        { id: 'd2-alerts', label: 'Managing and remediating secret scanning alerts', link: 'https://docs.github.com/en/code-security/secret-scanning/managing-alerts-from-secret-scanning' }
       ]
     },
     {
       id: 'domain-3',
       label: 'Domain 3: Configure and Use Dependabot and Dependency Review (35%)',
+      link: 'https://docs.github.com/en/code-security/dependabot',
       children: [
-        { id: 'd3-graph', label: 'Dependency graph — what it tracks and how' },
-        { id: 'd3-alerts', label: 'Dependabot alerts vs Dependabot security updates' },
-        { id: 'd3-version', label: 'Dependabot version updates and dependabot.yml' },
-        { id: 'd3-review', label: 'Dependency review action in pull requests' },
-        { id: 'd3-remediation', label: 'Remediating vulnerabilities and CVSS severity levels' }
+        { id: 'd3-graph', label: 'Dependency graph — what it tracks and how', link: 'https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph' },
+        { id: 'd3-alerts', label: 'Dependabot alerts vs Dependabot security updates', link: 'https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts' },
+        { id: 'd3-version', label: 'Dependabot version updates and dependabot.yml', link: 'https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates' },
+        { id: 'd3-review', label: 'Dependency review action in pull requests', link: 'https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review' },
+        { id: 'd3-remediation', label: 'Remediating vulnerabilities and CVSS severity levels', link: 'https://docs.github.com/en/code-security/dependabot/dependabot-alerts/viewing-and-updating-dependabot-alerts' }
       ]
     },
     {
       id: 'domain-4',
       label: 'Domain 4: Configure and Use Code Scanning with CodeQL (25%)',
+      link: 'https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning',
       children: [
-        { id: 'd4-setup', label: 'Default vs advanced CodeQL setup' },
-        { id: 'd4-queries', label: 'Built-in queries, custom queries, and query suites' },
-        { id: 'd4-alerts', label: 'Interpreting code scanning alerts and severity levels' },
-        { id: 'd4-sarif', label: 'SARIF format and third-party tool integration' },
-        { id: 'd4-pr', label: 'Code scanning in pull requests and branch protection' }
+        { id: 'd4-setup', label: 'Default vs advanced CodeQL setup', link: 'https://docs.github.com/en/code-security/code-scanning/setting-up-code-scanning-for-a-repository/setting-up-code-scanning-for-a-repository' },
+        { id: 'd4-queries', label: 'Built-in queries, custom queries, and query suites', link: 'https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning' },
+        { id: 'd4-alerts', label: 'Interpreting code scanning alerts and severity levels', link: 'https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository' },
+        { id: 'd4-sarif', label: 'SARIF format and third-party tool integration', link: 'https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning' },
+        { id: 'd4-pr', label: 'Code scanning in pull requests and branch protection', link: 'https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/triage-code-scanning-alerts-in-pull-requests' }
       ]
     },
     {
       id: 'domain-5',
       label: 'Domain 5: GHAS Best Practices and Corrective Measures (10%)',
+      link: 'https://docs.github.com/en/code-security/getting-started/github-security-best-practices',
       children: [
-        { id: 'd5-rollout', label: 'Rollout strategies and organizational adoption' },
-        { id: 'd5-metrics', label: 'Security overview, metrics, and reporting' },
-        { id: 'd5-sbom', label: 'SBOM export and compliance' }
+        { id: 'd5-rollout', label: 'Rollout strategies and organizational adoption', link: 'https://docs.github.com/en/enterprise-cloud@latest/code-security/getting-started/dependabot-rollout' },
+        { id: 'd5-metrics', label: 'Security overview, metrics, and reporting', link: 'https://docs.github.com/en/code-security/security-overview/about-security-overview' },
+        { id: 'd5-sbom', label: 'SBOM export and compliance', link: 'https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/exporting-a-software-bill-of-materials-for-your-repository' }
       ]
     },
     { id: 'exam-guide', label: 'Reviewed exam guide & traps' },
