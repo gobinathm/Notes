@@ -1,5 +1,5 @@
 ---
-title: "GH-500 - Domain 2: Configure and Use Secret Scanning"
+title: "GH-500 - Domain 2: Configure and use secret scanning"
 description: "GH-500 Domain 2: Enabling secret scanning, push protection, custom patterns, and managing alerts"
 head:
   - - meta
@@ -7,7 +7,7 @@ head:
       content: gh-500, domain 2, secret scanning, push protection, custom patterns, ghas, github advanced security
 ---
 
-# Domain 2: Configure and Use Secret Scanning (15%)
+# Domain 2: Configure and use secret scanning (10%)
 
 [← Domain 1](./domain-1.md) · [Next Domain →](./domain-3.md)
 

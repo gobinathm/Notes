@@ -1,5 +1,5 @@
 ---
-title: "GH-500 - Domain 1: GHAS Features and Functionality"
+title: "GH-500 - Domain 1: Describe the GHAS security features and functionality"
 description: "GH-500 Domain 1: Overview of GitHub Advanced Security features, licensing, and availability"
 head:
   - - meta
@@ -7,7 +7,7 @@ head:
       content: gh-500, domain 1, github advanced security, ghas, secret scanning, dependabot, code scanning, licensing, ghec, ghes
 ---
 
-# Domain 1: Describe GHAS Features and Functionality (15%)
+# Domain 1: Describe the GHAS security features and functionality (10%)
 
 [← Overview](./index.md) · [Next Domain →](./domain-2.md)
 

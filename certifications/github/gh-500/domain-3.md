@@ -1,5 +1,5 @@
 ---
-title: "GH-500 - Domain 3: Configure and Use Dependabot and Dependency Review"
+title: "GH-500 - Domain 3: Configure and use dependency management"
 description: "GH-500 Domain 3: Dependency graph, Dependabot alerts, security updates, version updates, and dependency review action"
 head:
   - - meta
@@ -7,7 +7,7 @@ head:
       content: gh-500, domain 3, dependabot, dependency review, dependency graph, security updates, version updates, cve, cvss, ghas
 ---
 
-# Domain 3: Configure and Use Dependabot and Dependency Review (35%)
+# Domain 3: Configure and use dependency management (15%)
 
 [← Domain 2](./domain-2.md) · [Next Domain →](./domain-4.md)
 

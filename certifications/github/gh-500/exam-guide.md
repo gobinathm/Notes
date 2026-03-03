@@ -97,9 +97,9 @@ Private repo → GitHub Advanced Security license required (GHEC or GHES)
 
 ## Final Strategy
 
-- **Domain 3 is 35% of the exam** — Dependabot and dependency review is the single largest topic. Know every configuration option in `dependabot.yml`, the difference between security updates and version updates, and how dependency review blocks PRs.
-- **Domain 4 is 25%** — Know default vs advanced CodeQL setup, what SARIF is, and how code scanning integrates with branch protection rules.
-- **Together, Domains 3 and 4 are 60% of the exam** — master these two before anything else.
+- **Domains 5 and 6 are 20% each (40% total)** — CodeQL and Best Practices represent a huge chunk. Master custom CodeQL query suites, and phased rollout strategies.
+- **Domains 3 and 4 are 15% each (30% total)** — Know `dependabot.yml`, default vs advanced CodeQL setup, what SARIF is, and how code scanning integrates with branch protection.
+- **Together, Domains 3, 4, 5, and 6 are 70% of the exam** — master these core application security topics before the enterprise aspects.
 - **For every feature, know**: how to enable it, where to configure it, what it produces (alert, PR, block), and how to remediate.
 
 ---

@@ -47,7 +47,7 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
   :items="[
     {
       id: 'domain-1',
-      label: 'Domain 1: Describe GHAS Features and Functionality (15%)',
+      label: 'Domain 1: Describe the GHAS security features and functionality (10%)',
       link: 'https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security',
       children: [
         { id: 'd1-overview', label: 'What GHAS includes and licensing requirements', link: 'https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security' },
@@ -57,7 +57,7 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
     },
     {
       id: 'domain-2',
-      label: 'Domain 2: Configure and Use Secret Scanning (15%)',
+      label: 'Domain 2: Configure and use secret scanning (10%)',
       link: 'https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning',
       children: [
         { id: 'd2-enable', label: 'Enabling secret scanning at repo, org, and enterprise level', link: 'https://docs.github.com/en/code-security/secret-scanning/configuring-secret-scanning-for-your-repositories' },
@@ -68,7 +68,7 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
     },
     {
       id: 'domain-3',
-      label: 'Domain 3: Configure and Use Dependabot and Dependency Review (35%)',
+      label: 'Domain 3: Configure and use dependency management (15%)',
       link: 'https://docs.github.com/en/code-security/dependabot',
       children: [
         { id: 'd3-graph', label: 'Dependency graph — what it tracks and how', link: 'https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph' },
@@ -80,24 +80,42 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
     },
     {
       id: 'domain-4',
-      label: 'Domain 4: Configure and Use Code Scanning with CodeQL (25%)',
+      label: 'Domain 4: Configure and use code scanning (15%)',
       link: 'https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning',
       children: [
-        { id: 'd4-setup', label: 'Default vs advanced CodeQL setup', link: 'https://docs.github.com/en/code-security/code-scanning/setting-up-code-scanning-for-a-repository/setting-up-code-scanning-for-a-repository' },
-        { id: 'd4-queries', label: 'Built-in queries, custom queries, and query suites', link: 'https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning' },
-        { id: 'd4-alerts', label: 'Interpreting code scanning alerts and severity levels', link: 'https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository' },
+        { id: 'd4-setup', label: 'Default vs advanced code scanning setup', link: 'https://docs.github.com/en/code-security/code-scanning/setting-up-code-scanning-for-a-repository/setting-up-code-scanning-for-a-repository' },
         { id: 'd4-sarif', label: 'SARIF format and third-party tool integration', link: 'https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning' },
         { id: 'd4-pr', label: 'Code scanning in pull requests and branch protection', link: 'https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/triage-code-scanning-alerts-in-pull-requests' }
       ]
     },
     {
       id: 'domain-5',
-      label: 'Domain 5: GHAS Best Practices and Corrective Measures (10%)',
+      label: 'Domain 5: Use code scanning with CodeQL (20%)',
+      link: 'https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning',
+      children: [
+        { id: 'd5-queries', label: 'Built-in queries, custom queries, and query suites', link: 'https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning' },
+        { id: 'd5-alerts', label: 'Interpreting code scanning alerts and severity levels', link: 'https://docs.github.com/en/code-security/code-scanning/managing-code-scanning-alerts/managing-code-scanning-alerts-for-your-repository' },
+        { id: 'd5-packs', label: 'CodeQL packs and database creation', link: 'https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning' }
+      ]
+    },
+    {
+      id: 'domain-6',
+      label: 'Domain 6: Describe GitHub Advanced Security best practices (20%)',
       link: 'https://docs.github.com/en/code-security/getting-started/github-security-best-practices',
       children: [
-        { id: 'd5-rollout', label: 'Rollout strategies and organizational adoption', link: 'https://docs.github.com/en/enterprise-cloud@latest/code-security/getting-started/dependabot-rollout' },
-        { id: 'd5-metrics', label: 'Security overview, metrics, and reporting', link: 'https://docs.github.com/en/code-security/security-overview/about-security-overview' },
-        { id: 'd5-sbom', label: 'SBOM export and compliance', link: 'https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/exporting-a-software-bill-of-materials-for-your-repository' }
+        { id: 'd6-rollout', label: 'Rollout strategies and organizational adoption', link: 'https://docs.github.com/en/enterprise-cloud@latest/code-security/getting-started/dependabot-rollout' },
+        { id: 'd6-sbom', label: 'SBOM export and compliance', link: 'https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/exporting-a-software-bill-of-materials-for-your-repository' },
+        { id: 'd6-corrective', label: 'Corrective measures and alert remediation', link: 'https://docs.github.com/en/code-security/getting-started/github-security-best-practices' }
+      ]
+    },
+    {
+      id: 'domain-7',
+      label: 'Domain 7: Configure GitHub Advanced Security tools in GitHub Enterprise (10%)',
+      link: 'https://docs.github.com/en/code-security/security-overview/about-security-overview',
+      children: [
+        { id: 'd7-overview', label: 'Security overview across the enterprise', link: 'https://docs.github.com/en/code-security/security-overview/about-security-overview' },
+        { id: 'd7-metrics', label: 'Security metrics and reporting', link: 'https://docs.github.com/en/code-security/security-overview/about-security-overview' },
+        { id: 'd7-policies', label: 'Enterprise-level GHAS policies and configuration', link: 'https://docs.github.com/en/enterprise-cloud@latest/admin/code-security/managing-github-advanced-security-for-your-enterprise' }
       ]
     },
     { id: 'exam-guide', label: 'Reviewed exam guide & traps' },

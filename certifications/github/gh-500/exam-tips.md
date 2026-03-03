@@ -17,11 +17,9 @@ This page focuses on the **study strategy** and **test-taking approach**. For ta
 
 ### 1. Focus Areas by Domain Weight
 
-- **Primary (Domain 3 — 35%)**: Dependabot and dependency review is the largest single domain. Know every option in `dependabot.yml`, the difference between security updates and version updates, and exactly what the dependency review action blocks.
-- **Primary (Domain 4 — 25%)**: Code scanning and CodeQL — know default vs advanced setup, SARIF, and branch protection integration.
-- **Secondary (Domain 2 — 15%)**: Secret scanning and push protection. Know the reactive vs proactive distinction cold.
-- **Secondary (Domain 1 — 15%)**: GHAS feature overview and licensing. Know which plans require GHAS and the seat model.
-- **Tertiary (Domain 5 — 10%)**: Best practices and Security Overview. Skim but don't skip — rollout strategy and CVSS remediation priority may appear.
+- **Primary (Domains 5 & 6 — 20% each)**: CodeQL details and GHAS best practices make up 40% of the exam. Master CodeQL query suites and the phased GHAS rollout strategy.
+- **Secondary (Domains 3 & 4 — 15% each)**: Dependency management and code scanning setup. Know `dependabot.yml`, dependency review, and SARIF integration.
+- **Tertiary (Domains 1, 2 & 7 — 10% each)**: GHAS features, secret scanning, and enterprise configurations. Know push protection bypasses and Security Overview metrics well.
 
 ### 2. Hands-on Practice
 
@@ -56,8 +54,8 @@ This page focuses on the **study strategy** and **test-taking approach**. For ta
 
 - [ ] Review [Cheatsheet](./cheatsheet.md) — especially the GHAS feature table, CVSS severity levels, and quick decision rules.
 - [ ] Revisit [Exam Guide](./exam-guide.md) traps — especially secret scanning vs push protection, security updates vs version updates, and default vs advanced CodeQL setup.
-- [ ] Flashcards: Domain 3 (Dependabot), Domain 4 (CodeQL/SARIF), Domain 2 (secret scanning/push protection).
-- [ ] Remind yourself: **Domain 3 + Domain 4 = 60% of the exam.** Master those two domains first.
+- [ ] Flashcards: Domain 3 (Dependabot), Domain 5 (CodeQL), Domain 2 (secret scanning/push protection).
+- [ ] Remind yourself: **Domains 4, 5, and 6 = 55% of the exam.** Master Code scanning, CodeQL, and Best Practices.
 - [ ] Verify Pearson VUE requirements: government ID, clean desk, no second monitors, camera enabled.
 
 ---

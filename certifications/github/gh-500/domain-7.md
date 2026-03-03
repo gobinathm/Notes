@@ -1,0 +1,104 @@
+---
+title: "GH-500 - Domain 7: Configure GitHub Advanced Security tools in GitHub Enterprise"
+description: "GH-500 Domain 7: Enterprise policies, Security Overview, and metrics"
+head:
+  - - meta
+    - name: keywords
+      content: gh-500, domain 7, ghas enterprise, security overview, metrics, policies
+---
+
+# Domain 7: Configure GitHub Advanced Security tools in GitHub Enterprise (10%)
+
+[← Domain 6](./domain-6.md) · [Cheatsheet →](./cheatsheet.md)
+
+::: tip Exam Tip
+This domain covers enterprise-level features. You need to know how Security Overview tracks metrics natively, and what enterprise policies can be applied across organizations.
+:::
+
+---
+
+## Security Overview
+
+The **Security Overview** dashboard provides a consolidated view of all GHAS feature status and alerts across an organization or enterprise.
+
+### What Security Overview Shows
+
+- Which repositories have each GHAS feature enabled (secret scanning, code scanning, Dependabot)
+- Alert counts by severity across all repositories
+- Open vs. closed/fixed alert trends over time
+- Repositories with the most open critical alerts (risk exposure ranking)
+
+### Who Can Access Security Overview
+
+| Role | Level |
+|---|---|
+| **Security managers** | Organization-level overview |
+| **Organization owners** | Organization-level overview |
+| **Enterprise owners** | Enterprise-wide overview across all organizations |
+
+**Navigate to**: Organization → Security tab → Overview
+
+### Using Security Overview for Prioritization
+
+1. **Filter by severity**: Focus on Critical and High alerts first
+2. **Filter by feature**: Identify repositories with code scanning disabled
+3. **Sort by alert count**: Find the repositories with the highest vulnerability debt
+4. **Track trends**: Confirm that alert counts are decreasing over time (remediation is working)
+
+---
+
+## Metrics and Reporting
+
+### Key GHAS Metrics to Track
+
+| Metric | What it measures |
+|---|---|
+| **Mean Time to Remediate (MTTR)** | Average time from alert creation to resolution |
+| **Alert volume by severity** | Total open alerts per severity level |
+| **Fix rate** | % of alerts resolved vs. dismissed vs. open |
+| **Feature coverage** | % of repositories with each GHAS feature enabled |
+| **New alerts per week** | Rate of new vulnerabilities being introduced |
+
+### GitHub Advisory Database
+
+- GitHub's vulnerability database powers Dependabot alerts
+- Contains: CVEs from NVD + GitHub-curated advisories (GitHub Security Advisories)
+- Organization security teams can also submit **private security advisories** for their own repositories
+
+---
+
+## Enterprise Policies
+
+Enterprise owners can enforce GHAS policies across all organizations within the enterprise.
+
+### Enforcing Features
+
+- Enable **Secret Scanning** for all new organizations
+- Enable **Push Protection** by default across all organizations
+- Set **Custom Patterns** at the enterprise level, making them available to all orgs and repos automatically.
+
+Enforcing these at the enterprise level disables the ability for organization owners to turn them off, ensuring compliance.
+
+---
+
+<FlashcardDeck
+  title="Domain 7 Quick Quiz"
+  :cards="[
+    {
+      question: 'Who can access Security Overview at the organization level?',
+      answer: '<strong>Organization owners</strong> and <strong>Security managers</strong>. Enterprise owners can access enterprise-wide Security Overview across all organizations.'
+    },
+    {
+      question: 'What is MTTR in the context of GHAS metrics?',
+      answer: 'Mean Time to Remediate — the average time from when a security alert is created to when it is resolved (fixed or dismissed). A lower MTTR indicates a faster security response.'
+    },
+    {
+      question: 'Can custom secret scanning patterns be configured at the enterprise level?',
+      answer: '<strong>Yes.</strong> Enterprise administrators can define custom patterns that apply to all repositories across all organizations within the enterprise.'
+    }
+  ]"
+/>
+
+---
+
+[← Domain 6](./domain-6.md) · [Cheatsheet →](./cheatsheet.md)
