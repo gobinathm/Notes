@@ -1,0 +1,42 @@
+name: Welcome First Timers
+
+on:
+  issues:
+    types:
+      - opened
+  pull_request_target:
+    types:
+      - opened
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Drop a welcome note
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 **Welcome to notes.gobinath.com!**
+
+            Thanks for opening your first issue — the certification vault is better because of you. A couple of friendly pointers while you're here:
+
+            - Peek at our [CONTRIBUTING.md](CONTRIBUTING.md) for formatting tips and the fast path through templates.
+            - Call out which exam, domain, or resource needs love so we can jump in quickly.
+            - Screenshots, links, or repro steps (if it's a bug) keep the study notes extra sharp.
+
+            Appreciate you taking the time to help future learners. 🙌
+          pull-request-message: |
+            🚀 **First PR vibes!**
+
+            Thank you for your inaugural contribution to notes.gobinath.com. Before a maintainer reviews it, double-check the essentials:
+
+            - `npm install` (once) and `npm run docs:build` help catch broken links or markdown issues locally.
+            - Reference the relevant certification file(s) in your description so reviewers can follow along.
+            - Add screenshots, diagrams, or context if you touched visual assets in `public/` or `resources/`.
+
+            Can't wait to celebrate this merge with you — welcome aboard! 🎉
