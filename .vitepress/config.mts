@@ -140,7 +140,8 @@ export default defineConfig({
       {
         text: 'AWS',
         items: [
-          { text: 'MLA-C01: ML Engineer', link: '/certifications/aws/mla-c01/' },
+          { text: "AIP-C01: Generative AI Developer – Professional", link: "/certifications/aws/aip-c01/" },
+          { text: 'MLA-C01: Machine Learning Engineer', link: '/certifications/aws/mla-c01/' },
           { text: 'AIF-C01: AI Practitioner', link: '/certifications/aws/aif-c01/' },
           { text: 'CLF-C02: Cloud Practitioner', link: '/certifications/aws/clf-c02/' }
         ]
@@ -312,7 +313,28 @@ export default defineConfig({
               items: [
                 { text: 'Overview', link: '/certifications/aws/mla-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/mla-c01/objectives' },
+                { text: 'Study Notes', link: '/certifications/aws/mla-c01/notes' },
+                { text: 'Quick Refresher', link: '/certifications/aws/mla-c01/quick-refresher' },
+                { text: 'Exam Tips', link: '/certifications/aws/mla-c01/exam-tips' },
                 { text: 'Resources', link: '/certifications/aws/mla-c01/resources' }
+              ]
+            },
+            {
+              text: 'AIP-C01: Generative AI Developer – Professional',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/aws/aip-c01/' },
+                { text: 'Domain 1: FM Integration', link: '/certifications/aws/aip-c01/domain-1' },
+                { text: 'Domain 2: Implementation', link: '/certifications/aws/aip-c01/domain-2' },
+                { text: 'Domain 3: AI Safety & Governance', link: '/certifications/aws/aip-c01/domain-3' },
+                { text: 'Domain 4: Operational Efficiency', link: '/certifications/aws/aip-c01/domain-4' },
+                { text: 'Domain 5: Testing & Validation', link: '/certifications/aws/aip-c01/domain-5' },
+                { text: 'Exam Objectives', link: '/certifications/aws/aip-c01/objectives' },
+                { text: 'Study Notes', link: '/certifications/aws/aip-c01/notes' },
+                { text: 'Exam Guide', link: '/certifications/aws/aip-c01/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/aws/aip-c01/cheatsheet' },
+                { text: 'Quick Refresher', link: '/certifications/aws/aip-c01/quick-refresher' },
+                { text: 'Exam Tips', link: '/certifications/aws/aip-c01/exam-tips' }
               ]
             }
           ]

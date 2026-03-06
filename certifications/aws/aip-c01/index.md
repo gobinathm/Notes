@@ -17,6 +17,12 @@ Validates the ability to **design, build, and deploy generative AI applications*
 Deep architectural reasoning required. Questions test hands-on familiarity with the Amazon Bedrock API (`InvokeModel`, `InvokeModelWithResponseStream`), OpenSearch Serverless for vector storage, and cost/security trade-offs across all five domains.
 :::
 
+::: info Currently Studying ⏳
+**Target Date**: TBD
+
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-05
+:::
+
 <!-- <ImageModal
   src="/images/certifications/aip-c01/infographic.png"
   alt="AIP-C01 Exam Overview Infographic"
@@ -42,50 +48,55 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
     {
       id: 'domain-1',
       label: 'Domain 1: FM Integration, Data Management, and Compliance (31%)',
-      link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html',
+      link: './domain-1',
       children: [
-        { id: 'd1-integration', label: 'FM Selection & Configuration', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html' },
-        { id: 'd1-data', label: 'Data Pipelines & Vector Stores', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html' },
-        { id: 'd1-compliance', label: 'Compliance & Data Residency', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html' },
-        { id: 'd1-prompt', label: 'Prompt Engineering Strategies', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html' }
+        { id: 'd1-fm', label: 'FM Selection & Model Families', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html' },
+        { id: 'd1-prompt', label: 'Prompt Engineering Strategies', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html' },
+        { id: 'd1-data', label: 'RAG Pipelines & Chunking Strategies', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/kb-chunking-parsing.html' },
+        { id: 'd1-vector', label: 'Vector Stores (OpenSearch Serverless, pgvector)', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html' },
+        { id: 'd1-compliance', label: 'Compliance, Data Residency & IAM', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html' }
       ]
     },
     {
       id: 'domain-2',
       label: 'Domain 2: Implementation and Integration (26%)',
-      link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html',
+      link: './domain-2',
       children: [
-        { id: 'd2-agents', label: 'Agentic AI & Bedrock Agents', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/agents-how-it-works.html' },
-        { id: 'd2-rag', label: 'RAG Architecture & Chunking Strategies', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/kb-chunking-parsing.html' },
-        { id: 'd2-api', label: 'InvokeModel & Streaming APIs', link: 'https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html' }
+        { id: 'd2-agents', label: 'Bedrock Agents & Action Groups', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/agents-how-it-works.html' },
+        { id: 'd2-kb', label: 'Knowledge Base Architecture & Sync', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html' },
+        { id: 'd2-api', label: 'InvokeModel, Streaming & InvokeAgent APIs', link: 'https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html' },
+        { id: 'd2-retrieval', label: 'Top-K Retrieval & Metadata Filtering', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/kb-chunking-parsing.html' }
       ]
     },
     {
       id: 'domain-3',
       label: 'Domain 3: AI Safety, Security, and Governance (20%)',
-      link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html',
+      link: './domain-3',
       children: [
-        { id: 'd3-guardrails', label: 'Guardrails: Content Filters & PII Detection', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-create.html' },
-        { id: 'd3-iam', label: 'IAM Policies & VPC Endpoints', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/security-iam.html' },
-        { id: 'd3-governance', label: 'Traceability, Auditability & CloudTrail', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/logging-using-cloudtrail.html' }
+        { id: 'd3-guardrails', label: 'Guardrails: All Four Filter Types', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-create.html' },
+        { id: 'd3-iam', label: 'IAM Least-Privilege & Resource Policies', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/security-iam.html' },
+        { id: 'd3-vpc', label: 'VPC Endpoints & PrivateLink', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/usingVPC.html' },
+        { id: 'd3-governance', label: 'CloudTrail, CloudWatch & Model Invocation Logging', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/logging-using-cloudtrail.html' }
       ]
     },
     {
       id: 'domain-4',
       label: 'Domain 4: Operational Efficiency and Optimization (12%)',
-      link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html',
+      link: './domain-4',
       children: [
+        { id: 'd4-throughput', label: 'Provisioned Throughput vs. On-Demand', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html' },
         { id: 'd4-cost', label: 'Token Efficiency & Cost Optimization', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html' },
-        { id: 'd4-throughput', label: 'Provisioned Throughput (PTUs)', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html' }
+        { id: 'd4-batch', label: 'Batch Inference', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/batch-inference.html' }
       ]
     },
     {
       id: 'domain-5',
       label: 'Domain 5: Testing, Validation, and Troubleshooting (11%)',
-      link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html',
+      link: './domain-5',
       children: [
-        { id: 'd5-evaluation', label: 'Model Evaluation: Automated & Human', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html' },
-        { id: 'd5-monitoring', label: 'CloudWatch Metrics & CloudTrail Auditing', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/monitoring-overview.html' }
+        { id: 'd5-evaluation', label: 'Model Evaluation Metrics (Groundedness, Relevance, Accuracy)', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html' },
+        { id: 'd5-human', label: 'Human vs. Automated Evaluation', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html' },
+        { id: 'd5-monitoring', label: 'CloudWatch Metrics & Troubleshooting', link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/monitoring-overview.html' }
       ]
     },
     { id: 'exam-guide', label: 'Reviewed exam guide & traps', link: './exam-guide' },
