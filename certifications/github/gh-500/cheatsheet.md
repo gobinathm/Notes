@@ -19,41 +19,41 @@ Review this page 5 minutes before the exam.
 
 ## GHAS Feature Lookup
 
-| Feature | What it does | Reactive or Proactive? |
-|---|---|---|
-| **Secret scanning** | Detects secrets already in repo history | Reactive (alerts after commit) |
-| **Push protection** | Blocks commits containing secrets | Proactive (blocks before push) |
-| **Dependabot alerts** | Notifies of vulnerable dependencies | Reactive (alerts on CVE match) |
-| **Dependabot security updates** | Auto-opens PR to fix vulnerable dep | Automated remediation |
-| **Dependabot version updates** | Scheduled PRs to keep deps current | Scheduled (not CVE-driven) |
-| **Dependency review** | Blocks PRs introducing vulnerable deps | Proactive (blocks at PR merge) |
-| **Code scanning (CodeQL)** | SAST — finds vulnerabilities in code | Reactive (alerts on push/PR) |
-| **SARIF upload** | Import third-party SAST results | Integration |
+| Feature                         | What it does                                | Reactive or Proactive?           |
+|---------------------------------|---------------------------------------------|----------------------------------|
+| **Secret scanning**             | Detects secrets already in repo history     | Reactive (alerts after commit)   |
+| **Push protection**             | Blocks commits containing secrets           | Proactive (blocks before push)   |
+| **Dependabot alerts**           | Notifies of vulnerable dependencies         | Reactive (alerts on CVE match)   |
+| **Dependabot security updates** | Auto-opens PR to fix vulnerable dep         | Automated remediation            |
+| **Dependabot version updates**  | Scheduled PRs to keep deps current          | Scheduled (not CVE-driven)       |
+| **Dependency review**           | Blocks PRs introducing vulnerable deps      | Proactive (blocks at PR merge)   |
+| **Code scanning (CodeQL)**      | SAST — finds vulnerabilities in code        | Reactive (alerts on push/PR)     |
+| **SARIF upload**                | Import third-party SAST results             | Integration                      |
 
 ---
 
 ## GHAS Plan Requirements
 
-| Feature | Free/Pro/Team | GHEC/GHES (no GHAS) | GHEC/GHES + GHAS |
-|---|---|---|---|
-| **Secret scanning** (public repo) | ✅ | ✅ | ✅ |
-| **Secret scanning** (private repo) | ❌ | ❌ | ✅ |
-| **Push protection** (private repo) | ❌ | ❌ | ✅ |
-| **Dependabot alerts** | ✅ | ✅ | ✅ |
-| **Code scanning** (public repo) | ✅ | ✅ | ✅ |
-| **Code scanning** (private repo) | ❌ | ❌ | ✅ |
-| **Dependency review** (private repo) | ❌ | ❌ | ✅ |
+| Feature                             | Free/Pro/Team  | GHEC/GHES (no GHAS)  | GHEC/GHES + GHAS |
+|-------------------------------------|----------------|----------------------|------------------|
+| **Secret scanning** (public repo)   | ✅             | ✅                   | ✅               |
+| **Secret scanning** (private repo)  | ❌             | ❌                   | ✅               |
+| **Push protection** (private repo)  | ❌             | ❌                   | ✅               |
+| **Dependabot alerts**               | ✅             | ✅                   | ✅               |
+| **Code scanning** (public repo)     | ✅             | ✅                   | ✅               |
+| **Code scanning** (private repo)    | ❌             | ❌                   | ✅               |
+| **Dependency review** (private repo)| ❌             | ❌                   | ✅               |
 
 ---
 
 ## CVSS Severity Levels
 
-| CVSS Score | Severity |
-|---|---|
-| 9.0–10.0 | **Critical** |
-| 7.0–8.9 | **High** |
-| 4.0–6.9 | **Medium** |
-| 0.1–3.9 | **Low** |
+| CVSS Score | Severity     |
+|------------|--------------|
+| 9.0–10.0   | **Critical** |
+| 7.0–8.9    | **High**     |
+| 4.0–6.9    | **Medium**   |
+| 0.1–3.9    | **Low**      |
 
 ---
 
