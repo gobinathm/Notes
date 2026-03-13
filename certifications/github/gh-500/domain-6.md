@@ -38,6 +38,25 @@ Start with **secret scanning** first — it produces the most immediately action
 
 ---
 
+## Governance and Ownership
+
+GHAS works best when ownership is explicit.
+
+| Responsibility | Typical owner |
+|---|---|
+| Enablement, policy, reporting | Security team, platform team, enterprise admins |
+| Daily alert triage and fixes | Repository maintainers and developers |
+| Exception approval and dismissal standards | Security leads or designated approvers |
+| SLA tracking and remediation backlog | Engineering managers and security program owners |
+
+### Practical Ownership Model
+
+- Security teams define guardrails, severity thresholds, and rollout policy
+- Developers fix issues in the normal pull request workflow
+- Repository rulesets and branch protection enforce the minimum bar consistently
+
+---
+
 ## SBOM (Software Bill of Materials)
 
 GitHub can export a **Software Bill of Materials** — a complete inventory of all dependencies in a repository. This is critical for software supply chain best practices.
@@ -78,6 +97,13 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
 4. **Dismiss false positives** with a note explaining why it's not an issue
 5. **Re-scan** to confirm the alert is resolved
 
+### Corrective Measure Principles
+
+- **Revoke or contain first**, then clean up history or code
+- **Fix the root cause**, not only the individual alert
+- **Document dismissals** so future reviewers understand the decision
+- **Prefer earlier controls** such as push protection, dependency review, and PR-time code scanning to reduce recurring issues
+
 ---
 
 ## GHAS Best Practices Summary
@@ -99,6 +125,12 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
 - **Tune CodeQL to security-extended** (not security-and-quality) to reduce noise
 - **Triage and dismiss** false positives promptly to keep alert queues clean
 
+### Study Heuristics for the Exam
+
+- If the scenario is about **preventing** a bad change in a pull request, think **dependency review**, **code scanning on PR**, or **required checks**
+- If the scenario is about **reducing blast radius** for leaked credentials, think **revoke, rotate, push protection**
+- If the scenario is about **organization-wide adoption**, think **pilot first, baseline, expand, enforce, monitor**
+
 ---
 
 <FlashcardDeck
@@ -115,6 +147,10 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
     {
       question: 'What is the phased approach for enabling GHAS across an organization?',
       answer: 'Start with a <strong>pilot</strong> (2–5 critical repos) → establish a <strong>baseline</strong> → expand to all new repos → <strong>remediate</strong> existing alerts (Critical first) → <strong>enforce</strong> via branch protection → <strong>monitor</strong> via Security Overview.'
+    },
+    {
+      question: 'Who should own GHAS alert remediation day to day?',
+      answer: 'In a healthy rollout, <strong>developers and repository maintainers</strong> handle day-to-day remediation in their workflow, while the security or platform team sets policy, reporting, and governance.'
     }
   ]"
 />

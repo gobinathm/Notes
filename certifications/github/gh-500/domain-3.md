@@ -12,7 +12,7 @@ head:
 [← Domain 2](./domain-2.md) · [Next Domain →](./domain-4.md)
 
 ::: danger Exam Priority
-This is the largest domain at 35% of the exam. Master every feature here — the difference between Dependabot alerts, security updates, version updates, and dependency review are all highly tested.
+This domain is **15%** of the exam and is still heavily tested because it covers several related tools: dependency graph, Dependabot alerts, security updates, version updates, dependency review, and SBOM export.
 :::
 
 ---
@@ -29,6 +29,16 @@ The dependency graph is the foundation for all Dependabot features. It tracks:
 - **Public repos**: Always enabled by default
 - **Private repos**: Settings → Security → Dependency graph → Enable
 - Also enables at org level via: Org Settings → Code security → Dependency graph
+
+### How the Dependency Graph Is Generated
+
+GitHub builds the graph from multiple sources:
+
+- **Manifest and lock files** committed to the repository
+- **Automatic dependency submission** from supported package managers and ecosystems
+- **Dependency submission API / Actions integration** for build systems that need to report dependencies explicitly
+
+This matters on the exam because some features depend on the graph being complete. If the graph is incomplete, alerts and SBOM output will also be incomplete.
 
 ### Supported Manifest Files
 
@@ -102,6 +112,7 @@ Dependabot security updates **automatically open pull requests** to update vulne
 
 - **Repository**: Settings → Code security → Dependabot security updates → Enable
 - **Organization**: Org Settings → Code security → Dependabot security updates
+- Security updates depend on alerts plus a resolvable safe version being available
 
 ::: warning Exam Trap
 Security updates ≠ version updates. Security updates are **vulnerability-driven** (triggered by a CVE). Version updates are **schedule-driven** (update to latest regardless of security). They are configured separately.
@@ -164,6 +175,15 @@ updates:
     schedule:
       interval: "monthly"
 ```
+
+### Common `dependabot.yml` Decisions
+
+| Need | Setting |
+|---|---|
+| Reduce PR noise | `open-pull-requests-limit` |
+| Skip a breaking major version | `ignore` |
+| Route updates to a release branch | `target-branch` |
+| Separate frontend and backend cadence | Multiple `updates` entries |
 
 ---
 
@@ -261,6 +281,10 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
     {
       question: 'What is an SBOM and how do you export it from GitHub?',
       answer: 'SBOM (Software Bill of Materials) is a complete inventory of all dependencies. Export via: Insights → Dependency graph → Export SBOM (SPDX JSON format), or via the API: <code>GET /repos/{owner}/{repo}/dependency-graph/sbom</code>.'
+    },
+    {
+      question: 'What prerequisite do Dependabot alerts, dependency review, and SBOM export all rely on?',
+      answer: 'A complete <strong>dependency graph</strong>. If GitHub cannot build the dependency graph from manifests, lock files, or dependency submission, the related supply-chain features will be incomplete.'
     },
     {
       question: 'Does Dependabot version updates require a GHAS license?',

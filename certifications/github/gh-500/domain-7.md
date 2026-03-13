@@ -36,7 +36,7 @@ The **Security Overview** dashboard provides a consolidated view of all GHAS fea
 | **Organization owners** | Organization-level overview |
 | **Enterprise owners** | Enterprise-wide overview across all organizations |
 
-**Navigate to**: Organization → Security tab → Overview
+**Navigate to**: Organization or Enterprise → Security tab → Overview
 
 ### Using Security Overview for Prioritization
 
@@ -75,9 +75,43 @@ Enterprise owners can enforce GHAS policies across all organizations within the 
 
 - Enable **Secret Scanning** for all new organizations
 - Enable **Push Protection** by default across all organizations
-- Set **Custom Patterns** at the enterprise level, making them available to all orgs and repos automatically.
+- Set **Custom Patterns** at the enterprise level, making them available to all orgs and repos automatically
+- Standardize **security manager** access so the right teams can view and triage alerts centrally
 
 Enforcing these at the enterprise level disables the ability for organization owners to turn them off, ensuring compliance.
+
+### Enterprise Configuration Model
+
+| Scope | Typical use |
+|---|---|
+| **Enterprise** | Set default policy, reporting visibility, and shared patterns across organizations |
+| **Organization** | Roll out features to selected repositories and delegate security managers |
+| **Repository** | Fine-tune workflows, required checks, and remediation operations |
+
+::: tip
+For exam scenarios, choose the **highest scope that matches the requirement**. If the requirement says "across all organizations" or "enterprise-wide visibility," the answer is usually an enterprise-level control.
+:::
+
+---
+
+## Security Managers and Delegated Access
+
+Enterprise and organization admins do not need to do all alert triage themselves.
+
+- **Security managers** can review and manage security findings without needing broad admin rights everywhere
+- This is useful when central AppSec teams need access to alerts across many repositories
+- It supports separation of duties: platform admins configure GHAS, security managers triage, developers remediate
+
+---
+
+## Enterprise Exam Scenarios
+
+| Scenario | Best answer direction |
+|---|---|
+| Need one dashboard across many orgs | **Enterprise Security Overview** |
+| Need a secret pattern reused everywhere | **Enterprise-level custom pattern** |
+| Need repo maintainers to keep local workflow flexibility | Set policy at org/enterprise, keep remediation in the repo |
+| Need consistent enforcement for PR checks | Use **rulesets** or required checks centrally where possible |
 
 ---
 
@@ -95,6 +129,10 @@ Enforcing these at the enterprise level disables the ability for organization ow
     {
       question: 'Can custom secret scanning patterns be configured at the enterprise level?',
       answer: '<strong>Yes.</strong> Enterprise administrators can define custom patterns that apply to all repositories across all organizations within the enterprise.'
+    },
+    {
+      question: 'When should you choose an enterprise-level GHAS setting over an organization-level setting?',
+      answer: 'Choose the <strong>enterprise level</strong> when the requirement spans multiple organizations, needs centralized visibility, or requires a consistent default policy across the whole enterprise.'
     }
   ]"
 />

@@ -105,6 +105,22 @@ jobs:
 
 ---
 
+## How a CodeQL Analysis Run Works
+
+In GitHub Actions, a standard CodeQL workflow follows this sequence:
+
+1. `github/codeql-action/init` selects languages and query packs
+2. `autobuild` or a manual build step prepares compiled projects
+3. `github/codeql-action/analyze` evaluates the CodeQL database and publishes alerts
+
+For interpreted languages, the build phase is often minimal. For compiled languages, the build phase is more important because CodeQL needs a successful build to understand the code accurately.
+
+::: warning Exam Trap
+If a compiled language project needs custom build flags or a multi-step build, default setup may not be sufficient. That is a strong signal to switch to **advanced setup**.
+:::
+
+---
+
 ## Comparing Default vs Advanced Setup
 
 | | Default Setup | Advanced Setup |
@@ -134,6 +150,52 @@ Default setup uses the **security-extended** query suite by default — not `sec
 
 ---
 
+## Custom Queries, Packs, and Suites
+
+CodeQL can be extended beyond the built-in query suites.
+
+### Custom Queries
+
+- Write or import queries when your organization needs checks for a specific framework or coding pattern
+- Best used in **advanced setup**, where you control the workflow YAML
+
+### CodeQL Packs
+
+- Packs bundle related CodeQL queries and metadata
+- Packs can be referenced from workflow configuration so teams can reuse the same rules across repositories
+- Use packs when you want a portable, versioned way to share custom logic
+
+### When to Use Which
+
+| Need | Best fit |
+|---|---|
+| Standard security scanning | `security-extended` |
+| Add code quality findings | `security-and-quality` |
+| Reuse organization-specific rules | Custom pack |
+| Test one-off specialized detection | Custom query |
+
+---
+
+## Working with CodeQL Alerts
+
+CodeQL alerts are more useful when you know how to interpret the result, not just where to click.
+
+### Read the Alert in This Order
+
+1. **Rule ID and title**: what class of bug was found
+2. **Security severity / precision**: how risky and how trustworthy the finding is
+3. **Path or flow**: how untrusted data reaches the sink
+4. **CWE mapping**: the weakness category for triage and reporting
+5. **Suggested remediation**: safer coding pattern to apply
+
+### Typical Triage Outcomes
+
+- **Fix** when the path is reachable and exploitable
+- **Dismiss as false positive** when the analysis does not reflect runtime reality
+- **Dismiss as used in tests / won't fix** when the context justifies it and the decision is documented
+
+---
+
 ## Troubleshooting CodeQL Scanning
 
 | Problem | Likely Cause | Fix |
@@ -141,6 +203,7 @@ Default setup uses the **security-extended** query suite by default — not `sec
 | No alerts generated | Language not supported or wrong language config | Verify language matrix in workflow |
 | Autobuild fails | Compiled language requires specific build steps | Use advanced setup with manual build commands |
 | Too many alerts (noise) | `security-and-quality` suite enabled | Switch to `security-extended` |
+| Alerts not appearing in PRs | Workflow not triggered on `pull_request` or ruleset/branch protection not enforcing checks | Add PR trigger and enforce the required check |
 
 ---
 
@@ -158,6 +221,14 @@ Default setup uses the **security-extended** query suite by default — not `sec
     {
       question: 'What languages does CodeQL natively support?',
       answer: 'C, C++, C#, Go, Java, Kotlin, JavaScript, TypeScript, Python, Ruby, and Swift.'
+    },
+    {
+      question: 'When should you move from CodeQL default setup to advanced setup?',
+      answer: 'Move to <strong>advanced setup</strong> when you need custom build steps, custom schedules, non-default branches, custom queries, or CodeQL packs. Compiled projects that fail autobuild are a common reason.'
+    },
+    {
+      question: 'What is a CodeQL pack?',
+      answer: 'A <strong>CodeQL pack</strong> is a reusable bundle of CodeQL queries and metadata that can be referenced from a workflow so multiple repositories can share the same custom analysis logic.'
     }
   ]"
 />

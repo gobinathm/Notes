@@ -266,11 +266,13 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Overview', link: '/certifications/github/gh-500/' },
-                { text: 'Domain 1: GHAS Features & Functionality', link: '/certifications/github/gh-500/domain-1' },
-                { text: 'Domain 2: Secret Scanning', link: '/certifications/github/gh-500/domain-2' },
-                { text: 'Domain 3: Dependabot & Dependency Review', link: '/certifications/github/gh-500/domain-3' },
-                { text: 'Domain 4: Code Scanning & CodeQL', link: '/certifications/github/gh-500/domain-4' },
-                { text: 'Domain 5: Best Practices & Corrective Measures', link: '/certifications/github/gh-500/domain-5' },
+                { text: 'Domain 1: Describe the GHAS security features and functionality (10%)', link: '/certifications/github/gh-500/domain-1' },
+                { text: 'Domain 2: Configure and use secret scanning (10%)', link: '/certifications/github/gh-500/domain-2' },
+                { text: 'Domain 3: Configure and use dependency management (15%)', link: '/certifications/github/gh-500/domain-3' },
+                { text: 'Domain 4: Configure and use code scanning (15%)', link: '/certifications/github/gh-500/domain-4' },
+                { text: 'Domain 5: Use code scanning with CodeQL (20%)', link: '/certifications/github/gh-500/domain-5' },
+                { text: 'Domain 6: Describe GitHub Advanced Security best practices (20%)', link: '/certifications/github/gh-500/domain-6' },
+                { text: 'Domain 7: Configure GitHub Advanced Security tools in GitHub Enterprise (10%)', link: '/certifications/github/gh-500/domain-7' },
                 { text: 'Exam Guide', link: '/certifications/github/gh-500/exam-guide' },
                 { text: 'Cheatsheet', link: '/certifications/github/gh-500/cheatsheet' },
                 { text: 'Exam Tips', link: '/certifications/github/gh-500/exam-tips' }

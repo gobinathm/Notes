@@ -117,14 +117,21 @@ GHAS is **not** included with GitHub Team. It requires GitHub Enterprise (GHEC o
 
 ---
 
-## Security Overview
+## Access and Visibility
 
-The **Security Overview** (available at org and enterprise level) provides a consolidated dashboard showing:
-- Which repositories have GHAS features enabled
-- Alert counts by feature and severity across the organization
-- Trend data over time for tracking remediation progress
+Different GHAS features expose alerts to different roles, which is a common exam topic.
 
-Available to: **Organization owners, Security managers, Enterprise owners**
+| Feature | Typical viewers |
+|---|---|
+| **Secret scanning alerts** | Repository admins, organization owners, security managers, delegated users/teams |
+| **Dependabot alerts** | Repository admins, maintainers, security managers |
+| **Code scanning alerts** | Repository admins, maintainers, security managers |
+
+The exact role mapping can vary by repository ownership and enterprise configuration, but the exam usually wants you to distinguish **who can triage alerts** from **who can only read code**.
+
+::: tip
+Security Overview itself is covered in more depth in [Domain 7](./domain-7.md), because it is primarily an organization and enterprise reporting capability.
+:::
 
 ---
 

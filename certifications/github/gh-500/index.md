@@ -20,7 +20,7 @@ Think like a security-aware developer or DevSecOps engineer. Questions test your
 ::: info Currently Studying ⏳
 **Target Date**: TBD
 
-**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-02
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-13
 :::
 
 <ImageModal
@@ -36,6 +36,31 @@ A podcast-style walkthrough of key exam tactics — generated using [NotebookLM]
 <AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/gh-500/Strategic_Prep_for_the_GH-500_Exam.m4a">
   <source src="/audio/certifications/gh-500/Strategic_Prep_for_the_GH-500_Exam.m4a" type="audio/mp4">
 </AIAudioPlayer>
+
+---
+
+## Official Exam Domains
+
+The GH-500 exam currently measures **7 domains**. Use this page as the master index so the structure in the notes matches the certification blueprint exactly.
+
+| Domain | Weight | Notes |
+|---|---:|---|
+| [Domain 1: Describe the GHAS security features and functionality](./domain-1.md) | 10% | GHAS capabilities, availability, licensing, feature roles |
+| [Domain 2: Configure and use secret scanning](./domain-2.md) | 10% | Secret scanning, push protection, custom patterns, remediation |
+| [Domain 3: Configure and use dependency management](./domain-3.md) | 15% | Dependency graph, Dependabot, dependency review, SBOM |
+| [Domain 4: Configure and use code scanning](./domain-4.md) | 15% | Code scanning setup, alerts, SARIF, PR enforcement |
+| [Domain 5: Use code scanning with CodeQL](./domain-5.md) | 20% | Default vs advanced setup, queries, suites, packs, troubleshooting |
+| [Domain 6: Describe GitHub Advanced Security best practices](./domain-6.md) | 20% | Rollout, governance, remediation, reducing alert fatigue |
+| [Domain 7: Configure GitHub Advanced Security tools in GitHub Enterprise](./domain-7.md) | 10% | Enterprise policy, Security Overview, roles, metrics |
+
+::: tip Reorganized for the official blueprint
+Some GHAS topics naturally overlap, but these notes are intentionally split so that:
+
+- **Domain 4** covers general code scanning behavior and SARIF
+- **Domain 5** focuses specifically on **CodeQL**
+- **Domain 6** covers rollout and operational best practices
+- **Domain 7** covers **enterprise-wide configuration and reporting**
+:::
 
 ---
 
