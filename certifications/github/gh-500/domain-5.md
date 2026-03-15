@@ -39,6 +39,7 @@ That is commonly tested as **10 primary language ecosystems**: C/C++, C#, Go, Ja
 - CodeQL primarily analyzes your **source code** and the code model it can build during the workflow
 - It does **not** scan third-party dependencies the same way it scans your application source
 - In practice, CodeQL analyzes what it can **see during checkout and build**, which is why compiled-language setup matters so much
+- For compiled languages, CodeQL only analyzes code that is actually included in the build; code excluded by build flags or omitted from the build target will not be analyzed
 
 ::: warning Exam Trap
 If the question is really about vulnerable libraries or package versions, the better answer is usually **Dependabot** or the **dependency graph**, not CodeQL alone.
@@ -204,6 +205,16 @@ CodeQL can be extended beyond the built-in query suites.
 
 CodeQL alerts are more useful when you know how to interpret the result, not just where to click.
 
+### Query Help in the UI
+
+Every CodeQL alert in the GitHub UI includes a **Show more** section with query help. This typically includes:
+
+- A description of the vulnerability pattern
+- A **Recommendation** section explaining the safer fix
+- Often **Compliant** versus **Non-compliant** code examples
+
+This is useful both for remediation and for distinguishing true positives from findings that need more context.
+
 ### Read the Alert in This Order
 
 1. **Rule ID and title**: what class of bug was found
@@ -228,6 +239,13 @@ CodeQL alerts are more useful when you know how to interpret the result, not jus
 | Autobuild fails | Compiled language requires specific build steps | Use advanced setup with manual build commands |
 | Too many alerts (noise) | `security-and-quality` suite enabled | Switch to `security-extended` |
 | Alerts not appearing in PRs | Workflow not triggered on `pull_request` or ruleset/branch protection not enforcing checks | Add PR trigger and enforce the required check |
+| Code unexpectedly missing from analysis | File/module not included in actual build target | Adjust the build so CodeQL can see it |
+| Autobuild job fails after silence | Build emitted no output for too long | Ensure the build produces output or use explicit manual build steps |
+
+### Autobuild Silence Limit
+
+- A CodeQL autobuild step that produces roughly **2 minutes of no output** can fail
+- This usually points to a build process that needs manual commands instead of relying on autobuild
 
 ### Strong Exam Heuristics
 
@@ -266,6 +284,14 @@ CodeQL alerts are more useful when you know how to interpret the result, not jus
     {
       question: 'What does GitHub retain after a CodeQL run completes?',
       answer: 'GitHub primarily retains the <strong>analysis results and alerts</strong>. The CodeQL database created during the run is temporary unless you explicitly download it for local analysis.'
+    },
+    {
+      question: 'For compiled languages, what code does CodeQL actually analyze?',
+      answer: 'CodeQL analyzes the code that is actually included in the build it can observe. If code is excluded by compiler flags or not part of the build target, CodeQL will not analyze it.'
+    },
+    {
+      question: 'Where do you find the remediation guidance for a CodeQL alert in the GitHub UI?',
+      answer: 'In the alert\'s <strong>Show more</strong> / query help section, which includes the vulnerability description, recommendations, and often compliant versus non-compliant code examples.'
     }
   ]"
 />

@@ -91,6 +91,16 @@ On multi-tool scanning questions, the correct answer is usually: use a **differe
 - Maximum file size: 64MB (uncompressed)
 - Results are retained for 90 days
 
+### Partial SARIF Success
+
+- A SARIF upload can be **accepted with warnings** if only part of the file is malformed
+- In that case, GitHub may still ingest the valid portion but drop some results
+- The UI typically surfaces this as a **warning** rather than a total failure
+
+::: warning Exam Trap
+If the question describes a SARIF upload that "worked but some findings are missing," think **partial parsing success** or malformed SARIF sections causing dropped results.
+:::
+
 ### Key Numbers to Remember
 
 | Detail | Value |

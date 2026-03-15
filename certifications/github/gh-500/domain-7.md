@@ -99,6 +99,12 @@ Enterprise owners can enforce GHAS policies across all organizations within the 
 - This determines whether GitHub should contact the relevant partner provider to verify whether a token is still active
 - It improves prioritization because teams can focus first on secrets that are still valid
 
+### Partner Patterns and Provider Notification
+
+- For some partner patterns in **public repositories**, GitHub can automatically notify the relevant provider when a matching secret is exposed
+- Common examples include providers such as **AWS**, **Microsoft**, and **Slack**
+- For **private repositories**, validity checking or provider verification behavior depends on administrative configuration and supported integrations
+
 Enforcing these at the enterprise level disables the ability for organization owners to turn them off, ensuring compliance.
 
 ### Enterprise Configuration Model
@@ -123,6 +129,19 @@ Enterprise and organization admins do not need to do all alert triage themselves
 - This is useful when central AppSec teams need access to alerts across many repositories
 - It supports separation of duties: platform admins configure GHAS, security managers triage, developers remediate
 - Security managers are **not** a substitute for owners/admins when the task is enabling GHAS or changing organization and enterprise policy
+- Security managers also cannot manage organization-wide enforcement controls such as **required workflows**
+
+### IP Allow Lists and External Integrations
+
+If the enterprise uses an **IP allow list**, GitHub-integrated automation must still be able to reach GitHub from approved addresses.
+
+- Self-hosted runners may need to be added to the allow list
+- External SAST tooling that uploads SARIF may also need its egress IPs allowed
+- If not, SARIF uploads or workflow steps can fail with **403** errors
+
+::: warning Exam Trap
+If a GitHub Enterprise scenario mentions IP allow lists and a SARIF upload failing with `403`, the likely fix is to allow the runner or external tool's IP.
+:::
 
 ---
 
@@ -172,6 +191,10 @@ Enterprise and organization admins do not need to do all alert triage themselves
     {
       question: 'Can a Security Manager enable GHAS for repositories across the organization?',
       answer: '<strong>No.</strong> Security Managers can view and triage alerts, but enabling GHAS or changing organization and enterprise settings requires broader administrative authority.'
+    },
+    {
+      question: 'What should you check if SARIF uploads fail with 403 errors in an enterprise using IP allow lists?',
+      answer: 'Check whether the <strong>self-hosted runner</strong> or the external SAST system uploading SARIF is included in the enterprise IP allow list.'
     }
   ]"
 />

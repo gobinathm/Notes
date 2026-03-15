@@ -66,6 +66,10 @@ Review this page 5 minutes before the exam.
 | **Query suite** | security-extended | Configurable |
 | **Best for** | Quick start | Custom queries, monorepos |
 
+::: warning CodeQL trap
+For compiled languages, CodeQL only analyzes code that is actually included in the build. If autobuild fails, the usual exam answer is: **switch to advanced setup and provide manual build commands**.
+:::
+
 ---
 
 ## Dependabot Version Update Key Fields (`dependabot.yml`)
@@ -118,6 +122,27 @@ updates:
 
 ---
 
+## First-Step Remediation Logic
+
+| Scenario | First thing to do |
+|---|---|
+| **Secret leak** | **Revoke or rotate** the credential at the provider |
+| **Vulnerable dependency** | Check **reachability** before choosing fix vs dismissal |
+| **Code vulnerability** | Read the **data flow** from source to sink before deciding whether it is a true positive |
+
+---
+
+## Limits Checklist
+
+| Feature | Constraint / Limit |
+|---|---|
+| **SARIF upload** | **64 MB** maximum for a single uncompressed file |
+| **Dependabot** | **45 minutes** default timeout for an update job |
+| **Secret scanning dry run** | Up to **1,000 repositories** in a single org dry run |
+| **CodeQL autobuild** | Roughly **2 minutes** of silence can cause failure |
+
+---
+
 ## Terminology Check
 
 - **SAST**: Static Application Security Testing — analyze source code without executing it
@@ -133,6 +158,7 @@ updates:
 - **CodeQL**: GitHub's semantic code analysis engine for finding security vulnerabilities
 - **Dependency graph**: GitHub's map of all direct and transitive dependencies in a repository
 - **Security overview**: Org/enterprise dashboard showing GHAS alert status across all repositories
+- **Private Security Advisory**: Private collaboration space to triage and fix a vulnerability before public disclosure
 
 ---
 
