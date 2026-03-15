@@ -21,6 +21,10 @@ This domain tests your conceptual understanding of what GHAS is, what it include
 
 GitHub Advanced Security is a set of security features built into GitHub to help organizations find and fix vulnerabilities **earlier in the development lifecycle** (shift-left security).
 
+::: tip Memory hook
+If the question is asking why GHAS exists, the answer is usually **shift-left security**: detect and remediate secrets, vulnerable dependencies, and insecure code as early as possible instead of waiting for production or a later audit.
+:::
+
 GHAS includes three primary pillars:
 
 | Pillar | Feature | What it does |
@@ -42,6 +46,10 @@ GHAS includes three primary pillars:
 - GHAS features are **free** for all public repositories on GitHub.com
 - No license purchase required — secret scanning, code scanning, and dependency review are enabled automatically
 
+::: tip Exam shortcut
+For public repositories on GitHub.com, the safe default answer is: **GHAS features are free**.
+:::
+
 ### Private and Internal Repositories
 
 | Plan | GHAS Available? | Notes |
@@ -57,9 +65,13 @@ GHAS is **not** included with GitHub Team. It requires GitHub Enterprise (GHEC o
 
 ### GHAS License Seat Model
 
-- GHAS is licensed per **active committer** — any user who commits to a private repository with GHAS enabled in the last 90 days
+- GHAS is licensed per **active committer** — any user who commits to a private or internal repository with GHAS enabled in the last **90 days**
 - Enabling GHAS on a repository doesn't require a seat for read-only contributors
 - Org owners can view seat usage in: **Org Settings → Advanced Security → Active committers**
+
+::: warning Exam Trap
+Remember the **seat window**: GHAS licensing is based on active committers in the last **90 days**, not total organization members and not all repository collaborators.
+:::
 
 ---
 
@@ -144,7 +156,7 @@ Security Overview itself is covered in more depth in [Domain 7](./domain-7.md), 
     },
     {
       question: 'What is the GHAS licensing model for private repositories?',
-      answer: 'GHAS is licensed per <strong>active committer</strong> — any user who commits to a GHAS-enabled private repository within the last 90 days.'
+      answer: 'GHAS is licensed per <strong>active committer</strong> — any user who commits to a GHAS-enabled private or internal repository within the last <strong>90 days</strong>.'
     },
     {
       question: 'What is the difference between secret scanning and push protection?',
@@ -157,6 +169,10 @@ Security Overview itself is covered in more depth in [Domain 7](./domain-7.md), 
     {
       question: 'Are GHAS features free for public repositories?',
       answer: '<strong>Yes.</strong> Secret scanning, code scanning, dependency review, and Dependabot features are all free for public repositories on GitHub.com.'
+    },
+    {
+      question: 'What security concept best describes the purpose of GHAS?',
+      answer: '<strong>Shift-left security.</strong> GHAS is designed to find and fix vulnerabilities earlier in the development lifecycle, before they become larger production or compliance problems.'
     }
   ]"
 />

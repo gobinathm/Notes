@@ -45,6 +45,10 @@ The **Security Overview** dashboard provides a consolidated view of all GHAS fea
 3. **Sort by alert count**: Find the repositories with the highest vulnerability debt
 4. **Track trends**: Confirm that alert counts are decreasing over time (remediation is working)
 
+::: tip Golden metric
+If the exam asks which metric best indicates the efficiency of the security program, the strongest answer is usually **MTTR (Mean Time to Remediate)**.
+:::
+
 ---
 
 ## Metrics and Reporting
@@ -65,6 +69,16 @@ The **Security Overview** dashboard provides a consolidated view of all GHAS fea
 - Contains: CVEs from NVD + GitHub-curated advisories (GitHub Security Advisories)
 - Organization security teams can also submit **private security advisories** for their own repositories
 
+### Private Security Advisories
+
+Private Security Advisories let maintainers and security teams:
+
+- Discuss a vulnerability privately before public disclosure
+- Collaborate on the fix, affected versions, and release plan
+- Coordinate responsible disclosure and eventual publication as a security advisory
+
+This is a favorite exam topic because it tests **private collaborative triage**, not just alert viewing.
+
 ---
 
 ## Enterprise Policies
@@ -77,6 +91,13 @@ Enterprise owners can enforce GHAS policies across all organizations within the 
 - Enable **Push Protection** by default across all organizations
 - Set **Custom Patterns** at the enterprise level, making them available to all orgs and repos automatically
 - Standardize **security manager** access so the right teams can view and triage alerts centrally
+- Decide whether **secret scanning validity checks** should be enabled so GitHub can verify supported tokens with providers
+
+### Enterprise-Level Validity Checking
+
+- Validity checking for supported secret types can be managed as an enterprise-level policy decision
+- This determines whether GitHub should contact the relevant partner provider to verify whether a token is still active
+- It improves prioritization because teams can focus first on secrets that are still valid
 
 Enforcing these at the enterprise level disables the ability for organization owners to turn them off, ensuring compliance.
 
@@ -101,6 +122,7 @@ Enterprise and organization admins do not need to do all alert triage themselves
 - **Security managers** can review and manage security findings without needing broad admin rights everywhere
 - This is useful when central AppSec teams need access to alerts across many repositories
 - It supports separation of duties: platform admins configure GHAS, security managers triage, developers remediate
+- Security managers are **not** a substitute for owners/admins when the task is enabling GHAS or changing organization and enterprise policy
 
 ---
 
@@ -112,6 +134,15 @@ Enterprise and organization admins do not need to do all alert triage themselves
 | Need a secret pattern reused everywhere | **Enterprise-level custom pattern** |
 | Need repo maintainers to keep local workflow flexibility | Set policy at org/enterprise, keep remediation in the repo |
 | Need consistent enforcement for PR checks | Use **rulesets** or required checks centrally where possible |
+| Need a mandatory scan workflow everywhere | Use enterprise rulesets / required workflows where supported |
+
+### Numbers and Limits to Remember
+
+| Topic | Value |
+|---|---|
+| Pilot rollout size | **2-5 repositories** |
+| Best operational metric | **MTTR** |
+| Enterprise rulesets limit previously noted in these notes | **75 rulesets** |
 
 ---
 
@@ -133,6 +164,14 @@ Enterprise and organization admins do not need to do all alert triage themselves
     {
       question: 'When should you choose an enterprise-level GHAS setting over an organization-level setting?',
       answer: 'Choose the <strong>enterprise level</strong> when the requirement spans multiple organizations, needs centralized visibility, or requires a consistent default policy across the whole enterprise.'
+    },
+    {
+      question: 'What is a Private Security Advisory used for?',
+      answer: 'A <strong>Private Security Advisory</strong> is used to discuss, triage, and fix a vulnerability privately before public disclosure, allowing maintainers and security teams to coordinate responsible release and remediation.'
+    },
+    {
+      question: 'Can a Security Manager enable GHAS for repositories across the organization?',
+      answer: '<strong>No.</strong> Security Managers can view and triage alerts, but enabling GHAS or changing organization and enterprise settings requires broader administrative authority.'
     }
   ]"
 />

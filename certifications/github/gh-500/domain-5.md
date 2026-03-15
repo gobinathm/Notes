@@ -32,6 +32,18 @@ CodeQL is a **semantic code analysis engine** that treats code as data, allowing
 - Ruby
 - Swift (for iOS/macOS apps)
 
+That is commonly tested as **10 primary language ecosystems**: C/C++, C#, Go, Java/Kotlin, JavaScript/TypeScript, Python, Ruby, and Swift.
+
+### What CodeQL Sees and What It Does Not
+
+- CodeQL primarily analyzes your **source code** and the code model it can build during the workflow
+- It does **not** scan third-party dependencies the same way it scans your application source
+- In practice, CodeQL analyzes what it can **see during checkout and build**, which is why compiled-language setup matters so much
+
+::: warning Exam Trap
+If the question is really about vulnerable libraries or package versions, the better answer is usually **Dependabot** or the **dependency graph**, not CodeQL alone.
+:::
+
 ---
 
 ## CodeQL Setup Options
@@ -48,6 +60,10 @@ The fastest way to enable CodeQL — GitHub automatically:
 
 ::: tip Best for
 Repositories where you want immediate, zero-configuration scanning. Ideal for most projects.
+:::
+
+::: warning Exam Trap
+Default setup is not completely "unconfigurable." You can still change standard options in the UI, including switching between the built-in query suite choices, without writing workflow YAML.
 :::
 
 ### Advanced Setup
@@ -118,6 +134,14 @@ For interpreted languages, the build phase is often minimal. For compiled langua
 ::: warning Exam Trap
 If a compiled language project needs custom build flags or a multi-step build, default setup may not be sufficient. That is a strong signal to switch to **advanced setup**.
 :::
+
+### CodeQL Databases and Retention
+
+- During a workflow run, CodeQL creates a **temporary database** for analysis
+- After the run completes, GitHub keeps the **analysis results and alerts**, not the full database as the primary artifact for normal use
+- If you download a database for local investigation in VS Code or the CLI, it can be quite large
+
+For the exam, remember the distinction: GitHub retains the **results**, while the workflow database itself is an implementation detail of the analysis run.
 
 ---
 
@@ -205,6 +229,11 @@ CodeQL alerts are more useful when you know how to interpret the result, not jus
 | Too many alerts (noise) | `security-and-quality` suite enabled | Switch to `security-extended` |
 | Alerts not appearing in PRs | Workflow not triggered on `pull_request` or ruleset/branch protection not enforcing checks | Add PR trigger and enforce the required check |
 
+### Strong Exam Heuristics
+
+- If **C++**, **Java**, or another compiled project fails under default setup, the answer is often: **switch to advanced setup and provide manual build commands**
+- If the problem mentions vulnerable packages rather than application code, think **Dependabot** before CodeQL
+
 ---
 
 <FlashcardDeck
@@ -220,7 +249,7 @@ CodeQL alerts are more useful when you know how to interpret the result, not jus
     },
     {
       question: 'What languages does CodeQL natively support?',
-      answer: 'C, C++, C#, Go, Java, Kotlin, JavaScript, TypeScript, Python, Ruby, and Swift.'
+      answer: 'CodeQL supports <strong>10 primary language ecosystems</strong>: C/C++, C#, Go, Java/Kotlin, JavaScript/TypeScript, Python, Ruby, and Swift.'
     },
     {
       question: 'When should you move from CodeQL default setup to advanced setup?',
@@ -229,6 +258,14 @@ CodeQL alerts are more useful when you know how to interpret the result, not jus
     {
       question: 'What is a CodeQL pack?',
       answer: 'A <strong>CodeQL pack</strong> is a reusable bundle of CodeQL queries and metadata that can be referenced from a workflow so multiple repositories can share the same custom analysis logic.'
+    },
+    {
+      question: 'Does CodeQL scan dependencies the same way it scans your source code?',
+      answer: '<strong>No.</strong> CodeQL primarily analyzes the source code and build artifacts it can see during the workflow. Dependency vulnerability management is mainly handled by the dependency graph and Dependabot.'
+    },
+    {
+      question: 'What does GitHub retain after a CodeQL run completes?',
+      answer: 'GitHub primarily retains the <strong>analysis results and alerts</strong>. The CodeQL database created during the run is temporary unless you explicitly download it for local analysis.'
     }
   ]"
 />

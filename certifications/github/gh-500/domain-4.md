@@ -75,11 +75,28 @@ SARIF is an **open standard** (JSON-based) format for representing static analys
     category: my-tool-name   # Distinguishes this tool's results
 ```
 
+### Why the `category` Field Matters
+
+- The `category` field identifies a distinct analysis source within code scanning
+- If you upload results from multiple tools, such as **CodeQL** and **Snyk**, they must use **different category values**
+- If two uploads reuse the same category for the same commit/ref, the later upload can overwrite the earlier results
+
+::: warning Exam Trap
+On multi-tool scanning questions, the correct answer is usually: use a **different SARIF category** for each tool or analysis variant.
+:::
+
 ### SARIF File Requirements
 
 - Must be valid JSON conforming to the SARIF 2.1.0 schema
 - Maximum file size: 64MB (uncompressed)
 - Results are retained for 90 days
+
+### Key Numbers to Remember
+
+| Detail | Value |
+|---|---|
+| Maximum uncompressed SARIF upload size | **64 MB** |
+| Default retention of code scanning analysis results | **90 days** |
 
 ---
 
@@ -119,6 +136,14 @@ Code scanning only blocks merges when you configure the check in **branch protec
     {
       question: 'What are the two severity scales used by code scanning alerts?',
       answer: '<strong>Security Severity</strong> (Critical, High, Medium, Low) for security vulnerabilities, and <strong>Alert Severity</strong> (Error, Warning, Note) for code quality issues.'
+    },
+    {
+      question: 'Why is the SARIF category field important when uploading results from multiple tools?',
+      answer: 'Each tool or analysis variant should use a <strong>different category</strong>. If two SARIF uploads use the same category for the same ref, the later upload can overwrite the earlier one.'
+    },
+    {
+      question: 'What is the maximum size for a single uncompressed SARIF upload, and how long are code scanning results retained by default?',
+      answer: '<strong>64 MB</strong> per uncompressed SARIF file, and analysis results are retained for <strong>90 days</strong> by default.'
     }
   ]"
 />

@@ -56,11 +56,16 @@ Push protection blocks a `git push` if the diff contains a recognized secret pat
 ### How Push Protection Works
 
 1. Developer runs `git push`
-2. GitHub scans the diff for secret patterns
-3. If a secret is detected: the push **fails** with an error message naming the secret type
+2. GitHub scans the **diff** for secret patterns
+3. If a secret is detected: the push is **rejected at the network level** with an error message naming the secret type
 4. Developer must either:
    - **Remove the secret** and re-push
    - **Bypass** the block by providing a reason (if allowed by policy)
+
+### Push Protection Scan Limit
+
+- Push protection reports up to **5 detected secrets** in a single push before it stops scanning that push
+- On the exam, this is a product limitation detail worth memorizing because it appears in scenario-style questions
 
 ### Bypass Reasons (If Allowed)
 
@@ -110,6 +115,14 @@ Test string (optional): CORP-ABC123DEF456GHI789JKL012MNO345
 ::: tip
 Custom patterns can also be configured at the enterprise level and applied across all organizations.
 :::
+
+### Dry Runs for Custom Patterns
+
+Before enforcing a custom pattern broadly, you can use a **dry run** to test the regex against repository history:
+
+- Helps validate whether the pattern matches the secrets you expect
+- Helps catch **false positives** before rolling the pattern out to a repository, organization, or enterprise
+- Useful when refining internal token formats that are easy to overmatch
 
 ### Validity Checking
 
@@ -167,7 +180,7 @@ After revoking a secret, if it's in commit history, you must also clean it up:
     },
     {
       question: 'A developer tries to push a commit with an AWS Access Key. Push protection is enabled. What happens?',
-      answer: 'The push is <strong>rejected</strong>. GitHub shows an error identifying the secret type. The developer must remove the secret or provide a bypass reason (if permitted by policy) before the push can succeed.'
+      answer: 'The push is <strong>rejected at the network level</strong>. GitHub scans the diff, identifies the secret type, and blocks the push until the developer removes the secret or provides a bypass reason if policy allows it.'
     },
     {
       question: 'What are custom patterns in secret scanning?',
@@ -180,6 +193,14 @@ After revoking a secret, if it's in commit history, you must also clean it up:
     {
       question: 'What does validity checking do in secret scanning?',
       answer: 'For supported partner patterns, GitHub queries the service provider to determine if the detected secret is still <strong>active or inactive</strong>. This helps teams prioritize which alerts need immediate action.'
+    },
+    {
+      question: 'What is the dry run feature for custom patterns used for?',
+      answer: 'A <strong>dry run</strong> tests a custom secret scanning pattern against repository history before broad rollout so you can validate matches and reduce false positives.'
+    },
+    {
+      question: 'How many secrets will push protection report in a single push before it stops scanning?',
+      answer: 'Up to <strong>5 secrets</strong> in a single push.'
     }
   ]"
 />

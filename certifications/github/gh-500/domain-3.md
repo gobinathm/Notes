@@ -124,6 +124,8 @@ Security updates ≠ version updates. Security updates are **vulnerability-drive
 
 Dependabot version updates keep all dependencies **up to date with their latest releases** on a schedule — regardless of whether there's a security issue.
 
+By default, Dependabot allows up to **5 open pull requests** for version updates at a time unless you override it with `open-pull-requests-limit` in `.github/dependabot.yml`.
+
 ### Configuring `dependabot.yml`
 
 Version updates are configured via `.github/dependabot.yml`:
@@ -273,6 +275,10 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
     {
       question: 'What file configures Dependabot version updates?',
       answer: '<code>.github/dependabot.yml</code> — it specifies the package ecosystem, directory, schedule interval, and other options like ignored dependencies and PR limits.'
+    },
+    {
+      question: 'What is the default limit for open Dependabot version update PRs?',
+      answer: 'Dependabot defaults to <strong>5 open pull requests</strong> at a time unless you override it with <code>open-pull-requests-limit</code> in <code>dependabot.yml</code>.'
     },
     {
       question: 'What CVSS score range corresponds to Critical severity?',

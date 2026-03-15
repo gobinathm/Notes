@@ -55,6 +55,12 @@ GHAS works best when ownership is explicit.
 - Developers fix issues in the normal pull request workflow
 - Repository rulesets and branch protection enforce the minimum bar consistently
 
+### Security Manager vs Admin
+
+- **Security managers** can review and triage alerts across the organization
+- They do **not** have the same power as organization owners or enterprise admins to enable GHAS on repositories or change higher-level settings
+- The exam often tests this distinction as **read-plus-triage** versus **configuration authority**
+
 ---
 
 ## SBOM (Software Bill of Materials)
@@ -130,6 +136,7 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
 - If the scenario is about **preventing** a bad change in a pull request, think **dependency review**, **code scanning on PR**, or **required checks**
 - If the scenario is about **reducing blast radius** for leaked credentials, think **revoke, rotate, push protection**
 - If the scenario is about **organization-wide adoption**, think **pilot first, baseline, expand, enforce, monitor**
+- If the question asks which metric best reflects program efficiency, think **MTTR**
 
 ---
 
@@ -151,6 +158,14 @@ Use cases: Supply chain audits, compliance requirements (e.g., US Executive Orde
     {
       question: 'Who should own GHAS alert remediation day to day?',
       answer: 'In a healthy rollout, <strong>developers and repository maintainers</strong> handle day-to-day remediation in their workflow, while the security or platform team sets policy, reporting, and governance.'
+    },
+    {
+      question: 'What can a Security Manager do, and what can they not do?',
+      answer: 'A <strong>Security Manager</strong> can view and triage alerts across the organization, but cannot generally enable GHAS on repositories or change organization-level settings unless they also hold broader admin privileges.'
+    },
+    {
+      question: 'Which metric best indicates the efficiency of a security program?',
+      answer: '<strong>MTTR (Mean Time to Remediate)</strong>. It measures how quickly alerts move from creation to resolution and is a common exam answer for operational effectiveness.'
     }
   ]"
 />
