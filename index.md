@@ -9,11 +9,11 @@ description: Study notes from technology certifications I've cleared and ones I'
   <p class="cert-hero-subtitle">I study for certs by writing notes. When I decided to share them, I added interactive tools to make them more useful for anyone studying alongside me.</p>
   <div class="cert-hero-stats">
     <div class="cert-stat">
-      <span class="cert-stat-num">7</span>
+      <span class="cert-stat-num">8</span>
       <span class="cert-stat-label">Passed</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">6</span>
+      <span class="cert-stat-num">5</span>
       <span class="cert-stat-label">In Progress</span>
     </div>
     <div class="cert-stat">
@@ -40,28 +40,10 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="section-header">
   <h2>Currently Studying</h2>
-  <span class="section-count">7 active</span>
+  <span class="section-count">5 active</span>
 </div>
 
 <div class="cert-grid">
-
-<div class="cert-card studying">
-  <div class="cert-ribbon intermediate">Intermediate</div>
-  <span class="provider-tag github">GitHub</span>
-  <h3><a href="./certifications/github/gh-500/">GH-500: GitHub Advanced Security</a></h3>
-  <p>Configure and use GHAS features — secret scanning, Dependabot, dependency review, and CodeQL code scanning — to secure the software supply chain.</p>
-  <div class="cert-prereqs">GitHub experience, software development fundamentals, basic security awareness</div>
-  <div class="cert-dates">
-    <div class="cert-date-item study-by">
-      <span class="date-label">Study by</span>
-      <span class="date-val">Mar 10</span>
-    </div>
-    <div class="cert-date-item exam-target">
-      <span class="date-label">Exam</span>
-      <span class="date-val">Mar 10</span>
-    </div>
-  </div>
-</div>
 
 <div class="cert-card studying">
   <div class="cert-ribbon advanced">Advanced</div>
@@ -189,10 +171,23 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="section-header">
   <h2>Completed</h2>
-  <span class="section-count">6 certs</span>
+  <span class="section-count">8 certs</span>
 </div>
 
 <div class="cert-tl-track">
+
+  <div class="cert-tl-group">
+    <div class="cert-tl-month-node">
+      <span class="cert-tl-month-label">Mar 2026</span>
+      <span class="cert-tl-dot"></span>
+    </div>
+    <div class="cert-tl-entries">
+      <div class="cert-tl-entry intermediate">
+        <span class="provider-tag github">GitHub</span>
+        <a class="cert-tl-name" href="./certifications/github/gh-500/">GH-500: GitHub Advanced Security</a>
+      </div>
+    </div>
+  </div>
 
   <div class="cert-tl-group">
     <div class="cert-tl-month-node">

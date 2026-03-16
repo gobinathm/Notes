@@ -17,10 +17,11 @@ An intermediate certification for developers, security engineers, and DevSecOps 
 Think like a security-aware developer or DevSecOps engineer. Questions test your ability to configure GHAS features, interpret their results, and apply corrective measures — not just define what they are.
 :::
 
-::: info Currently Studying ⏳
-**Target Date**: TBD
+::: tip Certification Achieved ✅
+**Earned**: March 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/405C37D72F2C5594?sharingId=DF3DC239EE30F0A4)
 
-**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-13
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-16
 :::
 
 <ImageModal

@@ -131,6 +131,21 @@ Enterprise and organization admins do not need to do all alert triage themselves
 - Security managers are **not** a substitute for owners/admins when the task is enabling GHAS or changing organization and enterprise policy
 - Security managers also cannot manage organization-wide enforcement controls such as **required workflows**
 
+### GHAS Role Capability Matrix
+
+| Capability | Security Manager | Org Owner | Repo Admin | Developer |
+|---|---|---|---|---|
+| View Alerts (Org/Enterprise) | ✅ | ✅ | ❌ | ❌ |
+| View Alerts (Repo level) | ✅ | ✅ | ✅ | ✅ |
+| Dismiss Alerts (False Positive / Risk Accepted) | ✅ | ✅ | ✅ | ❌* |
+| Reopen Dismissed Alerts | ✅ | ✅ | ✅ | ❌ |
+| Create / Edit Security Advisories | ✅ | ✅ | ✅ | ❌ |
+| Change Alert Severity (Code Scanning) | ✅ | ✅ | ✅ | ❌ |
+| Enable / Disable GHAS Features | ❌ | ✅ | ✅ | ❌ |
+| Manage Required Workflows | ❌ | ✅ | ❌ | ❌ |
+
+\* Developers may participate in remediation, but dismissal and policy-level actions are typically reserved for repository admins, organization owners, or security managers.
+
 ### IP Allow Lists and External Integrations
 
 If the enterprise uses an **IP allow list**, GitHub-integrated automation must still be able to reach GitHub from approved addresses.
