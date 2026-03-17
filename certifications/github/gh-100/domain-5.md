@@ -228,6 +228,18 @@ GitHub supports multiple token types. The exam tests your knowledge of when and 
 - **GitHub App Installation Token**: 5,000 requests/hour per installation + 15,000 requests/hour at enterprise level
 - **Unauthenticated**: 60 requests/hour
 
+### PAT Policies and Approval Controls
+
+Organizations can place guardrails around PAT usage:
+
+- Require approval for **fine-grained PATs** before they can access organization resources
+- Restrict or block **classic PAT** access to org-owned resources
+- Use shorter lifetimes for user-scoped credentials where policy allows
+
+::: warning Trap
+Fine-grained PATs are safer than classic PATs, but for machine identity the exam still prefers **GitHub Apps** over either PAT model.
+:::
+
 ---
 
 ## GitHub Apps vs OAuth Apps

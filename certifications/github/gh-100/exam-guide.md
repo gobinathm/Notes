@@ -9,7 +9,7 @@ head:
 
 # GH-100: Exam Guide
 
-[← Overview](./index.md) · [Cheatsheet →](./cheatsheet.md)
+[← Overview](./index.md) · [Admin Playbook →](./admin-playbook.md) · [Cheatsheet →](./cheatsheet.md)
 
 ---
 
@@ -45,6 +45,8 @@ The GH-100 exam is for **GitHub Administrators** (system administrators, IT prof
 | "Isolate runner access by team or org" | **Runner groups** |
 | "Store secrets outside GitHub" | **Third-party vault** (HashiCorp Vault, etc.) |
 | "Enforce policy across all organizations" | **Enterprise policy** (not org policy) |
+| "Approval gate before production deployment" | **GitHub Environment** |
+| "Cloud auth without long-lived secrets" | **OIDC federation** |
 
 ---
 
@@ -58,6 +60,8 @@ The GH-100 exam is for **GitHub Administrators** (system administrators, IT prof
 - **filter-branch vs BFG**: Both remove sensitive data from Git history. **BFG Repo Cleaner** is faster, simpler, and recommended for large repositories. `git filter-branch` is the older built-in Git approach — correct but slow.
 - **Org-level vs Enterprise-level policies**: Enterprise policies **override** org-level settings. If the question asks how to enforce a rule across all organizations in an enterprise, the answer is an enterprise policy — not configuring each org individually.
 - **PAT vs GitHub App for machine accounts**: The exam prefers **GitHub Apps** for machine/bot accounts — they have installable, scoped permissions, don't expire by default, and aren't tied to a specific user's account lifecycle.
+- **Repository secret vs Environment secret**: Environment secrets sit behind deployment controls like required reviewers and branch restrictions. Use them when the scenario is specifically about protected deployments.
+- **Stored cloud credential vs OIDC**: If the goal is to avoid long-lived cloud credentials in Actions, prefer **OIDC federation** over storing another secret in GitHub.
 :::
 
 ---
@@ -93,6 +97,13 @@ Custom hardware, on-prem resources, IP restrictions → Self-hosted runner
 Restrict runner access by team or org → Runner groups
 ```
 
+### "How should I secure a deployment?"
+```
+Need approval before production deploys → GitHub Environment with required reviewers
+Need to limit which branches can deploy → Environment branch/tag restrictions
+Need cloud auth without long-lived credentials → OIDC federation
+```
+
 ### "What should be done first?"
 ```
 Always: Define enterprise policy, assess org structure, establish governance
@@ -117,4 +128,4 @@ Unauthorized app access → OAuth/GitHub App approval policy
 
 ---
 
-[← Overview](./index.md) · [Cheatsheet →](./cheatsheet.md)
+[← Overview](./index.md) · [Admin Playbook →](./admin-playbook.md) · [Concept Map →](./concept-map.md) · [Tools Reference →](./tools-reference.md) · [Cheatsheet →](./cheatsheet.md)

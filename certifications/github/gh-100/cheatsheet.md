@@ -9,7 +9,7 @@ head:
 
 # GH-100: Cheatsheet
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
+[← Overview](./index.md) · [← Admin Playbook](./admin-playbook.md) · [← Concept Map](./concept-map.md) · [← Tools Reference](./tools-reference.md) · [← Exam Guide](./exam-guide.md)
 
 ::: danger Exam Day Reference
 Review this page 5 minutes before the exam.
@@ -73,6 +73,8 @@ Review this page 5 minutes before the exam.
 | **BFG Repo Cleaner** | Removes secrets from Git history (recommended) |
 | **filter-branch** | Git-native history rewrite (slower, legacy) |
 | **Deploy Key** | Repo-scoped SSH key for server/CI access |
+| **Environment** | Deployment-scoped approvals, secrets, and branch controls |
+| **OIDC** | Short-lived cloud auth without storing long-lived cloud secrets |
 
 ---
 
@@ -115,6 +117,12 @@ Review this page 5 minutes before the exam.
 **Need to access on-prem resources in CI?**
 → Self-hosted runner
 
+**Need approval gates or protected production secrets?**
+→ GitHub Environment
+
+**Need cloud authentication without storing long-lived credentials?**
+→ OIDC federation
+
 **Secret committed to history?**
 → Revoke first → BFG to purge → GitHub Support if public
 
@@ -144,6 +152,8 @@ Review this page 5 minutes before the exam.
 - **Runner group**: Access control layer for self-hosted runners — restricts which orgs/repos can use them.
 - **Reusable workflow**: A `workflow_call`-triggered workflow callable from other workflows to share CI logic.
 - **Deploy Key**: An SSH key scoped to a single repository. Preferred for read-only server access.
+- **Environment**: A deployment target with its own protection rules, secrets, and branch restrictions.
+- **OIDC**: OpenID Connect federation for getting short-lived cloud credentials in Actions without storing static secrets.
 
 ---
 
