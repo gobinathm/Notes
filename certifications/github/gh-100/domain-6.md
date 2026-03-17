@@ -210,6 +210,44 @@ For high-security environments, secrets can be stored externally and retrieved a
       secret/data/prod db_password | DB_PASSWORD
 ```
 
+---
+
+## Environments and Deployment Protection Rules
+
+GitHub **Environments** add policy controls around deployments.
+
+### What Environments Can Enforce
+
+- **Required reviewers** before deployment jobs continue
+- **Wait timers** before deployment begins
+- **Branch and tag restrictions** so only approved refs can deploy
+- **Custom deployment protection rules** via GitHub Apps
+
+### Environment Secrets
+
+- Environment secrets are available only to jobs that target that environment
+- If approvals are required, the job does not receive those secrets until the protection gate passes
+
+::: tip Exam Tip
+If the question is about protecting production deployments, adding approval gates, or scoping secrets to production only, the answer often involves a **GitHub Environment**, not just a repository secret.
+:::
+
+---
+
+## OIDC for Cloud Authentication
+
+GitHub Actions can use **OpenID Connect (OIDC)** to authenticate to cloud providers without storing long-lived cloud credentials in GitHub.
+
+- The workflow requests an identity token from GitHub
+- The cloud provider trusts GitHub as an identity provider
+- The workflow exchanges that token for short-lived credentials
+
+Common examples include AWS, Azure, GCP, Vault, and package registries that support trusted publishing.
+
+::: tip Exam Tip
+If the question is "how do we avoid storing long-lived cloud secrets in GitHub Actions?", the strongest answer is usually **OIDC federation**.
+:::
+
 <FlashcardDeck
   title="Domain 6 Quick Quiz"
   :cards="[
@@ -236,6 +274,14 @@ For high-security environments, secrets can be stored externally and retrieved a
     {
       question: 'How do you pass secrets from a calling workflow to a reusable workflow?',
       answer: 'Use <code>secrets: inherit</code> in the calling workflow\'s <code>uses</code> block, or explicitly pass each secret using the <code>secrets</code> key.'
+    },
+    {
+      question: 'What GitHub feature adds approval gates and deployment-scoped secrets for production deployments?',
+      answer: '<strong>GitHub Environments</strong> — they support required reviewers, branch restrictions, wait timers, and environment secrets.'
+    },
+    {
+      question: 'How do you avoid storing long-lived cloud credentials in GitHub Actions?',
+      answer: 'Use <strong>OIDC federation</strong> so workflows exchange a GitHub-issued identity token for short-lived cloud credentials.'
     }
   ]"
 />

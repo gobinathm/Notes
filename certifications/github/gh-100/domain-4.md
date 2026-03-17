@@ -142,6 +142,19 @@ The **most permissive** permission that applies wins.
 When a question asks how to give a user "the minimum required permissions," the answer involves checking their team memberships and only granting what's needed for the task — never defaulting to Admin or Write if Read or Triage suffices.
 :::
 
+### Custom Organization Roles and Custom Repository Roles
+
+On **GitHub Enterprise Cloud**, admins can go beyond the built-in roles:
+
+- **Custom organization roles** let you delegate selected administrative capabilities without making someone a full owner
+- **Custom repository roles** let you create a more granular role by extending a base repository role with additional capabilities
+
+This is useful when the built-in roles are either too weak or too broad.
+
+::: tip Exam Tip
+If the scenario is "delegate one narrow admin capability without full ownership," think **custom organization role**. If it is "grant repo access that sits between built-in repo roles," think **custom repository role**.
+:::
+
 ---
 
 ## Least Privilege in Practice
