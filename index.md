@@ -58,7 +58,7 @@ These started as plain markdown files. When I decided to share them as a site, I
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">Mar 16</span>
+      <span class="date-val">Mar 30</span>
     </div>
   </div>
 </div>
@@ -94,7 +94,7 @@ These started as plain markdown files. When I decided to share them as a site, I
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">Mar 30</span>
+      <span class="date-val">Jun 30</span>
     </div>
   </div>
 </div>
