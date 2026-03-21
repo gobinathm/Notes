@@ -157,6 +157,113 @@ If the scenario is "delegate one narrow admin capability without full ownership,
 
 ---
 
+## Repository Permission Capability Matrix
+
+Each repository role grants a specific set of capabilities. This matrix shows exactly what each role can and cannot do:
+
+### Code & Content
+
+| Capability | Read | Triage | Write | Maintain | Admin |
+|---|:---:|:---:|:---:|:---:|:---:|
+| View code, clone, fork | ✅ | ✅ | ✅ | ✅ | ✅ |
+| View issues, PRs, discussions | ✅ | ✅ | ✅ | ✅ | ✅ |
+| View releases and packages | ✅ | ✅ | ✅ | ✅ | ✅ |
+| View project boards | ✅ | ✅ | ✅ | ✅ | ✅ |
+| View wiki | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Push to non-protected branches | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Edit wiki | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Create and manage releases | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Push to protected branches | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+### Issues & Pull Requests
+
+| Capability | Read | Triage | Write | Maintain | Admin |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Open issues and PRs | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Comment on issues and PRs | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Apply/remove labels | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Assign/unassign users | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Close/reopen issues and PRs | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Mark as duplicate | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Request PR reviews | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Merge pull requests | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Apply milestones | ❌ | ✅ | ✅ | ✅ | ✅ |
+
+### Repository Settings & Administration
+
+| Capability | Read | Triage | Write | Maintain | Admin |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Manage topics | ❌ | ❌ | ❌ | ✅ | ✅ |
+| Edit repo description/website | ❌ | ❌ | ❌ | ✅ | ✅ |
+| Manage webhooks | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Manage deploy keys | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Manage branch protection rules | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Manage rulesets | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Change repo visibility | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Delete the repository | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Archive the repository | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Add/remove collaborators | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Manage GitHub Pages settings | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Enable/disable features (wiki, issues, discussions) | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+### Security
+
+| Capability | Read | Triage | Write | Maintain | Admin |
+|---|:---:|:---:|:---:|:---:|:---:|
+| View Dependabot alerts | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Dismiss Dependabot alerts | ❌ | ❌ | ❌ | ❌ | ✅ |
+| View secret scanning alerts | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Resolve secret scanning alerts | ❌ | ❌ | ❌ | ❌ | ✅ |
+| View code scanning alerts | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Dismiss code scanning alerts | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Security policy (`SECURITY.md`) | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Create security advisories | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+::: tip Exam Tip
+The **Security Manager** org role (separate from repo roles) grants read access to security alerts across all repos in the org without needing Admin on each repo. This is the exam-preferred answer for "how to give the security team visibility without over-provisioning."
+:::
+
+### GitHub Actions
+
+| Capability | Read | Triage | Write | Maintain | Admin |
+|---|:---:|:---:|:---:|:---:|:---:|
+| View workflow runs and logs | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Re-run workflows | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Cancel workflows | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Approve workflow runs (first-time contributors) | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Manage repo-level secrets | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Manage repo-level variables | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Manage self-hosted runners (repo-level) | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Configure required workflows | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+---
+
+## Enterprise & Organization Role Summary
+
+### Enterprise Roles
+
+| Role | Capabilities |
+|---|---|
+| **Enterprise Owner** | Manage all orgs, enterprise policies, billing, SAML/SCIM, audit log, runners, IP allow lists |
+| **Enterprise Billing Manager** | View and manage enterprise billing only — no access to orgs, code, or policies |
+| **Enterprise Member** | Default role — access governed by org membership within the enterprise |
+
+### Organization Roles (Extended)
+
+| Role | Capabilities |
+|---|---|
+| **Owner** | Full admin — manage members, teams, billing, security settings, integrations, and policies |
+| **Member** | Access based on default permissions + team membership |
+| **Billing Manager** | View and manage org billing — no code or settings access |
+| **Security Manager** | View security alerts and settings across all repos — no code write access |
+| **Outside Collaborator** | Access to specific repos only — no org membership, no team access, no seat consumed |
+
+::: warning Trap
+The **Security Manager** role is an organization role, not a repository role. It is assigned to a **team**, not individual users. The exam tests this distinction.
+:::
+
+---
+
 ## Least Privilege in Practice
 
 The principle of **least privilege** means giving users only the permissions they need — no more.

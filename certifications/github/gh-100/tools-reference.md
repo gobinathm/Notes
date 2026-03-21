@@ -149,26 +149,110 @@ curl -H "Authorization: token $GH_TOKEN" https://api.github.com/user
 gh api <endpoint>
 ```
 
-### Organization Endpoints
+### Organization & Members
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/orgs/$ORG/members` | GET | List org members |
-| `/orgs/$ORG/members/$USERNAME` | PUT/DELETE | Add/remove member |
-| `/orgs/$ORG/audit-log` | GET | Query audit log |
-| `/orgs/$ORG/teams` | GET/POST | List/create teams |
-| `/orgs/$ORG/teams/$TEAM_SLUG/members` | GET/PUT/DELETE | Manage team membership |
-| `/orgs/$ORG/secrets` | GET | List org secrets |
+| `/orgs/{org}/members` | GET | List all org members |
+| `/orgs/{org}/members/{username}` | GET | Check membership status |
+| `/orgs/{org}/memberships/{username}` | PUT | Invite or change member role |
+| `/orgs/{org}/members/{username}` | DELETE | Remove member from org |
+| `/orgs/{org}/outside_collaborators` | GET | List all outside collaborators |
+| `/orgs/{org}/outside_collaborators/{username}` | PUT | Convert member to outside collaborator |
+| `/orgs/{org}/outside_collaborators/{username}` | DELETE | Remove outside collaborator |
+| `/orgs/{org}/invitations` | GET | List pending org invitations |
+| `/orgs/{org}/invitations` | POST | Create org invitation |
 
-### Repository Endpoints
+### Teams & Team Membership
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/repos/$ORG/$REPO/vulnerability-alerts` | GET | List Dependabot alerts |
-| `/repos/$ORG/$REPO/secret-scanning/alerts` | GET | List secret scanning alerts |
-| `/repos/$ORG/$REPO/code-scanning/alerts` | GET | List CodeQL alerts |
-| `/repos/$ORG/$REPO/branches/BRANCH/protection` | GET/PUT | Manage branch protection |
-| `/repos/$ORG/$REPO/teams` | GET | List teams with repo access |
+| `/orgs/{org}/teams` | GET | List all teams |
+| `/orgs/{org}/teams` | POST | Create a team |
+| `/orgs/{org}/teams/{team_slug}` | PATCH | Update team name/description/privacy |
+| `/orgs/{org}/teams/{team_slug}` | DELETE | Delete a team |
+| `/orgs/{org}/teams/{team_slug}/members` | GET | List team members |
+| `/orgs/{org}/teams/{team_slug}/memberships/{username}` | PUT | Add user to team (member or maintainer) |
+| `/orgs/{org}/teams/{team_slug}/memberships/{username}` | DELETE | Remove user from team |
+| `/orgs/{org}/teams/{team_slug}/repos` | GET | List repos the team has access to |
+| `/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}` | PUT | Grant team access to repo with permission |
+| `/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}` | DELETE | Remove team access from repo |
+| `/orgs/{org}/teams/{team_slug}/teams` | GET | List child teams (nested teams) |
+
+### Repository Access & Collaborators
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/repos/{owner}/{repo}/collaborators` | GET | List all collaborators with permissions |
+| `/repos/{owner}/{repo}/collaborators/{username}` | PUT | Add collaborator with permission level |
+| `/repos/{owner}/{repo}/collaborators/{username}` | DELETE | Remove collaborator |
+| `/repos/{owner}/{repo}/collaborators/{username}/permission` | GET | Check user's permission level |
+| `/repos/{owner}/{repo}/teams` | GET | List teams with access to repo |
+| `/repos/{owner}/{repo}` | PATCH | Update repo settings (visibility, features) |
+| `/repos/{owner}/{repo}/transfer` | POST | Transfer repo to another org/user |
+
+### Branch Protection & Rulesets
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/repos/{owner}/{repo}/branches/{branch}/protection` | GET | Get branch protection rules |
+| `/repos/{owner}/{repo}/branches/{branch}/protection` | PUT | Set branch protection rules |
+| `/repos/{owner}/{repo}/branches/{branch}/protection` | DELETE | Remove branch protection |
+| `/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks` | GET/PATCH | Manage required status checks |
+| `/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews` | GET/PATCH | Manage required reviews |
+| `/repos/{owner}/{repo}/branches/{branch}/protection/restrictions` | GET | Who can push to branch |
+| `/repos/{owner}/{repo}/rulesets` | GET | List repository rulesets |
+| `/repos/{owner}/{repo}/rulesets` | POST | Create a ruleset |
+| `/repos/{owner}/{repo}/rulesets/{ruleset_id}` | GET/PUT/DELETE | Get, update, or delete a ruleset |
+| `/orgs/{org}/rulesets` | GET/POST | Org-level rulesets |
+
+### Security Alerts & Scanning
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/repos/{owner}/{repo}/dependabot/alerts` | GET | List Dependabot alerts |
+| `/repos/{owner}/{repo}/dependabot/alerts/{alert_number}` | PATCH | Dismiss or reopen Dependabot alert |
+| `/repos/{owner}/{repo}/secret-scanning/alerts` | GET | List secret scanning alerts |
+| `/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}` | PATCH | Resolve/reopen secret scanning alert |
+| `/repos/{owner}/{repo}/code-scanning/alerts` | GET | List code scanning (CodeQL) alerts |
+| `/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}` | PATCH | Dismiss code scanning alert |
+| `/repos/{owner}/{repo}/code-scanning/analyses` | GET | List code scanning analyses |
+| `/repos/{owner}/{repo}/vulnerability-alerts` | PUT | Enable Dependabot alerts |
+| `/repos/{owner}/{repo}/vulnerability-alerts` | DELETE | Disable Dependabot alerts |
+| `/orgs/{org}/security-managers` | GET | List security manager teams |
+| `/orgs/{org}/security-managers/teams/{team_slug}` | PUT/DELETE | Add/remove security manager team |
+
+### Secrets & Variables (Actions)
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/repos/{owner}/{repo}/actions/secrets` | GET | List repo-level secrets |
+| `/repos/{owner}/{repo}/actions/secrets/{secret_name}` | PUT/DELETE | Create/update or delete repo secret |
+| `/orgs/{org}/actions/secrets` | GET | List org-level secrets |
+| `/orgs/{org}/actions/secrets/{secret_name}` | PUT/DELETE | Create/update or delete org secret |
+| `/repos/{owner}/{repo}/actions/variables` | GET | List repo-level variables |
+| `/repos/{owner}/{repo}/environments/{env_name}/secrets` | GET | List environment-level secrets |
+| `/repos/{owner}/{repo}/environments` | GET | List deployment environments |
+| `/repos/{owner}/{repo}/environments/{env_name}` | PUT | Create or update environment with protection rules |
+
+### Audit Log & Enterprise
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/orgs/{org}/audit-log` | GET | Query org audit log (GHEC) |
+| `/enterprises/{enterprise}/audit-log` | GET | Query enterprise audit log |
+| `/orgs/{org}/settings/billing/actions` | GET | Actions billing usage |
+| `/orgs/{org}/settings/billing/packages` | GET | Packages billing usage |
+| `/enterprises/{enterprise}/settings/billing/actions` | GET | Enterprise Actions billing |
+
+### GitHub Apps & Installations
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/orgs/{org}/installations` | GET | List GitHub App installations in org |
+| `/app/installations/{installation_id}/access_tokens` | POST | Generate installation access token |
+| `/orgs/{org}/installation` | GET | Get org installation for authenticated app |
+| `/installation/repositories` | GET | List repos accessible to the app installation |
 
 ### Example: Exporting All Repos with Their Security Status
 
@@ -239,6 +323,106 @@ query {
 EOF
 
 gh api graphql --input query.graphql
+```
+
+### Example: Query SAML Identity for a User
+
+```graphql
+query {
+  organization(login: "your-org") {
+    samlIdentityProvider {
+      externalIdentities(first: 10, userName: "octocat") {
+        edges {
+          node {
+            samlIdentity {
+              nameId
+            }
+            scimIdentity {
+              username
+            }
+            user {
+              login
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Example: List Branch Protection Rules
+
+```graphql
+query {
+  repository(owner: "your-org", name: "your-repo") {
+    branchProtectionRules(first: 10) {
+      nodes {
+        pattern
+        requiresApprovingReviews
+        requiredApprovingReviewCount
+        requiresStatusChecks
+        requiresCodeOwnerReviews
+        dismissesStaleReviews
+        isAdminEnforced
+        restrictsPushes
+      }
+    }
+  }
+}
+```
+
+### Example: Org Members with Roles
+
+```graphql
+query {
+  organization(login: "your-org") {
+    membersWithRole(first: 100) {
+      edges {
+        role
+        node {
+          login
+          name
+          email
+        }
+      }
+    }
+  }
+}
+```
+
+### Example: Repository Collaborators and Permissions
+
+```graphql
+query {
+  repository(owner: "your-org", name: "your-repo") {
+    collaborators(first: 100) {
+      edges {
+        permission
+        node {
+          login
+        }
+      }
+    }
+  }
+}
+```
+
+### Example: Enterprise SSO Configuration
+
+```graphql
+query {
+  enterprise(slug: "your-enterprise") {
+    ownerInfo {
+      samlIdentityProvider {
+        ssoUrl
+        issuer
+        digestMethod
+        signatureMethod
+      }
+    }
+  }
+}
 ```
 
 ### Example: Audit Log via GraphQL
@@ -569,6 +753,72 @@ gh api graphql -f query='{ viewer { login } }' # Shows rate limit in response he
 
 # Wait before retrying
 sleep 60
+```
+
+---
+
+## Admin-Focused gh CLI Quick Reference
+
+### Access & Permissions (Domain 4)
+
+```bash
+# Check a user's permission on a repo
+gh api /repos/$ORG/$REPO/collaborators/$USERNAME/permission -q '.permission'
+
+# List outside collaborators across the org
+gh api /orgs/$ORG/outside_collaborators --paginate -q '.[] | .login'
+
+# Add security manager team
+gh api -X PUT /orgs/$ORG/security-managers/teams/$TEAM_SLUG
+
+# List org invitations (pending)
+gh api /orgs/$ORG/invitations --paginate -q '.[] | {login: .login, role: .role, inviter: .inviter.login}'
+
+# List rulesets on a repo
+gh ruleset list --repo $ORG/$REPO
+
+# View a specific ruleset
+gh ruleset view --repo $ORG/$REPO $RULESET_ID
+```
+
+### Security & Compliance (Domain 5)
+
+```bash
+# List Dependabot alerts
+gh api /repos/$ORG/$REPO/dependabot/alerts -q '.[] | {package: .dependency.package.name, severity: .security_advisory.severity, state: .state}'
+
+# List secret scanning alerts
+gh api /repos/$ORG/$REPO/secret-scanning/alerts -q '.[] | {type: .secret_type_display_name, state: .state, created: .created_at}'
+
+# List code scanning alerts
+gh api /repos/$ORG/$REPO/code-scanning/alerts -q '.[] | {rule: .rule.id, severity: .rule.severity, state: .state}'
+
+# Enable Dependabot alerts on a repo
+gh api -X PUT /repos/$ORG/$REPO/vulnerability-alerts
+
+# Create or update a deployment environment with reviewers
+gh api -X PUT /repos/$ORG/$REPO/environments/production \
+  -f 'reviewers=[{"type":"User","id":12345}]' \
+  -f 'deployment_branch_policy={"protected_branches":true,"custom_branch_policies":false}'
+```
+
+### GitHub Actions (Domain 6)
+
+```bash
+# List org-level secrets (names only — values are never exposed)
+gh api /orgs/$ORG/actions/secrets -q '.secrets[] | .name'
+
+# Set a repo-level secret
+gh secret set MY_SECRET --repo $ORG/$REPO --body "secret-value"
+
+# Set an org-level secret with repo visibility
+gh secret set MY_SECRET --org $ORG --visibility selected --repos "$REPO1,$REPO2"
+
+# List self-hosted runners for an org
+gh api /orgs/$ORG/actions/runners -q '.runners[] | {name: .name, os: .os, status: .status, labels: [.labels[].name]}'
+
+# List runner groups
+gh api /orgs/$ORG/actions/runner-groups -q '.runner_groups[] | {name: .name, default: .default, visibility: .visibility}'
 ```
 
 ---
