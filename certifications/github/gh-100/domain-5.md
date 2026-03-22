@@ -205,6 +205,30 @@ GET /enterprises/{enterprise}/audit-log
 Use **REST** for simple filtered queries and streaming. Use **GraphQL** when you need to shape the response or join multiple entity types in one request.
 :::
 
+### Audit Log Retention & Streaming
+
+| Parameter | Value | Notes |
+|---|---|---|
+| **Org audit log retention** | **180 days** | Default on GitHub.com (GHEC). After 180 days, events are purged |
+| **Stream pause buffer** | **7 days** | If a stream is paused for ≤ 7 days, it resumes from where it left off |
+| **Stream data loss threshold** | **3+ weeks** | If paused for 3+ weeks, the stream restarts fresh — older events are lost |
+| **Stream health check** | **Every 24 hours** | GitHub runs an automated health check on your audit log stream daily |
+
+::: warning Trap
+If an audit log stream goes offline for more than **7 days**, you lose events from the gap. If it's offline for **3+ weeks**, the stream restarts entirely. Always monitor stream health and set up alerts for stream failures.
+:::
+
+### Actions Artifact & Log Retention
+
+| Parameter | Default | Maximum |
+|---|---|---|
+| **Artifact retention** | **90 days** | 400 days (private repos only) |
+| **Workflow run logs** | **90 days** | 400 days (private repos only) |
+
+::: tip Exam Tip
+Retention can be adjusted at repo or org level via Settings → Actions → General. The 400-day maximum only applies to **private** repos — public repos are fixed at 90 days.
+:::
+
 ---
 
 ## Access Tokens

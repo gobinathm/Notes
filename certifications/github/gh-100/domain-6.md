@@ -148,6 +148,39 @@ Runner groups let admins **organize and control access** to self-hosted runners.
 
 ---
 
+## GitHub Actions Limits & Quotas (GHEC)
+
+These are critical numbers the exam tests — memorize them.
+
+### Job & Workflow Execution Limits
+
+| Limit | Value | Notes |
+|---|---|---|
+| **Max job execution time** | **6 hours** | Single job on a GitHub-hosted runner — job is cancelled after this |
+| **Max workflow run time** | **35 days** | Total time including wait times for approvals and manual gates |
+| **Max queued time** | **24 hours** | A job waiting in "Queued" state is automatically cancelled after 24h |
+| **Max matrix jobs** | **256 per run** | A single `strategy.matrix` can generate up to 256 job combinations |
+| **Max concurrent jobs (Enterprise)** | **500** | On standard GitHub-hosted runners for an Enterprise plan |
+
+### Workflow File Limits
+
+| Limit | Value |
+|---|---|
+| **Max workflow files per repo** | No hard limit, but GitHub recommends keeping it manageable |
+| **Max workflow file size** | **512 KB** |
+| **Max reusable workflow nesting** | **4 levels** deep |
+| **Max environment protection reviewers** | **6 users or teams** |
+
+::: warning Trap
+The **6-hour** limit applies to a single **job**, not the entire workflow. A workflow with multiple sequential jobs can run longer than 6 hours total. But the **35-day** cap applies to the entire workflow run including approval wait times.
+:::
+
+::: tip Exam Tip
+If a job exceeds 6 hours, it is **cancelled** (not failed). The distinction matters for retry logic and status checks. If a queued job sits for 24 hours without a runner picking it up, it is also automatically cancelled.
+:::
+
+---
+
 ## Encrypted Secrets
 
 Secrets are encrypted variables stored in GitHub and injected into workflow environments at runtime.

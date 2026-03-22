@@ -321,4 +321,73 @@ The principle of **least privilege** means giving users only the permissions the
 
 ---
 
+## Key Numbers for Access & Permissions
+
+| Parameter | Value | Notes |
+|---|---|---|
+| **HTTP 403** | Permission denied | Returned when a user lacks write permissions or is blocked by a branch protection rule. Distinct from 404 (repo not visible) |
+| **Dormant user threshold** | **30 days** (default) | A user with no activity for 30 days is flagged as "dormant" — useful for license seat reclamation. On GHES, admins can configure this to 30, 60, 90, or 120 days |
+
+::: tip Exam Tip
+A **403 error** on a push usually means the user lacks write access or a branch protection rule is blocking them. A **404 error** means the repo doesn't exist or the user doesn't have read access (GitHub returns 404 instead of 403 for private repos to avoid leaking repo existence).
+:::
+
+::: warning Trap
+**Dormant users** still consume a license seat until they are explicitly removed or suspended. Identifying and removing dormant users is a key admin task for controlling enterprise costs.
+:::
+
+---
+
+## Active vs Dormant Users — Seat Reclamation
+
+Understanding what counts as "active" is critical for license management and a common exam topic.
+
+### What Counts as Active
+
+If a user performs **any** of the following within the dormancy threshold (default 30 days), they are **not** dormant:
+
+| Category | Actions |
+|---|---|
+| **Authentication** | Logging into GitHub via Web UI, API (using PAT), or SSH key |
+| **Git Operations** | Performing a `git push` or `git pull` against any repository |
+| **Content Creation** | Opening, commenting on, or closing a PR or Issue; pushing a commit; editing a Wiki page |
+| **Releases & Packages** | Creating a release; publishing or downloading a package from GitHub Packages |
+| **GitHub Actions** | Triggering a workflow run or manually starting a job |
+| **Collaboration** | Accepting an org/repo invitation; starring a repo; reacting to a comment |
+
+### What Does NOT Count as Activity
+
+These actions alone will **not** prevent a user from being marked dormant:
+
+- **Passive viewing** — browsing a repo or reading code without logging in
+- **Being @mentioned** — the user remains dormant until they reply
+- **Automatic sync** — external systems syncing data (unless the user initiated via their own PAT)
+- **Membership alone** — simply existing in a team or organization
+
+### Dormancy Immunity
+
+An account is **never** marked dormant if:
+
+1. The account is **newer** than the threshold age (e.g., a 2-day-old account is safe with 0 activity)
+2. The user is a **Site Administrator** (on GHES)
+3. The account is a **Bot or Service Account** that has performed a programmatic action recently
+
+### Administrative Action: Reclamation Steps
+
+| Step | Action | Details |
+|---|---|---|
+| **1. Identify** | Filter by "Dormant" status | Enterprise → People dashboard |
+| **2. Audit** | Check "Last Active" date | Verify the user is genuinely inactive |
+| **3. Action** | Suspend (GHES) or Remove (GHEC) | Reclaims the license seat |
+
+::: tip Exam Tip
+**Suspending** a user on GHES stops them from consuming a license but **preserves their data** (repos, issues, PRs). **Removing** a user from GHEC frees the seat but their contributions remain as "ghost" user references.
+:::
+
+::: warning Trap
+A user who only **browses repos** or **receives @mentions** without replying is still considered dormant — passive access does not count as activity. The exam may try to trick you with scenarios like "the user views the repo daily" — that's still dormant.
+:::
+
+---
+
 [← Domain 3](./domain-3.md) · [Next Domain →](./domain-5.md)

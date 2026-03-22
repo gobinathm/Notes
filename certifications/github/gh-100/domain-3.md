@@ -35,6 +35,19 @@ This domain tests your ability to select the right GitHub product for a given bu
 - **Key features**: Same core GitHub features, but you manage upgrades, backups, and high availability
 - **Management**: Requires internal infrastructure team. Managed via the **Management Console** and CLI tools (e.g., `ghe-support-bundle`, `ghe-backup-utils`).
 
+#### GHES Key Ports & Backup Numbers
+
+| Parameter | Value | Purpose |
+|---|---|---|
+| **Port 122** | Administrative SSH | SSH port for the admin shell (`ghe-` commands) — not the standard port 22 |
+| **Port 8443** | Management Console | Web-based admin UI for GHES configuration and monitoring |
+| **Default backup snapshots** | **10** | `GHE_NUM_SNAPSHOTS` in `backup.config` — number of snapshots retained by GitHub Backup Utilities |
+| **Recommended backup frequency** | **Every hour** | Maintains a healthy Recovery Point Objective (RPO) — at most 1 hour of data loss |
+
+::: tip Exam Tip
+GHES uses **port 122** for admin SSH (not 22) and **port 8443** for the Management Console (not 443). These non-standard ports are a common exam question.
+:::
+
 ### GitHub AE (GitHub Aerospace Edition / GitHub.com Hosted)
 
 - **Hosted by**: GitHub — fully managed, dedicated instance
