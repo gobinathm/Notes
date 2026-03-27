@@ -33,11 +33,9 @@ No prior certification required. Suitable for developers, students, project mana
 
 ## Audio Refresher
 
-A podcast-style walkthrough of key exam topics — generated using [NotebookLM](https://notebooklm.google.com/). Great for a last-minute refresher on the drive to the exam center.
+A podcast-style walkthrough of key exam topics. Great for a last-minute refresher on the drive to the exam center.
 
-<AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/gh-900/Ace_the_GitHub_Foundations_GH-900_Exam.m4a">
-  <source src="/audio/certifications/gh-900/Ace_the_GitHub_Foundations_GH-900_Exam.m4a" type="audio/mp4">
-</AIAudioPlayer>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/7snTJuFxVAqNxlc0BaGHYp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ---
 
