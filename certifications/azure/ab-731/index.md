@@ -11,7 +11,7 @@ head:
 
 A business-focused certification on driving AI adoption using Microsoft solutions. No technical implementation—focuses on strategy, governance, and organizational change.
 
-**Exam**: 45 min · ~60 questions · 700/1000 to pass · $99
+<ExamMeta duration="45 min" questions="~60" passing="700/1000" cost="$99" />
 
 ::: tip Certification Achieved ✅
 **Earned**: February 7, 2026

@@ -9,15 +9,7 @@ head:
 
 # GCP-GAIL: Generative AI Leader
 
-## Exam Information
-
-- **Provider**: Google Cloud
-- **Exam Code**: GCP-GAIL
-- **Official Exam Page**: [Generative AI Leader Certification](https://cloud.google.com/learn/certification/generative-ai-leader)
-- **Exam Duration**: 120 minutes
-- **Number of Questions**: ~50-60 questions
-- **Passing Score**: Pass/Fail (Approx. 70%)
-- **Exam Format**: Multiple choice, multiple select
+<ExamMeta duration="120 min" questions="~50–60" passing="Pass/Fail" />
 
 ::: tip Note Freshness
 **Prepared**: January 2026

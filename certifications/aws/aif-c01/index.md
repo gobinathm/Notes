@@ -9,17 +9,7 @@ head:
 
 # AIF-C01: AWS Certified AI Practitioner
 
-## Exam Information
-
-- **Provider**: AWS (Amazon Web Services)
-- **Exam Code**: AIF-C01
-- **Official Exam Page**: [AWS AI Practitioner Certification](https://aws.amazon.com/certification/certified-ai-practitioner/)
-- **Exam Duration**: 120 minutes
-- **Number of Questions**: 85 questions
-- **Passing Score**: 700/1000
-- **Exam Format**: Multiple choice, multiple response
-- **Exam Cost**: $75 USD
-- **Validity**: 3 years
+<ExamMeta duration="120 min" questions="85" passing="700/1000" cost="$75" validity="3 years" />
 
 ::: info This is a foundational AI and cloud concepts exam
 Think like a business analyst or non-technical professional evaluating AI on AWS. Questions focus on identifying the right AWS AI service for a use case, understanding responsible AI principles, and knowing generative AI concepts at a high level — not building or training models.

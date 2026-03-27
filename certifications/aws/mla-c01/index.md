@@ -9,18 +9,7 @@ head:
 
 # MLA-C01: AWS Certified Machine Learning Engineer - Associate
 
-## Exam Information
-
-- **Provider**: AWS (Amazon Web Services)
-- **Exam Code**: MLA-C01
-- **Official Exam Page**: [AWS Certified Machine Learning Engineer - Associate](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/)
-- **Exam Duration**: 130 minutes
-- **Number of Questions**: 65 questions (50 scored + 15 unscored)
-- **Passing Score**: 720/1000
-- **Exam Format**: Multiple choice, multiple response, ordering
-- **Exam Cost**: $150 USD
-- **Validity**: 3 years
-- **Languages**: English, Japanese, Korean, Simplified Chinese
+<ExamMeta duration="130 min" questions="65 (50 scored + 15 unscored)" passing="720/1000" cost="$150" validity="3 years" />
 
 ::: tip Note Freshness
 **Prepared**: January 2026

@@ -11,7 +11,7 @@ head:
 
 An intermediate certification for developers, DevOps engineers, and tech managers who use GitHub Copilot to improve software development productivity, code quality, and security. Validates expertise in prompt engineering, responsible AI use, Copilot features, and privacy configuration.
 
-**Exam**: 100 min · 700/1000 to pass · Intermediate level · Pearson VUE (proctored) · Valid 2 years
+<ExamMeta duration="100 min" passing="700/1000" level="Intermediate" provider="Pearson VUE" validity="2 years" />
 
 ::: info This is a hands-on usage and strategy exam
 Think like a developer who uses GitHub Copilot daily. Questions test your ability to apply Copilot effectively — writing good prompts, using the right feature for the task, and maintaining responsible AI practices.
@@ -34,11 +34,9 @@ Think like a developer who uses GitHub Copilot daily. Questions test your abilit
 
 ## Audio Refresher
 
-A podcast-style walkthrough of key exam tactics — generated using [NotebookLM](https://notebooklm.google.com/). Made to listen on the drive to the exam center as a last-minute refresher.
+A podcast-style walkthrough of key exam tactics. Made to listen on the drive to the exam center as a last-minute refresher.
 
-<AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/gh-300/GH-300_Copilot_Exam_Strategies_and_Traps.m4a">
-  <source src="/audio/certifications/gh-300/GH-300_Copilot_Exam_Strategies_and_Traps.m4a" type="audio/mp4">
-</AIAudioPlayer>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/4TbJV7XgrqQlcFQUDKl3jf?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ---
 

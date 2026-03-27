@@ -11,7 +11,7 @@ head:
 
 This certification validates your expertise in **building, managing, and deploying AI solutions** that leverage Microsoft AI solutions. It covers the full spectrum of AI engineering, from traditional computer vision and NLP to cutting-edge Generative AI and Agentic solutions.
 
-**Exam**: 100-120 min · ~40-60 questions · 700/1000 to pass · $165
+<ExamMeta duration="100–120 min" questions="~40–60" passing="700/1000" cost="$165" />
 
 ::: info Role-Based Certification
 This exam is for **Software Developers** and **AI Engineers** who need to assemble AI capabilities into their applications. It focuses on using APIs and SDKs (Python/C#), not just theoretical concepts.

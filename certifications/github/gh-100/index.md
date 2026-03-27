@@ -11,7 +11,7 @@ head:
 
 An intermediate-level certification for system administrators, software developers, and IT professionals who manage GitHub Enterprise environments. Validates expertise in identity management, access control, security, and GitHub Actions administration.
 
-**Exam**: 100 min · Intermediate level · Pearson VUE (proctored) · Valid 2 years
+<ExamMeta duration="100 min" passing="700/1000" level="Intermediate" provider="Pearson VUE" validity="2 years" />
 
 ::: info This is a governance and administration exam
 Think like a GitHub Enterprise Admin. Questions focus on access control, security policy, compliance, identity management, and automation, not day-to-day developer workflows.
@@ -37,11 +37,9 @@ These notes follow the **live GH-100 certification page**. As of **March 17, 202
 
 ## Audio Refresher
 
-A podcast-style walkthrough of key exam tactics, generated using [NotebookLM](https://notebooklm.google.com/). Useful as a last-minute refresher before the exam.
+A podcast-style walkthrough of key exam tactics. Useful as a last-minute refresher before the exam.
 
-<AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/gh-100/Exam_Refreshers___GH-100.m4a">
-  <source src="/audio/certifications/gh-100/Exam_Refreshers___GH-100.m4a" type="audio/mp4">
-</AIAudioPlayer>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/63Z2Pt6S8QrYyWUlhNe7Gr?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ---
 

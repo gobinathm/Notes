@@ -11,7 +11,7 @@ head:
 
 An intermediate certification for developers, security engineers, and DevSecOps practitioners who configure and use GitHub Advanced Security (GHAS) features to protect code, detect vulnerabilities, and maintain compliance. Validates expertise in secret scanning, Dependabot, dependency review, and CodeQL code scanning.
 
-**Exam**: 100 min · 700/1000 to pass · Intermediate level · Pearson VUE (proctored) · Valid 2 years
+<ExamMeta duration="100 min" passing="700/1000" level="Intermediate" provider="Pearson VUE" validity="2 years" />
 
 ::: info This is a configuration and application exam
 Think like a security-aware developer or DevSecOps engineer. Questions test your ability to configure GHAS features, interpret their results, and apply corrective measures — not just define what they are.
@@ -33,11 +33,9 @@ Think like a security-aware developer or DevSecOps engineer. Questions test your
 
 ## Audio Refresher
 
-A podcast-style walkthrough of key exam tactics — generated using [NotebookLM](https://notebooklm.google.com/). Made to listen on the drive to the exam center as a last-minute refresher.
+A podcast-style walkthrough of key exam tactics. Made to listen on the drive to the exam center as a last-minute refresher.
 
-<AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/gh-500/Strategic_Prep_for_the_GH-500_Exam.m4a">
-  <source src="/audio/certifications/gh-500/Strategic_Prep_for_the_GH-500_Exam.m4a" type="audio/mp4">
-</AIAudioPlayer>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/5HLGYljpTHLdEqsnpBjrEG?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ---
 

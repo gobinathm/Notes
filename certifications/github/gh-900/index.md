@@ -11,7 +11,7 @@ head:
 
 Validates foundational knowledge of GitHub — Git basics, repositories, collaboration workflows, modern development tools, project management, security practices, and the GitHub ecosystem.
 
-**Exam**: 120 min · ~75 questions · 750/1000 to pass · $99
+<ExamMeta duration="120 min" questions="~75" passing="750/1000" cost="$99" />
 
 ::: info Foundational Knowledge Exam
 No prior certification required. Suitable for developers, students, project managers, and anyone who uses GitHub regularly. Tests practical understanding of GitHub features and workflows.

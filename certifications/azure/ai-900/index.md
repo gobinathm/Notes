@@ -11,7 +11,7 @@ head:
 
 [Brief one-line description of what this certification validates and who it's for.]
 
-**Exam**: [XX] min · ~[XX] questions · [XXX]/1000 to pass · $[XX]
+<ExamMeta duration="[XX] min" questions="~[XX]" passing="[XXX]/1000" cost="$[XX]" />
 
 ::: info [Exam type callout]
 [One sentence about what kind of exam this is — e.g., hands-on usage, business strategy, technical implementation.]

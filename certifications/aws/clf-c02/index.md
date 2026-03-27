@@ -9,17 +9,7 @@ head:
 
 # CLF-C02: AWS Certified Cloud Practitioner
 
-## Exam Information
-
-- **Provider**: AWS (Amazon Web Services)
-- **Exam Code**: CLF-C02
-- **Official Exam Page**: [AWS Certification](https://aws.amazon.com/certification/certified-cloud-practitioner/)
-- **Exam Duration**: 90 minutes
-- **Number of Questions**: 65 questions
-- **Passing Score**: 700/1000
-- **Exam Format**: Multiple choice, multiple response
-- **Exam Cost**: $100 USD
-- **Validity**: 3 years
+<ExamMeta duration="90 min" questions="65" passing="700/1000" cost="$100" validity="3 years" />
 
 ::: info This is a cloud awareness and services overview exam
 Think like someone new to the AWS Cloud evaluating whether and how to use it. Questions test your ability to identify the right service category, understand pricing models, and apply the shared responsibility model — not configure infrastructure.

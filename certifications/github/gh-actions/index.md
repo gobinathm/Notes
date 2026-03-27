@@ -11,7 +11,7 @@ head:
 
 CI/CD workflows, automation, and GitHub Actions best practices. Covers workflow authoring, reusable workflows, custom actions, secrets management, and security.
 
-**Exam**: 120 min · ~75 questions · 700/1000 to pass
+<ExamMeta duration="120 min" questions="~75" passing="700/1000" />
 
 ::: tip Certification Achieved ✅
 **Earned**: January 28, 2026

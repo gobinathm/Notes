@@ -11,7 +11,7 @@ head:
 
 A practical certification for business professionals focused on using **Microsoft 365 Copilot** to drive productivity, content creation, and data analysis. Unlike AB-731 (which is about leadership and strategy), AB-730 is about **using** the tools effectively in daily tasks.
 
-**Exam**: 45 min · ~50 questions · 700/1000 to pass · $99
+<ExamMeta duration="45 min" questions="~50" passing="700/1000" cost="$99" />
 
 ::: info This is a hands-on usage exam
 This exam validates your ability to write effective prompts, manage AI conversations, and use Copilot across Word, Excel, PowerPoint, Outlook, and Teams.
@@ -34,11 +34,9 @@ This exam validates your ability to write effective prompts, manage AI conversat
 
 ## Audio Refresher
 
-A podcast-style walkthrough of key exam tactics — generated using [NotebookLM](https://notebooklm.google.com/). Made to listen on the drive to the exam center as a last-minute refresher.
+A podcast-style walkthrough of key exam tactics. Made to listen on the drive to the exam center as a last-minute refresher.
 
-<AIAudioPlayer ai-label="AI Audio Synthesis • NotebookLM" download-url="/audio/certifications/ab-730/Survival_Guide.m4a">
-  <source src="/audio/certifications/ab-730/Survival_Guide.m4a" type="audio/mp4">
-</AIAudioPlayer>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/563bv7mpmhIg4DAqqbQkyH?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ---
 
