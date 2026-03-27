@@ -21,11 +21,16 @@ head:
 - **Exam Cost**: $75 USD
 - **Validity**: 3 years
 
+::: info This is a foundational AI and cloud concepts exam
+Think like a business analyst or non-technical professional evaluating AI on AWS. Questions focus on identifying the right AWS AI service for a use case, understanding responsible AI principles, and knowing generative AI concepts at a high level — not building or training models.
+:::
+
 ::: tip Certification Achieved ✅
 **Earned**: January 2, 2026
 **Credential**: [Verify Certificate](https://www.credly.com/badges/4f172763-a79b-44af-9439-e30871aacbb5/public_url)
 
 **Notes Prepared**: January 2026 · **Last Updated**: 2026-02-05
+**Notes valid as of**: January 2, 2026
 :::
 
 ## Overview

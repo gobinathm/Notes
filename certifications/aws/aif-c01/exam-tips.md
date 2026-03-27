@@ -70,18 +70,18 @@ Success on the AIF-C01 requires balancing foundational AI concepts with specific
 ## ⏱️ Time Management
 
 ### Exam Format
-- **120 minutes** for **85 questions**
+- **90 minutes** for **65 questions** (50 scored + 15 unscored)
 - About **1.4 minutes per question**
 - Mix of multiple choice and multiple response
 
 ### Strategy
 
-**First Pass (80 minutes)**:
+**First Pass (55 minutes)**:
 - Answer questions you know
 - Flag uncertain questions
 - Don't spend more than 2 minutes per question
 
-**Review Pass (35 minutes)**:
+**Review Pass (30 minutes)**:
 - Revisit flagged questions
 - Eliminate wrong answers
 - Make educated guesses

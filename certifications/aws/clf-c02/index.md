@@ -21,11 +21,16 @@ head:
 - **Exam Cost**: $100 USD
 - **Validity**: 3 years
 
+::: info This is a cloud awareness and services overview exam
+Think like someone new to the AWS Cloud evaluating whether and how to use it. Questions test your ability to identify the right service category, understand pricing models, and apply the shared responsibility model — not configure infrastructure.
+:::
+
 ::: tip Certification Achieved ✅
 **Earned**: October 25, 2024
 **Credential**: [Verify Certificate](https://www.credly.com/badges/ab4d4959-37b1-41ac-86f0-4a4886abd9e4/public_url)
 
 **Notes Prepared**: January 2026 · **Last Updated**: 2026-01-13
+**Notes valid as of**: October 25, 2024
 :::
 
 ## Overview

@@ -17,6 +17,12 @@ This certification validates your expertise in **building, managing, and deployi
 This exam is for **Software Developers** and **AI Engineers** who need to assemble AI capabilities into their applications. It focuses on using APIs and SDKs (Python/C#), not just theoretical concepts.
 :::
 
+::: info Currently Studying ⏳
+**Target Date**: TBD
+
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-26
+:::
+
 ---
 
 ## Study Progress

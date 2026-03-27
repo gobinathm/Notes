@@ -18,6 +18,7 @@ A business-focused certification on driving AI adoption using Microsoft solution
 **Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/67271D9ACA6E19F5?sharingId=DF3DC239EE30F0A4)
 
 **Notes Prepared**: February 2026 · **Last Updated**: 2026-02-07
+**Notes valid as of**: February 7, 2026
 :::
 
 <ImageModal 

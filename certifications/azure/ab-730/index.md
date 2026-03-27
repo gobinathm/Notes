@@ -22,6 +22,7 @@ This exam validates your ability to write effective prompts, manage AI conversat
 **Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/55756E5374B9F0DD?sharingId=DF3DC239EE30F0A4)
 
 **Notes Prepared**: February 2026 · **Last Updated**: 2026-02-13
+**Notes valid as of**: February 12, 2026
 :::
 
 
