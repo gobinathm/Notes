@@ -9,7 +9,7 @@ head:
 
 # AIP-C01: Cheatsheet
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Version →](./visual-cheatsheet.md)
 
 ::: danger Exam Day Reference
 Review this page 5 minutes before the exam.
@@ -36,6 +36,8 @@ Review this page 5 minutes before the exam.
 | `InvokeModel` | Synchronous (full response) | Simple query-response |
 | `InvokeModelWithResponseStream` | Streaming (token by token) | Low-latency UX / chat |
 | `InvokeAgent` | Streaming + trace | Multi-step agentic workflows |
+
+**Converse API:** Use when you want a **consistent message-based interface across Bedrock models** with optional inference settings, tool config, guardrails, and prompt variables.
 
 ---
 
@@ -113,37 +115,40 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 
 ## Quick Decision Rules
 
-**Vector store for Knowledge Base?**
+**Vector store for Knowledge Base?**  
 → Amazon OpenSearch Serverless (default) · pgvector on Aurora (alternative)
 
-**Multi-step reasoning + tool use?**
+**Multi-step reasoning + tool use?**  
 → Bedrock Agents + Action Groups (Lambda)
 
-**Content moderation / PII?**
+**Need a unified message-based API across models?**  
+→ Converse API
+
+**Content moderation / PII?**  
 → Guardrails for Amazon Bedrock
 
-**Audit trail for compliance?**
+**Audit trail for compliance?**  
 → AWS CloudTrail (not CloudWatch)
 
-**Operational monitoring (latency, errors, token counts)?**
+**Operational monitoring (latency, errors, token counts)?**  
 → Amazon CloudWatch
 
-**Predictable 24/7 throughput?**
+**Predictable 24/7 throughput?**  
 → Provisioned Throughput (PTU) — 1 or 6 month commitment
 
-**Bulk, non-real-time inference?**
+**Bulk, non-real-time inference?**  
 → Batch Inference
 
-**Private connectivity to Bedrock API?**
+**Private connectivity to Bedrock API?**  
 → VPC Endpoint — `bedrock-runtime` for inference calls
 
-**Knowledge changes frequently / need traceability?**
+**Knowledge changes frequently / need traceability?**  
 → RAG (Knowledge Bases), not fine-tuning
 
-**Detect hallucinations in RAG?**
+**Detect hallucinations in RAG?**  
 → Groundedness metric in Model Evaluation
 
-**Log all prompts and responses for AI governance?**
+**Log all prompts and responses for AI governance?**  
 → Model Invocation Logging (to S3 or CloudWatch Logs)
 
 ---
@@ -164,4 +169,4 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 
 ---
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Version →](./visual-cheatsheet.md)

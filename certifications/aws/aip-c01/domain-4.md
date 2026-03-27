@@ -38,15 +38,15 @@ This is the smallest domain (12%) but the questions are direct. Know the Provisi
 
 ### When to Use Each
 
-```
+```text
 Traffic is consistent and predictable (24/7)?
-└─ Provisioned Throughput (guaranteed throughput, lower per-token cost at scale)
+└─ Provisioned Throughput
 
 Traffic is unpredictable, bursty, or for dev/test?
-└─ On-Demand (no commitment risk, pay only for what you use)
+└─ On-Demand
 
 High-volume, non-real-time batch jobs?
-└─ Batch Inference (see 4.3)
+└─ Batch Inference
 ```
 
 ::: warning Exam Trap
@@ -77,7 +77,7 @@ Also: PTU commits you for **1 month or 6 months** — the exam tests this commit
 | **Reduce top-K in RAG** | Fewer retrieved chunks = shorter input context = lower cost |
 
 ::: tip
-The exam distinguishes between techniques that reduce cost vs. improve latency. **Streaming improves perceived latency but does not reduce token count or cost.** Cost optimization is exclusively about reducing input and output tokens.
+The exam distinguishes between techniques that reduce cost vs. improve latency. **Streaming improves perceived latency but does not reduce token count or cost.**
 :::
 
 ---
@@ -116,47 +116,15 @@ Batch inference is typically **~50% cheaper** per token compared to on-demand pr
 | **InvocationLatency** | End-to-end latency of model calls |
 | **InputTokenCount** | Number of input tokens consumed |
 | **OutputTokenCount** | Number of output tokens generated |
-| **InvocationClientErrors** | 4xx errors (bad requests — client-side issues) |
-| **InvocationServerErrors** | 5xx errors (Bedrock service errors) |
+| **InvocationClientErrors** | 4xx errors |
+| **InvocationServerErrors** | 5xx errors |
 | **ThrottledRequests** | Requests throttled due to exceeding on-demand TPS limit |
 
 ### Responding to ThrottlingException
 
 When you receive a `ThrottlingException`:
 - **Short-term**: Implement exponential backoff and retry
-- **Long-term**: Switch to **Provisioned Throughput** for guaranteed Model Units and no throttling
-
----
-
-<FlashcardDeck
-  storage-key="aip-c01-d4-cards"
-  :cards="[
-    {
-      question: 'When should you use Provisioned Throughput instead of On-Demand?',
-      answer: 'Use <strong>Provisioned Throughput</strong> when your application has predictable, consistent, high-volume traffic running 24/7. Avoid it for development, testing, or unpredictable workloads — you pay the full commitment cost regardless of actual usage.'
-    },
-    {
-      question: 'What are the two PTU commitment period options?',
-      answer: '<strong>1 month or 6 months.</strong> Both require upfront commitment to a fixed number of Model Units (MUs). Unused capacity is still billed.'
-    },
-    {
-      question: 'Does streaming (InvokeModelWithResponseStream) reduce the cost of a Bedrock call?',
-      answer: '<strong>No.</strong> Streaming does not reduce the number of tokens processed — cost is identical to InvokeModel. Streaming improves perceived latency by delivering the response progressively, not by reducing token usage.'
-    },
-    {
-      question: 'What is the most cost-effective option for processing 10,000 non-urgent prompts?',
-      answer: '<strong>Batch Inference</strong> — submit all prompts as a JSONL file to S3, process asynchronously, and receive results in S3. Batch inference is approximately 50% cheaper per token than on-demand for high-volume, non-real-time jobs.'
-    },
-    {
-      question: 'How do you prevent runaway expensive responses in Bedrock?',
-      answer: 'Set <strong>maxTokens</strong> explicitly in every API call. This caps the maximum number of output tokens the model will generate, controlling both response length and cost.'
-    },
-    {
-      question: 'You receive ThrottlingExceptions on Bedrock. What is the long-term solution?',
-      answer: 'Switch to <strong>Provisioned Throughput (PTU)</strong> — it provides guaranteed Model Units with no throttling. Short-term: implement exponential backoff and retry. PTU is appropriate only if traffic is predictable and consistent enough to justify the commitment.'
-    }
-  ]"
-/>
+- **Long-term**: Switch to **Provisioned Throughput**
 
 ---
 

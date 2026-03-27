@@ -15,8 +15,6 @@ For the complete and official list of exam objectives, refer to the official stu
 
 **[Study guide for AIP-C01: AWS Certified Generative AI Developer – Professional](https://d1.awsstatic.com/training-and-certification/docs-generative-ai-developer-professional/AWS-Certified-Generative-AI-Developer-Professional_Exam-Guide.pdf)**
 
----
-
 ## Exam Weighting
 
 | Domain | Weight | Focus Areas |
@@ -26,8 +24,6 @@ For the complete and official list of exam objectives, refer to the official stu
 | Domain 3: AI Safety, Security, and Governance | 20% | Guardrails, IAM policies, VPC endpoints, traceability, auditability |
 | Domain 4: Operational Efficiency and Optimization | 12% | Token efficiency, cost optimization, Provisioned Throughput (PTUs) |
 | Domain 5: Testing, Validation, and Troubleshooting | 11% | Model evaluation, CloudWatch metrics, CloudTrail auditing, debugging |
-
----
 
 ## In-Scope AWS Services
 
@@ -55,22 +51,6 @@ For the complete and official list of exam objectives, refer to the official stu
 ### Search & Retrieval
 - **Amazon Kendra**: Enterprise search for document retrieval (alternative RAG source)
 - **Amazon Bedrock Knowledge Bases**: Managed RAG pipeline integrating S3 + OpenSearch
-
----
-
-## Study Progress
-
-<ProgressTracker
-  title="AIP-C01 Objectives Progress"
-  storage-key="aip-c01-objectives-progress"
-  :items="[
-    { id: 'objectives', label: 'Reviewed exam objectives' },
-    { id: 'notes', label: 'Completed study notes' },
-    { id: 'exam-tips', label: 'Reviewed exam tips' },
-    { id: 'practice', label: 'Completed practice exercises' },
-    { id: 'ready', label: 'Ready for certification' }
-  ]"
-/>
 
 ---
 

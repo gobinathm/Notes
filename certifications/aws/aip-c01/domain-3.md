@@ -23,7 +23,7 @@ This domain is 20% of the exam. The key topics are Guardrails (know all four fil
 
 Guardrails apply safety controls to **both the input prompt and the output response** of a foundation model. They act as a filter layer around the FM.
 
-```
+```text
 User Input → [Guardrail Input Filter] → FM → [Guardrail Output Filter] → Response
 ```
 
@@ -70,11 +70,11 @@ Also: Guardrails are **not applied automatically** to all Bedrock calls. You mus
 
 **Key IAM actions for Bedrock:**
 
-```
+```text
 bedrock:InvokeModel
 bedrock:InvokeModelWithResponseStream
 bedrock:InvokeAgent
-bedrock:Retrieve           (Knowledge Base queries)
+bedrock:Retrieve
 bedrock:CreateKnowledgeBase
 ```
 
@@ -147,35 +147,57 @@ The exam may ask which endpoint is needed for inference calls. That's **`bedrock
 
 ---
 
-<FlashcardDeck
-  storage-key="aip-c01-d3-cards"
-  :cards="[
-    {
-      question: 'Do Guardrails apply to both inputs and outputs?',
-      answer: '<strong>Yes.</strong> Guardrails filter both the user\'s input prompt AND the FM\'s output response. Applied to InvokeModel, the Guardrail evaluates the prompt before sending it to the model, and evaluates the response before returning it to the caller.'
-    },
-    {
-      question: 'What must you include in every Bedrock API call to activate a Guardrail?',
-      answer: 'You must pass <strong>guardrailIdentifier</strong> and <strong>guardrailVersion</strong> in the API request. Guardrails are NOT automatically applied to all Bedrock calls — they must be explicitly included in each request where you want them active.'
-    },
-    {
-      question: 'Which AWS service provides the audit trail for all Amazon Bedrock API calls?',
-      answer: '<strong>AWS CloudTrail</strong> — it logs every Bedrock API call (who called it, when, from where, and with what parameters). CloudWatch is for operational metrics and alarms, not audit logs.'
-    },
-    {
-      question: 'Which VPC endpoint type is needed to make InvokeModel calls privately?',
-      answer: '<strong>bedrock-runtime</strong> — this is the endpoint for Bedrock runtime inference (InvokeModel, InvokeModelWithResponseStream). The control plane endpoint (bedrock) is for management operations like creating Knowledge Bases and Guardrails.'
-    },
-    {
-      question: 'What is the difference between Redact and Block in PII Guardrails?',
-      answer: '<strong>Redact</strong>: Replace the PII value with a placeholder like [EMAIL] — the request or response still proceeds with the masked value. <strong>Block</strong>: Reject the entire request or response if PII is detected.'
-    },
-    {
-      question: 'What Bedrock feature logs all input prompts and output responses for AI governance?',
-      answer: '<strong>Model Invocation Logging</strong> — enabled in Bedrock settings, it captures every prompt and completion and writes them to S3 or CloudWatch Logs for traceability and compliance review. This is different from CloudTrail, which only logs API call metadata.'
-    }
-  ]"
-/>
+## 3.5 Responsible AI
+
+### AWS Responsible AI Principles
+
+AWS grounds its AI services in these principles — know them for governance questions:
+
+| Principle | What It Means |
+|---|---|
+| **Fairness** | AI systems should not produce discriminatory outputs or amplify biases |
+| **Explainability** | Stakeholders should be able to understand why a model produced a given output |
+| **Privacy & Security** | Customer data must be protected; models should not leak sensitive information |
+| **Safety** | Models should not produce harmful content or take harmful actions |
+| **Controllability** | Humans must be able to intervene, override, or shut down AI systems |
+| **Veracity & Robustness** | Models should produce accurate, consistent outputs across varied inputs |
+| **Governance** | Organizations need policies, processes, and accountability structures for AI use |
+
+### AWS AI Service Cards
+
+AWS publishes **AI Service Cards** for its managed AI services (including Rekognition, Textract, Comprehend, etc.). Each card documents:
+
+- **Intended use cases** and **out-of-scope uses**
+- **Known limitations and biases** identified during testing
+- **Performance across different demographic groups**
+- **Recommended safeguards** for responsible deployment
+
+::: tip Exam Relevance
+If a question asks *"how do you understand the limitations and intended use cases of an AWS AI service,"* the answer is the **AI Service Card** for that service — not the API documentation.
+:::
+
+### Bias & Fairness
+
+**Bias sources in GenAI systems:**
+- **Training data bias**: if training data over-represents certain groups or perspectives, the model reflects that
+- **Prompt bias**: poorly designed prompts can elicit biased outputs
+- **Feedback loop bias**: RLHF-trained models may amplify rater preferences
+
+**Mitigation approaches:**
+- Evaluate model outputs across different demographic inputs before production deployment
+- Use Bedrock **Guardrails** to block harmful or discriminatory content categories
+- Use **Model Evaluation** to run diverse prompt sets and measure output consistency
+- Apply human review for high-stakes decisions (hiring, lending, healthcare)
+
+### Human Oversight
+
+- **High-stakes decisions** (legal, medical, financial) must include a human review step — do not fully automate
+- **Bedrock Agents** can be configured with a **human-in-the-loop** confirmation step before executing irreversible actions
+- Model Invocation Logging enables post-hoc review of all FM inputs and outputs for accountability
+
+::: warning Exam Trap
+Guardrails and safety filters are **not a substitute for human oversight** in high-stakes scenarios. The exam may present Guardrails as sufficient — they are a necessary layer but not the complete answer when human judgment is required.
+:::
 
 ---
 

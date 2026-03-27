@@ -83,17 +83,39 @@ Prefer **fine-tuning** when:
 
 ### RAG Pipeline Architecture
 
-```
+```text
 S3 (raw documents: PDFs, TXT, HTML, Markdown)
     ↓ ingestion / pre-processing
 Chunking (split into smaller text pieces)
     ↓
 Embedding Model (Titan Text Embeddings / Cohere Embed)
     ↓ convert text to vectors
-Vector Store (OpenSearch Serverless or Aurora pgvector)
+Vector Store (OpenSearch Serverless or Aurora pgvector)  ← Indexing step
     ↓ at inference time
 Query → Embed Query → Vector Search → Retrieve Top-K Chunks → FM Prompt
 ```
+
+### Key Pipeline Concepts
+
+**Chunking** — splitting a large document into smaller, semantically meaningful segments before embedding and storage. Required because:
+- Foundation models have limited context windows and cannot process entire documents at once
+- Smaller chunks produce more precise retrieval — returning only the relevant section, not an entire 100-page document
+- Each chunk is embedded and searched independently
+
+**Embedding** — converting a text chunk into a numerical vector (array of numbers) that captures its semantic meaning. Embedding happens *after* chunking. Embeddings enable semantic similarity search in the vector store.
+
+**Indexing** — organizing and storing chunks and their embeddings in a searchable structure (the vector database index). Indexing happens *after* embedding. It makes chunks retrievable but is not the same as splitting them.
+
+**Sequential order: Chunking → Embedding → Indexing**
+
+::: warning Exam Trap — Chunking vs. Tokenization
+**Tokenization** is a different process: it breaks text into tokens (words or subwords) and converts them into numerical IDs for the model's neural network. Tokenization happens *internally* when the model processes text — it is not the same as chunking documents for retrieval.
+
+- **Chunking** = splitting at the paragraph/section level, *before* the model, for retrieval
+- **Tokenization** = splitting at the word/subword level, *inside* the model, for inference
+
+If an exam question asks "what is the process of dividing documents into smaller segments for RAG?" — the answer is **chunking**, not tokenization, embedding, or indexing.
+:::
 
 ### Chunking Strategies
 
@@ -105,11 +127,13 @@ Query → Embed Query → Vector Search → Retrieve Top-K Chunks → FM Prompt
 | **Hierarchical** | Parent chunk + child chunk structure | Complex docs needing broad + fine retrieval | More complex retrieval logic |
 
 ::: tip
-**Hierarchical** chunking is best when you need both broad context and fine-grained retrieval.
+**Hierarchical** chunking is best when you need both broad context and fine-grained retrieval.  
 **Fixed-size with overlap** is the simplest option for preserving context across chunk boundaries.
 :::
 
 ### Embedding Models
+
+Embeddings are numerical vector representations of text. Semantically similar text produces vectors that are close together in vector space — this is what enables semantic search ("find chunks *meaning* the same thing as the query", not just keyword matches).
 
 | Model | Vendor | Best For |
 |---|---|---|
@@ -160,39 +184,48 @@ Amazon Bedrock does **not** use customer prompts, completions, or training data 
 
 ---
 
-<FlashcardDeck
-  storage-key="aip-c01-d1-cards"
-  :cards="[
-    {
-      question: 'Which FM on Bedrock has the largest context window?',
-      answer: '<strong>Claude (Anthropic)</strong> — up to 200,000 tokens. Use Claude when the task requires processing long documents or maintaining extended conversation history.'
-    },
-    {
-      question: 'When should you choose RAG over fine-tuning?',
-      answer: 'Choose <strong>RAG</strong> when the knowledge base changes frequently, you need source attribution, or you want to avoid training costs. Choose <strong>fine-tuning</strong> when you need the model to adopt a new style, format, or specialized tone on stable data.'
-    },
-    {
-      question: 'Which vector store is the default for Amazon Bedrock Knowledge Bases?',
-      answer: '<strong>Amazon OpenSearch Serverless</strong> (vector search collection type) — managed, serverless, scales to zero. Aurora PostgreSQL with pgvector is the alternative for teams with existing PostgreSQL infrastructure.'
-    },
-    {
-      question: 'What chunking strategy is best when you need both broad context and fine-grained retrieval?',
-      answer: '<strong>Hierarchical chunking</strong> — creates parent chunks (broad context) and child chunks (fine detail), allowing the retriever to fetch the right granularity for each query.'
-    },
-    {
-      question: 'Does Amazon Bedrock use your prompt data to train foundation models?',
-      answer: '<strong>No.</strong> Amazon Bedrock does not use customer data (prompts, completions, or custom training data) to train or improve the underlying foundation models. This is a built-in privacy and compliance guarantee.'
-    },
-    {
-      question: 'Which temperature setting produces more deterministic outputs?',
-      answer: 'Lower temperature (0.0–0.3) produces more deterministic, focused outputs. Higher temperature (0.7–1.0) increases creativity and variability. Use low temperature for factual Q&A and high temperature for creative or diverse generation.'
-    },
-    {
-      question: 'What is the primary AWS service for vector storage in Bedrock Knowledge Bases?',
-      answer: '<strong>Amazon OpenSearch Serverless</strong> — specifically the vector search collection type. It is the default managed vector store for Bedrock Knowledge Bases. NOT the standard OpenSearch managed cluster.'
-    }
-  ]"
-/>
+## 1.6 Model Customization: Bedrock Fine-Tuning vs. SageMaker vs. RAG
+
+### Three Customization Approaches
+
+| Approach | Where | When to Use |
+|---|---|---|
+| **RAG** | Bedrock Knowledge Bases | Knowledge changes frequently; need source attribution; fastest to deploy |
+| **Bedrock Fine-Tuning** | Amazon Bedrock | Stable data; model needs a specific tone, format, or domain vocabulary; no custom infrastructure |
+| **Continued Pre-Training** | Amazon Bedrock | Model needs to internalize new domain knowledge (e.g., proprietary terminology, niche corpus) |
+| **SageMaker Fine-Tuning** | Amazon SageMaker | Need full control over training: custom framework, hyperparameters, or training pipeline |
+
+### Bedrock Fine-Tuning
+
+- Supported for select models (check the Bedrock console for current support — not all FMs support fine-tuning)
+- Training data uploaded to **Amazon S3** as JSONL prompt-completion pairs
+- No infrastructure to manage — Bedrock handles the compute
+- Result: a **fine-tuned model variant** deployed within Bedrock, invoked like any other FM
+- Best for: adapting writing style, enforcing output format, domain-specific jargon
+
+### Continued Pre-Training
+
+- Also runs within Amazon Bedrock — no infrastructure required
+- Training data is raw, unlabeled domain text (not prompt-completion pairs)
+- Use when the model needs to **learn new vocabulary or a proprietary knowledge corpus** — not just follow a style
+- More expensive and slower than fine-tuning; use only when RAG can't meet the need
+
+### Amazon SageMaker for Custom Models
+
+- Full-control managed ML training service
+- Use when you need:
+  - A custom training framework (PyTorch, TensorFlow, JAX)
+  - Fine-grained hyperparameter control
+  - Training on a proprietary model architecture not available in Bedrock
+- SageMaker **JumpStart** provides pre-trained foundation models (including open-source LLMs like Llama) that you can fine-tune and deploy on SageMaker endpoints
+- Deploy via **SageMaker Endpoints** — invoked through the SageMaker Runtime API (different from `bedrock:InvokeModel`)
+
+::: warning Exam Trap
+**Bedrock fine-tuning vs. SageMaker fine-tuning:**
+- Choose **Bedrock** when the question emphasizes "managed," "no infrastructure," or "within Bedrock"
+- Choose **SageMaker** when the question mentions "custom training pipeline," "bring your own framework," or "full control"
+- Choose **RAG** when the knowledge changes frequently or source attribution is required — fine-tuning bakes knowledge into the model weights and cannot be updated without retraining
+:::
 
 ---
 

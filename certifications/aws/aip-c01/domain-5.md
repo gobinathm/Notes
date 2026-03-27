@@ -34,7 +34,7 @@ Amazon Bedrock includes a built-in **Model Evaluation** feature that lets you ev
 | **Robustness** | Does the model perform consistently across varied prompt phrasings? | No |
 
 ::: tip Key Distinction
-**Groundedness** is the most RAG-specific metric — it checks whether the model's answer is supported by the retrieved documents, not invented. A low Groundedness score = the model is hallucinating (generating information not in the retrieved context).
+**Groundedness** is the most RAG-specific metric — it checks whether the model's answer is supported by the retrieved documents, not invented.
 :::
 
 ### Automated vs. Human Evaluation
@@ -79,9 +79,9 @@ Amazon Bedrock includes a built-in **Model Evaluation** feature that lets you ev
 | `InvocationLatency` | P50/P90/P99 latency for model calls (end-to-end) |
 | `InputTokenCount` | Total input tokens consumed in the period |
 | `OutputTokenCount` | Total output tokens generated in the period |
-| `ThrottledRequests` | Count of requests throttled (on-demand TPS exceeded) |
-| `InvocationClientErrors` | 4xx errors (bad request format, invalid model ID) |
-| `InvocationServerErrors` | 5xx errors (Bedrock service-side failures) |
+| `ThrottledRequests` | Count of requests throttled |
+| `InvocationClientErrors` | 4xx errors |
+| `InvocationServerErrors` | 5xx errors |
 
 ### Setting Up CloudWatch Alarms
 
@@ -94,17 +94,15 @@ Use CloudWatch Alarms to proactively catch issues:
 
 ## 5.4 Troubleshooting Common Issues
 
-### Problem → Cause → Solution
-
 | Problem | Likely Cause | Solution |
 |---|---|---|
 | `ThrottlingException` | Exceeded on-demand TPS limit | Implement exponential backoff; use Provisioned Throughput |
 | High latency | Long prompts or large retrieved context | Reduce input tokens; use streaming for UX improvement |
-| Poor RAG answer quality | Wrong chunks returned (low retrieval relevance) | Tune chunking strategy, adjust top-K, improve embedding model |
-| Guardrail blocking valid content | Content filter sensitivity too high | Lower filter strength; review denied topics configuration |
-| Hallucinated response | FM ignoring retrieved context | Strengthen system prompt to emphasize context use; reduce temperature; check Groundedness metric |
-| Agent not calling the right action | Action Group schema unclear or description imprecise | Improve OpenAPI schema descriptions; ensure action names are unambiguous |
-| High cost | Verbose system prompts or large top-K retrieval | Shorten system prompt; reduce top-K; set `maxTokens`; use a smaller model |
+| Poor RAG answer quality | Wrong chunks returned | Tune chunking strategy, adjust top-K, improve embedding model |
+| Guardrail blocking valid content | Filter sensitivity too high | Lower filter strength; review denied topics configuration |
+| Hallucinated response | FM ignoring retrieved context | Strengthen system prompt; reduce temperature; check Groundedness |
+| Agent not calling the right action | Schema unclear | Improve OpenAPI descriptions |
+| High cost | Verbose prompts or large top-K retrieval | Shorten prompt; reduce top-K; set `maxTokens`; use a smaller model |
 
 ---
 
@@ -120,37 +118,9 @@ Enable `enableTrace: true` in `InvokeAgent` to inspect:
 
 ### Common Agent Issues
 
-- **Agent loops**: Agent calls tools repeatedly without progressing → improve action descriptions and add clearer stopping conditions
-- **Wrong action called**: Agent misidentifies the right tool → improve the Action Group's name and description in the OpenAPI schema
-- **Knowledge Base returns irrelevant chunks**: Poor chunking or embedding quality → re-index with a better chunking strategy or embedding model
-
----
-
-<FlashcardDeck
-  storage-key="aip-c01-d5-cards"
-  :cards="[
-    {
-      question: 'Which model evaluation metric detects hallucinations in a RAG application?',
-      answer: '<strong>Groundedness</strong> — it measures whether the model\'s response is supported by the retrieved context. A low Groundedness score means the model is generating information not found in the knowledge base (hallucinating).'
-    },
-    {
-      question: 'When should you use human evaluation instead of automated evaluation?',
-      answer: 'Use <strong>human evaluation</strong> when evaluating subjective qualities (tone, empathy, brand voice) or when algorithmic metrics cannot capture the required nuance. Use automated evaluation for large-scale regression testing and objective metric-based comparisons.'
-    },
-    {
-      question: 'What CloudWatch metric tells you that Bedrock is throttling your requests?',
-      answer: '<strong>ThrottledRequests</strong> — a non-zero count indicates your on-demand request rate is exceeding the TPS limit. Short-term: implement exponential backoff. Long-term: switch to Provisioned Throughput.'
-    },
-    {
-      question: 'How do you debug unexpected behavior in a Bedrock Agent?',
-      answer: 'Enable <strong>enableTrace: true</strong> in the InvokeAgent API call. The Orchestration Trace shows the Agent\'s step-by-step reasoning, which tools it called, what Knowledge Base queries it ran, and why each decision was made.'
-    },
-    {
-      question: 'A RAG application returns hallucinated answers despite having a Knowledge Base. What is the most likely cause and fix?',
-      answer: 'The FM is ignoring the retrieved context and generating its own answer. Fix by: (1) strengthening the system prompt to explicitly instruct the model to use only the provided context, (2) reducing temperature for more deterministic responses, and (3) reviewing the <strong>Groundedness</strong> metric in Model Evaluation to quantify the problem.'
-    }
-  ]"
-/>
+- **Agent loops**: improve action descriptions and stopping conditions
+- **Wrong action called**: improve Action Group names and descriptions
+- **Knowledge Base returns irrelevant chunks**: re-index with better chunking or embeddings
 
 ---
 
