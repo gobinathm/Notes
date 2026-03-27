@@ -108,4 +108,4 @@ Which API?
 
 ---
 
-[← Back to Overview](./index.md) | [Study Notes](./notes.md) | [Exam Tips](./exam-tips.md)
+[← Back to Overview](./index.md) | [Exam Tips](./exam-tips.md)

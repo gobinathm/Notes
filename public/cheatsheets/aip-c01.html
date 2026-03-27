@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · 5-Minute Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0f1117;
+  --paper: #f5f2eb;
+  --paper2: #ece9e0;
+  --rule: #d4cfc3;
+  --rule2: #bfb9aa;
+  --c1: #1a5276;   /* D1 blue */
+  --c2: #6d28d9;   /* D2 purple */
+  --c3: #b45309;   /* D3 amber */
+  --c4: #065f46;   /* D4 green */
+  --c5: #9f1239;   /* D5 red */
+  --accent: #c0392b;
+  --mono: 'IBM Plex Mono', monospace;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Figtree', sans-serif;
+}
+
+body {
+  background: #e8e4d8;
+  font-family: var(--sans);
+  color: var(--ink);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+/* ── PAGE SHELL ── */
+.page {
+  width: 1280px;
+  min-height: 900px;
+  margin: 24px auto;
+  background: var(--paper);
+  border: 1px solid var(--rule2);
+  box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* watermark */
+.page::before {
+  content: 'AIP-C01';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(-20deg);
+  font-family: var(--serif);
+  font-size: 18rem;
+  color: rgba(0,0,0,0.025);
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: -0.05em;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  border-bottom: 2px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  padding: 18px 28px 12px;
+  gap: 20px;
+}
+
+.mast-left {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: #666;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mast-left span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+.mast-center {
+  text-align: center;
+}
+
+.mast-title {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.mast-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.mast-sub {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+  margin-top: 4px;
+  border-top: 1px solid var(--rule);
+  padding-top: 4px;
+}
+
+.mast-right {
+  text-align: right;
+}
+
+.score-pill {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.mast-right p {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: #666;
+  letter-spacing: 0.08em;
+}
+
+/* ── DOMAIN RIBBON ── */
+.domain-ribbon {
+  display: flex;
+  border-bottom: 1px solid var(--rule);
+}
+
+.dr-cell {
+  flex: 1;
+  padding: 6px 10px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dr-cell:last-child { border-right: none; }
+
+.dr-num {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: #999;
+  letter-spacing: 0.1em;
+}
+
+.dr-pct {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.dr-name {
+  font-size: 9px;
+  color: #444;
+  line-height: 1.35;
+  flex: 1;
+}
+
+.dr-bar {
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 3px;
+}
+
+/* ── MAIN GRID ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.col { border-right: 1px solid var(--rule); }
+.col:last-child { border-right: none; }
+
+.cell {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cell:last-child, .cell.no-border { border-bottom: none; }
+
+.cell-title {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ct-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+ul.bullets {
+  list-style: none;
+  padding: 0;
+}
+
+ul.bullets li {
+  padding: 2.5px 0;
+  padding-left: 12px;
+  position: relative;
+  font-size: 10.5px;
+  color: #222;
+  line-height: 1.45;
+  border-bottom: 1px dotted var(--rule);
+}
+
+ul.bullets li:last-child { border-bottom: none; }
+
+ul.bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: #aaa;
+  font-size: 10px;
+}
+
+ul.bullets li strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+ul.bullets li .note {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: #777;
+  display: block;
+  margin-top: 1px;
+}
+
+/* ── FLOW DIAGRAMS ── */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+
+.flow-box {
+  background: white;
+  border: 1px solid var(--rule2);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 9px;
+  font-family: var(--mono);
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.flow-box.hi { background: var(--ink); color: var(--paper); }
+.flow-box.d1 { border-color: var(--c1); color: var(--c1); }
+.flow-box.d2 { border-color: var(--c2); color: var(--c2); }
+.flow-box.d3 { border-color: var(--c3); color: var(--c3); }
+
+.flow-arr {
+  font-size: 11px;
+  color: #aaa;
+  padding: 0 3px;
+  flex-shrink: 0;
+}
+
+.flow-label {
+  font-size: 8px;
+  font-family: var(--mono);
+  color: #888;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* Decision table */
+.dec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5px;
+}
+
+.dec-table th {
+  font-family: var(--mono);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 6px;
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  text-align: left;
+  color: #555;
+}
+
+.dec-table td {
+  padding: 4px 6px;
+  border: 1px solid var(--rule);
+  color: #222;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.dec-table tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 8px;
+  padding: 1px 5px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.badge-use  { background: #dcfce7; color: #166534; }
+.badge-when { background: #fef9c3; color: #854d0e; }
+.badge-no   { background: #fee2e2; color: #991b1b; }
+
+/* Agent diagram */
+.agent-loop {
+  background: white;
+  border: 1px solid var(--rule2);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 6px 0;
+  position: relative;
+}
+
+.al-title {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: #888;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.al-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.al-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.al-box {
+  background: var(--paper2);
+  border: 1px solid var(--rule2);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  text-align: center;
+  line-height: 1.3;
+  min-width: 52px;
+}
+
+.al-box.em { background: var(--ink); color: var(--paper); }
+.al-box.d2 { border-color: var(--c2); background: rgba(109,40,217,0.06); }
+
+.al-arr { font-size: 14px; color: #bbb; padding: 0 2px; }
+
+/* Guardrails visual */
+.guard-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 6px 0;
+}
+
+.g-layer {
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.g-layer .g-name { font-weight: 600; }
+.g-layer .g-eg { font-family: var(--mono); font-size: 8px; color: #666; }
+
+/* Cost table */
+.cost-compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5px;
+  margin: 6px 0;
+}
+
+.cost-compare th {
+  font-family: var(--mono);
+  font-size: 8px;
+  padding: 3px 8px;
+  background: var(--paper2);
+  border: 1px solid var(--rule);
+  text-align: center;
+  color: #555;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cost-compare td {
+  padding: 3.5px 8px;
+  border: 1px solid var(--rule);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tick { color: #16a34a; font-size: 12px; }
+.cross { color: #dc2626; font-size: 12px; }
+.mid { color: #d97706; font-size: 11px; }
+
+/* Wide cell spanning two cols */
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+
+/* Exam tip */
+.tip-row {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tip-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.tips-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.tips-list span {
+  font-size: 9.5px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tips-list span::before {
+  content: '◆';
+  font-size: 7px;
+  opacity: 0.5;
+}
+
+/* footer */
+.footer {
+  border-top: 2px solid var(--ink);
+  padding: 8px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-l {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11px;
+  color: #666;
+}
+
+.footer-r {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: #999;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Inline code */
+code {
+  font-family: var(--mono);
+  font-size: 9px;
+  background: var(--paper2);
+  padding: 1px 4px;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+}
+
+/* scrollbar on small screens */
+@media (max-width: 1300px) {
+  body { overflow-x: auto; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div>
+    <div class="masthead">
+      <div class="mast-left">
+        AWS Certification<br>
+        <span>Generative AI Developer — Professional</span>
+      </div>
+      <div class="mast-center">
+        <div class="mast-title">AIP-C01 <em>Cheat Sheet</em></div>
+        <div class="mast-sub">5-Minute Master Reference · All Five Domains · Key Services · Decision Trees</div>
+      </div>
+      <div class="mast-right">
+        <div class="score-pill">Pass: 750 / 1000</div>
+        <p>65 scored · 10 unscored · 170 min</p>
+        <p>Compensatory scoring model</p>
+      </div>
+    </div>
+
+    <!-- DOMAIN RIBBON -->
+    <div class="domain-ribbon">
+      <div class="dr-cell">
+        <div>
+          <div class="dr-num">D1</div>
+          <div class="dr-pct" style="color:var(--c1)">31%</div>
+          <div class="dr-bar" style="background:var(--c1);width:80%"></div>
+        </div>
+        <div class="dr-name">FM Integration, Data &amp; Compliance</div>
+      </div>
+      <div class="dr-cell">
+        <div>
+          <div class="dr-num">D2</div>
+          <div class="dr-pct" style="color:var(--c2)">26%</div>
+          <div class="dr-bar" style="background:var(--c2);width:65%"></div>
+        </div>
+        <div class="dr-name">Implementation &amp; Integration</div>
+      </div>
+      <div class="dr-cell">
+        <div>
+          <div class="dr-num">D3</div>
+          <div class="dr-pct" style="color:var(--c3)">20%</div>
+          <div class="dr-bar" style="background:var(--c3);width:52%"></div>
+        </div>
+        <div class="dr-name">AI Safety, Security &amp; Governance</div>
+      </div>
+      <div class="dr-cell">
+        <div>
+          <div class="dr-num">D4</div>
+          <div class="dr-pct" style="color:var(--c4)">12%</div>
+          <div class="dr-bar" style="background:var(--c4);width:31%"></div>
+        </div>
+        <div class="dr-name">Operational Efficiency &amp; Optimization</div>
+      </div>
+      <div class="dr-cell">
+        <div>
+          <div class="dr-num">D5</div>
+          <div class="dr-pct" style="color:var(--c5)">11%</div>
+          <div class="dr-bar" style="background:var(--c5);width:28%"></div>
+        </div>
+        <div class="dr-name">Testing, Validation &amp; Troubleshooting</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-grid">
+
+    <!-- ══ COL 1 ══ -->
+    <div class="col">
+
+      <!-- D1a: Bedrock Basics -->
+      <div class="cell">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c1)"></span>D1 · Amazon Bedrock Essentials</div>
+        <ul class="bullets">
+          <li><strong>Bedrock</strong> = managed API to invoke FMs — no infra to manage</li>
+          <li><strong>FMs available:</strong> Anthropic Claude, Meta Llama, Cohere, Amazon Titan, Stability AI, Mistral</li>
+          <li><strong>Inference params:</strong> <code>temperature</code> (creativity), <code>top-P/K</code> (sampling), <code>max_tokens</code>, <code>stop_sequences</code></li>
+          <li><strong>API calls:</strong> <code>InvokeModel</code> (sync) · <code>InvokeModelWithResponseStream</code> (streaming)</li>
+          <li><strong>Pricing modes:</strong>
+            <span class="note">On-demand = pay per token · Provisioned = reserved capacity, needed for custom models · Batch = async -50% cost</span>
+          </li>
+          <li><strong>Embeddings:</strong> Amazon Titan Embeddings, Cohere Embed — convert text → vectors for RAG</li>
+        </ul>
+      </div>
+
+      <!-- D1b: RAG Pipeline -->
+      <div class="cell">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c1)"></span>D1 · RAG Pipeline (highest exam weight)</div>
+        <div class="flow">
+          <div class="al-step"><div class="flow-box">Docs / S3</div><div class="flow-label">source</div></div>
+          <div class="flow-arr">→</div>
+          <div class="al-step"><div class="flow-box">Chunk</div><div class="flow-label">split</div></div>
+          <div class="flow-arr">→</div>
+          <div class="al-step"><div class="flow-box">Embed</div><div class="flow-label">vectorize</div></div>
+          <div class="flow-arr">→</div>
+          <div class="al-step"><div class="flow-box hi">Vector DB</div><div class="flow-label">store</div></div>
+          <div class="flow-arr">→</div>
+          <div class="al-step"><div class="flow-box">Retrieve</div><div class="flow-label">kNN</div></div>
+          <div class="flow-arr">→</div>
+          <div class="al-step"><div class="flow-box">Augment</div><div class="flow-label">prompt</div></div>
+          <div class="flow-arr">→</div>
+          <div class="al-step"><div class="flow-box hi">FM</div><div class="flow-label">generate</div></div>
+        </div>
+        <ul class="bullets" style="margin-top:6px">
+          <li><strong>Knowledge Bases for Bedrock</strong> = fully managed RAG (no code)</li>
+          <li><strong>Vector stores:</strong> OpenSearch Serverless · Aurora pgvector · Pinecone · Redis</li>
+          <li><strong>Chunking:</strong> fixed-size (simple) · semantic (quality) · hierarchical (docs)</li>
+          <li><strong>Hybrid search</strong> = semantic + keyword (BM25) → better recall</li>
+          <li><strong>Metadata filters</strong> narrow retrieved chunks before similarity search</li>
+        </ul>
+      </div>
+
+      <!-- D1c: Fine-tuning vs RAG -->
+      <div class="cell no-border">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c1)"></span>D1 · Customization Decision Tree</div>
+        <table class="dec-table">
+          <tr><th>Scenario</th><th>Use</th></tr>
+          <tr><td>Need fresh/dynamic data</td><td><span class="badge badge-use">RAG</span></td></tr>
+          <tr><td>Teach model a new style/format</td><td><span class="badge badge-use">Fine-tune</span></td></tr>
+          <tr><td>Domain-specific vocabulary adaptation</td><td><span class="badge badge-use">Continued pre-train</span></td></tr>
+          <tr><td>Quick, no training data</td><td><span class="badge badge-use">RAG</span></td></tr>
+          <tr><td>Consistent tone in outputs</td><td><span class="badge badge-use">Fine-tune</span></td></tr>
+          <tr><td>Latency-critical, no retrieval lag</td><td><span class="badge badge-use">Fine-tune</span></td></tr>
+        </table>
+        <ul class="bullets" style="margin-top:6px">
+          <li>Fine-tune data format: <strong>JSONL</strong> with <code>prompt</code>/<code>completion</code> pairs</li>
+          <li>Custom models <strong>require provisioned throughput</strong> to invoke (not on-demand)</li>
+          <li><strong>Model Distillation</strong>: large teacher → small student, same quality cheaper</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ COL 2 ══ -->
+    <div class="col">
+
+      <!-- D2a: Prompt Engineering -->
+      <div class="cell">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c2)"></span>D2 · Prompt Engineering Patterns</div>
+        <ul class="bullets">
+          <li><strong>Zero-shot</strong> — no examples, rely on model knowledge
+            <span class="note">Use when task is simple &amp; model knows the domain</span></li>
+          <li><strong>Few-shot</strong> — 3–5 examples in prompt
+            <span class="note">Use when format/style must be controlled precisely</span></li>
+          <li><strong>Chain-of-Thought (CoT)</strong> — "think step by step"
+            <span class="note">Use for math, logic, multi-step reasoning</span></li>
+          <li><strong>ReAct</strong> = Reason + Act → basis of Bedrock Agents loop</li>
+          <li><strong>Prompt chaining</strong> — output of step N becomes input to step N+1</li>
+          <li><strong>System prompt</strong> sets persona/constraints · <strong>Human/Assistant turns</strong> = conversation</li>
+          <li><strong>Prompt injection</strong> — attacker embeds malicious instructions → mitigate with Guardrails</li>
+        </ul>
+      </div>
+
+      <!-- D2b: Agents -->
+      <div class="cell">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c2)"></span>D2 · Bedrock Agents (ReAct Loop)</div>
+        <div class="agent-loop">
+          <div class="al-title">Agent Orchestration Cycle</div>
+          <div class="al-steps">
+            <div class="al-step"><div class="al-box em">User<br>Input</div></div>
+            <div class="al-arr">→</div>
+            <div class="al-step"><div class="al-box d2">FM<br>Reason</div></div>
+            <div class="al-arr">→</div>
+            <div class="al-step"><div class="al-box">Decide<br>Tool</div></div>
+            <div class="al-arr">→</div>
+            <div class="al-step"><div class="al-box">Lambda<br>Action</div></div>
+            <div class="al-arr">→</div>
+            <div class="al-step"><div class="al-box">Observe<br>Result</div></div>
+            <div class="al-arr">→</div>
+            <div class="al-step"><div class="al-box d2">Loop or<br>Answer</div></div>
+          </div>
+        </div>
+        <ul class="bullets" style="margin-top:4px">
+          <li><strong>Action Group</strong> = Lambda fn + OpenAPI schema → what the agent can do</li>
+          <li><strong>Knowledge Base</strong> attached to agent → automatic RAG retrieval</li>
+          <li><strong>Return of Control (RoC)</strong> — agent pauses, awaits human approval</li>
+          <li><strong>Multi-agent:</strong> Supervisor agent delegates to Sub-agents by specialty</li>
+          <li><strong>Agent memory</strong>: session (within convo) · cross-session (persisted)</li>
+          <li><strong>Bedrock Flows</strong> = visual drag-and-drop workflow builder (low-code)</li>
+        </ul>
+      </div>
+
+      <!-- D2c: AWS Service Map -->
+      <div class="cell no-border">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c2)"></span>D2 · Right Service, Right Job</div>
+        <table class="dec-table">
+          <tr><th>Need</th><th>Service</th></tr>
+          <tr><td>Custom FM app, full control</td><td><strong>Amazon Bedrock</strong></td></tr>
+          <tr><td>Managed RAG chatbot over company docs</td><td><strong>Amazon Q Business</strong></td></tr>
+          <tr><td>Enterprise keyword + semantic search</td><td><strong>Amazon Kendra</strong></td></tr>
+          <tr><td>Sentiment, entities, PII from text</td><td><strong>Amazon Comprehend</strong></td></tr>
+          <tr><td>Extract data from PDFs / forms</td><td><strong>Amazon Textract</strong></td></tr>
+          <tr><td>Train/deploy custom ML models</td><td><strong>Amazon SageMaker</strong></td></tr>
+          <tr><td>Image / video understanding</td><td><strong>Amazon Rekognition</strong></td></tr>
+          <tr><td>Multi-service pipeline orchestration</td><td><strong>AWS Step Functions</strong></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ COL 3 ══ -->
+    <div class="col">
+
+      <!-- D3: Safety & Guardrails -->
+      <div class="cell">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c3)"></span>D3 · Guardrails &amp; Responsible AI</div>
+        <div class="guard-stack">
+          <div class="g-layer" style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25)">
+            <span class="g-name">Content Filters</span>
+            <span class="g-eg">hate, violence, sexual, insults — configurable severity</span>
+          </div>
+          <div class="g-layer" style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25)">
+            <span class="g-name">Topic Denial</span>
+            <span class="g-eg">block competitor mentions, legal advice, etc.</span>
+          </div>
+          <div class="g-layer" style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.25)">
+            <span class="g-name">PII Redaction</span>
+            <span class="g-eg">SSN, credit card, email, phone → ANONYMIZE or BLOCK</span>
+          </div>
+          <div class="g-layer" style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25)">
+            <span class="g-name">Grounding Check</span>
+            <span class="g-eg">verify answer is supported by retrieved context (anti-hallucination)</span>
+          </div>
+          <div class="g-layer" style="background:rgba(30,58,138,0.08);border:1px solid rgba(30,58,138,0.25)">
+            <span class="g-name">Word Filters</span>
+            <span class="g-eg">custom deny-list · profanity filter</span>
+          </div>
+        </div>
+        <ul class="bullets" style="margin-top:4px">
+          <li><strong>Responsible AI pillars:</strong> Fairness · Explainability · Privacy · Robustness · Transparency</li>
+          <li><strong>Model invocation logging</strong> → S3 / CloudWatch (required for audit)</li>
+          <li><strong>Encryption:</strong> KMS at rest · TLS in transit · VPC endpoints for private access</li>
+          <li><strong>IAM:</strong> identity-based + resource-based policies · least-privilege per Lambda</li>
+        </ul>
+      </div>
+
+      <!-- D4: Cost & Performance -->
+      <div class="cell">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c4)"></span>D4 · Cost &amp; Performance Optimization</div>
+        <table class="cost-compare">
+          <tr><th>Strategy</th><th>Cost ↓</th><th>Latency ↓</th></tr>
+          <tr><td>Batch Inference API</td><td><span class="tick">✓ -50%</span></td><td><span class="cross">✗ async</span></td></tr>
+          <tr><td>Prompt Caching</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+          <tr><td>Streaming responses</td><td><span class="mid">~</span></td><td><span class="tick">✓ perceived</span></td></tr>
+          <tr><td>Smaller model</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+          <tr><td>Provisioned throughput</td><td><span class="mid">~ (high vol)</span></td><td><span class="tick">✓</span></td></tr>
+          <tr><td>Token compression</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        </table>
+        <ul class="bullets" style="margin-top:6px">
+          <li><strong>Prompt caching</strong> caches the <em>system prompt</em> portion (static, repeated context)</li>
+          <li><strong>Batch inference</strong> = async jobs, for nightly/bulk processing, not real-time</li>
+          <li><strong>CloudWatch metrics:</strong> <code>InputTokenCount</code> · <code>OutputTokenCount</code> · <code>InvocationLatency</code> · <code>ThrottledRequests</code></li>
+        </ul>
+      </div>
+
+      <!-- D5: Testing & Evaluation -->
+      <div class="cell no-border">
+        <div class="cell-title"><span class="ct-dot" style="background:var(--c5)"></span>D5 · Testing, Evaluation &amp; Troubleshooting</div>
+        <ul class="bullets">
+          <li><strong>Model Evaluation jobs</strong> (Bedrock built-in): auto metrics or human review</li>
+          <li><strong>Auto metrics:</strong> ROUGE (summarization) · BERTScore (semantic) · accuracy</li>
+          <li><strong>RAG-specific (RAGAS):</strong>
+            <span class="note">Context Precision · Context Recall · Answer Relevancy · Groundedness</span></li>
+          <li><strong>Hallucination</strong> → use grounding check in Guardrails + citations in response</li>
+          <li><strong>Agent debugging</strong>: enable Trace in Bedrock console → shows each ReAct step</li>
+          <li><strong>X-Ray tracing</strong> for end-to-end latency across Lambda + Bedrock calls</li>
+          <li><strong>ThrottlingException</strong> → implement exponential backoff + jitter, or upgrade to provisioned throughput</li>
+          <li><strong>Common failures:</strong> retrieval miss (bad chunking) · context window overflow · prompt injection · format errors</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /main-grid -->
+
+  <!-- EXAM TIPS ROW -->
+  <div class="tip-row">
+    <div class="tip-label">Exam Tips</div>
+    <div class="tips-list">
+      <span>D1+D2 = 57% — master RAG &amp; Agents first</span>
+      <span>No penalty for guessing — always answer all 75 questions</span>
+      <span>"Managed / no-code" in stem → usually Q Business or Knowledge Bases</span>
+      <span>Custom model inference always needs Provisioned Throughput</span>
+      <span>Bulk/async workloads → Batch Inference API</span>
+      <span>Competitor blocking → Topic Denial in Guardrails</span>
+      <span>Compensatory scoring — weak on D5 is OK if D1/D2 are strong</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-l">The 20% that drives 80% of your score: RAG · Agents · Guardrails · Bedrock APIs</div>
+    <div class="footer-r">AIP-C01 · Released Nov 2025 · $300 USD · 3-year renewal</div>
+  </div>
+
+</div>
+</body>
+</html>

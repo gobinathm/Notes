@@ -11,7 +11,7 @@ head:
 
 Validates the ability to **design, build, and deploy generative AI applications** on AWS using Amazon Bedrock, RAG pipelines, Agentic solutions, and responsible AI governance.
 
-**Exam**: 170 min · 75 questions (65 scored + 10 unscored) · 750/1000 to pass · $300 · Professional level · Pearson VUE
+<ExamMeta duration="170 min" questions="75 (65 scored + 10 unscored)" passing="750/1000" cost="$300" level="Professional" provider="Pearson VUE" />
 
 ::: info Professional-Level Exam
 Deep architectural reasoning required. Questions test hands-on familiarity with the Amazon Bedrock API (`InvokeModel`, `InvokeModelWithResponseStream`), OpenSearch Serverless for vector storage, and cost/security trade-offs across all five domains.
@@ -172,6 +172,14 @@ If you see errors such as **`ThrottlingException`** or messages like **"Too many
 
 - [Amazon Bedrock Workshop](https://github.com/aws-samples/amazon-bedrock-workshop)
 - [Generative AI on AWS — Sample Use Cases](https://github.com/aws-samples/generative-ai-use-cases-jp)
+
+## Audio Guide
+
+- [Domain Mastery: AIP-C01 Domain 1 — Foundation Model Integration, Data Management, and Compliance](https://open.spotify.com/episode/2mFXJjbh6mzlCuVmf6YSmn?si=SPer3Wq5SpuzKEGHp-SBXA)
+- [Domain Mastery: AIP-C01 Domain 2 — Implementation and Integration](https://open.spotify.com/episode/7kzW3gWki1BbG4YgLd6h2g?si=3msUnsFWSM6Fr11qibXJ3w)
+- [Domain Mastery: AIP-C01 Domain 3 — AI Safety, Security, and Governance](https://open.spotify.com/episode/22rK9GVPiYKmtB6Mzaev8M?si=G70oD-1hTN-6aOzINHvAtg)
+- [Domain Mastery: AIP-C01 Domain 4 — Operational Efficiency and Optimization for GenAI Applications](https://open.spotify.com/episode/5Ha4Kxm90teSYoHz0wVMkk?si=IvppT1bQTUGqRdN3GJyuvw)
+- [Domain Mastery: AIP-C01 Domain 5 — Testing, Validation, and Troubleshooting](https://open.spotify.com/episode/5n2smGLcODypck8zoFi8F3?si=U2WJFRe9ScSX7YW527HASQ)
 
 ---
 

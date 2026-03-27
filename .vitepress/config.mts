@@ -290,7 +290,6 @@ export default defineConfig({
               items: [
                 { text: 'Overview', link: '/certifications/aws/aip-c01/' },
                 { text: 'Exam Objectives', link: '/certifications/aws/aip-c01/objectives' },
-                { text: 'Study Notes', link: '/certifications/aws/aip-c01/notes' },
                 { text: 'Domain 1: FM Integration, Data Management, and Compliance', link: '/certifications/aws/aip-c01/domain-1' },
                 { text: 'Domain 2: Implementation and Integration', link: '/certifications/aws/aip-c01/domain-2' },
                 { text: 'Domain 3: AI Safety, Security, and Governance', link: '/certifications/aws/aip-c01/domain-3' },

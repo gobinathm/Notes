@@ -43,7 +43,21 @@ public/
 
 The landing page for each certification. Sections in order:
 
-1. **Exam header** — One-line description + exam stats (duration, questions, passing score, cost)
+1. **Exam header** — One-line description + `<ExamMeta>` component for exam stats
+
+   ```md
+   <ExamMeta
+     duration="120 min"
+     questions="~75"
+     passing="700/1000"
+     cost="$99"
+     level="Intermediate"
+     provider="Pearson VUE"
+     validity="2 years"
+   />
+   ```
+   All props are optional — only include the ones that apply to the cert.
+
 2. **Info callout** — What kind of exam this is
 3. **ImageModal** — Exam overview infographic
 4. **Audio Refresher** — `<AIAudioPlayer>` for NotebookLM podcast

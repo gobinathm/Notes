@@ -9,6 +9,7 @@ import AIAudioPlayer from './components/AIAudioPlayer.vue'
 import AITag from './components/AITag.vue'
 import Flashcard from './components/Flashcard.vue'
 import FlashcardDeck from './components/FlashcardDeck.vue'
+import ExamMeta from './components/ExamMeta.vue'
 
 export default {
   extends: DefaultTheme,
@@ -22,5 +23,6 @@ export default {
     app.component('ImageModal', ImageModal)
     app.component('AIAudioPlayer', AIAudioPlayer)
     app.component('AITag', AITag)
+    app.component('ExamMeta', ExamMeta)
   }
 }

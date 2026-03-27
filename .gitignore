@@ -16,6 +16,8 @@ dist/
 .env.local
 .env.*.local
 
+Caddyfile
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -50,3 +52,7 @@ coverage/
 # Wrangler
 worker/.wrangler/
 worker/.dev.vars
+
+AGENTS.md
+CLAUDE.md
+
