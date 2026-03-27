@@ -30,21 +30,34 @@ The AIP-C01 is a **Professional-level** exam for developers building GenAI appli
 | "Open-source / custom fine-tuning needed" | **Llama (Meta)** |
 | "Efficient inference at lower cost" | **Mistral** |
 | "AWS-native embeddings for RAG" | **Titan Text Embeddings** |
+| "Generate summaries / conversational text with an AWS-native model" | **Amazon Titan Text** |
+| "Convert text to vectors for semantic search" | **Amazon Titan Embeddings** |
 | "Document Q&A / knowledge retrieval" | **Knowledge Bases (RAG)** |
 | "Multi-step reasoning / tool use / external API calls" | **Bedrock Agents + Action Groups** |
 | "Unified message-based API across models" | **Converse API** |
 | "Full synchronous response" | **InvokeModel** |
+| "Model-specific request JSON / schema varies by FM" | **InvokeModel** |
 | "Streaming / low-latency UX / chat interface" | **InvokeModelWithResponseStream** |
 | "Vector store for RAG" | **Amazon OpenSearch Serverless** |
+| "Store embeddings + perform low-latency similarity / k-NN search" | **Amazon OpenSearch Service / Serverless Vector Engine** |
+| "Validate structured data quality before RAG / FM ingestion" | **AWS Glue Data Quality** |
+| "Fully managed RAG with minimal custom pipeline code" | **Bedrock Knowledge Bases** |
 | "Content moderation / block harmful content" | **Guardrails for Amazon Bedrock** |
+| "Block a business-prohibited subject like investment advice" | **Guardrails Denied Topics** |
 | "Predictable throughput / guaranteed no throttling" | **Provisioned Throughput (PTU)** |
 | "Bulk, non-real-time inference jobs" | **Batch inference** |
 | "Audit trail / compliance logging" | **AWS CloudTrail** |
+| "HIPAA + full control over encryption keys" | **Customer-managed KMS keys + CloudTrail** |
 | "Operational metrics / alarms / dashboards" | **Amazon CloudWatch** |
 | "Private connectivity to Bedrock" | **VPC Endpoint (PrivateLink) — bedrock-runtime** |
 | "Knowledge changes frequently / need source citations" | **RAG** |
 | "Detect hallucinations in RAG output" | **Groundedness metric** |
 | "Log all prompts and responses for AI governance" | **Model Invocation Logging** |
+| "FM inference may exceed 15 minutes" | **ECS / Bedrock Batch — not Lambda** |
+| "API response time could exceed 29 seconds" | **Async submit-and-poll — not synchronous API Gateway** |
+| "Human approval needed for hours or days" | **Step Functions task token (Standard Workflow)** |
+| "Audit which S3 buckets contain PII before RAG ingestion" | **Amazon Macie** |
+| "150-page document needs to fit in one prompt" | **Claude (200k token context window)** |
 
 ## Exam Traps
 
@@ -52,8 +65,11 @@ The AIP-C01 is a **Professional-level** exam for developers building GenAI appli
 - **RAG vs. Fine-tuning**: RAG is right when knowledge changes frequently or you need source attribution.
 - **Guardrails scope**: Guardrails filter BOTH inputs AND outputs.
 - **Guardrails must be explicitly applied**: They do NOT apply automatically to all Bedrock calls.
+- **Guardrails vs. Knowledge Bases**: Knowledge Bases improve relevance with retrieval; Guardrails enforce safety policy.
+- **Denied topics vs. word filters**: denied topics block a subject semantically; word filters block exact words and can over-block.
 - **OpenSearch Serverless vs. managed OpenSearch**: Knowledge Bases use **OpenSearch Serverless**.
 - **Converse vs. InvokeAgent**: Converse is a unified model interaction API, not full agent orchestration.
+- **InvokeModel vs. Converse**: InvokeModel request bodies can vary by model family; Converse reduces that variation with a more consistent message-based format.
 - **InvokeModel vs. InvokeModelWithResponseStream**: Streaming does NOT save money.
 - **CloudTrail vs. CloudWatch**: CloudTrail = audit; CloudWatch = operations.
 - **PTU for sporadic traffic**: PTU is NOT appropriate for development or unpredictable workloads.
@@ -85,6 +101,26 @@ Need new style/format?   → Fine-tuning
 ```text
 Simple document Q&A?     → Knowledge Base
 Multi-step + tool use?   → Bedrock Agents
+```
+
+### "Which compute for Bedrock?"
+
+```text
+Per-request, < 15 min?          → Lambda
+Long-running / > 15 min?        → ECS / EKS
+Bulk async, non-real-time?      → Bedrock Batch Inference
+Human approval, hours/days?     → Step Functions (Standard)
+```
+
+### "Service limits to remember"
+
+```text
+Lambda max execution            → 15 minutes
+API Gateway integration timeout → 29 seconds (hard limit)
+Step Functions Standard max     → 1 year
+Step Functions Express max      → 5 minutes
+Claude context window           → 200,000 tokens
+Titan context window            → shorter (varies)
 ```
 
 ---

@@ -9,7 +9,7 @@ head:
 
 # AIP-C01: Cheatsheet
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Version →](./visual-cheatsheet.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Study Kit →](./visual-cheatsheet.md)
 
 ::: danger Exam Day Reference
 Review this page 5 minutes before the exam.
@@ -37,7 +37,14 @@ Review this page 5 minutes before the exam.
 | `InvokeModelWithResponseStream` | Streaming (token by token) | Low-latency UX / chat |
 | `InvokeAgent` | Streaming + trace | Multi-step agentic workflows |
 
+**InvokeModel:** Uses **model-specific JSON** in the request body. The expected schema varies by model family.
+
 **Converse API:** Use when you want a **consistent message-based interface across Bedrock models** with optional inference settings, tool config, guardrails, and prompt variables.
+
+**Inference settings:**  
+Low **temperature** = more deterministic and consistent  
+Higher **temperature** = more creative and variable  
+Lower **topP** = tighter token selection
 
 ---
 
@@ -65,6 +72,7 @@ Review this page 5 minutes before the exam.
 - Guardrails apply to **both inputs AND outputs**
 - Must be explicitly applied per API call via `guardrailIdentifier` + `guardrailVersion`
 - PII modes: **Redact** (mask with placeholder) vs. **Block** (reject request/response)
+- **Denied Topics** = business-policy blocking at the topic level, not just exact keyword blocking
 
 ---
 
@@ -75,6 +83,14 @@ Review this page 5 minutes before the exam.
 | **Amazon OpenSearch Serverless** | Managed, serverless | Bedrock Knowledge Bases (default) |
 | **Aurora PostgreSQL (pgvector)** | RDS extension | Existing PostgreSQL infrastructure |
 | **Amazon Kendra** | Enterprise search | NLP-powered enterprise retrieval |
+
+**Retrieval concepts to remember:**
+- **k-NN** = nearest vectors
+- **Hybrid search** = semantic + keyword
+- **BM25** = keyword ranking
+- **Reranking** = re-score first-pass results
+- **Recall** = find more relevant chunks
+- **Precision** = reduce irrelevant chunks
 
 ---
 
@@ -169,4 +185,4 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 
 ---
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Version →](./visual-cheatsheet.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Study Kit →](./visual-cheatsheet.md)

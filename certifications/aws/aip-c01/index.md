@@ -155,7 +155,7 @@ If you see errors such as **`ThrottlingException`** or messages like **"Too many
     },
     { id: 'exam-guide', label: 'Reviewed exam guide & traps', link: './exam-guide' },
     { id: 'cheatsheet', label: 'Reviewed markdown cheatsheet', link: './cheatsheet' },
-    { id: 'visual-cheatsheet', label: 'Reviewed visual cheatsheet', link: './visual-cheatsheet' },
+    { id: 'visual-cheatsheet', label: 'Reviewed visual study kit', link: './visual-cheatsheet' },
     { id: 'ready', label: 'Ready for exam' }
   ]"
 />
@@ -165,8 +165,22 @@ If you see errors such as **`ThrottlingException`** or messages like **"Too many
 ## Official Resources
 
 - [AIP-C01 Exam Page](https://aws.amazon.com/certification/certified-generative-ai-developer-professional/)
+- [Official Exam Guide (PDF)](https://d1.awsstatic.com/training-and-certification/docs-generative-ai-developer-professional/AWS-Certified-Generative-AI-Developer-Professional_Exam-Guide.pdf)
 - [Amazon Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
 - [AWS Skill Builder: Official Practice Questions](https://explore.skillbuilder.aws/learn/course/external/view/elearning/19541/aws-certified-generative-ai-developer-professional-official-question-set)
+
+### Official Docs
+
+- [Amazon Bedrock Guardrails User Guide](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html)
+- [Amazon Bedrock Guardrails Overview](https://aws.amazon.com/bedrock/guardrails/)
+- [Amazon Comprehend PII Detection](https://docs.aws.amazon.com/comprehend/latest/dg/how-pii.html)
+- [Amazon Titan Models in Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/titan-models.html)
+- [Amazon Nova](https://aws.amazon.com/nova/)
+
+### Background Reading
+
+- [What Is a Large Language Model (LLM)?](https://aws.amazon.com/what-is/large-language-model/)
+- [What Are Foundation Models?](https://aws.amazon.com/what-is/foundation-models/)
 
 ## External Resources
 
@@ -183,4 +197,4 @@ If you see errors such as **`ThrottlingException`** or messages like **"Too many
 
 ---
 
-[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md) · [Visual Cheatsheet →](./visual-cheatsheet.md) · [Exam Guide →](./exam-guide.md)
+[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md) · [Visual Study Kit →](./visual-cheatsheet.md) · [Exam Guide →](./exam-guide.md)

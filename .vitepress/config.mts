@@ -297,7 +297,7 @@ export default defineConfig({
                 { text: 'Domain 5: Testing, Validation, and Troubleshooting', link: '/certifications/aws/aip-c01/domain-5' },
                 { text: 'Exam Guide', link: '/certifications/aws/aip-c01/exam-guide' },
                 { text: 'Cheatsheet', link: '/certifications/aws/aip-c01/cheatsheet' },
-                { text: 'Visual Cheatsheet', link: '/certifications/aws/aip-c01/visual-cheatsheet' },
+                { text: 'Visual Study Kit', link: '/certifications/aws/aip-c01/visual-cheatsheet' },
                 { text: 'Quick Refresher', link: '/certifications/aws/aip-c01/quick-refresher' },
                 { text: 'Exam Tips', link: '/certifications/aws/aip-c01/exam-tips' }
               ]

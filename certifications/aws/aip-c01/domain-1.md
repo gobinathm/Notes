@@ -33,8 +33,14 @@ This is the highest-weighted domain at 31%. Focus on FM selection trade-offs, ch
 
 **Context Window:**
 - Needed for long-document RAG, multi-turn conversations, and large prompt contexts
-- Claude: up to 200k tokens | Llama 3: 128k tokens | Titan: shorter context windows
 - Choose Claude when the scenario requires processing very long documents
+
+| Model | Context Window |
+|---|---|
+| **Claude 3 (Haiku / Sonnet / Opus)** | Up to 200,000 tokens |
+| **Llama 3** | 128,000 tokens |
+| **Titan Text** | Shorter — varies by version |
+| **Mistral** | Varies by model size |
 
 **Latency:**
 - Use smaller/faster models (Claude Haiku, Mistral) for real-time chat interfaces
@@ -53,6 +59,23 @@ The exam frequently offers fine-tuning as a tempting option. Default to **RAG** 
 Prefer **fine-tuning** when:
 - You need the model to adopt a new tone, writing style, or domain-specific format
 - The underlying data is stable and unlikely to change often
+:::
+
+### Titan Text vs. Titan Embeddings
+
+| Model | What It Produces | Best For | Not For |
+|---|---|---|---|
+| **Amazon Titan Text** | Human-readable text | Chat responses, summaries, content generation | Semantic vector search |
+| **Amazon Titan Embeddings** | Numerical vectors (embeddings) | Semantic search, similarity search, retrieval pipelines | Conversational text generation |
+
+**Key distinction:**
+- **Titan Text** is a text-generation model
+- **Titan Embeddings** converts text into vectors for mathematical similarity comparison
+- These are **not interchangeable**
+
+::: tip
+If the question is about **semantic search**, **vector databases**, or comparing meaning using cosine similarity, think **Titan Embeddings**.  
+If the question is about **chat, summarization, or text generation**, think **Titan Text**.
 :::
 
 ---
@@ -76,6 +99,38 @@ Prefer **fine-tuning** when:
 - **Temperature control**:
   - Low temperature (0.0–0.3): Deterministic, factual outputs — use for Q&A and summarization
   - High temperature (0.7–1.0): Creative, diverse outputs — use for brainstorming and creative writing
+
+### Temperature vs. TopP
+
+| Parameter | What It Controls | Best Use |
+|---|---|---|
+| **Temperature** | How random or deterministic token selection is | Control consistency vs creativity |
+| **TopP** | How much of the probability distribution is available for sampling | Control how wide the model's candidate pool is |
+
+**Temperature**
+- Low temperature (near `0`) makes the model repeatedly choose the most likely next tokens
+- This produces more **deterministic, consistent, and standardized** outputs
+- Best for: legal contracts, policy text, structured extraction, compliance summaries, classification-style responses
+- The same prompt run multiple times will usually produce **nearly identical output**
+
+**High temperature**
+- Increases variation and creativity
+- Best for: brainstorming, marketing copy, ideation, and multiple stylistic variants
+
+**TopP**
+- Narrows or widens the pool of candidate tokens before sampling
+- Lower `topP` = tighter, safer token selection
+- Higher `topP` = broader selection and more variety
+
+::: tip
+For the exam, the simplest rule is:
+- **Need consistency and precision?** Lower **temperature**
+- **Need more variety and creativity?** Raise **temperature**
+:::
+
+::: warning Common Confusion
+Low temperature improves **consistency**, but it does **not guarantee correctness**. A deterministic answer can still be wrong if the prompt, context, or retrieval is wrong.
+:::
 
 ---
 
@@ -140,6 +195,48 @@ Embeddings are numerical vector representations of text. Semantically similar te
 | **Titan Text Embeddings v2** | AWS | General purpose, AWS-native RAG (configurable dimensions) |
 | **Cohere Embed** | Cohere | Multilingual retrieval, semantic search |
 
+### Embedding Dimensionality Trade-Offs
+
+**Embedding dimensionality** is the number of values in each vector. It is an architecture tradeoff between **semantic richness** and **efficiency**.
+
+| Choice | Advantage | Cost / Trade-off | Best Fit |
+|---|---|---|---|
+| **Higher dimensions** | Captures more subtle semantic meaning and nuance | More storage, more memory use, more compute during similarity search | Complex semantic retrieval, nuanced documents, harder query understanding |
+| **Lower dimensions** | Faster search and lower storage cost | May lose finer semantic distinctions | Simpler retrieval workloads, tighter cost/latency constraints |
+
+**How to think about it:**
+- Higher-dimensional vectors usually improve semantic detail, especially for complex retrieval tasks
+- Similarity search takes longer as dimensionality increases because more values must be compared
+- Lower dimensions are more efficient, but they do **not** automatically improve relevance or accuracy
+- The right choice depends on whether the workload prioritizes **retrieval quality** or **cost/latency efficiency**
+
+::: tip
+For the exam, treat embedding dimensionality as a **quality vs. performance** tradeoff:
+- **Need richer semantic understanding?** Prefer higher dimensions
+- **Need lower cost, smaller storage, or faster search?** Prefer lower dimensions
+:::
+
+### Data Quality Before Ingestion
+
+Poor-quality source data leads to poor embeddings, poor retrieval, and poor model answers. If the scenario is about **validating structured data before it enters a GenAI pipeline**, think about upstream data-quality controls rather than guardrails or prompt changes.
+
+**AWS Glue Data Quality** is used to:
+- Define explicit quality rules for pipeline data
+- Evaluate records against those rules before downstream processing
+- Produce quality scores and flag failures
+- Stop or quarantine bad data before it reaches embeddings, vector stores, or foundation models
+
+**Examples of rules:**
+- `patient_id` must not be null
+- `admission_date` must match a valid ISO date format
+- Required columns must be present
+- Value ranges and uniqueness constraints must hold
+
+::: tip
+Use **AWS Glue Data Quality** when the problem is **"validate and block poor-quality structured data in an ETL pipeline before model use."**  
+Use **Guardrails** when the problem is filtering model inputs/outputs at inference time.
+:::
+
 ---
 
 ## 1.4 Vector Stores
@@ -163,6 +260,52 @@ Embeddings are numerical vector representations of text. Semantically similar te
 - Integrated with Bedrock Knowledge Bases via IAM service-linked role
 - Does NOT support standard OpenSearch full-text features (custom analyzers, etc.)
 
+### OpenSearch as a Vector Search Engine
+
+Amazon OpenSearch is one of the standard AWS answers when the scenario requires **storing embeddings** and retrieving **semantically similar items** with low latency.
+
+**How to think about it:**
+- Store embedding vectors in the index
+- Run **similarity search** against those vectors
+- Retrieve the nearest matches for use in RAG, recommendations, or "find similar" features
+- Use it when the system needs to handle **large embedding collections at scale** with fast retrieval
+
+**Important terminology:**
+- **k-nearest neighbor (k-NN)** = retrieve the `k` most similar vectors to the query vector
+- **Vector search / similarity search** = search by semantic closeness, not exact keyword match
+- **OpenSearch Serverless Vector Engine** = the Bedrock-friendly serverless option
+- **OpenSearch Service with the k-NN plugin** = the broader managed-service variant
+
+For exam purposes, if the prompt says **store embeddings + low-latency semantic similarity search**, OpenSearch is a strong answer. If it specifically mentions **Bedrock Knowledge Bases**, default to **OpenSearch Serverless**.
+
+::: tip
+OpenSearch is a strong answer for **semantic search**, **content recommendation**, and other "find similar items" patterns because it combines **vector similarity search** with optional **hybrid keyword search** in a managed AWS service.
+:::
+
+### Retrieval Vocabulary You Should Know
+
+| Concept | Meaning | Why It Matters |
+|---|---|---|
+| **k-NN** | Return the `k` nearest vectors to a query vector | Core concept behind semantic retrieval |
+| **ANN (Approximate Nearest Neighbor)** | Faster nearest-neighbor search that trades a bit of exactness for speed | Real systems use ANN for low-latency search at scale |
+| **HNSW** | A graph-based ANN indexing approach | Often appears when discussing high-performance vector search internals |
+| **Similarity Search** | Search by vector closeness instead of exact keyword match | Core retrieval behavior in RAG |
+| **Semantic Search** | Search by meaning, not literal wording | Explains why embeddings are useful |
+| **Hybrid Search** | Combine semantic search with keyword search | Often improves recall on enterprise documents |
+| **BM25** | Classic keyword-relevance ranking algorithm | Useful when exact terms matter alongside semantic similarity |
+| **Reranking** | Re-score an initial result set with a stronger model or scoring step | Improves relevance after the first retrieval pass |
+
+### Retrieval Quality Trade-Offs
+
+- **Recall** = how many truly relevant chunks are retrieved
+- **Precision** = how many retrieved chunks are actually relevant
+- **Higher recall** usually means retrieving more candidates, which can increase cost and noise
+- **Higher precision** usually means tighter filtering or reranking, which can improve answer quality
+
+::: tip
+When the exam describes a retrieval system that misses relevant information, think about **recall**. When it retrieves too much irrelevant context, think about **precision**, metadata filtering, or reranking.
+:::
+
 ---
 
 ## 1.5 Compliance, Data Residency & Security
@@ -181,6 +324,29 @@ Embeddings are numerical vector representations of text. Semantically similar te
 ::: info Key Fact
 Amazon Bedrock does **not** use customer prompts, completions, or training data to train the underlying foundation models. This is a built-in data privacy guarantee — any answer suggesting otherwise is wrong.
 :::
+
+### AWS KMS and Compliance Scenarios
+
+AWS KMS is the core encryption-at-rest control when the scenario emphasizes **customer control over keys**, auditability, or regulated workloads.
+
+**What customer-managed KMS keys give you:**
+- Control over key policies and who can use the key
+- Control over rotation policy and lifecycle management
+- The ability to disable or revoke key usage if needed
+- Auditable key usage through AWS logging
+
+**Common integrations to know:**
+- **Amazon S3** for document storage and RAG source data
+- **Amazon DynamoDB** for application state, user data, or agent metadata
+- **Amazon EBS** for encrypted block storage attached to EC2 workloads
+
+**Audit trail:**
+- **AWS CloudTrail** logs KMS API activity and key usage events
+- This is the service to choose when the question asks for compliance-oriented auditing or evidence of encryption-key usage
+
+**Exam framing:**
+- If the scenario says the organization needs **full control over encryption keys**, prefer **customer-managed KMS keys**
+- If the scenario also stresses **HIPAA**, auditability, and strict security controls, customer-managed KMS keys plus CloudTrail is a strong signal
 
 ---
 

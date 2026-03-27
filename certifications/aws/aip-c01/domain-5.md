@@ -37,6 +37,29 @@ Amazon Bedrock includes a built-in **Model Evaluation** feature that lets you ev
 **Groundedness** is the most RAG-specific metric — it checks whether the model's answer is supported by the retrieved documents, not invented.
 :::
 
+### Hallucination Detection Techniques
+
+Hallucination detection compares generated content against retrieved source documents to verify claims are grounded in source material:
+
+| Technique | How It Works |
+|---|---|
+| **Semantic similarity scoring** | Embed both the generated claim and the source chunks — high cosine similarity = grounded |
+| **Fact verification** | Use the FM itself to check: "Does this source document support this specific statement?" |
+| **Confidence scoring** | Score the model's certainty for each generated statement; flag low-confidence claims for review |
+| **Guardrails Contextual Grounding Check** | Bedrock-native — automatically blocks responses that are not supported by retrieved context |
+
+### Knowledge Base Citations
+
+When using **Amazon Bedrock Knowledge Bases**, the retrieve-and-generate response includes **citation metadata** — references to the specific source documents and chunks that supported each part of the answer.
+
+- Citations show *which S3 object* and *which chunk* backed each claim
+- Enables downstream validation: compare the response against cited sources to verify grounding
+- If a statement has no citation, it may be hallucinated
+
+::: tip
+Knowledge Base citations are the native Bedrock mechanism for source attribution. Surfacing citations to end users also builds trust — they can click through to the original document.
+:::
+
 ### Automated vs. Human Evaluation
 
 | | Automated Evaluation | Human Evaluation |

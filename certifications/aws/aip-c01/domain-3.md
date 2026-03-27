@@ -37,6 +37,7 @@ User Input → [Guardrail Input Filter] → FM → [Guardrail Output Filter] →
 | **Denied Topics** | Define topics the FM must refuse to discuss | Competitor products, political opinions, legal advice |
 | **Word Filters** | Block specific words or phrases (exact match) | Profanity lists, brand-specific blocked terms |
 | **PII Redaction** | Detect and mask/block personally identifiable information | Names, emails, SSNs, credit cards, phone numbers |
+| **Contextual Grounding Check** | Verify the response is grounded in the retrieved source context — blocks hallucinated answers | RAG applications where factual accuracy is required |
 
 ### Configuring a Guardrail
 
@@ -49,6 +50,8 @@ User Input → [Guardrail Input Filter] → FM → [Guardrail Output Filter] →
 **Guardrails filter BOTH inputs AND outputs** — not just one direction. A common wrong answer claims Guardrails only filter the model's response. They evaluate the user's prompt AND the model's answer.
 
 Also: Guardrails are **not applied automatically** to all Bedrock calls. You must explicitly include them in each API request.
+
+There are **five** filter types — Content Filters, Denied Topics, Word Filters, PII Redaction, and Contextual Grounding Check. The exam may list only four as distractors.
 :::
 
 ### PII Detection Modes
@@ -57,6 +60,48 @@ Also: Guardrails are **not applied automatically** to all Bedrock calls. You mus
 |---|---|
 | **Redact** | Replace PII with a placeholder (e.g., `[EMAIL]`) — request/response still proceeds |
 | **Block** | Reject the entire request or response if PII is detected |
+
+### Denied Topics vs. Other Filters
+
+**Denied topics** are the right choice when the organization wants to block a **specific subject area** based on business policy, not just harmful language.
+
+**Examples:**
+- investment advice
+- stock recommendations
+- cryptocurrency trading
+- competitor strategy discussion
+
+**Why denied topics matter:**
+- They let you define prohibited subjects in natural language
+- They work at the **topic / intent level**, not just exact keyword matching
+- They can return a controlled fallback such as: *"I cannot provide investment advice."*
+- They apply consistently across supported Bedrock model interactions
+
+**Use denied topics when:**
+- The business wants to prohibit domain-specific conversations
+- The prohibited content is not inherently hateful, violent, or unsafe, but still off-limits by policy
+
+**Do not confuse these with other filters:**
+- **Content filters** = harmful categories like hate, violence, sexual content, insults, profanity
+- **PII filters** = privacy protection for sensitive personal data
+- **Word filters** = exact word/phrase blocking, which can be too blunt and cause false positives
+
+::: tip
+If the scenario says **"block investment advice but still allow normal finance-related conversation when appropriate"**, the best answer is usually **Denied Topics**, not word filters.
+:::
+
+### Guardrails vs. Other Bedrock Features
+
+| Feature | Primary Purpose | Not the Right Answer When... |
+|---|---|---|
+| **Guardrails for Amazon Bedrock** | Apply safety policies such as denied topics, content filters, PII redaction, and grounding checks across model inputs/outputs | The requirement is primarily retrieval, prompt storage, or workflow orchestration |
+| **Knowledge Bases** | Implement RAG by connecting FMs to internal data sources | The requirement is to block unsafe topics or enforce content policy |
+| **Prompt Management** | Create, store, version, and reuse prompts | The requirement is independent safety filtering or PII redaction |
+| **Bedrock Agents** | Execute multi-step workflows with tools and company systems | The requirement is granular safety policy enforcement |
+
+::: tip
+If the question is asking **"which Bedrock feature enforces safety policies consistently across models?"** the answer is **Guardrails**, not Knowledge Bases, Prompt Management, or Agents.
+:::
 
 ---
 
@@ -83,11 +128,33 @@ bedrock:CreateKnowledgeBase
 - **Cross-account access**: Use resource-based policies on Bedrock resources to allow access from another AWS account
 - **Condition keys**: Restrict access by `bedrock:ModelId` to enforce which models a principal can invoke
 
+### Lambda Execution Roles for Bedrock
+
+When a Lambda function calls Bedrock, the correct pattern is to attach an **IAM execution role** to the function — not hardcode credentials.
+
+**How it works:**
+- Lambda automatically provides the execution role's **temporary credentials** to the function at runtime via the instance metadata service
+- No credentials to manage, rotate, or accidentally expose
+- Credentials are short-lived and scoped to the role's permissions
+
+**Minimum required policy for a Lambda that calls Bedrock:**
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "bedrock:InvokeModel",
+  "Resource": "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-*"
+}
+```
+
+Scoping `Resource` to a specific model ARN enforces least-privilege — the function can only invoke that model, nothing else.
+
 ### Best Practices
 
-- Grant `bedrock:InvokeModel` scoped to specific `modelId` values only
-- Use IAM roles (not IAM users with long-lived access keys) for application access
-- Apply `bedrock:ModelId` condition keys to limit which FMs can be invoked by a given role
+- Grant `bedrock:InvokeModel` scoped to specific model ARNs — not `Resource: "*"`
+- Use IAM execution roles for Lambda (not IAM users with long-lived access keys) — temporary credentials are provided automatically
+- Apply `bedrock:ModelId` condition keys as an additional constraint when resource-level scoping is not sufficient
+- Never hardcode AWS credentials inside Lambda function code or environment variables
 
 ---
 
@@ -197,6 +264,47 @@ If a question asks *"how do you understand the limitations and intended use case
 
 ::: warning Exam Trap
 Guardrails and safety filters are **not a substitute for human oversight** in high-stakes scenarios. The exam may present Guardrails as sufficient — they are a necessary layer but not the complete answer when human judgment is required.
+:::
+
+---
+
+## 3.6 Data Classification & Pre-Ingestion Security
+
+### Amazon Macie
+
+Amazon Macie is a managed data security service that uses machine learning to **automatically discover, classify, and protect sensitive data stored in Amazon S3**.
+
+**What Macie does:**
+- Scans S3 buckets at scale and identifies files containing PII (SSNs, names, addresses, medical record numbers, credit cards)
+- Generates **inventory reports** showing which buckets and objects contain sensitive data
+- Provides **risk scores** and findings surfaced in a Security Hub-integrated dashboard
+- Sends findings to EventBridge for automated remediation workflows
+
+**GenAI relevance — pre-ingestion audit:**
+
+Before connecting an S3 bucket as a Bedrock Knowledge Base data source, you should verify it does not contain unintended sensitive data. Macie is the right tool for this:
+
+```text
+S3 Buckets (raw documents)
+    ↓ Macie scans at scale
+Findings Report (which buckets/files contain PII, risk scores)
+    ↓ Security team reviews
+Safe buckets approved → Bedrock Knowledge Base ingestion
+```
+
+### Macie vs. Comprehend vs. Bedrock Guardrails PII
+
+| | Amazon Macie | Amazon Comprehend | Bedrock Guardrails PII |
+|---|---|---|---|
+| **When** | Before ingestion — audit S3 inventory | At processing time — analyze text | At inference time — inside Bedrock call |
+| **What** | Discovers which S3 objects contain PII | Detects and extracts PII entities from text | Redacts or blocks PII in prompts/responses |
+| **Output** | Findings report, risk scores, inventory | Structured entity annotations | Masked/blocked content in API response |
+| **Best for** | "Audit which S3 buckets are safe to use as RAG sources" | Pre/post-processing text in a pipeline | Real-time PII control within Bedrock |
+
+::: tip Exam Scenario
+*"Before building a RAG knowledge base from company S3 buckets, how do you identify which buckets contain sensitive PII?"* → **Amazon Macie**
+
+Macie operates at the S3 bucket/object level before data ever reaches Bedrock. Comprehend and Guardrails operate on text content during or after ingestion.
 :::
 
 ---

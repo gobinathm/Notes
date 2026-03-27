@@ -69,6 +69,15 @@ The exam will present scenarios — choose Agents when action or orchestration i
 
 ## 2.2 Knowledge Base Architecture
 
+Amazon Bedrock Knowledge Bases is the **fully managed RAG capability** in Bedrock. It automates the core workflow of:
+- ingesting data from a source such as S3
+- chunking that data
+- generating embeddings
+- storing those embeddings in a vector database
+- retrieving relevant context to augment the FM response
+
+This reduces the amount of custom pipeline code you would otherwise need to build and maintain yourself.
+
 ### End-to-End RAG Flow
 
 ```text
@@ -79,6 +88,18 @@ The exam will present scenarios — choose Agents when action or orchestration i
 5. Vector Store: Amazon OpenSearch Serverless (or Aurora pgvector)
 6. At inference: embed query → vector search → top-K chunks → inject into FM prompt
 ```
+
+### Why Use Knowledge Bases
+
+- Best answer when the question asks for **managed RAG with minimal custom code**
+- Strong fit for internal manuals, FAQs, policy documents, and document-grounded assistants
+- Can be used directly in an application or attached to a Bedrock Agent
+
+### Knowledge Base Backing Patterns
+
+- **Vector store**: the standard Bedrock RAG pattern for chunked embeddings
+- **Structured data store**: useful when data already lives in structured systems and semantic search is needed over that data
+- **Kendra GenAI Index**: useful when the scenario emphasizes document understanding and Kendra-backed retrieval
 
 ### Supported Data Sources
 
@@ -146,10 +167,26 @@ Task requires tool calls, external APIs, or multi-step planning?
 }
 ```
 
+`InvokeModel` uses a **model-specific request body**. The payload is JSON, but the expected JSON fields vary by model family. For example, Anthropic Claude models use fields such as `anthropic_version`, `messages`, and `max_tokens`.
+
 **Key parameters:**
 - `modelId`: The specific FM to invoke
 - `max_tokens`: Cap on output tokens — controls cost and response length
 - `temperature`: Controls creativity vs. determinism (0.0–1.0)
+- `topP`: Narrows or widens the token probability pool used for sampling
+- `stopSequences`: Explicitly tells the model where to stop generating
+
+### InvokeModel vs. Converse
+
+| Feature | `InvokeModel` | `Converse` |
+|---|---|---|
+| Request shape | Model-specific JSON payload | More consistent message-based structure |
+| Best use | Direct invocation when you know the target model and its schema | Easier cross-model portability |
+| Exam takeaway | You may need to match model-specific fields | Bedrock's unified API for chat-style interaction |
+
+::: info Exam Framing
+The exam is unlikely to ask you to memorize exact request bodies, byte encoding, or SDK syntax. What matters is knowing that **`InvokeModel` is more model-specific**, while **`Converse` exists to reduce that variation**.
+:::
 
 ### Converse API
 
@@ -196,6 +233,33 @@ Do not confuse **Converse** with **InvokeAgent**:
 - Attach metadata to chunks during ingestion (e.g., `department: "legal"`, `year: 2024`)
 - At query time, filter retrieval to only return chunks matching specific metadata
 - Allows scoped retrieval without maintaining separate vector stores per category
+
+### Hybrid Search
+
+- **Hybrid search** combines semantic vector retrieval with keyword matching
+- Use it when exact terms, product codes, error messages, or legal phrases matter in addition to overall semantic meaning
+- This is often better than pure vector search for enterprise documents and mixed-structure datasets
+
+### Reranking
+
+- Retrieval is often a **two-stage process**
+- Stage 1: fetch a broader candidate set quickly
+- Stage 2: **rerank** those candidates with a stronger scoring model or rule set
+- Reranking helps improve precision when the initial top-K results include loosely related chunks
+
+### Precision vs. Recall in RAG
+
+| Problem | Likely Issue | Common Fix |
+|---|---|---|
+| Relevant chunks are missing | Low recall | Increase candidate set, improve chunking, use hybrid search |
+| Too many irrelevant chunks are returned | Low precision | Add metadata filters, rerank results, reduce top-K |
+| Good chunks exist but answer still drifts | Prompt/context issue | Tighten prompt instructions, reduce noise, improve citations |
+
+### Distance and Similarity Intuition
+
+- Embedding search relies on a **distance or similarity metric**
+- In practice, you may see references to **cosine similarity** or other vector-distance approaches
+- You do not need to memorize math formulas for the exam, but you should understand that retrieval is driven by **vector closeness**
 
 ---
 
@@ -309,6 +373,21 @@ Load Balancer → ECS/EKS (GenAI app container) → Bedrock API
 - **ECS/EKS**: Long-running services, streaming WebSocket connections, or containers with heavy dependencies
 :::
 
+::: warning Hard Limits — Lambda & API Gateway
+| Service | Limit | Impact |
+|---|---|---|
+| **Lambda** | 15 min (900s) max execution | FM inference or document processing exceeding this → use ECS or Bedrock Batch |
+| **Lambda** | 6 MB synchronous response payload | Large FM responses → use streaming (`InvokeModelWithResponseStream`) |
+| **API Gateway** | **29 seconds** integration timeout — **cannot be increased** | Cannot proxy long synchronous FM calls; requires async submit-and-poll pattern |
+
+**Async pattern for long FM calls behind API Gateway:**
+```text
+POST /invoke   → Lambda submits job → returns job ID (fast)
+               → SQS / Step Functions processes async
+GET  /result/{id} → Lambda checks status → returns result when ready
+```
+:::
+
 ---
 
 ## 2.8 Cross-Region Inference & Bedrock Flows
@@ -343,6 +422,67 @@ Bedrock Flows is a **visual, low-code workflow orchestration** tool for chaining
 - **Bedrock Agents**: autonomous reasoning, decides at runtime which tools to call
 - **Bedrock Flows**: predefined workflow graph, each step is explicit — no autonomous decision-making
 Choose Flows when the workflow is known upfront and deterministic; choose Agents when the task requires dynamic planning.
+:::
+
+---
+
+## 2.9 Human-in-the-Loop with AWS Step Functions Task Token
+
+### The Problem
+
+Some GenAI workflows require a **human decision** before proceeding — content approval, sensitive action confirmation, compliance review. The challenge: how do you pause a workflow for hours or days without polling or consuming resources?
+
+### Step Functions Task Token Pattern
+
+AWS Step Functions solves this with the **task token callback pattern**:
+
+```text
+1. Step Functions starts a workflow task → generates a unique task token
+2. Token is sent to an external system (email, dashboard, Slack, SQS)
+3. Workflow PAUSES — no polling, no resource consumption
+4. Human reviews and approves/rejects
+5. External system calls SendTaskSuccess (or SendTaskFailure) with the token
+6. Workflow resumes from where it paused
+```
+
+**Key API calls:**
+- `SendTaskSuccess(taskToken, output)` — human approved, workflow continues
+- `SendTaskFailure(taskToken, error, cause)` — human rejected, workflow handles failure
+
+### When to Use This Pattern
+
+| Scenario | Pattern |
+|---|---|
+| Content generated by FM needs editor approval before publishing | Task Token — wait can be hours/days |
+| Agent needs one-step human confirmation within a session | Bedrock Agents Return of Control (RoC) |
+| Compliance review of AI-generated legal/medical text | Task Token — external reviewer, long wait |
+| Real-time interactive confirmation in a chatbot | Bedrock Agents RoC |
+
+### Bedrock Agents RoC vs. Step Functions Task Token
+
+| | Bedrock Agents Return of Control | Step Functions Task Token |
+|---|---|---|
+| **Where** | Inside Bedrock Agent orchestration | External Step Functions workflow wrapping Bedrock |
+| **Pause mechanism** | Agent returns control to the caller | Workflow suspends, waits for callback |
+| **Wait duration** | Short — within the same session | Any duration — minutes, hours, or days |
+| **Resource use while waiting** | Session remains active | Zero — workflow is fully suspended |
+| **Best for** | Single-step confirmation during an agent loop | Long-running approval workflows with external systems |
+
+::: tip Exam Scenario
+*"A GenAI application generates content that requires human editorial review before publishing. The review may take up to 48 hours. How should the workflow be designed?"* → **Step Functions task token pattern** — the workflow pauses without consuming resources until the reviewer sends the callback.
+
+If the wait is short and within a single agent session → **Bedrock Agents Return of Control**.
+:::
+
+::: info Standard vs. Express Workflow Limits
+| | Standard Workflow | Express Workflow |
+|---|---|---|
+| **Max duration** | 1 year | 5 minutes |
+| **Execution model** | At-least-once | At-most-once / at-least-once |
+| **Audit history** | Full auditable history | CloudWatch Logs only |
+| **Best for** | Human-in-the-loop, long approvals | High-throughput event pipelines |
+
+Always use **Standard** for human review workflows — Express's 5-minute cap rules it out for any human wait.
 :::
 
 ---

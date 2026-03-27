@@ -80,6 +80,50 @@ Also: PTU commits you for **1 month or 6 months** — the exam tests this commit
 The exam distinguishes between techniques that reduce cost vs. improve latency. **Streaming improves perceived latency but does not reduce token count or cost.**
 :::
 
+### Inference Parameter Quality Controls
+
+- **Low temperature** improves consistency for standardized outputs
+- **Higher temperature** increases diversity for creative generation
+- **Lower topP** keeps sampling tighter and more predictable
+- **`maxTokens`** limits output size and cost
+- **`stopSequences`** helps enforce cleaner output boundaries
+
+**Best-fit examples:**
+- Contracts, policy language, compliance wording → lower temperature
+- Brainstorming, alternate copy, variant generation → higher temperature
+
+### Semantic Caching
+
+Semantic caching avoids FM invocations entirely for repeat questions by returning a cached response when a new question is semantically equivalent to one already answered.
+
+**How it works:**
+
+```text
+Incoming question
+    ↓ embed (Titan / Cohere)
+Query vector cache (ElastiCache Redis)
+    ↓ cosine similarity check
+Similarity ≥ threshold?
+    ├─ Yes → return cached response (no FM call, zero token cost)
+    └─ No  → invoke FM → cache response + embedding → return
+```
+
+**Key characteristics:**
+- Uses **embeddings + cosine similarity** (or other distance metrics) against a configurable threshold
+- **ElastiCache (Redis)** is the AWS service for storing and querying the vector embeddings
+- Handles paraphrased questions that are textually different but semantically identical — e.g., *"What is your return policy?"* vs *"How do returns work?"*
+
+::: warning Semantic Caching vs. Prompt Caching
+These are two different techniques — the exam may use them as distractors:
+
+| | Semantic Caching | Prompt Caching |
+|---|---|---|
+| **What is cached** | Full FM response, keyed by embedding similarity | Static system prompt portion |
+| **Where** | External — ElastiCache (Redis) + vector search | Bedrock native feature |
+| **Bypasses FM?** | Yes — cache hit skips the FM entirely | No — FM still invoked, but reuses cached prompt context |
+| **Best for** | Repeat or paraphrased user questions | Large, stable system prompts reused across many calls |
+:::
+
 ---
 
 ## 4.3 Batch Inference
@@ -105,6 +149,12 @@ Batch inference allows you to submit a **large dataset of prompts** at once and 
 
 Batch inference is typically **~50% cheaper** per token compared to on-demand pricing (varies by model) — making it the most cost-effective option for non-urgent, high-volume jobs.
 
+### Batch Inference Hard Constraints
+
+- **Input/output format**: S3 JSONL only — no other formats accepted
+- **Not real-time**: jobs are queued and processed asynchronously; never use for interactive workloads
+- **Custom models require Provisioned Throughput**: you cannot run batch inference on a custom fine-tuned model without first purchasing PTU
+
 ---
 
 ## 4.4 Monitoring Operational Metrics
@@ -119,6 +169,12 @@ Batch inference is typically **~50% cheaper** per token compared to on-demand pr
 | **InvocationClientErrors** | 4xx errors |
 | **InvocationServerErrors** | 5xx errors |
 | **ThrottledRequests** | Requests throttled due to exceeding on-demand TPS limit |
+
+**How to use these on the exam:**
+- **CloudWatch dashboards** help visualize token consumption and latency trends over time
+- **CloudWatch Alarms** are the right answer when you need notifications for high token usage, error spikes, or throttling
+- Token metrics can be used for **usage analysis**, **cost forecasting**, and identifying unusually expensive prompt patterns
+- Questions may describe this as monitoring usage "by model" or over time; think **CloudWatch metrics + dashboards**
 
 ### Responding to ThrottlingException
 
