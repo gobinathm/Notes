@@ -18,6 +18,7 @@ CI/CD workflows, automation, and GitHub Actions best practices. Covers workflow 
 **Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/1D482C674772339)
 
 **Notes Prepared**: January 2026 · **Last Updated**: 2026-01-28
+**Notes valid as of**: January 28, 2026
 :::
 
 ::: info CI/CD and automation focused

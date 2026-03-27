@@ -22,6 +22,7 @@ Think like a security-aware developer or DevSecOps engineer. Questions test your
 **Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/405C37D72F2C5594?sharingId=DF3DC239EE30F0A4)
 
 **Notes Prepared**: March 2026 · **Last Updated**: 2026-03-16
+**Notes valid as of**: March 16, 2026
 :::
 
 <ImageModal

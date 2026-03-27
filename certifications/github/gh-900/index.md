@@ -22,6 +22,7 @@ No prior certification required. Suitable for developers, students, project mana
 **Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/E7D2A8584DC72468?sharingId=DF3DC239EE30F0A4)
 
 **Notes Prepared**: February 2026 · **Last Updated**: 2026-02-22
+**Notes valid as of**: February 21, 2026
 :::
 
 <ImageModal

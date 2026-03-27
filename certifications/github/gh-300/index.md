@@ -22,6 +22,7 @@ Think like a developer who uses GitHub Copilot daily. Questions test your abilit
 **Credential**: [Verify Certificate](https://learn.microsoft.com/api/credentials/share/en-us/gobinathm/2237B962A36FD6D3?sharingId=DF3DC239EE30F0A4)
 
 **Notes Prepared**: February 2026 · **Last Updated**: 2026-02-27
+**Notes valid as of**: February 28, 2026
 :::
 
 

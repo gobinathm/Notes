@@ -21,6 +21,14 @@ Think like a GitHub Enterprise Admin. Questions focus on access control, securit
 These notes follow the **live GH-100 certification page**. As of **March 17, 2026**, the official exam page lists **6 measured domains** under "Assessed on this exam."
 :::
 
+::: tip Certification Achieved ✅
+**Earned**: March 21, 2026
+**Credential**: [Verify Certificate](https://learn.microsoft.com/en-us/users/gobinathm/credentials/3af58265dbdcff60)
+
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-21
+**Notes valid as of**: March 21, 2026
+:::
+
 <ImageModal
   src="/images/certifications/gh-100/infographic.png"
   alt="GH-100 Exam Overview Infographic"
