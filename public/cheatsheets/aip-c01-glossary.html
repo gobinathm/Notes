@@ -4,8 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIP-C01 · AI/ML Key Terms Glossary</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api-gateway.umami.dev">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* === GLASSMORPHISM SYSTEM === */
+:root{--bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.11);--gb:rgba(255,255,255,0.10);--gbh:rgba(255,255,255,0.20);--gs:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);--gsh:0 16px 48px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.12);--text:#e8eaf6;--dim:#8892b0;--muted:#4a5580;--d1:#38bdf8;--d2:#a78bfa;--d3:#fb923c;--d4:#34d399;--d5:#f472b6;--accent:#38bdf8;--green:#34d399;--red:#f87171;--amber:#fbbf24;--mono:'JetBrains Mono', monospace;--sans:'Plus Jakarta Sans', sans-serif}
+body{background:var(--bg) !important;color:var(--text) !important;font-family:var(--sans) !important}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(56,189,248,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(167,139,250,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 50% 50%,rgba(16,185,129,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -214,8 +222,8 @@ header {
 main {
   position: relative;
   z-index: 1;
-  padding: 28px 32px 60px;
-  max-width: 1400px;
+  padding:28px 40px 80px;
+  max-width:100%;
   margin: 0 auto;
 }
 
@@ -462,6 +470,8 @@ const CATEGORIES = [
   { id: 'eval',     label: 'Evaluation & Metrics',          color: '#ec4899' },
   { id: 'infra',    label: 'Infrastructure & Operations',   color: '#64748b' },
   { id: 'aws',      label: 'AWS GenAI Services',            color: '#ff9900' },
+  { id: 'sage',     label: 'SageMaker LMI & Inference',     color: '#00bcd4' },
+  { id: 'datap',    label: 'Data Pipelines & Quality',       color: '#4caf50' },
 ];
 
 // exam weight: 'hi' = very likely on exam, 'med' = moderate
@@ -611,6 +621,31 @@ const TERMS = [
   { cat:'infra', name:'S3', abbr:'Simple Storage Service', exam:'hi', def:'AWS object storage used as the <strong>primary data source and output destination</strong> for Bedrock — training data, invocation logs, batch results.', example:'Knowledge Base ingestion: docs in S3 → Bedrock syncs, chunks, embeds. Fine-tuning: JSONL training file in S3.' },
   { cat:'infra', name:'Lambda', abbr:'', exam:'hi', def:'AWS serverless compute. In Bedrock: <strong>backs Agent action groups</strong> (tool execution) and event-driven GenAI pipelines.', example:'Agent action group calls Lambda → Lambda queries a database → returns structured result to agent.' },
   { cat:'infra', name:'IAM', abbr:'Identity & Access Management', exam:'hi', def:'AWS service controlling <strong>who can access what</strong>. For Bedrock: controls which users/roles can invoke models, access KBs, create agents.', example:'Policy: bedrock:InvokeModel on arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet.' },
+
+
+  // ── SAGEMAKER LMI & INFERENCE (new category) ──
+  { cat:'sage', name:'DJL Serving', abbr:'Deep Java Library', exam:'hi', def:'An open-source high-level deep learning framework used to serve large models on <strong>Amazon SageMaker Large Model Inference (LMI)</strong> containers. Configured via <code>serving.properties</code> file.', example:'Key config params: tensor_parallel_degree, max_rolling_batch_size, max_sequence_length.' },
+  { cat:'sage', name:'Tensor Parallelism', abbr:'', exam:'hi', def:'A technique that <strong>shards model weight tensors across multiple GPUs</strong>, with each GPU holding 1/N of the weights. Configured via <code>tensor_parallel_degree=N</code> in DJL Serving.', example:'tensor_parallel_degree=4 on 8-GPU instance → 2 model replicas. Each replica uses 4 GPUs → 2x concurrent serving capacity.' },
+  { cat:'sage', name:'Pipeline Parallelism', abbr:'', exam:'med', def:'Splits model <strong>layers sequentially across GPUs or instances</strong>, with each device handling a portion of the forward pass. Differs from tensor parallelism which splits within a layer.', example:'Layers 1–12 on GPU 0, layers 13–24 on GPU 1. Useful for very deep models that do not fit horizontally.' },
+  { cat:'sage', name:'KV-Cache', abbr:'Key-Value Cache', exam:'hi', def:'The cache storing <strong>key-value attention matrices</strong> computed during generation. KV-cache memory is <strong>proportional to max_sequence_length</strong> — a primary driver of GPU memory usage in LLM serving.', example:'Reducing max_sequence_length from 4096 to 512 frees 87.5% of KV-cache memory → enables larger rolling batch sizes.' },
+  { cat:'sage', name:'Continuous Batching', abbr:'Rolling Batch', exam:'hi', def:'An LLM serving technique that <strong>dynamically fills GPU slots as requests complete</strong> rather than waiting for a fixed batch. Maximizes GPU utilization and throughput.', example:'Configured via max_rolling_batch_size in DJL. New requests enter the batch immediately when a slot frees up — no idle GPU time.' },
+  { cat:'sage', name:'SageMaker Real-time Inference', abbr:'', exam:'hi', def:'Synchronous SageMaker endpoint with <strong>60-second request timeout</strong>. Best for interactive GenAI workloads requiring immediate responses.', example:'Customer chatbot, real-time document Q&A. Supports auto-scaling based on InvocationsPerInstance metric.' },
+  { cat:'sage', name:'SageMaker Async Inference', abbr:'', exam:'hi', def:'SageMaker endpoint that <strong>queues requests and processes asynchronously</strong>, writing results to S3. Designed for long-running FM completions exceeding the 60s real-time limit.', example:'Legal document analysis (3–5 min) → Async endpoint → result written to S3 → client polls or receives SNS notification.' },
+  { cat:'sage', name:'SageMaker Serverless Inference', abbr:'', exam:'hi', def:'SageMaker endpoint that <strong>scales to zero between requests</strong>, billing only for compute time used. Trade-off: cold start latency when scaling up from zero.', example:'Use for sporadic, latency-tolerant workloads. Not suitable for interactive chatbots where cold starts are unacceptable.' },
+  { cat:'sage', name:'SageMaker Model Registry', abbr:'', exam:'hi', def:'A central catalog for <strong>versioned ML/FM models with approval workflows</strong>. Models have status: PendingManualApproval → Approved/Rejected. Automated pipelines deploy only Approved versions.', example:'Fine-tuned model registered as v2 → reviewer evaluates → Approved → CI/CD deploys to production endpoint.' },
+  { cat:'sage', name:'SageMaker Model Cards', abbr:'', exam:'hi', def:'Programmatic documentation objects capturing <strong>intended use, training data, evaluation results, risk ratings, and responsible AI considerations</strong>. Created via SageMaker Python SDK.', example:'Compliance audit: "What data trained this model and what are its limitations?" → Model Card provides the versioned, documented answer.' },
+  { cat:'sage', name:'LoRA Adapter Deployment', abbr:'Low-Rank Adaptation', exam:'med', def:'Deploying <strong>base model weights plus lightweight LoRA adapter weights separately</strong> at inference time. Multiple adapters can be loaded on one base model instance — more efficient than separate full-weight deployments.', example:'Llama-3 base (7GB) + LoRA-HR (50MB) + LoRA-Legal (50MB) → one instance serves two specialized tasks.' },
+  { cat:'sage', name:'LMI Container', abbr:'Large Model Inference', exam:'med', def:'AWS-provided <strong>deep learning containers optimized for serving large language models</strong> on SageMaker. Includes DJL Serving, vLLM, and other LLM-optimized inference frameworks pre-installed.', example:'Pull lmi-neuronx or lmi-dist container → configure serving.properties → deploy to GPU-backed SageMaker endpoint.' },
+
+  // ── DATA PIPELINE & QUALITY (new category) ──
+  { cat:'datap', name:'AWS Glue Data Quality', abbr:'', exam:'hi', def:'AWS service for <strong>defining and running data quality rules</strong> (completeness, uniqueness, validity, freshness) against datasets — used to validate training and RAG ingestion data before FM consumption.', example:'RAG pipeline: Glue DQ checks documents are >95% complete, zero duplicates → pass → chunking begins.' },
+  { cat:'datap', name:'SageMaker Data Wrangler', abbr:'', exam:'hi', def:'Visual, no-code data preparation tool for <strong>profiling, transforming, and exporting FM-ready datasets</strong>. Integrates with SageMaker Pipelines for automated data prep workflows.', example:'Heterogeneous CSVs + JSON + text → Data Wrangler cleans, joins, normalizes → exports JSONL for Bedrock fine-tuning.' },
+  { cat:'datap', name:'AWS Glue Data Catalog', abbr:'', exam:'hi', def:'Metadata repository that <strong>registers data sources with tags</strong>, enabling data lineage tracking — tracing which source documents contributed to FM training or RAG responses for compliance.', example:'AIP-C01 Skill 3.3.2: tag each document with {source, year, sensitivity} → Catalog traces data through pipeline → audit trail.' },
+  { cat:'datap', name:'Amazon Transcribe', abbr:'', exam:'hi', def:'Managed <strong>speech-to-text service</strong> that converts audio recordings to text. Used as the pre-processing step in multimodal FM pipelines handling voice data.', example:'Customer call MP3 → Transcribe → text transcript → embed → RAG pipeline → FM answers about call content.' },
+  { cat:'datap', name:'SageMaker Processing', abbr:'', exam:'med', def:'Managed infrastructure for running <strong>data processing, feature engineering, and model evaluation scripts</strong> at scale before FM fine-tuning.', example:'Run a Spark job via SageMaker Processing to tokenize and split a 500GB text corpus before fine-tuning.' },
+  { cat:'datap', name:'OpenSearch Neural Plugin', abbr:'', exam:'hi', def:'OpenSearch plugin enabling <strong>semantic search and hybrid search</strong> (vector + BM25 keyword) by integrating with Bedrock embedding models. Referenced in AIP-C01 Skill 1.4.1.', example:'Hybrid query: BM25 exact-matches "INV-2024" AND neural retrieves semantically similar invoices — better recall + precision than either alone.' },
+  { cat:'datap', name:'Cross-Encoder Re-ranking', abbr:'', exam:'med', def:'A second-pass retrieval model that <strong>scores each candidate chunk pairwise with the query</strong> — more accurate than bi-encoder ANN but slower. Applied after initial ANN retrieval.', example:'ANN retrieves top-20 → cross-encoder re-ranks → top-5 selected → injected as FM context. Improves answer quality.' },
+  { cat:'datap', name:'SCP (Service Control Policy)', abbr:'', exam:'hi', def:'AWS Organizations policy that <strong>applies at OU or account level and cannot be overridden by IAM</strong>. Used to enforce Guardrail usage across all Bedrock invocations org-wide.', example:'SCP: Deny bedrock:InvokeModel unless bedrock:GuardrailIdentifier = "approved-id" → enforced across all accounts.' },
 
   // ── AWS GenAI SERVICES ──
   { cat:'aws', name:'Amazon Bedrock', abbr:'', exam:'hi', def:'AWS\'s <strong>fully managed GenAI service</strong> — API access to multiple FMs from Anthropic, Meta, Cohere, Amazon, Stability AI. Core exam service.', example:'Single API to invoke Claude, Llama, Titan, Cohere, Mistral without managing any infrastructure.' },

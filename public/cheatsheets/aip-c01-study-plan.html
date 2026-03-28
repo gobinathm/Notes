@@ -4,1126 +4,250 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIP-C01 — 20-Hour Fast Track</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api-gateway.umami.dev">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* === GLASSMORPHISM SYSTEM === */
+:root{--bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.11);--gb:rgba(255,255,255,0.10);--gbh:rgba(255,255,255,0.20);--gs:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);--gsh:0 16px 48px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.12);--text:#e8eaf6;--dim:#8892b0;--muted:#4a5580;--d1:#38bdf8;--d2:#a78bfa;--d3:#fb923c;--d4:#34d399;--d5:#f472b6;--accent:#38bdf8;--green:#34d399;--red:#f87171;--amber:#fbbf24;--mono:'JetBrains Mono', monospace;--sans:'Plus Jakarta Sans', sans-serif}
+body{background:var(--bg) !important;color:var(--text) !important;font-family:var(--sans) !important}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(56,189,248,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(167,139,250,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 50% 50%,rgba(16,185,129,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
   :root {
-    --bg: #0a0c10;
-    --surface: #111318;
-    --surface2: #181c24;
-    --border: #232832;
-    --accent: #00e5ff;
-    --accent2: #7c3aed;
-    --accent3: #f59e0b;
-    --green: #10b981;
-    --red: #ef4444;
-    --text: #e2e8f0;
-    --text-muted: #64748b;
-    --text-dim: #94a3b8;
-    --glow: rgba(0,229,255,0.08);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── HEADER ── */
-  header {
-    padding: 64px 0 48px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 48px;
-  }
-
-  .header-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .header-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
-  }
-
-  h1 span.highlight {
-    color: var(--accent);
-    position: relative;
-  }
-
-  .header-sub {
-    color: var(--text-dim);
-    font-size: 1rem;
-    font-weight: 300;
-    max-width: 560px;
-    line-height: 1.6;
-    margin-bottom: 32px;
-  }
-
-  /* Exam stats bar */
-  .exam-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--surface);
-  }
-
-  .stat-cell {
-    flex: 1;
-    min-width: 120px;
-    padding: 14px 20px;
-    border-right: 1px solid var(--border);
-  }
-
-  .stat-cell:last-child { border-right: none; }
-
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-  }
-
-  .stat-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .stat-value.accent { color: var(--accent); }
-  .stat-value.amber  { color: var(--accent3); }
-  .stat-value.purple { color: #a78bfa; }
-
-  /* ── DOMAIN OVERVIEW ── */
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .domain-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    margin-bottom: 52px;
-  }
-
-  .domain-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 14px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-
-  .domain-card:hover { border-color: var(--accent); }
-
-  .domain-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--d-color, var(--accent));
-  }
-
-  .domain-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 6px;
-  }
-
-  .domain-pct {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 6px;
-    color: var(--d-color, var(--accent));
-  }
-
-  .domain-name {
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: var(--text-dim);
-    line-height: 1.4;
-  }
-
-  /* ── PROGRESS TRACKER ── */
-  .progress-bar-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .progress-info { flex: 1; }
-
-  .progress-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }
-
-  .progress-bar {
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), #7c3aed);
-    border-radius: 2px;
-    transition: width 0.5s ease;
-    width: 0%;
-  }
-
-  .progress-count {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--accent);
-    white-space: nowrap;
-  }
-
-  .progress-count span {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* ── SESSIONS ── */
-  .session {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-
-  .session.completed {
-    border-color: var(--green);
-    opacity: 0.7;
-  }
-
-  .session:hover { border-color: #334155; }
-
-  .session-header {
-    display: grid;
-    grid-template-columns: 48px 1fr auto;
-    align-items: center;
-    gap: 16px;
-    padding: 18px 20px;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .session-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    text-align: center;
-  }
-
-  .session-num strong {
-    display: block;
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .session-meta { }
-
-  .session-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-    line-height: 1.2;
-  }
-
-  .session-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    padding: 2px 7px;
-    border-radius: 3px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .tag-d1 { background: rgba(0,229,255,0.1); color: #00e5ff; }
-  .tag-d2 { background: rgba(124,58,237,0.15); color: #a78bfa; }
-  .tag-d3 { background: rgba(245,158,11,0.12); color: #fbbf24; }
-  .tag-d4 { background: rgba(16,185,129,0.12); color: #34d399; }
-  .tag-d5 { background: rgba(239,68,68,0.12); color: #f87171; }
-
-  .session-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .check-btn {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1.5px solid var(--border);
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    color: var(--text-muted);
-    flex-shrink: 0;
-  }
-
-  .check-btn:hover { border-color: var(--green); color: var(--green); }
-  .session.completed .check-btn {
-    background: var(--green);
-    border-color: var(--green);
-    color: #0a0c10;
-  }
-
-  .chevron {
-    font-size: 14px;
-    color: var(--text-muted);
-    transition: transform 0.3s;
-  }
-
-  .session.open .chevron { transform: rotate(180deg); }
-
-  /* Session body */
-  .session-body {
-    display: none;
-    padding: 0 20px 24px;
-    border-top: 1px solid var(--border);
-  }
-
-  .session.open .session-body { display: block; }
-
-  .body-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .body-block {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
-  }
-
-  .body-block.full { grid-column: 1 / -1; }
-
-  .block-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .block-title .dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .block-title .dot.amber { background: var(--accent3); }
-  .block-title .dot.green { background: var(--green); }
-  .block-title .dot.purple { background: #a78bfa; }
-  .block-title .dot.red { background: var(--red); }
-
-  .topic-list {
-    list-style: none;
-  }
-
-  .topic-list li {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    padding: 5px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.4;
-  }
-
-  .topic-list li:last-child { border-bottom: none; }
-
-  .topic-list li::before {
-    content: '→';
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .resource-list {
-    list-style: none;
-  }
-
-  .resource-list li {
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .resource-list li:last-child { border-bottom: none; }
-
-  .resource-list a {
-    font-size: 0.82rem;
-    color: var(--accent);
-    text-decoration: none;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    transition: color 0.15s;
-    line-height: 1.4;
-  }
-
-  .resource-list a:hover { color: #67e8f9; }
-
-  .resource-list a::before {
-    content: '↗';
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .resource-plain {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-  }
-
-  /* Review block */
-  .review-block {
-    background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(124,58,237,0.04));
-    border: 1px solid rgba(0,229,255,0.15);
-    border-radius: 8px;
-    padding: 16px;
-    margin-top: 20px;
-  }
-
-  .review-header {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .review-header::before {
-    content: '◈';
-    font-size: 10px;
-  }
-
-  .review-qs {
-    list-style: none;
-    counter-reset: qnum;
-  }
-
-  .review-qs li {
-    counter-increment: qnum;
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    display: flex;
-    gap: 10px;
-    line-height: 1.5;
-  }
-
-  .review-qs li:last-child { border-bottom: none; }
-
-  .review-qs li::before {
-    content: 'Q' counter(qnum);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 2px;
-    letter-spacing: 0.05em;
-  }
-
-  /* Time badge */
-  .time-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    white-space: nowrap;
-  }
-
-  /* Pareto callout */
-  .pareto-bar {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 48px;
-  }
-
-  .pareto-label {
-    background: rgba(0,229,255,0.05);
-    padding: 16px 20px;
-    border-right: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .pareto-icon {
-    font-size: 1.4rem;
-  }
-
-  .pareto-text {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  .pareto-text strong {
-    display: block;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.9rem;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-
-  .pareto-domains {
-    display: flex;
-    flex: 1;
-    background: var(--surface);
-  }
-
-  .pd {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 8px;
-    border-right: 1px solid var(--border);
-    text-align: center;
-  }
-
-  .pd:last-child { border-right: none; }
-
-  .pd-pct {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--text);
-  }
-
-  .pd-name {
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    margin-top: 2px;
-    line-height: 1.3;
-  }
-
-  .pd.hi .pd-pct { color: var(--accent); }
-  .pd.hi { background: rgba(0,229,255,0.03); }
-
-  /* Footer */
-  .footer-note {
-    margin-top: 60px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-align: center;
-  }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    .domain-grid { grid-template-columns: repeat(3, 1fr); }
-    .body-grid { grid-template-columns: 1fr; }
-    .pareto-bar { flex-direction: column; }
-    .pareto-label { border-right: none; border-bottom: 1px solid var(--border); }
-    .pareto-domains { flex-wrap: wrap; }
-    .pd { min-width: 33%; }
-    .stat-cell { min-width: 100px; }
-  }
+    --bg:#0a0c10;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);--border:#232832;
+    --accent:#00e5ff;--accent2:#7c3aed;--accent3:#f59e0b;
+    --green:#10b981;--red:#ef4444;--text:#e2e8f0;--text-muted:#64748b;--text-dim:#94a3b8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+  .container{max-width:100%;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1}
+  header{padding:64px 0 48px;border-bottom:1px solid var(--border);margin-bottom:48px}
+  .header-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .header-eyebrow::before{content:'';display:inline-block;width:24px;height:1px;background:var(--accent)}
+  h1{font-family:var(--sans);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:12px}
+  h1 span.highlight{color:var(--accent)}
+  .header-sub{color:var(--text-dim);font-size:1rem;font-weight:300;max-width:900px;line-height:1.6;margin-bottom:32px}
+  .exam-stats{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface)}
+  .stat-cell{flex:1;min-width:110px;padding:14px 20px;border-right:1px solid var(--border)}
+  .stat-cell:last-child{border-right:none}
+  .stat-label{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+  .stat-value{font-family:var(--sans);font-size:1.15rem;font-weight:700}
+  .stat-value.accent{color:var(--accent)}.stat-value.amber{color:var(--accent3)}.stat-value.purple{color:#a78bfa}
+  .section-title{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+  .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+  .domain-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:52px}
+  .domain-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 14px;position:relative;overflow:hidden;transition:border-color .2s}
+  .domain-card:hover{border-color:var(--accent)}
+  .domain-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--d-color,var(--accent))}
+  .domain-num{font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:.1em;margin-bottom:6px}
+  .domain-pct{font-family:var(--sans);font-size:1.8rem;font-weight:800;line-height:1;margin-bottom:6px;color:var(--d-color,var(--accent))}
+  .domain-name{font-size:.7rem;font-weight:400;color:var(--text-dim);line-height:1.4}
+  .progress-bar-wrap{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:48px;display:flex;align-items:center;gap:24px}
+  .progress-info{flex:1}
+  .progress-label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px}
+  .progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),#7c3aed);border-radius:2px;transition:width .5s ease;width:0%}
+  .progress-count{font-family:var(--sans);font-size:1.6rem;font-weight:800;color:var(--accent);white-space:nowrap}
+  .progress-count span{font-size:.85rem;color:var(--text-muted);font-weight:400;font-family:var(--mono)}
+  .session{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+  .session.completed{border-color:var(--green);opacity:.7}
+  .session:hover{border-color:#334155}
+  .session-header{display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:16px;padding:18px 20px;cursor:pointer;user-select:none}
+  .session-num{font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--text-muted);letter-spacing:.05em;text-align:center}
+  .session-num strong{display:block;font-family:var(--sans);font-size:1.2rem;font-weight:800;color:var(--accent);line-height:1}
+  .session-title{font-family:var(--sans);font-size:1rem;font-weight:700;margin-bottom:4px;line-height:1.2}
+  .session-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase}
+  .tag-d1{background:rgba(0,229,255,.1);color:#00e5ff}.tag-d2{background:rgba(124,58,237,.15);color:#a78bfa}
+  .tag-d3{background:rgba(245,158,11,.12);color:#fbbf24}.tag-d4{background:rgba(16,185,129,.12);color:#34d399}
+  .tag-d5{background:rgba(239,68,68,.12);color:#f87171}
+  .session-actions{display:flex;align-items:center;gap:10px}
+  .check-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text-muted);flex-shrink:0}
+  .check-btn:hover{border-color:var(--green);color:var(--green)}
+  .session.completed .check-btn{background:var(--green);border-color:var(--green);color:#0a0c10}
+  .chevron{font-size:14px;color:var(--text-muted);transition:transform .3s}
+  .session.open .chevron{transform:rotate(180deg)}
+  .session-body{display:none;padding:0 20px 24px;border-top:1px solid var(--border)}
+  .session.open .session-body{display:block}
+  .body-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+  .body-block{backdrop-filter:blur(8px);background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px}
+  .block-title{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .block-title .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+  .block-title .dot.amber{background:var(--accent3)}.block-title .dot.green{background:var(--green)}
+  .topic-list{list-style:none}
+  .topic-list li{font-size:.82rem;color:var(--text-dim);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+  .topic-list li:last-child{border-bottom:none}
+  .topic-list li::before{content:'→';font-family:var(--mono);font-size:10px;color:var(--text-muted);flex-shrink:0;margin-top:1px}
+  .resource-list{list-style:none}
+  .resource-list li{padding:6px 0;border-bottom:1px solid var(--border)}
+  .resource-list li:last-child{border-bottom:none}
+  .resource-list a{font-size:.82rem;color:var(--accent);text-decoration:none;display:flex;align-items:flex-start;gap:8px;transition:color .15s;line-height:1.4}
+  .resource-list a:hover{color:#67e8f9}
+  .resource-list a::before{content:'↗';font-family:var(--mono);font-size:10px;flex-shrink:0;margin-top:1px}
+  .review-block{background:linear-gradient(135deg,rgba(0,229,255,.04),rgba(124,58,237,.04));border:1px solid rgba(0,229,255,.15);border-radius:8px;padding:16px;margin-top:20px}
+  .review-header{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .review-header::before{content:'◈';font-size:10px}
+  .review-qs{list-style:none;counter-reset:qnum}
+  .review-qs li{counter-increment:qnum;font-size:.82rem;color:var(--text-dim);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:10px;line-height:1.5}
+  .review-qs li:last-child{border-bottom:none}
+  .review-qs li::before{content:'Q' counter(qnum);font-family:var(--mono);font-size:9px;color:var(--accent);flex-shrink:0;margin-top:2px;letter-spacing:.05em}
+  .new-badge{font-family:var(--mono);font-size:8px;background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);padding:1px 6px;border-radius:3px;letter-spacing:.06em;vertical-align:middle;margin-left:6px}
+  .footer-note{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:.08em;text-align:center}
+  @media(max-width:700px){.domain-grid{grid-template-columns:repeat(3,1fr)}.body-grid{grid-template-columns:1fr}.stat-cell{min-width:100px}}
 </style>
 </head>
 <body>
-
 <div class="container">
-
-  <!-- ── HEADER ── -->
-  <header>
-    <div class="header-eyebrow">Pareto Study System</div>
-    <h1>AWS <span class="highlight">AIP-C01</span><br>20-Hour Fast Track</h1>
-    <p class="header-sub">10 focused 2-hour sessions built around the 20% of content that drives 80% of exam results. Domains 1 + 2 alone = 57% of your score.</p>
-
-    <div class="exam-stats">
-      <div class="stat-cell">
-        <div class="stat-label">Exam Code</div>
-        <div class="stat-value accent">AIP-C01</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">Questions</div>
-        <div class="stat-value">65 + 10</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">Pass Score</div>
-        <div class="stat-value amber">750 / 1000</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">Duration</div>
-        <div class="stat-value">170 min</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">Level</div>
-        <div class="stat-value purple">Professional</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-label">Cost</div>
-        <div class="stat-value">$300 USD</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ── DOMAIN OVERVIEW ── -->
-  <div class="section-title">Five Exam Domains</div>
-  <div class="domain-grid">
-    <div class="domain-card" style="--d-color:#00e5ff">
-      <div class="domain-num">Domain 1</div>
-      <div class="domain-pct">31%</div>
-      <div class="domain-name">FM Integration, Data &amp; Compliance</div>
-    </div>
-    <div class="domain-card" style="--d-color:#a78bfa">
-      <div class="domain-num">Domain 2</div>
-      <div class="domain-pct">26%</div>
-      <div class="domain-name">Implementation &amp; Integration</div>
-    </div>
-    <div class="domain-card" style="--d-color:#fbbf24">
-      <div class="domain-num">Domain 3</div>
-      <div class="domain-pct">20%</div>
-      <div class="domain-name">AI Safety, Security &amp; Governance</div>
-    </div>
-    <div class="domain-card" style="--d-color:#34d399">
-      <div class="domain-num">Domain 4</div>
-      <div class="domain-pct">12%</div>
-      <div class="domain-name">Operational Efficiency &amp; Optimization</div>
-    </div>
-    <div class="domain-card" style="--d-color:#f87171">
-      <div class="domain-num">Domain 5</div>
-      <div class="domain-pct">11%</div>
-      <div class="domain-name">Testing, Validation &amp; Troubleshooting</div>
-    </div>
+<header>
+  <div class="header-eyebrow">Pareto Study System · v2 Complete Scope</div>
+  <h1>AWS <span class="highlight">AIP-C01</span><br>20-Hour Fast Track</h1>
+  <p class="header-sub">10 focused 2-hour sessions covering the full official exam scope — including SageMaker LMI inference, DJL serving, data quality pipelines, and advanced RAG architecture added in v2.</p>
+  <div class="exam-stats">
+    <div class="stat-cell"><div class="stat-label">Exam Code</div><div class="stat-value accent">AIP-C01</div></div>
+    <div class="stat-cell"><div class="stat-label">Questions</div><div class="stat-value">65 + 10</div></div>
+    <div class="stat-cell"><div class="stat-label">Pass Score</div><div class="stat-value amber">750 / 1000</div></div>
+    <div class="stat-cell"><div class="stat-label">Duration</div><div class="stat-value">170 min</div></div>
+    <div class="stat-cell"><div class="stat-label">Level</div><div class="stat-value purple">Professional</div></div>
+    <div class="stat-cell"><div class="stat-label">Cost</div><div class="stat-value">$300 USD</div></div>
   </div>
+</header>
 
-  <!-- ── PARETO CALLOUT ── -->
-  <div class="section-title">The 80/20 Focus</div>
-  <div class="pareto-bar">
-    <div class="pareto-label">
-      <div class="pareto-icon">⚡</div>
-      <div class="pareto-text">
-        <strong>Pareto Principle Applied</strong>
-        Sessions 1–6 cover Domains 1, 2, 3 (77% of exam weight). Master these first, then sweep the rest.
-      </div>
-    </div>
-    <div class="pareto-domains">
-      <div class="pd hi"><div class="pd-pct">31%</div><div class="pd-name">FM Integration</div></div>
-      <div class="pd hi"><div class="pd-pct">26%</div><div class="pd-name">Implementation</div></div>
-      <div class="pd hi"><div class="pd-pct">20%</div><div class="pd-name">AI Safety</div></div>
-      <div class="pd"><div class="pd-pct">12%</div><div class="pd-name">Operations</div></div>
-      <div class="pd"><div class="pd-pct">11%</div><div class="pd-name">Testing</div></div>
-    </div>
+<div class="section-title">Five Exam Domains</div>
+<div class="domain-grid">
+  <div class="domain-card" style="--d-color:#00e5ff"><div class="domain-num">Domain 1</div><div class="domain-pct">31%</div><div class="domain-name">FM Integration, Data &amp; Compliance</div></div>
+  <div class="domain-card" style="--d-color:#a78bfa"><div class="domain-num">Domain 2</div><div class="domain-pct">26%</div><div class="domain-name">Implementation &amp; Integration</div></div>
+  <div class="domain-card" style="--d-color:#fbbf24"><div class="domain-num">Domain 3</div><div class="domain-pct">20%</div><div class="domain-name">AI Safety, Security &amp; Governance</div></div>
+  <div class="domain-card" style="--d-color:#34d399"><div class="domain-num">Domain 4</div><div class="domain-pct">12%</div><div class="domain-name">Operational Efficiency &amp; Optimization</div></div>
+  <div class="domain-card" style="--d-color:#f87171"><div class="domain-num">Domain 5</div><div class="domain-pct">11%</div><div class="domain-name">Testing, Validation &amp; Troubleshooting</div></div>
+</div>
+
+<div class="section-title">Your Progress</div>
+<div class="progress-bar-wrap">
+  <div class="progress-info">
+    <div class="progress-label">Sessions Completed</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   </div>
+  <div class="progress-count" id="progressCount">0 <span>/ 10 sessions</span></div>
+</div>
 
-  <!-- ── PROGRESS TRACKER ── -->
-  <div class="section-title">Your Progress</div>
-  <div class="progress-bar-wrap">
-    <div class="progress-info">
-      <div class="progress-label">Sessions Completed</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-    </div>
-    <div class="progress-count" id="progressCount">0 <span>/ 10 sessions</span></div>
-  </div>
-
-  <!-- ── SESSIONS ── -->
-  <div class="section-title">10 Study Sessions · 2 Hours Each</div>
-  <div id="sessions"></div>
-
-  <div class="footer-note">AIP-C01 · Released Nov 2025 · Passing score 750/1000 · 170-minute exam · Compensatory scoring model</div>
+<div class="section-title">10 Study Sessions · 2 Hours Each</div>
+<div id="sessions"></div>
+<div class="footer-note">AIP-C01 · Released Nov 2025 · v2 updated with SageMaker LMI, DJL, data pipelines, advanced RAG · Pass 750/1000</div>
 </div>
 
 <script>
 const sessions = [
-  {
-    n: 1,
-    title: "GenAI Foundations & AWS Bedrock Architecture",
-    domains: [{cls:"tag-d1",label:"D1: 31%"}],
-    topics: [
-      "Foundation models (FMs): what they are, how they differ from traditional ML",
-      "Amazon Bedrock: the central service — console, API, model catalog",
-      "Supported FMs: Anthropic Claude, Meta Llama, Cohere, Stability AI, Amazon Titan",
-      "Inference parameters: temperature, top-P, top-K, max tokens, stop sequences",
-      "Bedrock pricing models: on-demand vs provisioned throughput vs model units",
-      "How to invoke a model: InvokeModel vs InvokeModelWithResponseStream API calls"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html", label: "AWS Docs — What is Amazon Bedrock?" },
-      { url: "https://explore.skillbuilder.aws/learn/courses/17904", label: "AWS Skill Builder — Amazon Bedrock Getting Started (free)" },
-      { url: "https://www.youtube.com/watch?v=ab1mbj0acDo", label: "AWS re:Invent — Building GenAI Apps with Bedrock (YT)" },
-    ],
-    review: [
-      "What is the difference between on-demand and provisioned throughput in Bedrock?",
-      "Name 3 foundation models available in Bedrock and their primary use cases.",
-      "How does temperature affect model output? What happens at 0 vs 1?",
-      "Which Bedrock API would you use for streaming a long text generation response?"
-    ]
-  },
-  {
-    n: 2,
-    title: "Prompt Engineering & Prompt Management",
-    domains: [{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
-    topics: [
-      "Zero-shot, one-shot, few-shot prompting — when and why",
-      "Chain-of-thought (CoT) prompting for reasoning tasks",
-      "Prompt chaining: breaking complex tasks into sequential prompts",
-      "Bedrock Prompt Management: create, version, and deploy prompt templates",
-      "System prompts vs human turn vs assistant turn in conversation format",
-      "Prompt injection risks and mitigation strategies",
-      "ReAct (Reason + Act) prompting pattern for agentic tasks"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html", label: "AWS Docs — Bedrock Prompt Management" },
-      { url: "https://www.promptingguide.ai/", label: "Prompting Guide (promptingguide.ai) — free reference" },
-      { url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview", label: "Anthropic Prompt Engineering Guide" },
-    ],
-    review: [
-      "What is chain-of-thought prompting and when should you use it?",
-      "Describe a prompt injection attack. How would you defend against it in Bedrock?",
-      "What is the ReAct pattern and how does it relate to agentic systems?",
-      "How does Bedrock Prompt Management help in a production deployment?"
-    ]
-  },
-  {
-    n: 3,
-    title: "RAG Architecture & Knowledge Bases",
-    domains: [{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
-    topics: [
-      "RAG pipeline: ingest → chunk → embed → store → retrieve → augment → generate",
-      "Amazon Bedrock Knowledge Bases: end-to-end managed RAG",
-      "Chunking strategies: fixed-size, semantic, hierarchical — trade-offs",
-      "Embedding models in Bedrock: Amazon Titan Embeddings, Cohere Embed",
-      "Vector stores: Amazon OpenSearch Serverless, Aurora pgvector, Pinecone, Redis",
-      "Similarity search: cosine similarity, dot product, Euclidean distance",
-      "Hybrid search: combining semantic + keyword (BM25) for better recall",
-      "Metadata filtering to narrow retrieval scope",
-      "Re-ranking strategies and relevance scoring"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html", label: "AWS Docs — Bedrock Knowledge Bases" },
-      { url: "https://aws.amazon.com/blogs/aws/knowledge-bases-now-delivers-fully-managed-rag-experience-in-amazon-bedrock/", label: "AWS Blog — Managed RAG with Knowledge Bases" },
-      { url: "https://github.com/aws-samples/amazon-bedrock-samples", label: "GitHub — amazon-bedrock-samples (RAG examples)" },
-    ],
-    review: [
-      "Draw the end-to-end RAG pipeline and name the AWS service at each step.",
-      "What is the difference between semantic search and hybrid search?",
-      "When would you choose Aurora pgvector over OpenSearch Serverless for your vector store?",
-      "What chunking strategy works best for long legal documents and why?"
-    ]
-  },
-  {
-    n: 4,
-    title: "Agents, Tool Use & Agentic Workflows",
-    domains: [{cls:"tag-d2",label:"D2: 26%"},{cls:"tag-d1",label:"D1: 31%"}],
-    topics: [
-      "Bedrock Agents: how they orchestrate multi-step reasoning + tool calls",
-      "Action groups: defining tools the agent can call (Lambda functions)",
-      "OpenAPI schema requirements for action group definitions",
-      "Agent memory: session context, agent memory (cross-session retention)",
-      "Inline agents vs pre-configured agents — use cases",
-      "Multi-agent collaboration: supervisor agent + sub-agents",
-      "Return of control (RoC): pausing agent for human approval",
-      "Guardrails integration with agents for safety",
-      "Amazon Bedrock Flows: low-code visual workflow builder"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html", label: "AWS Docs — Bedrock Agents overview" },
-      { url: "https://aws.amazon.com/blogs/aws/preview-connect-foundation-models-to-your-company-data-sources-with-agents-for-amazon-bedrock/", label: "AWS Blog — Agents for Bedrock deep dive" },
-      { url: "https://www.youtube.com/watch?v=TNHxJBw1dO0", label: "AWS re:Invent — Agentic AI Architectures (YT)" },
-    ],
-    review: [
-      "What is an action group in Bedrock Agents and how is it implemented?",
-      "Explain the ReAct loop that Bedrock Agents use internally.",
-      "When would you use multi-agent collaboration vs a single agent with many tools?",
-      "What is Return of Control and what business scenario requires it?"
-    ]
-  },
-  {
-    n: 5,
-    title: "Model Customization: Fine-Tuning & Continued Pre-Training",
-    domains: [{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
-    topics: [
-      "Fine-tuning vs continued pre-training vs RAG — when to use each",
-      "Bedrock model customization jobs: fine-tuning setup, training data format (JSONL)",
-      "Minimum data requirements and dataset quality considerations",
-      "Custom model storage in S3 and provisioned throughput requirement for inference",
-      "Model evaluation: automatic metrics (ROUGE, BERTScore) vs human evaluation",
-      "Amazon Bedrock Model Evaluation: built-in job types and custom metrics",
-      "Hyperparameter choices: epochs, batch size, learning rate — impact",
-      "Bedrock Model Distillation: teacher-student knowledge transfer"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html", label: "AWS Docs — Custom Models in Bedrock" },
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html", label: "AWS Docs — Bedrock Model Evaluation" },
-      { url: "https://aws.amazon.com/blogs/machine-learning/fine-tune-llama-2-for-text-generation-on-amazon-sagemaker-jumpstart/", label: "AWS Blog — Fine-tuning best practices" },
-    ],
-    review: [
-      "A customer has 500 domain-specific Q&A pairs. Fine-tune or RAG? Justify your answer.",
-      "What file format is required for fine-tuning training data in Bedrock?",
-      "Why do custom models require provisioned throughput for inference?",
-      "What is model distillation and what is its key benefit in production?"
-    ]
-  },
-  {
-    n: 6,
-    title: "AI Safety, Security & Responsible AI",
-    domains: [{cls:"tag-d3",label:"D3: 20%"}],
-    topics: [
-      "Amazon Bedrock Guardrails: content filters, topic denial, word filters, PII redaction",
-      "Sensitive information filters: PII types detected and redaction vs masking",
-      "Contextual grounding checks: prevent hallucination in RAG responses",
-      "Responsible AI principles: fairness, explainability, privacy, robustness",
-      "Prompt attack detection: jailbreaks, adversarial prompts",
-      "IAM for Bedrock: resource-based policies, identity-based policies, VPC endpoints",
-      "Encryption: data at rest (KMS), data in transit (TLS), model invocation logging",
-      "AWS AI Service Cards — model transparency documentation",
-      "Model invocation logging to S3/CloudWatch for audit trails"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html", label: "AWS Docs — Bedrock Guardrails" },
-      { url: "https://aws.amazon.com/ai/responsible-ai/", label: "AWS Responsible AI page" },
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/security.html", label: "AWS Docs — Bedrock Security reference" },
-    ],
-    review: [
-      "A chatbot keeps revealing competitor names. Which Guardrail feature blocks this?",
-      "What is a contextual grounding check and how does it reduce hallucination?",
-      "List 3 types of PII that Bedrock Guardrails can automatically detect and redact.",
-      "How would you implement least-privilege IAM for a Lambda calling Bedrock?"
-    ]
-  },
-  {
-    n: 7,
-    title: "AWS AI/ML Service Ecosystem Integration",
-    domains: [{cls:"tag-d2",label:"D2: 26%"},{cls:"tag-d4",label:"D4: 12%"}],
-    topics: [
-      "Amazon SageMaker vs Bedrock: positioning and when to use each",
-      "Amazon Q Business: managed RAG chatbot for enterprise (vs custom Bedrock RAG)",
-      "Amazon Kendra: managed enterprise search, connector ecosystem",
-      "Amazon Comprehend: NLP — sentiment, entities, PII detection",
-      "Amazon Textract: document extraction (forms, tables, signatures)",
-      "Amazon Rekognition: image/video analysis in multimodal pipelines",
-      "AWS Step Functions: orchestrating multi-service AI workflows",
-      "EventBridge + Lambda patterns for event-driven GenAI pipelines",
-      "Choosing between managed services vs custom Bedrock builds — cost/control tradeoff"
-    ],
-    resources: [
-      { url: "https://aws.amazon.com/bedrock/", label: "Amazon Bedrock product page (compare services)" },
-      { url: "https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html", label: "AWS Docs — Amazon Q Business" },
-      { url: "https://explore.skillbuilder.aws/learn/catalog", label: "AWS Skill Builder — AI/ML catalog (filter by Bedrock)" },
-    ],
-    review: [
-      "A client wants a chatbot over internal PDFs with zero custom code. Which service?",
-      "What does Amazon Textract add to a document-processing RAG pipeline?",
-      "When would you choose SageMaker over Bedrock for a GenAI workload?",
-      "How does Step Functions help manage error handling in a multi-agent pipeline?"
-    ]
-  },
-  {
-    n: 8,
-    title: "Cost Optimization & Performance Tuning",
-    domains: [{cls:"tag-d4",label:"D4: 12%"}],
-    topics: [
-      "Bedrock cost drivers: input tokens, output tokens, embedding tokens, storage",
-      "On-demand vs provisioned throughput: break-even analysis",
-      "Prompt caching: reduce cost by caching repeated context (system prompts)",
-      "Batch inference API: async, up to 50% cost reduction for non-real-time workloads",
-      "Token optimization: shorter prompts, compression techniques, summarization of history",
-      "Latency optimization: streaming responses, smaller model selection, provisioned throughput",
-      "Model selection strategy: capability vs cost vs latency triangle",
-      "CloudWatch metrics for Bedrock: InputTokenCount, OutputTokenCount, Latency, ThrottledRequests",
-      "Auto-scaling considerations for high-traffic GenAI applications"
-    ],
-    resources: [
-      { url: "https://aws.amazon.com/bedrock/pricing/", label: "Amazon Bedrock Pricing page" },
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/batch-inference.html", label: "AWS Docs — Bedrock Batch Inference" },
-      { url: "https://aws.amazon.com/blogs/aws/amazon-bedrock-announces-prompt-caching/", label: "AWS Blog — Bedrock Prompt Caching" },
-    ],
-    review: [
-      "A nightly report generation job processes 10,000 documents. How do you minimize cost?",
-      "What is prompt caching and which part of the prompt does it apply to?",
-      "At what throughput level does provisioned throughput become cheaper than on-demand?",
-      "List 3 CloudWatch metrics you'd alert on for a production Bedrock application."
-    ]
-  },
-  {
-    n: 9,
-    title: "Testing, Validation & Troubleshooting GenAI Apps",
-    domains: [{cls:"tag-d5",label:"D5: 11%"},{cls:"tag-d4",label:"D4: 12%"}],
-    topics: [
-      "Evaluation dimensions: factual accuracy, coherence, relevance, toxicity, groundedness",
-      "Bedrock Model Evaluation jobs: automated + human evaluation workflows",
-      "RAG evaluation metrics: context precision, context recall, answer relevancy (RAGAS framework)",
-      "Hallucination detection: groundedness checks, citation grounding",
-      "A/B testing model versions with traffic splitting",
-      "Tracing with AWS X-Ray for multi-step agent debugging",
-      "Common failure modes: retrieval failures, prompt injection, context window overflow, throttling",
-      "CloudWatch Logs Insights queries for GenAI app debugging",
-      "LLM output parsing failures and structured output validation strategies"
-    ],
-    resources: [
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html", label: "AWS Docs — Model Evaluation" },
-      { url: "https://aws.amazon.com/blogs/aws/amazon-bedrock-model-evaluation-is-now-generally-available/", label: "AWS Blog — Model Evaluation GA" },
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html", label: "AWS Docs — Agent Trace Events (debugging)" },
-    ],
-    review: [
-      "What is the difference between context precision and context recall in RAG evaluation?",
-      "A Bedrock Agent returns wrong answers. Walk through your debugging approach.",
-      "How do you detect and prevent hallucination in a RAG-based chatbot?",
-      "What does a ThrottlingException in Bedrock indicate and how do you handle it?"
-    ]
-  },
-  {
-    n: 10,
-    title: "Full Mock Exam + Weak Area Blitz",
-    domains: [{cls:"tag-d1",label:"D1"},{cls:"tag-d2",label:"D2"},{cls:"tag-d3",label:"D3"},{cls:"tag-d4",label:"D4"},{cls:"tag-d5",label:"D5"}],
-    topics: [
-      "Take a full 65-question timed mock exam (set 170-minute timer)",
-      "Score your results and map wrong answers to domains",
-      "Re-read AWS docs for every incorrect answer — do not skip this step",
-      "Focus 30-minute blitz on your weakest domain only",
-      "Review all 15-minute review questions from Sessions 1–9",
-      "Memorize key AWS service decision trees (Bedrock vs Q Business vs Kendra)",
-      "Re-read Guardrails, Agents, and Knowledge Bases docs one final time",
-      "Scheduling tip: book exam within 48–72 hours of completing this session"
-    ],
-    resources: [
-      { url: "https://www.udemy.com/course/aws-certified-gen-ai-developer-aip-c01-practice-exams/", label: "Udemy — AIP-C01 Practice Exams (Tutorials Dojo)" },
-      { url: "https://tutorialsdojo.com/aws-certified-generative-ai-developer-professional-certification-aip-c01-exam-guide-and-aip-c01-exam-topics-list/", label: "Tutorials Dojo AIP-C01 Exam Guide" },
-      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_service-with-iam.html", label: "AWS Docs — Bedrock IAM reference (final review)" },
-    ],
-    review: [
-      "Mock exam score ≥ 80%? You are ready to schedule.",
-      "Which 2 domains were you weakest in? Re-read those sections now.",
-      "Can you explain RAG, Agents, and Guardrails to a non-technical stakeholder?",
-      "Have you booked your exam date? Do it before closing this tab."
-    ]
-  }
+{n:1,title:"GenAI Foundations & Amazon Bedrock Architecture",domains:[{cls:"tag-d1",label:"D1: 31%"}],
+topics:["Foundation Models (FMs): what they are, how they differ from traditional ML","Amazon Bedrock: managed API to invoke 20+ FMs — no infrastructure","Supported FMs: Anthropic Claude, Meta Llama, Cohere, Amazon Titan, Stability AI, Mistral","Inference parameters: temperature, top-P, top-K, max_tokens, stop_sequences","InvokeModel (sync) vs InvokeModelWithResponseStream (streaming) API calls","Bedrock pricing: on-demand (per token) vs provisioned throughput vs batch (-50%)","Multimodal FMs: text + image input, when to use vision-capable models","Cross-region inference: routing requests across AWS regions for high availability","Amazon Bedrock Studio: console playground for prompt/model experimentation"],
+resources:[{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",label:"AWS Docs — What is Amazon Bedrock?"},{url:"https://explore.skillbuilder.aws/learn/courses/17904",label:"AWS Skill Builder — Amazon Bedrock Getting Started (free)"},{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html",label:"AWS Docs — Bedrock Inference Parameters"}],
+review:["What is the difference between on-demand and provisioned throughput in Bedrock?","Name 4 foundation models in Bedrock and their primary strengths.","How does temperature=0 differ from temperature=1 in model output?","When would you use cross-region inference and what does it protect against?"]},
+
+{n:2,title:"Prompt Engineering & Prompt Management",domains:[{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
+topics:["Zero-shot, one-shot, few-shot prompting — when to use each","Chain-of-thought (CoT) prompting for reasoning tasks","ReAct (Reason + Act) pattern — basis of agentic systems","Prompt chaining: output of step N becomes input to step N+1","System prompt vs human turn vs assistant turn in conversation format","Structured output: prompting for JSON, XML, Markdown tables","Prompt injection attacks and jailbreak mitigation via Guardrails","Bedrock Prompt Management: versioned templates with variable placeholders","Meta-prompting: using an LLM to generate or improve prompts"],
+resources:[{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html",label:"AWS Docs — Bedrock Prompt Management"},{url:"https://www.promptingguide.ai/",label:"Prompting Guide (promptingguide.ai)"},{url:"https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",label:"Anthropic Prompt Engineering Guide"}],
+review:["What is chain-of-thought prompting and when does it improve accuracy?","Describe a prompt injection attack. How does Bedrock Guardrails detect it?","What is the ReAct pattern and how does it enable agentic behaviour?","How does Bedrock Prompt Management improve governance in production?"]},
+
+{n:3,title:"RAG Architecture, Knowledge Bases & Advanced Retrieval",domains:[{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
+topics:["RAG pipeline: load → chunk → embed → store → retrieve → augment → generate","Amazon Bedrock Knowledge Bases: fully managed end-to-end RAG","Chunking strategies: fixed-size, semantic, hierarchical — trade-offs","Embedding models: Amazon Titan Embeddings, Cohere Embed","Vector stores: OpenSearch Serverless (default), Aurora pgvector, Pinecone, Redis, Amazon RDS","OpenSearch Neural Plugin: semantic search integration with Bedrock","Similarity search: cosine similarity, dot product, ANN (HNSW algorithm)","Hybrid search: semantic + keyword (BM25) for better recall","Metadata filtering: narrow retrieval scope before similarity search","Cross-encoder re-ranking: second-pass scoring for precision","Hierarchical KB organization: parent-child chunk relationships","Model Context Protocol (MCP): function calling interface for vector stores"],
+resources:[{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",label:"AWS Docs — Bedrock Knowledge Bases"},{url:"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/neural-search.html",label:"AWS Docs — OpenSearch Neural Plugin"},{url:"https://github.com/aws-samples/amazon-bedrock-samples",label:"GitHub — amazon-bedrock-samples (RAG notebooks)"}],
+review:["Draw the full RAG pipeline. Name the AWS service at each stage.","What is hybrid search and when does it outperform pure vector search?","How does hierarchical chunking differ from semantic chunking?","What is re-ranking and how does it improve retrieval precision?"]},
+
+{n:4,title:"Agents, Agentic Workflows & Orchestration",domains:[{cls:"tag-d2",label:"D2: 26%"},{cls:"tag-d1",label:"D1: 31%"}],
+topics:["Bedrock Agents: ReAct loop — Thought → Action → Observe → repeat","Action groups: OpenAPI schema + Lambda function — defining agent tools","Agent memory: session (within conversation) vs cross-session (persistent)","Return of Control (RoC): pausing agent for human approval","Multi-agent: Supervisor Agent delegates to Specialist Sub-Agents","Inline agents vs pre-configured agents — use cases","Bedrock Flows: low-code visual pipeline builder","AWS Step Functions: deterministic orchestration with retry + error handling","Circuit breaker pattern with Step Functions for resilient AI pipelines","EventBridge + Lambda: event-driven GenAI pipeline patterns","API Gateway patterns: request validation, auth, rate limiting for FM APIs"],
+resources:[{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",label:"AWS Docs — Bedrock Agents"},{url:"https://docs.aws.amazon.com/step-functions/latest/dg/concepts-standard-vs-express.html",label:"AWS Docs — Step Functions workflow types"},{url:"https://aws.amazon.com/blogs/aws/preview-connect-foundation-models-to-your-company-data-sources-with-agents-for-amazon-bedrock/",label:"AWS Blog — Agents for Bedrock deep dive"}],
+review:["What two components define an action group in Bedrock Agents?","When do you use Step Functions vs Bedrock Agents for orchestration?","What is Return of Control and name a business scenario requiring it?","How does a circuit breaker pattern make an AI pipeline more resilient?"]},
+
+{n:5,title:"Model Customization: Fine-Tuning, LoRA & Distillation",domains:[{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
+topics:["Fine-tuning vs continued pre-training vs RAG — decision framework","Bedrock fine-tuning jobs: JSONL format (prompt/completion pairs), S3 input","Minimum data requirements and dataset quality considerations","LoRA (Low-Rank Adaptation): PEFT technique updating <1% of parameters","LoRA adapter deployment on SageMaker alongside base model weights","Custom model lifecycle: SageMaker Model Registry for versioning and approval","Automated deployment pipelines: CI/CD for model updates and rollback strategies","Provisioned throughput: required for custom model inference (not on-demand)","Model distillation: teacher (large) → student (small) — Bedrock Model Distillation","Catastrophic forgetting: causes and mitigation during fine-tuning","Hyperparameter impact: learning rate, epochs, batch size on fine-tuned quality"],
+resources:[{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html",label:"AWS Docs — Bedrock Custom Models"},{url:"https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html",label:"AWS Docs — SageMaker Model Registry"},{url:"https://aws.amazon.com/blogs/machine-learning/fine-tune-llama-2-for-text-generation-on-amazon-sagemaker-jumpstart/",label:"AWS Blog — Fine-tuning best practices"}],
+review:["When do you choose fine-tuning over RAG? Give 3 concrete scenarios.","What format does Bedrock require for fine-tuning training data?","How does LoRA differ from full fine-tuning in terms of parameters updated?","Why do custom models require provisioned throughput and not on-demand?"]},
+
+{n:6,title:"SageMaker LMI: Inference, DJL & GPU Optimization",domains:[{cls:"tag-d2",label:"D2: 26%"},{cls:"tag-d4",label:"D4: 12%"}],
+topics:["SageMaker Large Model Inference (LMI): deploying LLMs on GPU-based endpoints","DJL Serving (Deep Java Library): open-source framework for SageMaker LMI","serving.properties key parameters: tensor_parallel_degree, max_rolling_batch_size, max_sequence_length","Tensor parallelism: splitting model weights across multiple GPUs — set tensor_parallel_degree","Pipeline parallelism: splitting model layers sequentially across GPUs","KV-cache: key-value cache for attention — memory proportional to max_sequence_length","Continuous batching: dynamically batching concurrent requests to maximize GPU utilization","Sequence length vs batch size tradeoff: reducing max_sequence_length frees KV-cache → larger batches → higher throughput","Multiple model replicas: if weights fit in N GPUs on an M-GPU instance, run M/N replicas","SageMaker endpoint types: Real-time, Async (long jobs), Serverless (sporadic traffic), Batch Transform","SageMaker Async Inference: for requests >60s, queues via S3, ideal for long FM completions","SageMaker Serverless Inference: pay-per-call, auto-scales to zero, cold start trade-off","Auto-scaling SageMaker endpoints: InvocationsPerInstance metric, target tracking policy"],
+resources:[{url:"https://docs.aws.amazon.com/sagemaker/latest/dg/large-model-inference-configuration.html",label:"AWS Docs — SageMaker LMI DJL Configuration ⭐ READ THIS"},{url:"https://docs.aws.amazon.com/sagemaker/latest/dg/large-model-inference-dlc.html",label:"AWS Docs — LMI Deep Learning Containers"},{url:"https://aws.amazon.com/blogs/machine-learning/boost-inference-performance-for-llms-with-new-amazon-sagemaker-containers/",label:"AWS Blog — SageMaker LMI performance tuning"}],
+review:["What does tensor_parallel_degree=4 mean on an 8-GPU instance? How many model replicas run?","Why does reducing max_sequence_length improve throughput and concurrency?","When would you use SageMaker Async Inference vs Real-time Inference for an LLM?","A model fits in 4 GPUs but an instance has 8. What is the optimal DJL configuration?"]},
+
+{n:7,title:"AI Safety, Security, Guardrails & Governance",domains:[{cls:"tag-d3",label:"D3: 20%"}],
+topics:["Bedrock Guardrails: content filters (hate/violence/sexual/insults), topic denial, PII redaction, grounding check, word filters","Sensitive information filters: PII types detected — SSN, credit card, email, phone, date of birth","Contextual grounding check: verifies answer is supported by retrieved context (anti-hallucination)","Prompt attack detection: jailbreak and injection attempt identification","Responsible AI pillars: Fairness, Explainability, Privacy, Robustness, Transparency, Safety","SageMaker Model Cards: programmatic model documentation for transparency and compliance","AWS Glue Data Lineage: tracking data sources for regulatory attribution (Skill 3.3.2)","Model invocation logging → S3 / CloudWatch for audit trails","VPC Interface Endpoint (PrivateLink) for private Bedrock access","IAM least-privilege: bedrock:InvokeModel scoped to specific model ARN","KMS Customer Managed Keys (CMK): encrypt logs and model artifacts at rest","Service Control Policies (SCP): org-level enforcement requiring Guardrail on all Bedrock calls","CloudTrail: API-level audit (does not capture prompt content — invocation logging does)"],
+resources:[{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",label:"AWS Docs — Bedrock Guardrails"},{url:"https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",label:"AWS Docs — SageMaker Model Cards"},{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/security.html",label:"AWS Docs — Bedrock Security Reference"}],
+review:["A chatbot keeps mentioning competitors. Which Guardrail feature stops this?","What is a contextual grounding check and what score threshold triggers a block?","How do SageMaker Model Cards support Responsible AI governance?","Write the IAM policy statement for a Lambda that can only invoke Claude 3 Sonnet."]},
+
+{n:8,title:"Data Pipelines, Quality & AWS AI Service Ecosystem",domains:[{cls:"tag-d1",label:"D1: 31%"},{cls:"tag-d2",label:"D2: 26%"}],
+topics:["AWS Glue Data Quality: validating training and RAG ingestion data before FM consumption","SageMaker Data Wrangler: visual data preparation and transformation for ML/FM pipelines","AWS Glue Data Catalog: data lineage, metadata tagging, source attribution for compliance","Amazon Transcribe: audio-to-text — pre-processing for multimodal/voice GenAI pipelines","Amazon Comprehend: NLP — sentiment, entities, PII detection, language, custom classification","Amazon Textract: extract text, tables, forms from scanned PDFs — pre-processing for RAG","Amazon Rekognition: image/video labels, faces, content moderation — multimodal pipelines","Amazon Q Business: no-code enterprise chatbot, 40+ connectors, zero custom code","Amazon Kendra: enterprise intelligent search (keyword + semantic), 40+ native connectors","Choosing managed services vs custom Bedrock builds: cost, control, time-to-value tradeoff","Data processing workflows: text, image, audio, tabular — AWS Transcribe, SageMaker Processing"],
+resources:[{url:"https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html",label:"AWS Docs — AWS Glue Data Quality"},{url:"https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html",label:"AWS Docs — SageMaker Data Wrangler"},{url:"https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/what-is.html",label:"AWS Docs — Amazon Q Business"}],
+review:["What does AWS Glue Data Quality add to a RAG ingestion pipeline?","A client has audio interviews to analyze with an LLM. What is the pre-processing step?","Q Business vs custom Bedrock RAG: what are the 3 deciding factors?","How does SageMaker Data Wrangler fit into an FM fine-tuning workflow?"]},
+
+{n:9,title:"Cost Optimization, Performance & Testing",domains:[{cls:"tag-d4",label:"D4: 12%"},{cls:"tag-d5",label:"D5: 11%"}],
+topics:["Bedrock cost drivers: input tokens, output tokens, embedding tokens, storage","Batch Inference API: async, up to 50% cost reduction for non-real-time workloads","Prompt caching: cache static system prompt representation — reduces repeated input token cost","Streaming (InvokeModelWithResponseStream): reduces perceived latency, not total generation time","Provisioned throughput vs on-demand break-even analysis","Token optimization: shorter prompts, history summarization, structured outputs","CloudWatch metrics: InputTokenCount, OutputTokenCount, InvocationLatency, ThrottledRequests","Exponential backoff with jitter: correct retry strategy for ThrottlingException","Bedrock Model Evaluation: automated jobs (ROUGE, BERTScore, accuracy) + human evaluation","RAGAS framework: Faithfulness, Context Precision, Context Recall, Answer Relevancy","LLM-as-a-Judge: using an FM to evaluate another FM's output quality","A/B testing models: traffic splitting, measuring downstream business metrics","Bedrock Agent Trace: debugging ReAct loop — Thought, Action, Observation per step","X-Ray distributed tracing: end-to-end latency across Lambda + Bedrock + SageMaker"],
+resources:[{url:"https://aws.amazon.com/bedrock/pricing/",label:"Amazon Bedrock Pricing page"},{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html",label:"AWS Docs — Bedrock Model Evaluation"},{url:"https://docs.aws.amazon.com/bedrock/latest/userguide/trace-events.html",label:"AWS Docs — Agent Trace Events (debugging)"}],
+review:["A nightly job summarizes 50K documents. What inference mode saves the most cost?","What is LLM-as-a-Judge and when is it preferred over ROUGE?","A Bedrock Agent returns wrong answers. Walk through your debugging steps using Trace.","What does ThrottlingException indicate and what is the correct retry pattern?"]},
+
+{n:10,title:"Full Mock Exam + Weak Area Blitz",domains:[{cls:"tag-d1",label:"D1"},{cls:"tag-d2",label:"D2"},{cls:"tag-d3",label:"D3"},{cls:"tag-d4",label:"D4"},{cls:"tag-d5",label:"D5"}],
+topics:["Take a full 65-question timed mock exam (set 170-minute timer)","Score results and map every wrong answer to its domain","Re-read AWS docs for every incorrect answer — do not skip","30-minute blitz on weakest domain only","Review all 15-minute review questions from Sessions 1–9","Memorize service decision trees: Bedrock vs Q Business vs Kendra vs SageMaker","DJL config recap: tensor_parallel_degree, max_sequence_length, continuous batching","Re-read Guardrails, Agents, Knowledge Bases, and SageMaker LMI docs one final time","Scheduling tip: book exam within 48–72 hours of completing this session"],
+resources:[{url:"https://explore.skillbuilder.aws/",label:"AWS Skill Builder — Official Practice Question Set (AIP-C01) ⭐"},{url:"https://tutorialsdojo.com/aws-certified-generative-ai-developer-professional-certification-aip-c01-exam-guide-and-aip-c01-exam-topics-list/",label:"Tutorials Dojo AIP-C01 Exam Guide"},{url:"https://docs.aws.amazon.com/sagemaker/latest/dg/large-model-inference-configuration.html",label:"AWS Docs — SageMaker DJL Config (final review)"}],
+review:["Mock score ≥ 80%? Schedule your exam.","Which 2 domains were weakest? Re-read those AWS docs now.","Can you explain tensor_parallel_degree and KV-cache to a colleague?","Have you booked your exam date?"]}
 ];
 
-const domainColors = ["tag-d1","tag-d2","tag-d3","tag-d4","tag-d5"];
+const store=(()=>{try{localStorage.setItem('__t__','1');localStorage.removeItem('__t__');return localStorage}catch(e){const m={};return{getItem:k=>m[k]||null,setItem:(k,v)=>{m[k]=v}}}})();
+const completed=new Set(JSON.parse(store.getItem('aip-c01-v2-done')||'[]'));
 
-// Safe localStorage wrapper — falls back to in-memory if unavailable (e.g. sandboxed iframes)
-const store = (() => {
-  try { localStorage.setItem('__test__', '1'); localStorage.removeItem('__test__'); return localStorage; }
-  catch(e) { const m = {}; return { getItem: k => m[k]||null, setItem: (k,v) => { m[k]=v; } }; }
-})();
+function saveProgress(){store.setItem('aip-c01-v2-done',JSON.stringify([...completed]))}
 
-const completed = new Set(JSON.parse(store.getItem('aip-c01-done') || '[]'));
-
-function saveProgress() {
-  store.setItem('aip-c01-done', JSON.stringify([...completed]));
+function updateProgress(){
+  const fill=document.getElementById('progressFill');
+  const count=document.getElementById('progressCount');
+  if(!fill||!count)return;
+  fill.style.width=(completed.size/10*100)+'%';
+  count.innerHTML=completed.size+' <span>/ 10 sessions</span>';
 }
 
-function updateProgress() {
-  const fill = document.getElementById('progressFill');
-  const count = document.getElementById('progressCount');
-  if (!fill || !count) return;
-  const pct = (completed.size / 10) * 100;
-  fill.style.width = pct + '%';
-  count.innerHTML = `${completed.size} <span>/ 10 sessions</span>`;
-}
-
-function buildSessions() {
-  const container = document.getElementById('sessions');
-  sessions.forEach((s, i) => {
-    const isDone = completed.has(i);
-    const el = document.createElement('div');
-    el.className = 'session' + (isDone ? ' completed' : '');
-    el.id = `session-${i}`;
-
-    const tags = s.domains.map(d => `<span class="tag ${d.cls}">${d.label}</span>`).join('');
-
-    const topicItems = s.topics.map(t => `<li>${t}</li>`).join('');
-    const resourceItems = s.resources.map(r => `<li><a href="${r.url}" target="_blank">${r.label}</a></li>`).join('');
-    const reviewItems = s.review.map(q => `<li>${q}</li>`).join('');
-
-    const timeLabel = i === 9 ? '2 hr (timed mock)' : '1h 45m study + 15m review';
-
-    el.innerHTML = `
+function buildSessions(){
+  const container=document.getElementById('sessions');
+  sessions.forEach((s,i)=>{
+    const isDone=completed.has(i);
+    const el=document.createElement('div');
+    el.className='session'+(isDone?' completed':'');
+    el.id='session-'+i;
+    const tags=s.domains.map(d=>`<span class="tag ${d.cls}">${d.label}</span>`).join('');
+    const topicItems=s.topics.map(t=>`<li>${t}</li>`).join('');
+    const resourceItems=s.resources.map(r=>`<li><a href="${r.url}" target="_blank">${r.label}</a></li>`).join('');
+    const reviewItems=s.review.map(q=>`<li>${q}</li>`).join('');
+    const isNew=i===5||i===7;
+    const newBadge=isNew?'<span class="new-badge">NEW v2</span>':'';
+    el.innerHTML=`
       <div class="session-header" onclick="toggleSession(${i})">
         <div class="session-num"><strong>${String(s.n).padStart(2,'0')}</strong>Session</div>
         <div class="session-meta">
-          <div class="session-title">${s.title}</div>
-          <div class="session-tags">${tags}<span class="tag" style="background:rgba(255,255,255,0.04);color:#475569;">⏱ ${timeLabel}</span></div>
+          <div class="session-title">${s.title}${newBadge}</div>
+          <div class="session-tags">${tags}<span class="tag" style="background:rgba(255,255,255,.04);color:#475569;">⏱ ${i===9?'2hr timed mock':'1h 45m + 15m review'}</span></div>
         </div>
         <div class="session-actions">
-          <button class="check-btn" onclick="toggleDone(event, ${i})" title="Mark complete">
-            ${isDone ? '✓' : '○'}
-          </button>
+          <button class="check-btn" onclick="toggleDone(event,${i})">${isDone?'✓':'○'}</button>
           <span class="chevron">▾</span>
         </div>
       </div>
       <div class="session-body">
         <div class="body-grid">
-          <div class="body-block">
-            <div class="block-title"><span class="dot"></span>Core Topics</div>
-            <ul class="topic-list">${topicItems}</ul>
-          </div>
-          <div class="body-block">
-            <div class="block-title"><span class="dot amber"></span>Best Resources</div>
-            <ul class="resource-list">${resourceItems}</ul>
-          </div>
+          <div class="body-block"><div class="block-title"><span class="dot"></span>Core Topics</div><ul class="topic-list">${topicItems}</ul></div>
+          <div class="body-block"><div class="block-title"><span class="dot amber"></span>Best Resources</div><ul class="resource-list">${resourceItems}</ul></div>
         </div>
-        <div class="review-block">
-          <div class="review-header">15-Minute Review — Answer These Without Notes</div>
-          <ul class="review-qs">${reviewItems}</ul>
-        </div>
-      </div>
-    `;
+        <div class="review-block"><div class="review-header">15-Minute Review — Answer Without Notes</div><ul class="review-qs">${reviewItems}</ul></div>
+      </div>`;
     container.appendChild(el);
   });
   updateProgress();
 }
 
-function toggleSession(i) {
-  const el = document.getElementById(`session-${i}`);
-  el.classList.toggle('open');
-}
+function toggleSession(i){document.getElementById('session-'+i).classList.toggle('open')}
 
-function toggleDone(e, i) {
+function toggleDone(e,i){
   e.stopPropagation();
-  const el = document.getElementById(`session-${i}`);
-  if (completed.has(i)) {
-    completed.delete(i);
-    el.classList.remove('completed');
-    el.querySelector('.check-btn').textContent = '○';
-  } else {
-    completed.add(i);
-    el.classList.add('completed');
-    el.querySelector('.check-btn').textContent = '✓';
-  }
-  saveProgress();
-  updateProgress();
+  const el=document.getElementById('session-'+i);
+  if(completed.has(i)){completed.delete(i);el.classList.remove('completed');el.querySelector('.check-btn').textContent='○'}
+  else{completed.add(i);el.classList.add('completed');el.querySelector('.check-btn').textContent='✓'}
+  saveProgress();updateProgress();
 }
 
 buildSessions();

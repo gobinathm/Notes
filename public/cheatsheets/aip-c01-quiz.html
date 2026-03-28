@@ -4,15 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIP-C01 · Practice Quiz</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api-gateway.umami.dev">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* === GLASSMORPHISM SYSTEM === */
+:root{--bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.11);--gb:rgba(255,255,255,0.10);--gbh:rgba(255,255,255,0.20);--gs:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);--gsh:0 16px 48px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.12);--text:#e8eaf6;--dim:#8892b0;--muted:#4a5580;--d1:#38bdf8;--d2:#a78bfa;--d3:#fb923c;--d4:#34d399;--d5:#f472b6;--accent:#38bdf8;--green:#34d399;--red:#f87171;--amber:#fbbf24;--mono:'JetBrains Mono', monospace;--sans:'Plus Jakarta Sans', sans-serif}
+body{background:var(--bg) !important;color:var(--text) !important;font-family:var(--sans) !important}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(56,189,248,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(167,139,250,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 50% 50%,rgba(16,185,129,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#07090f;--s1:#0e1118;--s2:#141820;--s3:#1a2030;
+  --bg:#07090f;--s1:rgba(255,255,255,0.04);--s2:#141820;--s3:#1a2030;
   --border:#1e2535;--border2:#273045;
   --text:#dde4f0;--dim:#6b7a99;--dimmer:#3a4560;
   --accent:#4f9cf9;--green:#22c55e;--red:#f43f5e;--amber:#f59e0b;--purple:#a78bfa;
-  --mono:'DM Mono',monospace;--serif:'Syne',sans-serif;--sans:'DM Sans',sans-serif;
+  --mono:'JetBrains Mono', monospace;--serif:var(--sans);--sans:'Plus Jakarta Sans', sans-serif;
   --d1:#4f9cf9;--d2:#a78bfa;--d3:#f59e0b;--d4:#22c55e;--d5:#f43f5e;
 }
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh}
@@ -33,14 +41,14 @@ header{position:sticky;top:0;z-index:100;background:rgba(7,9,15,0.95);backdrop-f
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--purple));transition:width .4s ease;width:0%}
 
 /* ── MAIN ── */
-main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:40px 24px 100px}
+main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:40px 32px 100px}
 
 /* ── SCREENS ── */
 .screen{display:none}
 .screen.active{display:block}
 
 /* START SCREEN */
-.start-card{background:var(--s1);border:1px solid var(--border);border-radius:16px;padding:48px;text-align:center}
+.start-card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:var(--s1);border:1px solid var(--border);border-radius:16px;padding:48px;text-align:center}
 .start-title{font-family:var(--serif);font-size:2.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
 .start-sub{color:var(--dim);font-size:.95rem;margin-bottom:36px;line-height:1.6}
 .domain-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:36px}
@@ -147,7 +155,7 @@ main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:40px 24px
   <div class="screen active" id="startScreen">
     <div class="start-card">
       <div class="start-title">Scenario Quiz</div>
-      <div class="start-sub">50 exam-style scenario questions across all 5 domains.<br>Each question mirrors real AIP-C01 format — architecture decisions, service selection, tradeoffs.</div>
+      <div class="start-sub">64 exam-style scenario questions across all 5 domains — v2 adds SageMaker LMI/DJL, data pipelines, and advanced RAG from official Skill Builder scope.<br>Each question mirrors real AIP-C01 format — architecture decisions, service selection, tradeoffs.</div>
       <div class="domain-legend">
         <div class="dl-cell"><div class="dl-pct d1c">31%</div><div class="dl-name">FM Integration &amp; Data</div><div class="dl-qs">16 Qs</div></div>
         <div class="dl-cell"><div class="dl-pct d2c">26%</div><div class="dl-name">Implementation</div><div class="dl-qs">13 Qs</div></div>
@@ -156,8 +164,8 @@ main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:40px 24px
         <div class="dl-cell"><div class="dl-pct d5c">11%</div><div class="dl-name">Testing &amp; Eval</div><div class="dl-qs">5 Qs</div></div>
       </div>
       <div class="mode-row">
-        <button class="mode-btn sel" data-mode="all" onclick="selectMode(this)">All 50 Questions</button>
-        <button class="mode-btn" data-mode="weak" onclick="selectMode(this)">Quick 20 (High-Weight)</button>
+        <button class="mode-btn sel" data-mode="all" onclick="selectMode(this)">All 64 Questions</button>
+        <button class="mode-btn" data-mode="weak" onclick="selectMode(this)">Quick 25 (High-Weight)</button>
       </div>
       <button class="btn-start" onclick="startQuiz()">Start Quiz →</button>
     </div>
@@ -312,6 +320,37 @@ const ALL_QUESTIONS = [
 {d:'D5',hi:false,q:'A Bedrock application receives a ThrottlingException during a peak load test. The team implements retry logic. Which retry strategy is recommended to avoid amplifying the throttling problem?',opts:['Retry immediately with maximum parallelism','Exponential backoff with jitter — wait progressively longer with random variation between retries','Fixed 1-second delay between retries','Fail fast and surface the error to the user immediately'],ans:1,exp:'Exponential backoff with jitter is the AWS-recommended pattern for handling throttling. Exponential backoff increases wait time between retries (1s, 2s, 4s, 8s...). Jitter adds randomness to prevent retry storms where all clients retry simultaneously.',ref:'Domain 5 — Throttling & Retry'},
 
 {d:'D5',hi:false,q:'A company wants to compare the quality of outputs from two different Bedrock models (Claude 3 Haiku vs Llama 3) on their specific use case before committing to one. What is the most systematic approach?',opts:['Test 5 prompts manually in Bedrock Studio and pick the better one','Create a Bedrock Model Evaluation job with a representative test dataset and compare across automated metrics','Run both models in production and measure user satisfaction','Use the more expensive model as it will always be better'],ans:1,exp:'Bedrock Model Evaluation jobs allow you to run a defined dataset of prompts against multiple models and score outputs on metrics like accuracy, robustness, and toxicity. This provides objective, systematic comparison rather than anecdotal manual testing.',ref:'Domain 5 — Model Evaluation'},
+
+// ── SAGEMAKER LMI & DJL SERVING ──
+{d:'D2',hi:true,q:'A GenAI developer deployed a fine-tuned LLM on a SageMaker endpoint using DJL Serving. Each instance has 8 GPUs. Profiling shows the model weights and activations fit entirely within 4 GPUs. Current concurrency is low and costs are high. What is the most effective configuration change?',opts:['Set tensor_parallel_degree=8 to use all GPUs for maximum performance','Set tensor_parallel_degree=4 — allows two model replicas on the same 8-GPU instance, doubling concurrency per instance','Enable pipeline_parallel_degree=2 to split layers across instances','Switch to SageMaker Serverless Inference to eliminate GPU costs'],ans:1,exp:'When model weights fit in N GPUs on an M-GPU instance (M>N), setting tensor_parallel_degree=N allows M/N replicas to run simultaneously. Here: 8 GPUs / tensor_parallel_degree=4 = 2 replicas. This doubles throughput per instance, requiring fewer total instances — directly cutting cost.',ref:'Domain 2 — SageMaker DJL Tensor Parallelism'},
+
+{d:'D2',hi:true,q:'A SageMaker DJL endpoint is configured with max_sequence_length=4096 but analysis shows actual production requests use at most 400 tokens. The team wants to reduce instance count without changing the model. Which change helps most?',opts:['Increase max_rolling_batch_size only','Reduce max_sequence_length to match actual usage — frees KV-cache memory enabling larger batch sizes and higher concurrency per instance','Switch to a smaller foundation model','Enable pipeline parallelism to distribute sequence processing'],ans:1,exp:'KV-cache memory is allocated proportional to max_sequence_length. If real requests use 10x less than configured, 90% of KV-cache memory is wasted. Reducing max_sequence_length frees that memory, allowing DJL to increase max_rolling_batch_size — more concurrent requests per GPU, higher throughput, fewer instances needed.',ref:'Domain 2 — DJL KV-Cache & Sequence Length'},
+
+{d:'D2',hi:true,q:'A company\'s LLM takes 3–5 minutes to generate a complete document analysis response. Users submit requests and check back for results. Which SageMaker endpoint type is most appropriate?',opts:['Real-time inference — standard synchronous endpoint','Serverless Inference — scales to zero for cost savings','Asynchronous Inference — accepts requests into a queue, processes via S3, ideal for long-running FM completions','Batch Transform — for bulk offline processing only'],ans:2,exp:'SageMaker Asynchronous Inference is designed for long processing times (minutes). It accepts the request, queues it internally, processes asynchronously, and writes output to S3. Real-time endpoints time out after 60 seconds. This is the correct pattern for long FM completions where users check back rather than waiting synchronously.',ref:'Domain 2 — SageMaker Async Inference'},
+
+{d:'D2',hi:false,q:'What does continuous batching in DJL Serving do and why does it improve GPU utilization for LLM serving?',opts:['Pre-computes embeddings in fixed batches during off-peak hours','Dynamically groups incoming requests as GPUs free up — filling capacity continuously rather than waiting for a fixed batch to form','Batches fine-tuning training steps across multiple nodes','Caches common prompt patterns to avoid redundant computation'],ans:1,exp:'Continuous batching (rolling batch) processes new inference requests as soon as prior requests complete, keeping GPUs continuously occupied. Traditional static batching waits for a full batch before starting — leaving GPUs idle. DJL\'s rolling batch configuration enables continuous batching, dramatically improving throughput per GPU.',ref:'Domain 2 — Continuous Batching'},
+
+{d:'D2',hi:true,q:'A company needs a model approval workflow before any fine-tuned model version can be deployed to production. Which SageMaker capability implements versioning with approval status?',opts:['SageMaker Experiments — tracks training metrics','SageMaker Model Registry — versioning with Pending/Approved/Rejected status and deployment pipeline integration','SageMaker Model Monitor — monitors deployed models for drift','SageMaker Clarify — evaluates fairness and bias'],ans:1,exp:'SageMaker Model Registry is the central catalog for model versions with built-in approval workflows. Models are registered with PendingManualApproval status. Reviewers approve or reject before automated pipelines can deploy to production — providing governed, auditable model lifecycle management.',ref:'Domain 2 — SageMaker Model Registry'},
+
+{d:'D2',hi:false,q:'A team uses SageMaker Serverless Inference for a GenAI endpoint. Users report slow first responses after periods of inactivity. What is the cause?',opts:['Model weights too large — switch to a smaller model','Cold starts: serverless endpoints scale to zero and must reload the model on first request — use provisioned concurrency or switch to real-time endpoint for latency-sensitive workloads','Bug in the inference script causing slow initialization','S3 model artifact path incorrect causing repeated downloads'],ans:1,exp:'Serverless Inference scales to zero to minimize cost. When a request arrives after inactivity, the endpoint spins up and loads model weights — causing cold start latency. For latency-sensitive GenAI apps, use real-time endpoints with auto-scaling. Reserve Serverless for truly sporadic, latency-tolerant workloads.',ref:'Domain 2 — SageMaker Serverless Cold Starts'},
+
+{d:'D2',hi:false,q:'What does setting tensor_parallel_degree=4 achieve on a SageMaker instance with 8 GPUs when the model fits in 4 GPUs?',opts:['Uses only 4 GPUs and leaves 4 idle — reduces power consumption','Shards model weights across 4 GPUs per replica, allowing a second replica on the remaining 4 GPUs — doubles concurrent serving capacity on the same instance','Reduces GPU memory usage by 50% by using lower-precision tensors','Enables pipeline parallelism across 4 GPU pairs'],ans:1,exp:'Tensor parallelism shards model weight tensors across N GPUs (each GPU holds 1/N of weights). With tensor_parallel_degree=4 on an 8-GPU instance: replica 1 uses GPUs 0–3, replica 2 uses GPUs 4–7. Two concurrent model copies serve 2x the requests of a single replica — improving throughput without adding instances.',ref:'Domain 2 — tensor_parallel_degree Effect'},
+
+// ── DATA PIPELINE, QUALITY & GOVERNANCE ──
+{d:'D1',hi:true,q:'Before embedding and indexing documents for a RAG pipeline, a team needs to validate data quality — detecting missing values, duplicates, and schema violations. Which AWS service handles this FM data validation step?',opts:['Amazon Bedrock Model Evaluation — evaluates FM output post-ingestion','AWS Glue Data Quality — define and run data quality rules on datasets before FM consumption','SageMaker Model Monitor — monitors live endpoint inputs for drift','Amazon Comprehend — detects entities and sentiment in text'],ans:1,exp:'AWS Glue Data Quality enables defining rules (completeness, uniqueness, validity) and running them against datasets before RAG ingestion. Poor input data quality degrades embedding quality and retrieval relevance. This is explicitly listed in AIP-C01 Skill 1.3.1 for creating data validation workflows for FM consumption.',ref:'Domain 1 — AWS Glue Data Quality'},
+
+{d:'D3',hi:false,q:'A compliance team needs full data lineage — tracking exactly which source documents contributed to FM-generated responses. Which AWS service enables systematic data source attribution?',opts:['AWS CloudTrail — API-level audit of FM invocations','AWS Glue Data Catalog with metadata tagging — registers sources, tracks lineage, enables attribution per AIP-C01 Skill 3.3.2','Amazon Macie — classifies sensitive S3 data','Amazon Inspector — infrastructure vulnerability scanning'],ans:1,exp:'AWS Glue Data Catalog tracks data lineage by cataloging sources with metadata tags. Tagging each document with source metadata enables tracing exactly which data influenced an FM output — satisfying regulatory audit requirements. AIP-C01 Skill 3.3.2 explicitly requires data lineage for FM deployment compliance.',ref:'Domain 3 — Glue Data Lineage'},
+
+{d:'D1',hi:false,q:'A team prepares heterogeneous data (CSVs, JSON, text) for FM fine-tuning and needs visual data profiling and transformation without custom ETL code. Which service is most appropriate?',opts:['AWS Lambda with custom parsing per data type','Amazon SageMaker Data Wrangler — visual data preparation with profiling, transformation, and FM-ready export','AWS Glue Studio — serverless ETL for large-scale transformation','Amazon Athena — SQL queries over S3'],ans:1,exp:'SageMaker Data Wrangler provides a visual, no-code interface for data profiling, transformation, and format conversion. It integrates with SageMaker Pipelines for automated data prep and exports FM-ready datasets. Referenced in AIP-C01 Skill 1.3.1 alongside Glue Data Quality for FM data preparation workflows.',ref:'Domain 1 — SageMaker Data Wrangler'},
+
+{d:'D3',hi:false,q:'An organization needs programmatic, version-controlled model documentation covering intended use, evaluation results, and responsible AI considerations for each fine-tuned model. Which AWS capability addresses this?',opts:['AWS CloudTrail with S3 archiving for training runs','Amazon SageMaker Model Cards — programmatic documentation objects created via SageMaker SDK, capturing model metadata and responsible AI information','AWS Audit Manager — compliance framework for cloud workloads','Amazon Bedrock AI Service Cards — FM transparency documentation from AWS'],ans:1,exp:'SageMaker Model Cards provide structured, programmatic documentation for ML models covering intended use, performance metrics, risk ratings, and responsible AI considerations. Created and updated via SageMaker Python SDK, they enable version control and automated compliance reporting. Referenced in AIP-C01 Skill 3.3.1.',ref:'Domain 3 — SageMaker Model Cards'},
+
+{d:'D1',hi:false,q:'A company builds a GenAI app that answers questions about customer service call recordings. Audio must be converted to text before FM processing. Which AWS service handles this?',opts:['Amazon Rekognition — audio and video analysis','Amazon Transcribe — converts speech to text, enabling audio to enter FM pipelines','Amazon Comprehend — entity and sentiment extraction from text','Amazon Polly — converts text to speech'],ans:1,exp:'Amazon Transcribe is the managed speech-to-text service. For multimodal FM pipelines, audio is transcribed first, then the text enters the RAG or FM processing flow. This is explicitly referenced in AIP-C01 Skill 1.3.2 for handling audio data types in FM consumption workflows.',ref:'Domain 1 — Amazon Transcribe'},
+
+// ── ADVANCED RAG & ENTERPRISE PATTERNS ──
+{d:'D1',hi:false,q:'A company uses Amazon OpenSearch Service for RAG. They want a single query to combine semantic vector search with BM25 keyword matching for better retrieval. Which OpenSearch feature enables this?',opts:['k-NN plugin with cosine similarity only','OpenSearch Neural Plugin — enables semantic + hybrid search combining vector similarity and BM25 in a single query, integrated with Bedrock embedding models','OpenSearch Dashboards — visualization layer','Amazon CloudSearch — separate managed search service'],ans:1,exp:'The OpenSearch Neural Plugin integrates with Bedrock embedding models to enable semantic search and hybrid search (neural + BM25) in a single OpenSearch query. This is referenced in AIP-C01 Skill 1.4.1 for advanced vector database architectures that go beyond traditional keyword search.',ref:'Domain 1 — OpenSearch Neural Plugin'},
+
+{d:'D3',hi:false,q:'A company needs every Bedrock model invocation across all AWS accounts in their organization to use an approved Guardrail ID — no exceptions. How is this enforced organization-wide?',opts:['Add Guardrail ARN to every Lambda environment variable','Create an SCP at the OU level denying bedrock:InvokeModel unless the bedrock:GuardrailIdentifier condition key matches the approved Guardrail ID','Configure Bedrock account settings to require Guardrails','Use IAM permission boundaries on all developer roles'],ans:1,exp:'Service Control Policies (SCPs) apply at AWS Organizations level and override all account-level IAM policies. An SCP denying bedrock:InvokeModel without bedrock:GuardrailIdentifier=<approved-id> enforces Guardrail usage across every account and role in the organization — even administrators cannot bypass it.',ref:'Domain 3 — SCP Guardrail Enforcement'},
 ];
 
 let mode = 'all';
@@ -329,7 +368,7 @@ function selectMode(btn) {
 
 function startQuiz() {
   questions = mode === 'weak'
-    ? ALL_QUESTIONS.filter(q => q.hi).sort(() => Math.random()-.5).slice(0,20)
+    ? ALL_QUESTIONS.filter(q => q.hi).sort(() => Math.random()-.5).slice(0,25)
     : [...ALL_QUESTIONS].sort(() => Math.random()-.5);
   userAnswers = new Array(questions.length).fill(null);
   current = 0; answered = 0; correct = 0;

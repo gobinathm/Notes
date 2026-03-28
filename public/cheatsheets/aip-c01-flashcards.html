@@ -4,21 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIP-C01 · Flashcards</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Source+Code+Pro:wght@300;400;500&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api-gateway.umami.dev">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* === GLASSMORPHISM SYSTEM === */
+:root{--bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.11);--gb:rgba(255,255,255,0.10);--gbh:rgba(255,255,255,0.20);--gs:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);--gsh:0 16px 48px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.12);--text:#e8eaf6;--dim:#8892b0;--muted:#4a5580;--d1:#38bdf8;--d2:#a78bfa;--d3:#fb923c;--d4:#34d399;--d5:#f472b6;--accent:#38bdf8;--green:#34d399;--red:#f87171;--amber:#fbbf24;--mono:'JetBrains Mono', monospace;--sans:'Plus Jakarta Sans', sans-serif}
+body{background:var(--bg) !important;color:var(--text) !important;font-family:var(--sans) !important}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(56,189,248,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(167,139,250,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 50% 50%,rgba(16,185,129,0.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#1a1625;--s1:#221d30;--s2:#2a2440;--s3:#332d4d;
   --border:#3d3660;--border2:#4e469a;
   --text:#e8e0ff;--dim:#8b82b8;--dimmer:#5a5380;
   --accent:#c084fc;--accent2:#818cf8;--green:#4ade80;--red:#f87171;--amber:#fbbf24;
-  --mono:'Source Code Pro',monospace;--serif:'Playfair Display',Georgia,serif;--sans:'Nunito',sans-serif;
+  --mono:'JetBrains Mono', monospace;--serif:'Playfair Display',Georgia,serif;--sans:'Plus Jakarta Sans', sans-serif;
 }
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(192,132,252,0.08),transparent),radial-gradient(ellipse 40% 60% at 100% 100%,rgba(129,140,248,0.05),transparent);pointer-events:none}
 
 /* HEADER */
-header{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+header{padding:16px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
 .logo{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--accent)}
 .hd-right{display:flex;align-items:center;gap:16px}
 .deck-counter{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em}
@@ -34,19 +42,19 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .p-stats .ok{color:var(--green)}.p-stats .bad{color:var(--red)}.p-stats .skip{color:var(--amber)}
 
 /* FILTER BAR */
-.filter-bar{padding:10px 32px;border-bottom:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
+.filter-bar{padding:10px 40px;border-bottom:1px solid var(--border);display:flex;gap:7px;flex-wrap:wrap}
 .f-btn{font-family:var(--mono);font-size:9px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .15s}
 .f-btn:hover{border-color:var(--border2)}
 .f-btn.on{background:rgba(192,132,252,.12);border-color:var(--accent);color:var(--accent)}
 
 /* MAIN */
-main{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 24px 100px;min-height:calc(100vh - 140px)}
+main{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 32px 100px;min-height:calc(100vh - 140px)}
 
 /* CARD SCENE */
-.scene{width:680px;height:360px;perspective:1400px;cursor:pointer;margin-bottom:28px}
+.scene{width:min(780px,90vw);height:380px;perspective:1400px;cursor:pointer;margin-bottom:28px}
 .card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
 .card.flipped{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:36px 40px;display:flex;flex-direction:column;justify-content:space-between}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:36px 40px;display:flex;flex-direction:column;justify-content:space-between;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .front{background:var(--s1);border:1px solid var(--border2);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 0 1px rgba(192,132,252,.05)}
 .back{background:linear-gradient(135deg,var(--s2),var(--s3));border:1px solid var(--border2);transform:rotateY(180deg);box-shadow:0 20px 60px rgba(0,0,0,.4)}
 
@@ -102,9 +110,11 @@ main{position:relative;z-index:1;display:flex;flex-direction:column;align-items:
 .c-safety{background:rgba(248,113,113,.12);color:#f87171}
 .c-infra{background:rgba(148,163,184,.1);color:#94a3b8}
 .c-aws{background:rgba(255,153,0,.12);color:#ff9900}
+.c-sage{background:rgba(0,188,212,.12);color:#00bcd4}
+.c-data{background:rgba(76,175,80,.12);color:#4caf50}
 
 @media(max-width:720px){
-  .scene{width:100%;max-width:420px;height:300px}
+  .scene{width:100%;max-width:780px;height:300px}
   .q-text{font-size:1.1rem}
   header,main,.progress-wrap,.filter-bar{padding-left:16px;padding-right:16px}
 }
@@ -139,6 +149,8 @@ main{position:relative;z-index:1;display:flex;flex-direction:column;align-items:
   <button class="f-btn" data-cat="safety" onclick="filterCat(this)">Safety</button>
   <button class="f-btn" data-cat="infra" onclick="filterCat(this)">Infra & Cost</button>
   <button class="f-btn" data-cat="aws" onclick="filterCat(this)">AWS Services</button>
+  <button class="f-btn" data-cat="sage" onclick="filterCat(this)">SageMaker LMI</button>
+  <button class="f-btn" data-cat="data" onclick="filterCat(this)">Data Pipelines</button>
 </div>
 
 <main id="mainArea">
@@ -245,6 +257,25 @@ const CARDS = [
 {cat:'aws',q:'What does Amazon Comprehend provide and when is it used in AI pipelines?',a:'Comprehend provides managed NLP: <strong>sentiment, named entity recognition, PII detection, language detection, and custom classification</strong>. Used as a pre/post-processing step alongside FM calls.',eg:'Customer emails → Comprehend (sentiment=negative) → route to priority queue → Bedrock generates empathetic response.',ref:'D2 — Amazon Comprehend'},
 {cat:'aws',q:'What is AWS Step Functions and when is it preferred over Bedrock Agents?',a:'Step Functions orchestrates <strong>deterministic multi-step workflows</strong> with retry, parallel branches, and error handling. Prefer it over Agents when the workflow is fixed/predictable and requires production-grade reliability.',eg:'Textract → wait state → Comprehend → conditional branch → Bedrock FM → S3 → all with retry logic.',ref:'D2 — Step Functions'},
 {cat:'aws',q:'What is the default vector store when you create a Bedrock Knowledge Base without specifying one?',a:'<strong>Amazon OpenSearch Serverless</strong> with a k-NN (vector search) collection is automatically provisioned as the default vector store for Bedrock Knowledge Bases.',eg:'Key exam fact: AOSS is auto-provisioned by Bedrock KB. No manual setup needed. pgvector requires Aurora pre-setup.',ref:'D1 — Knowledge Bases'},
+// ── SAGEMAKER LMI & DJL ──
+{cat:'sage',q:"What does tensor_parallel_degree control in DJL Serving, and what happens when it is set lower than the GPU count?",a:'<code>tensor_parallel_degree</code> defines <strong>how many GPUs one model replica is sharded across</strong>. Setting it lower than GPU count enables <strong>multiple model replicas on the same instance</strong>.',eg:'8-GPU instance, tensor_parallel_degree=4 → 2 model replicas → 2x concurrent serving capacity at zero extra cost.',ref:'D2 — DJL tensor_parallel_degree'},
+{cat:'sage',q:"Why does reducing max_sequence_length in DJL Serving improve throughput?",a:'<strong>KV-cache memory</strong> is allocated proportional to max_sequence_length. Reducing it <strong>frees GPU memory</strong> → DJL increases max_rolling_batch_size → more concurrent requests per GPU → higher throughput per instance → fewer instances needed.',eg:'Configured at 4096 but real requests use 400 tokens → 90% KV-cache wasted. Reduce to 512 → recover memory for larger batches.',ref:'D2 — KV-Cache & Sequence Length'},
+{cat:'sage',q:"What is continuous batching (rolling batch) in SageMaker LMI and why does it improve GPU utilization?",a:'Continuous batching <strong>dynamically adds new requests to the in-flight batch</strong> as prior requests complete — keeping GPUs fully occupied at all times, unlike static batching which waits for a complete batch to form.',eg:'Static: wait for 8 requests → process → wait. Rolling: slot freed when request 1 completes → immediately filled by request 9. No GPU idle time.',ref:'D2 — Continuous Batching'},
+{cat:'sage',q:"What are the 4 SageMaker endpoint types and when should each be used for LLM workloads?",a:'<strong>Real-time</strong>: sync, &lt;60s, interactive chatbots. <strong>Async</strong>: queued via S3, for long completions (minutes). <strong>Serverless</strong>: scales to zero, sporadic traffic (accept cold starts). <strong>Batch Transform</strong>: offline bulk processing.',eg:'Customer chatbot → Real-time. 3-minute doc analysis → Async. Monthly jobs → Batch Transform. Dev endpoint → Serverless.',ref:'D2 — SageMaker Endpoint Types'},
+{cat:'sage',q:"What is SageMaker Model Registry and why is it required for production FM deployments?",a:'A <strong>central versioned catalog</strong> for trained models with approval status (PendingManualApproval / Approved / Rejected). Automated pipelines can only deploy Approved versions — enforcing governed model lifecycle.',eg:'Fine-tune → register v2 → reviewer approves → CI/CD deploys to production. Rejected versions cannot be deployed.',ref:'D2 — SageMaker Model Registry'},
+{cat:'sage',q:"What problem does SageMaker Async Inference solve for LLM workloads?",a:'Async Inference <strong>accepts a long request immediately and processes it asynchronously</strong>, writing output to S3 when complete. Solves the 60-second timeout of real-time endpoints for LLM completions that take minutes.',eg:'Legal analysis takes 4 minutes → Async endpoint queues it → processes → writes to s3://output.json → client polls for result.',ref:'D2 — SageMaker Async Inference'},
+
+// ── DATA PIPELINE & GOVERNANCE ──
+{cat:'data',q:"What is AWS Glue Data Quality and where does it fit in an FM pipeline?",a:'<strong>AWS Glue Data Quality</strong> defines and runs data quality rules (completeness, uniqueness, validity) against datasets <strong>before FM fine-tuning or RAG ingestion</strong> — preventing bad data from degrading model quality.',eg:'Documents arrive in S3 → Glue Data Quality: completeness &gt;95%, zero duplicates → pass → chunking → embedding → vector DB.',ref:'D1 — AWS Glue Data Quality'},
+{cat:'data',q:"What is SageMaker Data Wrangler and when should you use it in an FM pipeline?",a:'<strong>SageMaker Data Wrangler</strong> is a visual no-code tool for <strong>profiling, transforming, and exporting FM-ready datasets</strong>. Use it when cleaning and standardizing heterogeneous data (CSV, JSON, text) for fine-tuning without custom ETL scripts.',eg:'3 data formats → Data Wrangler profiles, joins, normalizes → exports JSONL → feeds Bedrock fine-tuning job.',ref:'D1 — SageMaker Data Wrangler'},
+{cat:'data',q:"What role does AWS Glue Data Catalog play in responsible AI and FM governance?",a:'Glue Data Catalog <strong>registers data sources with metadata tags</strong>, enabling <strong>data lineage tracking</strong> — tracing exactly which documents contributed to FM training or RAG responses. Required for regulatory source attribution.',eg:'Each doc tagged: {source: "legal-filings", year: 2024} → Catalog traces this to every FM output using it for compliance audits.',ref:'D3 — Glue Data Lineage'},
+{cat:'data',q:"What are SageMaker Model Cards and why are they required for responsible AI?",a:'<strong>Programmatic documentation objects</strong> capturing: intended use, training data, evaluation results, risk ratings, and responsible AI considerations. Created via SageMaker SDK, version-controlled, used in compliance audits.',eg:'Audit asks: what data trained this hiring model and what are its bias risks? Model Card provides the documented, versioned answer.',ref:'D3 — SageMaker Model Cards'},
+{cat:'data',q:"What does Amazon Transcribe add to a multimodal GenAI pipeline?",a:'<strong>Amazon Transcribe</strong> converts audio/speech to text, enabling voice recordings to enter FM workflows. It is the standard pre-processing step for audio data before chunking, embedding, or FM analysis.',eg:'Customer call MP3 → Transcribe → text transcript → embed → RAG → FM answers questions about call content.',ref:'D1 — Amazon Transcribe'},
+{cat:'data',q:"How does an SCP enforce Guardrail usage across an entire AWS organization?",a:'An SCP applies a <strong>Deny on bedrock:InvokeModel unless bedrock:GuardrailIdentifier matches the approved ID</strong>. Cannot be overridden by any account-level IAM policy — enforces Guardrail usage across every account in the org.',eg:'SCP: Deny InvokeModel if GuardrailIdentifier != "guardrail-abc123" → every FM call in every account must use that Guardrail.',ref:'D3 — SCP Guardrail Enforcement'},
+
+// ── ADVANCED RAG ──
+{cat:'rag',q:"What is the OpenSearch Neural Plugin and what does it enable for RAG?",a:'Integrates with <strong>Bedrock embedding models</strong> to enable <strong>semantic search and hybrid search</strong> (vector similarity + BM25 keyword) in a single OpenSearch query — referenced in AIP-C01 Skill 1.4.1.',eg:'Hybrid query: BM25 matches "invoice #INV-2024" exactly AND neural finds semantically related docs — better precision + recall than either alone.',ref:'D1 — OpenSearch Neural Plugin'},
+{cat:'rag',q:"What is cross-encoder re-ranking and why is it more accurate than ANN retrieval alone?",a:'A <strong>second-pass model that scores each candidate chunk against the query pairwise</strong> — much more accurate than bi-encoder embeddings because it sees query and document together simultaneously.',eg:'ANN retrieves top-20 chunks → cross-encoder re-ranks → top-5 most relevant selected → injected as FM context.',ref:'D1 — Cross-Encoder Re-ranking'},
 ];
 
 // State
@@ -285,7 +316,7 @@ function shuffleDeck() { buildDeck(); }
 function renderCard() {
   if (idx >= deck.length) { showDone(); return; }
   const c = deck[idx];
-  const catMap = {llm:'LLMs & FMs',rag:'RAG',agent:'Agents',prompt:'Prompting',train:'Training',safety:'Safety',infra:'Infra & Cost',aws:'AWS Services'};
+  const catMap = {llm:'LLMs & FMs',rag:'RAG',agent:'Agents',prompt:'Prompting',train:'Training',safety:'Safety',infra:'Infra & Cost',aws:'AWS Services',sage:'SageMaker LMI',data:'Data Pipelines'};
   document.getElementById('fCatPill').textContent = catMap[c.cat] || c.cat;
   document.getElementById('fCatPill').className = 'cat-pill c-' + c.cat;
   document.getElementById('fQuestion').innerHTML = c.q;

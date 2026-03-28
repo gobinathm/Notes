@@ -28,7 +28,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">Visual Cheatsheet</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for final review, pattern recognition, Bedrock API comparisons, RAG flows, Guardrails, and exam-speed recall.</p>
       </div>
-      <a href="/cheatsheets/aip-c01.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open cheatsheet ↗</a>
+      <a href="/cheatsheets/aip-c01-cheatsheet.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open cheatsheet ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">

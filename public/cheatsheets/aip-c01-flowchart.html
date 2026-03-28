@@ -4,469 +4,698 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIP-C01 · AWS Service Decision Flowchart</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api-gateway.umami.dev">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#fafaf7;--paper:#ffffff;--ink:#0f1117;--border:#e4e2db;--border2:#ccc9be;
-  --dim:#888680;--dimmer:#b5b3ac;
-  --bedrock:#0066cc;--qbiz:#7c3aed;--kendra:#0891b2;--sage:#16a34a;
-  --comprehend:#dc2626;--textract:#ea580c;--rekog:#9333ea;--step:#0f766e;
-  --mono:'Inconsolata',monospace;--sans:'Bricolage Grotesque',sans-serif;
+  --bg:#060810;--text:#e8eaf6;--text-dim:#8892b0;--text-muted:#4a5580;
+  --glass-1:rgba(255,255,255,0.04);--glass-2:rgba(255,255,255,0.08);--glass-3:rgba(255,255,255,0.12);
+  --gb:rgba(255,255,255,0.10);--gbh:rgba(255,255,255,0.20);
+  --gs:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);
+  --gsh:0 16px 48px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.12);
+  --d1:#38bdf8;--d2:#a78bfa;--d3:#fb923c;--d4:#34d399;--d5:#f472b6;
+  --bedrock:#3b82f6;--qbiz:#8b5cf6;--sage:#10b981;--kendra:#06b6d4;
+  --comprehend:#ef4444;--textract:#f97316;--rekog:#a855f7;--step:#14b8a6;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
 }
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(56,189,248,0.09) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 40% at 80% 110%,rgba(167,139,250,0.08) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 50% at 50% 50%, rgba(16,185,129,0.04) 0%,transparent 70%);
+  pointer-events:none;z-index:0}
 
-header{background:var(--paper);border-bottom:2px solid var(--ink);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.h-title{font-size:1.2rem;font-weight:800;letter-spacing:-.02em}
-.h-sub{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-top:2px}
-.h-badge{font-family:var(--mono);font-size:9px;background:var(--ink);color:#fff;padding:4px 10px;border-radius:3px;letter-spacing:.08em}
+/* ── HEADER ── */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(6,8,16,0.85);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gb);
+  padding:14px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.h-brand{display:flex;flex-direction:column;gap:2px}
+.h-title{font-size:1.1rem;font-weight:700;letter-spacing:-.02em;
+  background:linear-gradient(135deg,#fff 0%,var(--d1) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-sub{font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:.14em;text-transform:uppercase}
+.h-right{display:flex;align-items:center;gap:10px}
+.h-badge{font-family:var(--mono);font-size:9px;padding:5px 12px;border-radius:20px;
+  background:var(--glass-2);border:1px solid var(--gb);color:var(--text-dim);letter-spacing:.08em}
 
-.page{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+/* ── PAGE ── */
+.page{width:100%;padding:28px 40px 80px;position:relative;z-index:1}
 
 /* ── INTRO ── */
-.intro{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:flex-start;gap:16px}
-.intro-icon{font-size:1.8rem;flex-shrink:0}
-.intro-text{font-size:.85rem;color:var(--dim);line-height:1.6}
-.intro-text strong{color:var(--ink)}
+.intro{
+  background:var(--glass-1);backdrop-filter:blur(16px);
+  border:1px solid var(--gb);border-radius:12px;
+  padding:18px 24px;margin-bottom:24px;
+  display:flex;align-items:flex-start;gap:14px;
+  box-shadow:var(--gs);
+}
+.intro-icon{font-size:1.6rem;flex-shrink:0;margin-top:2px}
+.intro-text{font-size:.85rem;color:var(--text-dim);line-height:1.65}
+.intro-text strong{color:var(--text)}
 
-/* ── DECISION TREE (SVG) ── */
-.tree-wrap{background:var(--paper);border:1px solid var(--border);border-radius:12px;overflow:auto;margin-bottom:28px;padding:8px}
-.tree-wrap svg{display:block;margin:0 auto}
+/* ── TREE WRAP ── */
+.tree-wrap{
+  background:var(--glass-1);backdrop-filter:blur(20px);
+  border:1px solid var(--gb);border-radius:14px;
+  padding:20px;margin-bottom:28px;overflow-x:auto;
+  box-shadow:var(--gs);
+}
+.tree-wrap svg{display:block;width:100%;min-width:1600px;height:auto}
 
-/* ── SERVICE CARDS ── */
-.cards-title{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.cards-title::after{content:'';flex:1;height:1px;background:var(--border)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+/* ── SECTION HEADER ── */
+.section-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.section-title{font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-muted);flex:1;
+  display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,var(--gb),transparent)}
+.col-toggle{display:flex;gap:4px}
+.col-btn{font-family:var(--mono);font-size:8.5px;padding:4px 10px;border-radius:6px;
+  border:1px solid var(--gb);background:var(--glass-1);color:var(--text-muted);
+  cursor:pointer;transition:all .15s;letter-spacing:.06em}
+.col-btn:hover{border-color:var(--gbh);color:var(--text)}
+.col-btn.active{background:var(--glass-3);border-color:var(--gbh);color:var(--text);font-weight:500}
 
-.svc{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:18px;border-top:3px solid var(--c)}
-.svc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
-.svc-name{font-weight:700;font-size:1rem;letter-spacing:-.01em}
-.svc-tag{font-family:var(--mono);font-size:8.5px;padding:3px 8px;border-radius:20px;letter-spacing:.06em;background:color-mix(in srgb,var(--c) 10%,white);color:var(--c);border:1px solid color-mix(in srgb,var(--c) 25%,white);white-space:nowrap}
-.svc-def{font-size:.82rem;color:var(--dim);line-height:1.55;margin-bottom:10px}
-.svc-when{font-size:.78rem;line-height:1.5}
-.svc-when-title{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--dimmer);margin-bottom:5px}
-.trigger{display:flex;align-items:flex-start;gap:6px;padding:3px 0;color:#222}
-.trigger::before{content:'→';color:var(--c);font-family:var(--mono);font-size:10px;flex-shrink:0;margin-top:1px}
-.vs-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.vs-tag{font-family:var(--mono);font-size:8px;padding:2px 7px;border-radius:3px;background:#f3f4f6;color:#555;border:1px solid #e5e7eb}
-.vs-tag.no{background:#fef2f2;color:#dc2626;border-color:#fecaca}
-.vs-tag.yes{background:#f0fdf4;color:#16a34a;border-color:#bbf7d0}
-
-/* Quick Ref Table */
-.table-wrap{background:var(--paper);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:28px}
-table{width:100%;border-collapse:collapse;font-size:.83rem}
-th{background:#f5f5f2;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+/* ── TABLE ── */
+.table-section{margin-bottom:28px}
+.table-glass{
+  background:var(--glass-1);backdrop-filter:blur(16px);
+  border:1px solid var(--gb);border-radius:12px;overflow:hidden;
+  box-shadow:var(--gs);
+}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-muted);padding:11px 16px;text-align:left;
+  background:var(--glass-2);border-bottom:1px solid var(--gb);border-right:1px solid var(--gb)}
 th:last-child{border-right:none}
-td{padding:9px 14px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;line-height:1.45}
+td{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);
+  border-right:1px solid rgba(255,255,255,0.03);vertical-align:top;line-height:1.5;color:var(--text-dim)}
 td:last-child{border-right:none}
 tr:last-child td{border-bottom:none}
-tr:nth-child(even) td{background:#fafaf7}
-td strong{font-weight:600}
-.dot-yes{color:#16a34a;font-weight:700}
-.dot-no{color:#dc2626}
-.dot-mid{color:#d97706}
+tr:hover td{background:rgba(255,255,255,0.02)}
+td strong{color:var(--text);font-weight:600}
+.dot-yes{color:#34d399;font-weight:600}
+.dot-no{color:#f87171}
+.dot-mid{color:#fbbf24}
+
+/* ── SERVICE CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:28px}
+.svc{
+  background:var(--glass-1);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--gb);
+  border-top:2px solid var(--c,var(--gb));
+  border-radius:12px;padding:16px 18px;
+  display:flex;flex-direction:column;
+  box-shadow:var(--gs);
+  transition:box-shadow .2s,border-color .2s,transform .2s;
+}
+.svc:hover{box-shadow:var(--gsh);border-color:var(--gbh);transform:translateY(-2px)}
+.svc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px}
+.svc-name{font-weight:700;font-size:.92rem;letter-spacing:-.01em;color:var(--text)}
+.svc-tag{font-family:var(--mono);font-size:7.5px;padding:2px 8px;border-radius:20px;
+  background:rgba(255,255,255,0.06);border:1px solid var(--gb);
+  color:var(--c,var(--text-dim));letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+.svc-def{font-size:.79rem;color:var(--text-dim);line-height:1.6;margin-bottom:10px}
+.svc-when-title{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.trigger{display:flex;align-items:flex-start;gap:6px;padding:3px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);font-size:.77rem;color:var(--text-dim)}
+.trigger:last-child{border-bottom:none}
+.trigger::before{content:'→';font-family:var(--mono);font-size:9px;
+  color:var(--c,var(--text-muted));flex-shrink:0;margin-top:2px}
+.vs-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px;padding-top:9px;
+  border-top:1px solid rgba(255,255,255,0.06)}
+.vs-tag{font-family:var(--mono);font-size:7px;padding:2px 7px;border-radius:4px;
+  background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--gb)}
+.vs-tag.yes{background:rgba(52,211,153,0.1);color:#34d399;border-color:rgba(52,211,153,0.2)}
+.vs-tag.no{background:rgba(248,113,113,0.1);color:#f87171;border-color:rgba(248,113,113,0.2)}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
 </style>
 </head>
 <body>
 <header>
-  <div>
+  <div class="h-brand">
     <div class="h-title">AWS GenAI Service Selector</div>
     <div class="h-sub">AIP-C01 · Which service for which scenario</div>
   </div>
-  <div class="h-badge">Decision Reference</div>
+  <div class="h-right">
+    <div class="h-badge">Decision Reference · v2</div>
+  </div>
 </header>
 
 <div class="page">
 
-  <div class="intro">
-    <div class="intro-icon">⚡</div>
-    <div class="intro-text"><strong>Exam pattern:</strong> ~30% of AIP-C01 questions are service selection scenarios. A question describes a business need and asks which AWS service best fits. This page is your decision map. The key axis is always: <strong>how much control vs how much managed simplicity does the scenario need?</strong></div>
+<div class="intro">
+  <div class="intro-icon">⚡</div>
+  <div class="intro-text">
+    <strong>Exam pattern:</strong> ~30% of AIP-C01 questions are service selection scenarios. Read the stem carefully — the trigger words tell you exactly which service. The key axis: <strong>managed simplicity vs custom control</strong>.
+    All flows in the diagram are fully connected. NLP sub-services sit one level below the NLP branch node.
   </div>
+</div>
 
-  <!-- SVG DECISION TREE -->
-  <div class="tree-wrap">
-    <svg width="1040" height="580" viewBox="0 0 1040 580" xmlns="http://www.w3.org/2000/svg" font-family="Inconsolata, monospace">
-      <defs>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="#888"/>
-        </marker>
-        <marker id="arr-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-          <path d="M0,0 L0,6 L8,3 z" fill="#0066cc"/>
-        </marker>
-      </defs>
+<!-- ══════════════ SVG DECISION TREE ══════════════ -->
+<div class="tree-wrap">
+<svg viewBox="0 0 1800 730" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+     font-family="JetBrains Mono, monospace" font-size="10">
+<defs>
+  <marker id="a"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="rgba(255,255,255,0.3)"/></marker>
+  <marker id="ab" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#3b82f6"/></marker>
+  <marker id="av" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#8b5cf6"/></marker>
+  <marker id="ag" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#10b981"/></marker>
+  <marker id="ao" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#f97316"/></marker>
+  <marker id="at" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#14b8a6"/></marker>
+  <marker id="ac" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#06b6d4"/></marker>
+  <marker id="ap" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#a855f7"/></marker>
+  <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#ef4444"/></marker>
+  <filter id="gs" x="-5%" y="-5%" width="115%" height="125%">
+    <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="rgba(0,0,0,0.55)"/>
+  </filter>
+  <linearGradient id="g-bedrock" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#2563eb" stop-opacity="0.75"/>
+  </linearGradient>
+  <linearGradient id="g-qbiz" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#6d28d9" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.75"/>
+  </linearGradient>
+  <linearGradient id="g-sage" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#065f46" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#059669" stop-opacity="0.75"/>
+  </linearGradient>
+  <linearGradient id="g-step" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#0f766e" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.75"/>
+  </linearGradient>
+</defs>
 
-      <!-- ROOT -->
-      <rect x="390" y="16" width="260" height="48" rx="8" fill="#0f1117"/>
-      <text x="520" y="36" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="Bricolage Grotesque, sans-serif">What is the primary need?</text>
-      <text x="520" y="52" text-anchor="middle" fill="#aaa" font-size="9">Start here for every exam question</text>
+<!-- ═══ ROW 0 · ROOT NODE ═══ y=28 h=56 centre-x=900 -->
+<rect x="620" y="28" width="560" height="56" rx="12"
+      fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.20)" stroke-width="1.5"
+      filter="url(#gs)"/>
+<text x="900" y="52" text-anchor="middle" fill="#ffffff"
+      font-size="16" font-weight="700" font-family="Plus Jakarta Sans, sans-serif"
+      letter-spacing="-0.3">What is the primary need?</text>
+<text x="900" y="72" text-anchor="middle" fill="rgba(255,255,255,0.40)" font-size="10">
+  Start here for every AIP-C01 scenario question
+</text>
 
-      <!-- BRANCH LINES from root -->
-      <!-- to Gen AI App -->
-      <line x1="440" y1="64" x2="200" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
-      <text x="290" y="98" text-anchor="middle" fill="#555" font-size="9">Build GenAI app</text>
-      <!-- to Enterprise Chat -->
-      <line x1="480" y1="64" x2="520" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
-      <text x="500" y="98" text-anchor="middle" fill="#555" font-size="9">No-code chatbot</text>
-      <!-- to ML Training -->
-      <line x1="560" y1="64" x2="840" y2="120" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
-      <text x="740" y="98" text-anchor="middle" fill="#555" font-size="9">Train custom ML model</text>
+<!-- ═══ ROOT → BRANCH LINES ═══ -->
+<line x1="750" y1="84" x2="280" y2="155" stroke="rgba(59,130,246,0.55)"  stroke-width="1.5" marker-end="url(#ab)"/>
+<text x="484" y="124" text-anchor="middle" fill="rgba(59,130,246,0.65)"  font-size="9.5">Build GenAI app</text>
+<line x1="870" y1="84" x2="680" y2="155" stroke="rgba(139,92,246,0.55)" stroke-width="1.5" marker-end="url(#av)"/>
+<text x="757" y="125" text-anchor="middle" fill="rgba(139,92,246,0.65)" font-size="9.5">No-code chatbot</text>
+<line x1="930" y1="84" x2="1120" y2="155" stroke="rgba(249,115,22,0.55)" stroke-width="1.5" marker-end="url(#ao)"/>
+<text x="1055" y="124" text-anchor="middle" fill="rgba(249,115,22,0.65)" font-size="9.5">NLP / Docs / Audio</text>
+<line x1="1050" y1="84" x2="1520" y2="155" stroke="rgba(16,185,129,0.55)" stroke-width="1.5" marker-end="url(#ag)"/>
+<text x="1360" y="118" text-anchor="middle" fill="rgba(16,185,129,0.65)" font-size="9.5">Custom ML / GPU</text>
 
-      <!-- GEN AI APP NODE -->
-      <rect x="80" y="120" width="240" height="44" rx="7" fill="#eff6ff" stroke="#0066cc" stroke-width="1.5"/>
-      <text x="200" y="138" text-anchor="middle" fill="#0066cc" font-size="10" font-weight="bold">Building a GenAI Application?</text>
-      <text x="200" y="154" text-anchor="middle" fill="#0066cc" font-size="9">Custom control needed</text>
+<!-- ═══ ROW 1 · BRANCH DECISION NODES ═══ y=155 h=56 -->
 
-      <!-- ENTERPRISE CHAT NODE -->
-      <rect x="380" y="120" width="280" height="44" rx="7" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
-      <text x="520" y="138" text-anchor="middle" fill="#7c3aed" font-size="10" font-weight="bold">Enterprise chatbot, no custom code?</text>
-      <text x="520" y="154" text-anchor="middle" fill="#7c3aed" font-size="9">Zero-code, connect to company docs</text>
+<!-- [1A] GenAI App — centre=280 -->
+<rect x="80" y="155" width="400" height="56" rx="10"
+      fill="rgba(59,130,246,0.10)" stroke="rgba(59,130,246,0.40)" stroke-width="1.5"/>
+<text x="280" y="178" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Build a custom GenAI application?</text>
+<text x="280" y="198" text-anchor="middle" fill="rgba(147,197,253,0.60)" font-size="10">
+  FM invocation · RAG · Agents · fine-tuning · Guardrails
+</text>
 
-      <!-- ML TRAINING NODE -->
-      <rect x="720" y="120" width="240" height="44" rx="7" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
-      <text x="840" y="138" text-anchor="middle" fill="#16a34a" font-size="10" font-weight="bold">Train / Deploy Custom ML?</text>
-      <text x="840" y="154" text-anchor="middle" fill="#16a34a" font-size="9">Own model architecture</text>
+<!-- [1B] No-code chatbot — centre=680 -->
+<rect x="490" y="155" width="380" height="56" rx="10"
+      fill="rgba(139,92,246,0.10)" stroke="rgba(139,92,246,0.40)" stroke-width="1.5"/>
+<text x="680" y="178" text-anchor="middle" fill="#c4b5fd" font-size="12" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">No-code enterprise chatbot?</text>
+<text x="680" y="198" text-anchor="middle" fill="rgba(196,181,253,0.60)" font-size="10">
+  Zero custom code · connect company docs · ready in days
+</text>
 
-      <!-- Q Business result -->
-      <line x1="520" y1="164" x2="520" y2="210" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="400" y="210" width="240" height="44" rx="7" fill="#7c3aed"/>
-      <text x="520" y="229" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Amazon Q Business</text>
-      <text x="520" y="245" text-anchor="middle" fill="#e9d5ff" font-size="9">Managed RAG · 40+ connectors</text>
+<!-- [1C] NLP / Docs — centre=1120 -->
+<rect x="900" y="155" width="440" height="56" rx="10"
+      fill="rgba(249,115,22,0.10)" stroke="rgba(249,115,22,0.40)" stroke-width="1.5"/>
+<text x="1120" y="178" text-anchor="middle" fill="#fdba74" font-size="12" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">NLP · Document processing · Audio?</text>
+<text x="1120" y="198" text-anchor="middle" fill="rgba(253,186,116,0.60)" font-size="10">
+  Classify · Extract text/tables · Transcribe · Search
+</text>
 
-      <!-- SageMaker result -->
-      <line x1="840" y1="164" x2="840" y2="210" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="720" y="210" width="240" height="44" rx="7" fill="#16a34a"/>
-      <text x="840" y="229" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Amazon SageMaker</text>
-      <text x="840" y="245" text-anchor="middle" fill="#bbf7d0" font-size="9">Full ML lifecycle · Training · Hosting</text>
+<!-- [1D] SageMaker — centre=1580 -->
+<rect x="1380" y="155" width="400" height="56" rx="10"
+      fill="rgba(16,185,129,0.10)" stroke="rgba(16,185,129,0.40)" stroke-width="1.5"/>
+<text x="1580" y="178" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Train / Deploy custom ML on GPU?</text>
+<text x="1580" y="198" text-anchor="middle" fill="rgba(110,231,183,0.60)" font-size="10">
+  Fine-tuned LLMs · DJL serving · MLOps · Model Registry
+</text>
 
-      <!-- GenAI sub-question -->
-      <line x1="200" y1="164" x2="200" y2="210" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="60" y="210" width="280" height="44" rx="7" fill="#dbeafe" stroke="#0066cc" stroke-width="1.5"/>
-      <text x="200" y="228" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="bold">Need to invoke Foundation Models?</text>
-      <text x="200" y="244" text-anchor="middle" fill="#1e3a8a" font-size="9">RAG, Agents, fine-tuning, prompting</text>
+<!-- ═══ ROW 1→2 VERTICALS ═══ -->
+<line x1="280"  y1="211" x2="280"  y2="278" stroke="#3b82f6" stroke-width="2"   marker-end="url(#ab)"/>
+<line x1="680"  y1="211" x2="680"  y2="278" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#av)"/>
+<line x1="1580" y1="211" x2="1580" y2="278" stroke="#10b981" stroke-width="1.5" marker-end="url(#ag)"/>
+<!-- NLP: vertical down then diagonal to shifted spine centre (940) -->
+<line x1="1120" y1="211" x2="1120" y2="248" stroke="rgba(249,115,22,0.55)" stroke-width="1.5"/>
+<line x1="1120" y1="248" x2="940"  y2="278" stroke="rgba(249,115,22,0.55)" stroke-width="1.5" marker-end="url(#ao)"/>
 
-      <!-- Bedrock result -->
-      <line x1="200" y1="254" x2="200" y2="300" stroke="#0066cc" stroke-width="2" marker-end="url(#arr-b)"/>
-      <rect x="60" y="300" width="280" height="50" rx="7" fill="#0066cc"/>
-      <text x="200" y="322" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">Amazon Bedrock</text>
-      <text x="200" y="340" text-anchor="middle" fill="#bfdbfe" font-size="9">FM APIs · Knowledge Bases · Agents · Guardrails</text>
+<!-- ═══ ROW 2 · PRIMARY SERVICE NODES ═══ y=278 h=70 -->
 
-      <!-- Bedrock children -->
-      <!-- line to sub-services -->
-      <line x1="200" y1="350" x2="200" y2="395" stroke="#0066cc" stroke-width="1.5"/>
-      <line x1="60" y1="395" x2="340" y2="395" stroke="#0066cc" stroke-width="1.5"/>
-      <!-- KB -->
-      <line x1="100" y1="395" x2="100" y2="420" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="30" y="420" width="140" height="36" rx="5" fill="#eff6ff" stroke="#0066cc" stroke-width="1"/>
-      <text x="100" y="436" text-anchor="middle" fill="#1e40af" font-size="9" font-weight="bold">Knowledge Bases</text>
-      <text x="100" y="449" text-anchor="middle" fill="#3b82f6" font-size="8">RAG · Vector stores</text>
-      <!-- Agents -->
-      <line x1="200" y1="395" x2="200" y2="420" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="140" y="420" width="120" height="36" rx="5" fill="#eff6ff" stroke="#0066cc" stroke-width="1"/>
-      <text x="200" y="436" text-anchor="middle" fill="#1e40af" font-size="9" font-weight="bold">Agents</text>
-      <text x="200" y="449" text-anchor="middle" fill="#3b82f6" font-size="8">Multi-step · Tools</text>
-      <!-- Guardrails -->
-      <line x1="300" y1="395" x2="300" y2="420" stroke="#0066cc" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="234" y="420" width="130" height="36" rx="5" fill="#eff6ff" stroke="#0066cc" stroke-width="1"/>
-      <text x="300" y="436" text-anchor="middle" fill="#1e40af" font-size="9" font-weight="bold">Guardrails</text>
-      <text x="300" y="449" text-anchor="middle" fill="#3b82f6" font-size="8">Safety · PII · Topics</text>
+<!-- [2A] Amazon Bedrock — x=80 w=400 centre=280 -->
+<rect x="80" y="278" width="400" height="70" rx="10"
+      fill="url(#g-bedrock)" stroke="rgba(59,130,246,0.55)" stroke-width="1.5" filter="url(#gs)"/>
+<text x="280" y="304" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Amazon Bedrock</text>
+<text x="280" y="323" text-anchor="middle" fill="rgba(219,234,254,0.90)" font-size="10.5">
+  FM APIs · RAG · Agents · Guardrails · Fine-tune
+</text>
+<text x="280" y="339" text-anchor="middle" fill="rgba(147,197,253,0.65)" font-size="9.5">
+  invoke Claude · Llama · Titan · Cohere · Mistral
+</text>
 
-      <!-- NLP / Document processing branch -->
-      <rect x="380" y="300" width="280" height="44" rx="7" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
-      <text x="520" y="318" text-anchor="middle" fill="#9a3412" font-size="10" font-weight="bold">NLP or Document Processing?</text>
-      <text x="520" y="334" text-anchor="middle" fill="#9a3412" font-size="9">Classify text · Extract data · Parse docs</text>
+<!-- [2B] Amazon Q Business — x=490 w=380 centre=680 -->
+<rect x="490" y="278" width="380" height="70" rx="10"
+      fill="url(#g-qbiz)" stroke="rgba(139,92,246,0.55)" stroke-width="1.5" filter="url(#gs)"/>
+<text x="680" y="304" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Amazon Q Business</text>
+<text x="680" y="323" text-anchor="middle" fill="rgba(237,233,254,0.90)" font-size="10.5">
+  Managed RAG chatbot · 40+ connectors · Zero code
+</text>
+<text x="680" y="339" text-anchor="middle" fill="rgba(196,181,253,0.65)" font-size="9.5">
+  SharePoint · Confluence · S3 · Salesforce
+</text>
 
-      <!-- line from Q Business to NLP -->
-      <line x1="520" y1="254" x2="520" y2="300" stroke="#888" stroke-width="1" stroke-dasharray="4"/>
-      <text x="535" y="280" fill="#aaa" font-size="8">also consider ↓</text>
+<!-- [2C] Amazon SageMaker — x=1380 w=400 centre=1580 -->
+<rect x="1380" y="278" width="400" height="70" rx="10"
+      fill="url(#g-sage)" stroke="rgba(16,185,129,0.55)" stroke-width="1.5" filter="url(#gs)"/>
+<text x="1580" y="304" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Amazon SageMaker</text>
+<text x="1580" y="323" text-anchor="middle" fill="rgba(209,250,229,0.90)" font-size="10.5">
+  LMI · DJL · GPU optimization · Model Registry
+</text>
+<text x="1580" y="339" text-anchor="middle" fill="rgba(110,231,183,0.65)" font-size="9.5">
+  tensor_parallel_degree · async endpoint · LoRA
+</text>
 
-      <!-- NLP children -->
-      <line x1="520" y1="344" x2="520" y2="380" stroke="#ea580c" stroke-width="1.5"/>
-      <line x1="420" y1="380" x2="660" y2="380" stroke="#ea580c" stroke-width="1.5"/>
-      <!-- Comprehend -->
-      <line x1="430" y1="380" x2="430" y2="405" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="360" y="405" width="140" height="50" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
-      <text x="430" y="423" text-anchor="middle" fill="#991b1b" font-size="9" font-weight="bold">Comprehend</text>
-      <text x="430" y="436" text-anchor="middle" fill="#dc2626" font-size="8">Sentiment · Entities</text>
-      <text x="430" y="449" text-anchor="middle" fill="#dc2626" font-size="8">PII · Language</text>
-      <!-- Textract -->
-      <line x1="540" y1="380" x2="540" y2="405" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="475" y="405" width="130" height="50" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1"/>
-      <text x="540" y="423" text-anchor="middle" fill="#9a3412" font-size="9" font-weight="bold">Textract</text>
-      <text x="540" y="436" text-anchor="middle" fill="#ea580c" font-size="8">PDFs · Forms · Tables</text>
-      <text x="540" y="449" text-anchor="middle" fill="#ea580c" font-size="8">Scanned docs</text>
-      <!-- Kendra -->
-      <line x1="645" y1="380" x2="645" y2="405" stroke="#ea580c" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="605" y="405" width="100" height="50" rx="5" fill="#ecfeff" stroke="#0891b2" stroke-width="1"/>
-      <text x="655" y="423" text-anchor="middle" fill="#164e63" font-size="9" font-weight="bold">Kendra</text>
-      <text x="655" y="436" text-anchor="middle" fill="#0891b2" font-size="8">Enterprise</text>
-      <text x="655" y="449" text-anchor="middle" fill="#0891b2" font-size="8">Search</text>
+<!-- [2D] NLP arrow label (no box at row2 — children at row3) -->
+<text x="940" y="270" text-anchor="middle" fill="rgba(249,115,22,0.50)"
+      font-size="9" font-style="italic">↓ see services below</text>
 
-      <!-- Image / Video branch -->
-      <rect x="720" y="300" width="240" height="44" rx="7" fill="#fdf4ff" stroke="#9333ea" stroke-width="1.5"/>
-      <text x="840" y="318" text-anchor="middle" fill="#581c87" font-size="10" font-weight="bold">Image / Video Analysis?</text>
-      <text x="840" y="334" text-anchor="middle" fill="#581c87" font-size="9">Labels · Faces · Content moderation</text>
+<!-- ═══ ROW 3 · BEDROCK CHILDREN ═══ y=400 h=58
+     Parent x=80 w=400 → centre=280
+     4 children w=88 gap=10 → total=382 start=89
+     centres: 133, 231, 329, 427   ← wait, 89+4*88+3*10=89+352+30=471 > 480
+     Use w=82 gap=9 → total=4*82+3*9=328+27=355 start=80+(400-355)/2=102.5≈103
+     centres: 103+41=144, 103+91=194... let me recalc
+     w=82 gap=10 → total=4*82+3*10=328+30=358  start=80+(400-358)/2=101
+     c1=101+41=142  c2=101+92=193  c3=101+184=285... 
+     Let me just be explicit:
+     x1=101 x2=193 x3=285 x4=377  each w=82 gap=10
+     c1=142 c2=234 c3=326 c4=418
+     rail: 142→418 (matches parent 80→480)
+ -->
+<!-- Bedrock vertical to rail -->
+<line x1="280" y1="348" x2="280" y2="392" stroke="rgba(59,130,246,0.50)" stroke-width="1.5"/>
+<!-- Horizontal rail: 142→418 -->
+<line x1="142" y1="392" x2="418" y2="392" stroke="rgba(59,130,246,0.40)" stroke-width="1.5"/>
+<!-- 4 drops -->
+<line x1="142" y1="392" x2="142" y2="412" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
+<line x1="234" y1="392" x2="234" y2="412" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
+<line x1="326" y1="392" x2="326" y2="412" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
+<line x1="418" y1="392" x2="418" y2="412" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ab)"/>
 
-      <line x1="840" y1="344" x2="840" y2="390" stroke="#9333ea" stroke-width="1.5" marker-end="url(#arr)"/>
-      <rect x="730" y="390" width="220" height="44" rx="7" fill="#9333ea"/>
-      <text x="840" y="409" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Amazon Rekognition</text>
-      <text x="840" y="425" text-anchor="middle" fill="#e9d5ff" font-size="9">Computer vision · Managed service</text>
+<!-- Bedrock child 1: Knowledge Bases x=101 c=142 -->
+<rect x="101" y="412" width="82" height="58" rx="8"
+      fill="rgba(59,130,246,0.09)" stroke="rgba(59,130,246,0.38)" stroke-width="1"/>
+<text x="142" y="432" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Knowledge</text>
+<text x="142" y="445" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Bases</text>
+<text x="142" y="460" text-anchor="middle" fill="rgba(147,197,253,0.55)" font-size="8.5">RAG · Vectors</text>
 
-      <!-- Workflow Orchestration -->
-      <rect x="380" y="490" width="280" height="44" rx="7" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
-      <text x="520" y="508" text-anchor="middle" fill="#134e4a" font-size="10" font-weight="bold">Multi-Step Pipeline Orchestration?</text>
-      <text x="520" y="524" text-anchor="middle" fill="#134e4a" font-size="9">Retry logic · Parallel branches · Error handling</text>
-      <line x1="200" y1="460" x2="200" y2="510" stroke="#888" stroke-width="1" stroke-dasharray="3"/>
-      <line x1="200" y1="510" x2="380" y2="510" stroke="#888" stroke-width="1" stroke-dasharray="3" marker-end="url(#arr)"/>
-      <text x="260" y="500" fill="#aaa" font-size="8">when pipeline needed</text>
+<!-- Bedrock child 2: Agents x=193 c=234 -->
+<rect x="193" y="412" width="82" height="58" rx="8"
+      fill="rgba(59,130,246,0.09)" stroke="rgba(59,130,246,0.38)" stroke-width="1"/>
+<text x="234" y="435" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Agents</text>
+<text x="234" y="450" text-anchor="middle" fill="rgba(147,197,253,0.55)" font-size="8.5">ReAct · Tools</text>
+<text x="234" y="462" text-anchor="middle" fill="rgba(147,197,253,0.45)" font-size="8">RoC · Multi-agent</text>
 
-      <line x1="660" y1="512" x2="720" y2="440" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="4"/>
-      <rect x="715" y="490" width="200" height="44" rx="7" fill="#0f766e"/>
-      <text x="815" y="509" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">AWS Step Functions</text>
-      <text x="815" y="525" text-anchor="middle" fill="#99f6e4" font-size="9">State machine · Retry · Parallel</text>
-      <line x1="660" y1="512" x2="715" y2="512" stroke="#0f766e" stroke-width="1.5" marker-end="url(#arr)"/>
-    </svg>
+<!-- Bedrock child 3: Guardrails x=285 c=326 -->
+<rect x="285" y="412" width="82" height="58" rx="8"
+      fill="rgba(59,130,246,0.09)" stroke="rgba(59,130,246,0.38)" stroke-width="1"/>
+<text x="326" y="435" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Guardrails</text>
+<text x="326" y="450" text-anchor="middle" fill="rgba(147,197,253,0.55)" font-size="8.5">PII · Topics</text>
+<text x="326" y="462" text-anchor="middle" fill="rgba(147,197,253,0.45)" font-size="8">Safety · Grounding</text>
+
+<!-- Bedrock child 4: Prompt Mgmt x=377 c=418 -->
+<rect x="377" y="412" width="82" height="58" rx="8"
+      fill="rgba(59,130,246,0.09)" stroke="rgba(59,130,246,0.38)" stroke-width="1"/>
+<text x="418" y="432" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Prompt</text>
+<text x="418" y="445" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="600">Mgmt</text>
+<text x="418" y="460" text-anchor="middle" fill="rgba(147,197,253,0.55)" font-size="8.5">Templates · Batch</text>
+
+<!-- ═══ ROW 3 · NLP CHILDREN ═══ y=400 h=58
+     Shifted left to use Q Business empty space
+     4 children w=140 gap=16 total=608
+     Centre target = 940 → start = 940-304 = 636
+     x1=636  c1=706
+     x2=792  c2=862
+     x3=948  c3=1018
+     x4=1104 c4=1174
+     Rail: 706 → 1174
+     NLP node centre=1120, draw angled line from 1120→706..1174 spine
+-->
+<!-- NLP spine at y=392 (same row as Bedrock children rail) -->
+<line x1="940" y1="278" x2="940" y2="392" stroke="rgba(249,115,22,0.45)" stroke-width="1.5"/>
+<line x1="706"  y1="392" x2="1174" y2="392" stroke="rgba(249,115,22,0.40)" stroke-width="1.5"/>
+<!-- 4 drops from spine -->
+<line x1="706"  y1="392" x2="706"  y2="412" stroke="#f97316" stroke-width="1.5" marker-end="url(#ao)"/>
+<line x1="862"  y1="392" x2="862"  y2="412" stroke="#f97316" stroke-width="1.5" marker-end="url(#ao)"/>
+<line x1="1018" y1="392" x2="1018" y2="412" stroke="#06b6d4" stroke-width="1.5" marker-end="url(#ac)"/>
+<line x1="1174" y1="392" x2="1174" y2="412" stroke="#a855f7" stroke-width="1.5" marker-end="url(#ap)"/>
+
+<!-- NLP child 1: Comprehend x=636 c=706 -->
+<rect x="636" y="412" width="140" height="58" rx="8"
+      fill="rgba(239,68,68,0.10)" stroke="rgba(239,68,68,0.38)" stroke-width="1"/>
+<text x="706" y="434" text-anchor="middle" fill="#fca5a5" font-size="11" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Comprehend</text>
+<text x="706" y="450" text-anchor="middle" fill="rgba(252,165,165,0.65)" font-size="9.5">Sentiment · Entities</text>
+<text x="706" y="463" text-anchor="middle" fill="rgba(252,165,165,0.50)" font-size="9">PII · Language detect</text>
+
+<!-- NLP child 2: Textract x=792 c=862 -->
+<rect x="792" y="412" width="140" height="58" rx="8"
+      fill="rgba(249,115,22,0.10)" stroke="rgba(249,115,22,0.38)" stroke-width="1"/>
+<text x="862" y="434" text-anchor="middle" fill="#fdba74" font-size="11" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Textract</text>
+<text x="862" y="450" text-anchor="middle" fill="rgba(253,186,116,0.65)" font-size="9.5">PDFs · Forms · Tables</text>
+<text x="862" y="463" text-anchor="middle" fill="rgba(253,186,116,0.50)" font-size="9">Scanned documents</text>
+
+<!-- NLP child 3: Kendra x=948 c=1018 -->
+<rect x="948" y="412" width="140" height="58" rx="8"
+      fill="rgba(6,182,212,0.10)" stroke="rgba(6,182,212,0.38)" stroke-width="1"/>
+<text x="1018" y="434" text-anchor="middle" fill="#67e8f9" font-size="11" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Kendra</text>
+<text x="1018" y="450" text-anchor="middle" fill="rgba(103,232,249,0.65)" font-size="9.5">Enterprise search</text>
+<text x="1018" y="463" text-anchor="middle" fill="rgba(103,232,249,0.50)" font-size="9">Keyword + Semantic</text>
+
+<!-- NLP child 4: Rekognition x=1104 c=1174 -->
+<rect x="1104" y="412" width="140" height="58" rx="8"
+      fill="rgba(168,85,247,0.10)" stroke="rgba(168,85,247,0.38)" stroke-width="1"/>
+<text x="1174" y="434" text-anchor="middle" fill="#d8b4fe" font-size="11" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Rekognition</text>
+<text x="1174" y="450" text-anchor="middle" fill="rgba(216,180,254,0.65)" font-size="9.5">Image · Video · Faces</text>
+<text x="1174" y="463" text-anchor="middle" fill="rgba(216,180,254,0.50)" font-size="9">Content moderation</text>
+
+<!-- ═══ ROW 3 · SAGEMAKER CHILDREN ═══ y=400 h=58
+     Parent x=1380 w=400 centre=1580
+     3 children w=116 gap=14 → total=376 start=1392
+     c1=1392+58=1450  c2=1392+130=1522  c3=1392+244=1636
+     Actually: start=1380+(400-376)/2=1392
+     x1=1392 c=1450, x2=1522 c=1580, x3=1652 c=1710
+     Gap: 1392+116+14=1522 ✓  1522+116+14=1652 ✓
+     Rail: 1450→1710
+-->
+<line x1="1580" y1="348" x2="1580" y2="392" stroke="rgba(16,185,129,0.50)" stroke-width="1.5"/>
+<line x1="1450" y1="392" x2="1710" y2="392" stroke="rgba(16,185,129,0.40)" stroke-width="1.5"/>
+<line x1="1450" y1="392" x2="1450" y2="412" stroke="#10b981" stroke-width="1.5" marker-end="url(#ag)"/>
+<line x1="1580" y1="392" x2="1580" y2="412" stroke="#10b981" stroke-width="1.5" marker-end="url(#ag)"/>
+<line x1="1710" y1="392" x2="1710" y2="412" stroke="#10b981" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<!-- SM child 1: LMI+DJL x=1392 c=1450 -->
+<rect x="1392" y="412" width="116" height="58" rx="8"
+      fill="rgba(16,185,129,0.09)" stroke="rgba(16,185,129,0.38)" stroke-width="1"/>
+<text x="1450" y="432" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">LMI + DJL</text>
+<text x="1450" y="447" text-anchor="middle" fill="rgba(110,231,183,0.60)" font-size="8.5">tensor_parallel</text>
+<text x="1450" y="460" text-anchor="middle" fill="rgba(110,231,183,0.45)" font-size="8">continuous batch</text>
+
+<!-- SM child 2: Model Registry x=1522 c=1580 -->
+<rect x="1522" y="412" width="116" height="58" rx="8"
+      fill="rgba(16,185,129,0.09)" stroke="rgba(16,185,129,0.38)" stroke-width="1"/>
+<text x="1580" y="432" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">Model Registry</text>
+<text x="1580" y="447" text-anchor="middle" fill="rgba(110,231,183,0.60)" font-size="8.5">Approve → Deploy</text>
+<text x="1580" y="460" text-anchor="middle" fill="rgba(110,231,183,0.45)" font-size="8">LoRA versioning</text>
+
+<!-- SM child 3: Async Endpoint x=1652 c=1710 -->
+<rect x="1652" y="412" width="116" height="58" rx="8"
+      fill="rgba(16,185,129,0.09)" stroke="rgba(16,185,129,0.38)" stroke-width="1"/>
+<text x="1710" y="432" text-anchor="middle" fill="#6ee7b7" font-size="10" font-weight="600">Async Endpoint</text>
+<text x="1710" y="447" text-anchor="middle" fill="rgba(110,231,183,0.60)" font-size="8.5">Long jobs &gt; 60s</text>
+<text x="1710" y="460" text-anchor="middle" fill="rgba(110,231,183,0.45)" font-size="8">Serverless / RT</text>
+
+<!-- ═══ ROW 4 · STEP FUNCTIONS + DATA PIPELINE ═══ y=530
+     Dashed connector from Bedrock children bottom (y=470) down to Step Functions
+     All connected — no floating lines
+-->
+<line x1="280" y1="470" x2="280" y2="522" stroke="rgba(20,184,166,0.30)" stroke-width="1.2" stroke-dasharray="5,3"/>
+<line x1="280" y1="522" x2="595" y2="522" stroke="rgba(20,184,166,0.30)" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#at)"/>
+<text x="418" y="510" text-anchor="middle" fill="rgba(20,184,166,0.40)" font-size="9" font-style="italic">when pipeline needed</text>
+
+<!-- Step Functions question -->
+<rect x="595" y="505" width="360" height="56" rx="10"
+      fill="rgba(20,184,166,0.08)" stroke="rgba(20,184,166,0.35)" stroke-width="1.5"/>
+<text x="775" y="529" text-anchor="middle" fill="#5eead4" font-size="12" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Multi-Step Orchestration?</text>
+<text x="775" y="548" text-anchor="middle" fill="rgba(94,234,212,0.55)" font-size="9.5">
+  Retry · Parallel branches · Error handling
+</text>
+
+<!-- Arrow to Step Functions result -->
+<line x1="955" y1="533" x2="1048" y2="533" stroke="#14b8a6" stroke-width="1.5" marker-end="url(#at)"/>
+
+<!-- Step Functions result -->
+<rect x="1048" y="505" width="290" height="56" rx="10"
+      fill="url(#g-step)" stroke="rgba(20,184,166,0.55)" stroke-width="1.5" filter="url(#gs)"/>
+<text x="1193" y="529" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">AWS Step Functions</text>
+<text x="1193" y="548" text-anchor="middle" fill="rgba(153,246,228,0.85)" font-size="9.5">
+  State machine · Retry · Circuit breaker · Parallel
+</text>
+
+<!-- Data Quality — straight vertical drop from SM Model Registry child (centre x=1580) -->
+<!-- Arrow goes straight down, lands on top of box. No turns. -->
+<line x1="1580" y1="470" x2="1580" y2="510" stroke="rgba(34,197,94,0.45)" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ag)"/>
+
+<!-- Glue Data Quality box: centred on x=1580, top at y=510 -->
+<rect x="1480" y="510" width="200" height="62" rx="8"
+      fill="rgba(34,197,94,0.10)" stroke="rgba(34,197,94,0.42)" stroke-width="1.2"/>
+<text x="1580" y="533" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="600"
+      font-family="Plus Jakarta Sans, sans-serif">Glue Data Quality</text>
+<text x="1580" y="550" text-anchor="middle" fill="rgba(134,239,172,0.85)" font-size="9.5">Validate before ingest</text>
+<text x="1580" y="564" text-anchor="middle" fill="rgba(134,239,172,0.60)" font-size="9">SM Data Wrangler · Lineage</text>
+
+<!-- ═══ FOOTER NOTES — bright, colour-coded, readable ═══ -->
+<rect x="60" y="630" width="820" height="52" rx="8"
+      fill="rgba(56,189,248,0.05)" stroke="rgba(56,189,248,0.18)" stroke-width="1"/>
+<text x="76" y="650" fill="#f472b6" font-size="10" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Audio pipeline:</text>
+<text x="188" y="650" fill="#e2e8f0" font-size="10">
+  Amazon Transcribe → transcript → embed → RAG Knowledge Base
+</text>
+<text x="76" y="670" fill="#34d399" font-size="10" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Data lineage:</text>
+<text x="178" y="670" fill="#94a3b8" font-size="9.5">
+  Glue Data Catalog tracks source attribution · SM Data Wrangler preps fine-tune data
+</text>
+
+<rect x="900" y="630" width="600" height="52" rx="8"
+      fill="rgba(16,185,129,0.05)" stroke="rgba(16,185,129,0.18)" stroke-width="1"/>
+<text x="916" y="650" fill="#6ee7b7" font-size="10" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Responsible AI:</text>
+<text x="1032" y="650" fill="#e2e8f0" font-size="10">
+  SageMaker Model Cards → programmatic model documentation
+</text>
+<text x="916" y="670" fill="#fb923c" font-size="10" font-weight="700"
+      font-family="Plus Jakarta Sans, sans-serif">Org safety:</text>
+<text x="998" y="670" fill="#94a3b8" font-size="9.5">
+  SCP + bedrock:GuardrailIdentifier enforces Guardrail across all AWS accounts
+</text>
+
+</svg>
+</div>
+
+<!-- ══════════════ QUICK REF TABLE ══════════════ -->
+<div class="table-section">
+  <div class="section-hdr">
+    <div class="section-title">Quick-Reference Comparison</div>
   </div>
-
-  <!-- QUICK REFERENCE TABLE -->
-  <div class="cards-title">Quick-Reference Comparison Table</div>
-  <div class="table-wrap">
+  <div class="table-glass">
     <table>
-      <thead>
-        <tr>
-          <th>Service</th>
-          <th>Primary Use Case</th>
-          <th>Custom Code?</th>
-          <th>FM Included?</th>
-          <th>Key Exam Trigger Words</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Service</th><th>Primary Use Case</th><th>Custom Code?</th><th>FM Included?</th><th>Key Exam Trigger Words</th>
+      </tr></thead>
       <tbody>
-        <tr>
-          <td><strong style="color:var(--bedrock)">Amazon Bedrock</strong></td>
-          <td>FM API access, RAG, Agents, fine-tuning, Guardrails</td>
-          <td><span class="dot-yes">✓ Yes</span></td>
-          <td><span class="dot-yes">✓ Yes</span></td>
-          <td>"integrate FM", "build GenAI app", "custom RAG", "Agents", "invoke Claude/Llama"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--qbiz)">Amazon Q Business</strong></td>
-          <td>No-code enterprise chatbot over company documents</td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td><span class="dot-yes">✓ Yes</span></td>
-          <td>"no custom code", "employees ask questions", "connect to SharePoint/S3", "operational in days"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--kendra)">Amazon Kendra</strong></td>
-          <td>Enterprise intelligent search (keyword + semantic)</td>
-          <td><span class="dot-mid">~ Minimal</span></td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td>"enterprise search", "40+ connectors", "search not chat", "relevance ranking"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--sage)">Amazon SageMaker</strong></td>
-          <td>Train/deploy custom ML models, MLOps pipelines</td>
-          <td><span class="dot-yes">✓ Yes</span></td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td>"train from scratch", "custom model architecture", "MLOps", "feature engineering"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--comprehend)">Amazon Comprehend</strong></td>
-          <td>NLP: sentiment, entities, PII detection, language</td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td>"sentiment analysis", "extract entities", "detect PII in text", "classify documents"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--textract)">Amazon Textract</strong></td>
-          <td>Extract text, tables, forms from PDFs/images</td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td>"scanned documents", "extract form fields", "PDF tables", "invoice processing"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--rekog)">Amazon Rekognition</strong></td>
-          <td>Image/video analysis: labels, faces, content moderation</td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td>"image classification", "face detection", "content moderation", "video labels"</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--step)">AWS Step Functions</strong></td>
-          <td>Orchestrate multi-step workflows with retry/error handling</td>
-          <td><span class="dot-yes">✓ Yes</span></td>
-          <td><span class="dot-no">✗ No</span></td>
-          <td>"orchestrate pipeline", "retry logic", "parallel processing", "multi-service workflow"</td>
-        </tr>
+        <tr><td><strong style="color:#60a5fa">Amazon Bedrock</strong></td><td>FM API, RAG, Agents, Guardrails, fine-tuning</td><td><span class="dot-yes">✓ Yes</span></td><td><span class="dot-yes">✓ Yes</span></td><td>"integrate FM", "custom RAG", "invoke Claude/Llama", "Agents"</td></tr>
+        <tr><td><strong style="color:#a78bfa">Amazon Q Business</strong></td><td>No-code enterprise chatbot over company docs</td><td><span class="dot-no">✗ No</span></td><td><span class="dot-yes">✓ Yes</span></td><td>"no custom code", "connect SharePoint/S3", "employees ask questions", "days not months"</td></tr>
+        <tr><td><strong style="color:#67e8f9">Amazon Kendra</strong></td><td>Enterprise intelligent search (keyword + semantic)</td><td><span class="dot-mid">~ Minimal</span></td><td><span class="dot-no">✗ No</span></td><td>"enterprise search", "relevance ranking", "search not chat"</td></tr>
+        <tr><td><strong style="color:#6ee7b7">Amazon SageMaker</strong></td><td>Train/deploy custom ML, LMI/DJL GPU inference</td><td><span class="dot-yes">✓ Yes</span></td><td><span class="dot-no">✗ No</span></td><td>"fine-tuned model GPU", "tensor_parallel_degree", "DJL", "MLOps", "Model Registry"</td></tr>
+        <tr><td><strong style="color:#fca5a5">Amazon Comprehend</strong></td><td>NLP: sentiment, entities, PII, language detection</td><td><span class="dot-no">✗ No</span></td><td><span class="dot-no">✗ No</span></td><td>"sentiment analysis", "extract entities", "detect PII in text"</td></tr>
+        <tr><td><strong style="color:#fdba74">Amazon Textract</strong></td><td>Extract text, tables, forms from PDFs/images</td><td><span class="dot-no">✗ No</span></td><td><span class="dot-no">✗ No</span></td><td>"scanned docs", "extract form fields", "PDF tables", "invoice processing"</td></tr>
+        <tr><td><strong style="color:#d8b4fe">Amazon Rekognition</strong></td><td>Image/video labels, faces, content moderation</td><td><span class="dot-no">✗ No</span></td><td><span class="dot-no">✗ No</span></td><td>"image classification", "face detection", "content moderation", "video labels"</td></tr>
+        <tr><td><strong style="color:#5eead4">AWS Step Functions</strong></td><td>Multi-step workflow orchestration with retry/error handling</td><td><span class="dot-yes">✓ Yes</span></td><td><span class="dot-no">✗ No</span></td><td>"orchestrate pipeline", "retry logic", "parallel branches", "circuit breaker"</td></tr>
+        <tr><td><strong style="color:#86efac">Glue Data Quality</strong></td><td>Validate datasets before FM fine-tuning or RAG ingestion</td><td><span class="dot-no">✗ No</span></td><td><span class="dot-no">✗ No</span></td><td>"data validation", "quality rules", "completeness", "validate before ingestion"</td></tr>
+        <tr><td><strong style="color:#f9a8d4">Amazon Transcribe</strong></td><td>Convert audio/speech to text for multimodal FM pipelines</td><td><span class="dot-no">✗ No</span></td><td><span class="dot-no">✗ No</span></td><td>"call recordings", "audio data", "voice to text", "multimodal audio"</td></tr>
       </tbody>
     </table>
   </div>
+</div>
 
-  <!-- SERVICE DETAIL CARDS -->
-  <div class="cards-title">Service Deep-Dive Cards</div>
-  <div class="cards">
-
-    <div class="svc" style="--c:var(--bedrock)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon Bedrock</div>
-        <div class="svc-tag" style="--c:var(--bedrock)">Core Exam Service</div>
-      </div>
-      <div class="svc-def">Fully managed API to invoke 20+ Foundation Models. Includes Knowledge Bases (RAG), Agents (multi-step reasoning), Guardrails (safety), Prompt Management, and Model Evaluation.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Bedrock when the scenario mentions:</div>
-        <div class="trigger">Building a custom GenAI application</div>
-        <div class="trigger">RAG pipeline with control over chunking/retrieval</div>
-        <div class="trigger">Bedrock Agents for autonomous multi-step tasks</div>
-        <div class="trigger">Fine-tuning or model distillation</div>
-        <div class="trigger">Safety controls via Guardrails</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag yes">Custom code required</span>
-        <span class="vs-tag yes">FM included</span>
-        <span class="vs-tag yes">Agents + RAG</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--qbiz)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon Q Business</div>
-        <div class="svc-tag" style="--c:var(--qbiz)">No-Code RAG</div>
-      </div>
-      <div class="svc-def">Fully managed enterprise AI assistant. Connect to 40+ data sources (S3, SharePoint, Confluence, Salesforce). Employees ask questions in natural language — Q retrieves and answers from company docs.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Q Business when:</div>
-        <div class="trigger">"Zero custom code" or "operational in days"</div>
-        <div class="trigger">Internal employee chatbot over company documents</div>
-        <div class="trigger">Connecting to SharePoint, Confluence, Salesforce, S3</div>
-        <div class="trigger">No ML engineers available</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag no">No custom code</span>
-        <span class="vs-tag yes">FM included</span>
-        <span class="vs-tag yes">40+ connectors</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--kendra)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon Kendra</div>
-        <div class="svc-tag" style="--c:var(--kendra)">Enterprise Search</div>
-      </div>
-      <div class="svc-def">Managed intelligent search service combining keyword (BM25) and semantic search. 40+ native connectors to enterprise data sources. Returns ranked search results, not conversational answers.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Kendra when:</div>
-        <div class="trigger">Search product (results list), not a chatbot</div>
-        <div class="trigger">Hybrid keyword + semantic search needed</div>
-        <div class="trigger">Enterprise doc search with relevance tuning</div>
-        <div class="trigger">Often combined with Bedrock for generation layer</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag">Search only</span>
-        <span class="vs-tag no">No FM/generation</span>
-        <span class="vs-tag yes">40+ connectors</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--sage)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon SageMaker</div>
-        <div class="svc-tag" style="--c:var(--sage)">ML Platform</div>
-      </div>
-      <div class="svc-def">Full ML lifecycle platform: data prep, training, evaluation, deployment, and monitoring of custom models. Required when training your own model architecture or running MLOps pipelines.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use SageMaker when:</div>
-        <div class="trigger">Training a model from scratch or custom architecture</div>
-        <div class="trigger">ML engineers need fine-grained training control</div>
-        <div class="trigger">MLOps pipelines: feature store, model registry, monitoring</div>
-        <div class="trigger">Hosting your own model (not a Bedrock FM)</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag yes">Custom code required</span>
-        <span class="vs-tag no">No FM included</span>
-        <span class="vs-tag">Full ML control</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--comprehend)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon Comprehend</div>
-        <div class="svc-tag" style="--c:var(--comprehend)">NLP Service</div>
-      </div>
-      <div class="svc-def">Managed NLP for text analysis: sentiment (positive/negative/neutral/mixed), key phrase extraction, named entity recognition, language detection, PII detection, and custom classification.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Comprehend when:</div>
-        <div class="trigger">Sentiment analysis on customer reviews/feedback</div>
-        <div class="trigger">Extract named entities from text at scale</div>
-        <div class="trigger">Detect and classify PII in text documents</div>
-        <div class="trigger">Route tickets by topic before sending to FM</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag no">No generation</span>
-        <span class="vs-tag yes">Text analysis</span>
-        <span class="vs-tag">Pre-processing step</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--textract)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon Textract</div>
-        <div class="svc-tag" style="--c:var(--textract)">Document Extraction</div>
-      </div>
-      <div class="svc-def">Extracts text, tables, forms, key-value pairs, and signatures from scanned documents and PDFs. Essential pre-processing step before feeding document content into a Bedrock RAG pipeline.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Textract when:</div>
-        <div class="trigger">Scanned PDFs, invoices, medical forms, contracts</div>
-        <div class="trigger">Extract structured tables from documents</div>
-        <div class="trigger">Pre-process docs before RAG ingestion</div>
-        <div class="trigger">"Document extraction" or "OCR" in scenario</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag">Ingestion pre-step</span>
-        <span class="vs-tag yes">Tables + forms</span>
-        <span class="vs-tag no">No generation</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--rekog)">
-      <div class="svc-top">
-        <div class="svc-name">Amazon Rekognition</div>
-        <div class="svc-tag" style="--c:var(--rekog)">Computer Vision</div>
-      </div>
-      <div class="svc-def">Managed computer vision for images and video: object/scene labeling, facial analysis, celebrity recognition, content moderation, text detection (in images), and activity detection in video.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Rekognition when:</div>
-        <div class="trigger">Image or video analysis needed in the pipeline</div>
-        <div class="trigger">Content moderation for user-uploaded media</div>
-        <div class="trigger">Multimodal pipeline: image → labels → FM prompt</div>
-        <div class="trigger">"Face detection" or "image classification" in scenario</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag">Vision only</span>
-        <span class="vs-tag no">No text generation</span>
-        <span class="vs-tag">Multimodal pre-step</span>
-      </div>
-    </div>
-
-    <div class="svc" style="--c:var(--step)">
-      <div class="svc-top">
-        <div class="svc-name">AWS Step Functions</div>
-        <div class="svc-tag" style="--c:var(--step)">Workflow Orchestration</div>
-      </div>
-      <div class="svc-def">Visual workflow orchestration with state machines. Coordinates Lambda, Bedrock, SageMaker, and other services with built-in retry, error handling, parallel branches, and human approval steps.</div>
-      <div class="svc-when">
-        <div class="svc-when-title">Use Step Functions when:</div>
-        <div class="trigger">Multi-step AI pipeline needing retry + error handling</div>
-        <div class="trigger">Parallel processing branches required</div>
-        <div class="trigger">Coordinate Textract → Comprehend → Bedrock pipeline</div>
-        <div class="trigger">"Orchestrate workflow" or "error handling between steps"</div>
-      </div>
-      <div class="vs-row">
-        <span class="vs-tag">Pipeline only</span>
-        <span class="vs-tag yes">Retry built-in</span>
-        <span class="vs-tag no">No FM</span>
-      </div>
-    </div>
-
+<!-- ══════════════ SERVICE DEEP-DIVE CARDS ══════════════ -->
+<div class="section-hdr">
+  <div class="section-title">Service Deep-Dive Cards</div>
+  <div class="col-toggle">
+    <button class="col-btn" onclick="setCols(2,this)">2 col</button>
+    <button class="col-btn active" onclick="setCols(3,this)">3 col</button>
+    <button class="col-btn" onclick="setCols(4,this)">4 col</button>
+    <button class="col-btn" onclick="setCols(0,this)">auto</button>
   </div>
 </div>
+
+<div class="cards" id="cardsGrid">
+
+  <div class="svc" style="--c:#3b82f6">
+    <div class="svc-top"><div class="svc-name">Amazon Bedrock</div><div class="svc-tag">Core Exam Service</div></div>
+    <div class="svc-def">Fully managed API to invoke 20+ FMs. Includes Knowledge Bases (RAG), Agents (multi-step reasoning), Guardrails (safety), Prompt Management, Model Evaluation, and Batch Inference.</div>
+    <div class="svc-when-title">Use when scenario mentions:</div>
+    <div class="trigger">Building a custom GenAI application</div>
+    <div class="trigger">RAG pipeline with control over chunking / retrieval</div>
+    <div class="trigger">Bedrock Agents for autonomous multi-step tasks</div>
+    <div class="trigger">Fine-tuning, distillation, or prompt management</div>
+    <div class="trigger">Safety controls via Guardrails</div>
+    <div class="vs-row"><span class="vs-tag yes">Custom code</span><span class="vs-tag yes">FM included</span><span class="vs-tag yes">Agents + RAG</span></div>
+  </div>
+
+  <div class="svc" style="--c:#8b5cf6">
+    <div class="svc-top"><div class="svc-name">Amazon Q Business</div><div class="svc-tag">No-Code RAG</div></div>
+    <div class="svc-def">Fully managed enterprise AI assistant. Connect to 40+ data sources (S3, SharePoint, Confluence, Salesforce). Employees ask questions in natural language — Q retrieves and answers from company docs.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">"Zero custom code" or "operational in days"</div>
+    <div class="trigger">Internal employee chatbot over company documents</div>
+    <div class="trigger">Connect SharePoint, Confluence, Salesforce, S3</div>
+    <div class="trigger">No ML engineers available</div>
+    <div class="vs-row"><span class="vs-tag no">No custom code</span><span class="vs-tag yes">FM included</span><span class="vs-tag yes">40+ connectors</span></div>
+  </div>
+
+  <div class="svc" style="--c:#06b6d4">
+    <div class="svc-top"><div class="svc-name">Amazon Kendra</div><div class="svc-tag">Enterprise Search</div></div>
+    <div class="svc-def">Managed intelligent search combining keyword (BM25) and semantic search. Returns ranked results, not conversational answers. Often combined with Bedrock for a generation layer on top.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Search product (results list), not a chatbot</div>
+    <div class="trigger">Hybrid keyword + semantic search needed</div>
+    <div class="trigger">Enterprise doc search with relevance tuning</div>
+    <div class="trigger">Often feeds into a Bedrock FM for answer generation</div>
+    <div class="vs-row"><span class="vs-tag">Search only</span><span class="vs-tag no">No generation</span><span class="vs-tag yes">40+ connectors</span></div>
+  </div>
+
+  <div class="svc" style="--c:#10b981">
+    <div class="svc-top"><div class="svc-name">Amazon SageMaker</div><div class="svc-tag">ML Platform + LMI</div></div>
+    <div class="svc-def">Full ML lifecycle AND primary service for deploying fine-tuned LLMs on GPU via Large Model Inference (LMI) containers with DJL Serving. Required when Bedrock doesn't give enough infrastructure control.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Deploying fine-tuned LLMs on GPU (LMI + DJL)</div>
+    <div class="trigger">Optimizing GPU: tensor parallelism, continuous batching</div>
+    <div class="trigger">Long FM completions (&gt;60s) → Async Inference endpoint</div>
+    <div class="trigger">Model versioning + approval → Model Registry</div>
+    <div class="trigger">Training from scratch or LoRA with full control</div>
+    <div class="vs-row"><span class="vs-tag yes">Custom code</span><span class="vs-tag no">No FM included</span><span class="vs-tag">LMI · DJL · GPU</span></div>
+  </div>
+
+  <div class="svc" style="--c:#0ea5e9">
+    <div class="svc-top"><div class="svc-name">DJL Serving (SageMaker LMI)</div><div class="svc-tag">GPU Optimization</div></div>
+    <div class="svc-def">Open-source serving framework inside SageMaker LMI containers. Key insight: KV-cache ∝ max_sequence_length. Reducing it frees GPU memory for more concurrent requests.</div>
+    <div class="svc-when-title">Critical exam parameters:</div>
+    <div class="trigger"><strong style="color:#7dd3fc">tensor_parallel_degree=N</strong> → shards across N GPUs. 8 GPUs ÷ 4 = 2 replicas</div>
+    <div class="trigger"><strong style="color:#7dd3fc">max_sequence_length</strong> → controls KV-cache. ↓ length = ↑ batch size</div>
+    <div class="trigger"><strong style="color:#7dd3fc">max_rolling_batch_size</strong> → concurrent requests per instance</div>
+    <div class="trigger">Continuous batching fills GPU slots dynamically</div>
+    <div class="vs-row"><span class="vs-tag">KV-Cache ∝ seq_len</span><span class="vs-tag yes">Multi-replica</span></div>
+  </div>
+
+  <div class="svc" style="--c:#ef4444">
+    <div class="svc-top"><div class="svc-name">Amazon Comprehend</div><div class="svc-tag">NLP Service</div></div>
+    <div class="svc-def">Managed NLP for text analysis: sentiment, key phrases, named entities, language detection, PII detection, and custom classification. Pre/post-processing step alongside FM calls.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Sentiment analysis on customer reviews/feedback</div>
+    <div class="trigger">Extract named entities from text at scale</div>
+    <div class="trigger">Detect and classify PII in text documents</div>
+    <div class="trigger">Route tickets by topic before sending to FM</div>
+    <div class="vs-row"><span class="vs-tag no">No generation</span><span class="vs-tag yes">Text analysis</span><span class="vs-tag">Pre-processing</span></div>
+  </div>
+
+  <div class="svc" style="--c:#f97316">
+    <div class="svc-top"><div class="svc-name">Amazon Textract</div><div class="svc-tag">Document Extraction</div></div>
+    <div class="svc-def">Extracts text, tables, forms, key-value pairs from scanned documents and PDFs. Essential pre-processing before feeding document content into a Bedrock RAG pipeline.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Scanned PDFs, invoices, medical forms, contracts</div>
+    <div class="trigger">Extract structured tables from documents</div>
+    <div class="trigger">Pre-process docs before RAG ingestion</div>
+    <div class="trigger">"Document extraction" or "OCR" in scenario</div>
+    <div class="vs-row"><span class="vs-tag">Ingestion pre-step</span><span class="vs-tag yes">Tables + forms</span><span class="vs-tag no">No generation</span></div>
+  </div>
+
+  <div class="svc" style="--c:#a855f7">
+    <div class="svc-top"><div class="svc-name">Amazon Rekognition</div><div class="svc-tag">Computer Vision</div></div>
+    <div class="svc-def">Managed computer vision: object/scene labels, facial analysis, celebrity recognition, content moderation, text-in-image detection, and activity detection in video.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Image or video analysis in the pipeline</div>
+    <div class="trigger">Content moderation for user-uploaded media</div>
+    <div class="trigger">Multimodal: image → labels → FM prompt</div>
+    <div class="trigger">"Face detection" or "image classification"</div>
+    <div class="vs-row"><span class="vs-tag">Vision only</span><span class="vs-tag no">No text generation</span></div>
+  </div>
+
+  <div class="svc" style="--c:#14b8a6">
+    <div class="svc-top"><div class="svc-name">AWS Step Functions</div><div class="svc-tag">Workflow Orchestration</div></div>
+    <div class="svc-def">Visual workflow orchestration with state machines. Coordinates Lambda, Bedrock, SageMaker, and other services with built-in retry, error handling, parallel branches, and circuit breaker patterns.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Multi-step AI pipeline needing retry + error handling</div>
+    <div class="trigger">Parallel processing branches required</div>
+    <div class="trigger">Coordinate Textract → Comprehend → Bedrock pipeline</div>
+    <div class="trigger">"Orchestrate", "circuit breaker", "error handling between steps"</div>
+    <div class="vs-row"><span class="vs-tag">Pipeline only</span><span class="vs-tag yes">Retry built-in</span><span class="vs-tag no">No FM</span></div>
+  </div>
+
+  <div class="svc" style="--c:#22c55e">
+    <div class="svc-top"><div class="svc-name">AWS Glue Data Quality</div><div class="svc-tag">Data Validation</div></div>
+    <div class="svc-def">Defines and runs data quality rules (completeness, uniqueness, validity) against datasets before FM fine-tuning or RAG ingestion. Prevents bad data from degrading model or retrieval quality.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Validating documents before RAG KB ingestion</div>
+    <div class="trigger">Checking training data quality before fine-tuning</div>
+    <div class="trigger">"Data validation", "quality rules", "completeness check"</div>
+    <div class="vs-row"><span class="vs-tag">Pre-ingestion</span><span class="vs-tag no">No FM</span></div>
+  </div>
+
+  <div class="svc" style="--c:#ec4899">
+    <div class="svc-top"><div class="svc-name">Amazon Transcribe</div><div class="svc-tag">Speech-to-Text</div></div>
+    <div class="svc-def">Managed speech-to-text service converting audio recordings to text. Standard pre-processing step for audio data entering FM pipelines — enables voice/call data to be embedded, indexed, or analyzed.</div>
+    <div class="svc-when-title">Use when:</div>
+    <div class="trigger">Audio recordings or call data needs FM analysis</div>
+    <div class="trigger">Multimodal pipeline includes voice/audio data</div>
+    <div class="trigger">"Call recordings", "audio to text", "voice data"</div>
+    <div class="vs-row"><span class="vs-tag">Audio pre-step</span><span class="vs-tag no">No generation</span></div>
+  </div>
+
+</div><!-- /cards -->
+
+</div><!-- /page -->
+
+<script>
+function setCols(n, btn) {
+  document.querySelectorAll('.col-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const g = document.getElementById('cardsGrid');
+  g.style.gridTemplateColumns = n === 0
+    ? 'repeat(auto-fill, minmax(300px, 1fr))'
+    : `repeat(${n}, 1fr)`;
+}
+// Default to 3 cols on load
+setCols(3, document.querySelector('.col-btn.active'));
+</script>
 </body>
 </html>
