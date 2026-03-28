@@ -72,7 +72,7 @@ head:
 | Concept | Key Detail |
 |---------|-----------|
 | **Image Analysis 4.0** | Captioning, Dense Captioning, Tagging, Smart Crop, People Detection |
-| **Read API (OCR)** | Async: POST → 202 + Operation-Location → GET until succeeded |
+| **Vision 4.0 OCR** | Synchronous: `imageanalysis:analyze?features=read` → `200 OK` with `readResult` |
 | **Custom Vision — Classification** | Multiclass (1 tag) or Multilabel (multiple tags) per image |
 | **Custom Vision — Object Detection** | Returns tag + bounding box coordinates |
 | **Video Indexer** | Semantic insights from video: faces, topics, brands, transcript, sentiment |
@@ -94,7 +94,7 @@ head:
 | **CLU** | Utterance → Intent + Entities; replaces LUIS |
 | **Custom QA** | Matches questions to stored Q&A pairs; supports multi-turn, chit-chat |
 | **Speech STT** | Real-time and batch transcription |
-| **Intent Recognition** | CLU intent detection from spoken audio via Speech SDK |
+| **Spoken Intent** | Speech-to-Text first, then send transcript to CLU or another language model |
 | **Keyword Recognition** | Local on-device wake word detection — no cloud needed |
 | **Document Translation** | Async — translates Word/PDF preserving layout |
 | **Custom Translator** | Domain-specific translation using TMX/XLIFF parallel corpora |
@@ -119,7 +119,7 @@ head:
 | **Knowledge Store** | Table (Power BI) / Object (blob JSON) / File projections |
 | **Shaper Skill** | Reshapes enriched data for Knowledge Store projections |
 | **Hybrid Search** | Keyword (BM25) + Vector (embeddings) + RRF score fusion |
-| **Semantic Ranking** | LLM re-ranker applied after retrieval — surfaces best answer |
+| **Semantic Ranking** | Language-understanding re-ranker applied after retrieval — surfaces best answer |
 | **HNSW** | Algorithm used for vector similarity search |
 | **Content Understanding** | New multimodal pipeline (docs + images + video + audio) |
 | **Doc Intelligence: Template** | Fixed-layout forms — 5+ training docs |
@@ -139,13 +139,14 @@ head:
 
 ## Async Patterns (High Frequency Exam Topic)
 
-All three follow the same `202 → Operation-Location → GET` pattern:
+These operations use the `202 → Operation-Location → GET` pattern:
 
 | Operation | Service |
 |-----------|---------|
-| OCR / Read API | Azure AI Vision |
 | Document Translation | Azure AI Translator |
 | Batch operations | Azure OpenAI, Document Intelligence |
+
+Current **Vision 4.0 OCR** is different: `imageanalysis:analyze?features=read` returns `readResult` in the initial `200 OK` response.
 
 ---
 

@@ -22,7 +22,7 @@ The AI-102 exam is for **Azure AI Engineers** — developers who build and deplo
 1. **Choose the managed service over DIY** — Microsoft wants you to use Azure AI services rather than build from scratch. RAG over custom training; prebuilt models over custom when possible.
 2. **Foundry is the platform** — Everything lives in Microsoft AI Foundry. Hubs manage shared infrastructure; Projects are your workspace. When in doubt, the answer involves Foundry.
 3. **SDK over REST** — The exam prefers `DefaultAzureCredential()` and the Foundry SDK over raw REST calls or hardcoded keys.
-4. **Async patterns for heavy operations** — OCR Read API, Document Translation, and batch operations all follow the `202 → Operation-Location → GET` async pattern.
+4. **Know which APIs are still async** — Document Translation and many batch operations follow the `202 → Operation-Location → GET` pattern, but current Vision 4.0 OCR returns `readResult` directly in the `200 OK` response.
 
 ---
 
@@ -47,7 +47,7 @@ The AI-102 exam is for **Azure AI Engineers** — developers who build and deplo
 | "locate objects with bounding boxes" | **Custom Vision — Object Detection** |
 | "1:1 face comparison" | **Face Verification** |
 | "1:N face comparison against known people" | **Face Identification + PersonGroup** |
-| "recognize spoken intent / wake word" | **Speech SDK — Intent Recognition / Keyword** |
+| "recognize spoken intent / wake word" | **Speech-to-Text + CLU** / **Keyword Recognition** |
 | "translate entire Word/PDF, preserve layout" | **Document Translation (async)** |
 | "utterance → intent + entities" | **CLU (Conversational Language Understanding)** |
 | "multi-turn Q&A from documents" | **Custom Question Answering** |
@@ -74,11 +74,11 @@ The AI-102 exam is for **Azure AI Engineers** — developers who build and deplo
 
 - **Custom Skill interface**: A Custom Skill must follow the exact input/output schema expected by Azure AI Search. The skill receives a `values` array and must return a `values` array with the same record keys. Forgetting this schema is a common mistake.
 
-- **Async OCR pattern**: The Read API returns `202 Accepted` with an `Operation-Location` header. You must then `GET` that URL and poll until `status: succeeded`. Many candidates try to use the response from the initial POST.
+- **OCR API version trap**: Current Vision 4.0 OCR returns `readResult` in the initial `200 OK` response. The older Read API used `202 Accepted` plus `Operation-Location` polling. Questions can test whether you recognize the current API shape.
 
 - **PersonGroup vs FaceList**: PersonGroup (and LargePersonGroup) is for Identification (1:N — "who is this?"). FaceList (and LargeFaceList) is for Find-Similar (1:N — "find faces similar to this one"). The training step is required for PersonGroup, not FaceList.
 
-- **Semantic Ranking vs Vector Search**: Vector search finds semantically similar documents using embeddings. Semantic ranking re-ranks already-retrieved results using an LLM to surface the single best answer. They are not the same — Semantic Ranking is a post-retrieval step.
+- **Semantic Ranking vs Vector Search**: Vector search finds semantically similar documents using embeddings. Semantic ranking re-ranks already retrieved results using Microsoft language understanding models to surface the single best answer. They are not the same — Semantic Ranking is a post-retrieval step.
 
 - **Content filters scope**: Azure OpenAI content filters apply to the model's inputs AND outputs. Azure AI Content Safety is a separate standalone service for user-generated content moderation. Don't confuse the two.
 :::
@@ -153,7 +153,7 @@ Domains 1, 5, and 6 each carry 15-20%+ weight and together represent over half t
 
 ## Final Strategy
 
-- **Know your async patterns cold** — Read API, Document Translation, and batch operations all follow `202 → Operation-Location → GET`. This pattern comes up repeatedly.
+- **Know your async patterns cold** — Document Translation and batch operations still use `202 → Operation-Location → GET`, but current Vision 4.0 OCR does not.
 - **"Foundry" is the answer to "where"** — Hubs, projects, Prompt Flow, model catalog, deployments. When a question is about the platform or portal → AI Foundry.
 - **Eliminate third-party answers** — If a choice involves building something from scratch when an Azure service exists, it is almost certainly wrong.
 - **D1 + D5 + D6 = 50-65% of the exam** — Prioritise Plan & Manage, NLP, and Knowledge Mining for maximum return on study time.

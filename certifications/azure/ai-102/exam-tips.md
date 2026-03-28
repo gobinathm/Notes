@@ -35,7 +35,8 @@ head:
 - **Video Indexer**: Remember it extracts *insights* (faces, topics, sentiment), not just OCR.
 
 ### Domain 5: NLP
-- **Custom QA**: Replaces QnA Maker. Know that you can import from URLs, PDF manuals, and even .chitchat files.
+- **Custom QA**: Replaces QnA Maker. Learn the current Language service question answering flow, not the retired `/knowledgebases/{kbId}/generateAnswer` endpoint.
+- **Spoken Intent**: Since Azure AI Speech intent recognition was retired on September 30, 2025, map spoken intent questions to **Speech-to-Text + CLU**.
 - **CLU Entities**: Use **Prebuilt entities** (Email, Number) whenever possible instead of manual ones.
 
 ### Domain 6: Knowledge Mining

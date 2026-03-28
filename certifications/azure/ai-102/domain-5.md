@@ -99,7 +99,7 @@ Custom QA (formerly QnA Maker) builds a knowledge base of Q&A pairs and returns 
 2. Add sources and label/edit Q&A pairs
 3. Train and test
 4. Deploy to a named endpoint
-5. Consume via REST API (`POST /knowledgebases/{kbId}/generateAnswer`)
+5. Consume via the Language service question answering endpoint (for example, `POST {endpoint}/language/:query-knowledgebases?projectName=...&api-version=2021-10-01&deploymentName=production`)
 
 ::: info Multi-turn Q&A
 The exam phrase **"multi-turn Q&A from documents"** maps to **Custom Question Answering** — not CLU. CLU is for intent detection; Custom QA is for retrieving stored answers.
@@ -116,14 +116,14 @@ The exam phrase **"multi-turn Q&A from documents"** maps to **Custom Question An
 | **Speech-to-Text (STT)** | Real-time or batch audio transcription | `SpeechRecognizer` |
 | **Text-to-Speech (TTS)** | Synthesize neural voices with natural prosody | `SpeechSynthesizer` |
 | **Speech Translation** | Real-time STT + translation in one pass | `TranslationRecognizer` |
-| **Intent Recognition** | Detect CLU intents directly from spoken audio | `IntentRecognizer` with CLU model |
+| **Spoken Intent Flow** | Convert speech to text, then send the transcript to CLU or another language model | `SpeechRecognizer` + Language service / app logic |
 | **Keyword Recognition** | Local on-device detection of a wake word | `KeywordRecognizer` |
 
-::: warning Intent Recognition vs Keyword Recognition
-**Intent Recognition** → understands *what* the user wants (requires CLU model, cloud call).
-**Keyword Recognition** → detects a specific *activation word* (e.g., "Hey Cortana") — runs locally on device, no cloud needed.
+::: warning Spoken Intent vs Keyword Recognition
+**Spoken intent recognition** is now typically a two-step flow: transcribe with **Speech-to-Text**, then send the text to **CLU** or another language model to infer intent.
+**Keyword Recognition** detects a specific activation word (for example, "Hey Cortana") locally on device with no cloud round-trip.
 
-The exam uses "recognize spoken intent / commands" → **Intent Recognition + Speech SDK**.
+The older Azure AI Speech **IntentRecognizer** capability was retired on **September 30, 2025**. For current AI-102 prep, map "recognize spoken intent / commands" to **Speech-to-Text + CLU**, not to the retired Speech intent API.
 The exam uses "wake word / offline activation" → **Keyword Recognition**.
 :::
 
@@ -152,7 +152,7 @@ For large audio files that cannot be processed in real-time:
 | **Custom Translator** | Train a domain-specific translation model using parallel corpora (TMX/XLIFF files) |
 
 ::: tip Document Translation Pattern
-Document Translation is async — submit → get `Operation-Location` header → poll until complete → download translated files. Same `202 → GET` pattern as the Read API and batch operations.
+Document Translation is async — submit → get `Operation-Location` header → poll until complete → download translated files. This still uses the classic `202 → GET` pattern even though current Vision 4.0 OCR does not.
 :::
 
 ---
@@ -162,7 +162,7 @@ Document Translation is async — submit → get `Operation-Location` header →
   { front: 'What Language Service feature disambiguates “Mercury” as planet vs element?', back: 'Entity Linking — connects recognized entities to Wikipedia knowledge base entries to resolve ambiguity.' },
   { front: 'Name the CLU lifecycle stages in order.', back: 'Design → Label utterances → Train → Test → Deploy → Consume via SDK/REST.' },
   { front: 'What does a Custom QA confidence threshold do?', back: 'Rejects (or flags) answers whose match score falls below the threshold, preventing the service from returning wrong answers on poor matches.' },
-  { front: 'What Speech SDK class detects a wake word locally on-device?', back: 'KeywordRecognizer — runs offline, no cloud needed. Different from IntentRecognizer which requires a CLU model and cloud call.' },
+  { front: 'What Speech SDK class detects a wake word locally on-device?', back: 'KeywordRecognizer — runs offline, no cloud needed. Spoken intent recognition now typically uses Speech-to-Text first, then CLU or another language model.' },
   { front: 'A question says “translate entire Word file, preserve layout”. What service?', back: 'Document Translation (part of Translator Service) — async operation that preserves the original document layout.' },
   { front: 'What is Active Learning in Custom QA?', back: 'A feature that surfaces low-confidence questions for human review, allowing you to add alternate phrasings and improve accuracy over time.' },
   { front: 'How do you improve CLU accuracy for a new model version without disrupting production?', back: 'Deploy the new version to the staging slot, test it, then swap to the production slot when ready.' }

@@ -28,23 +28,21 @@ This domain covers analyzing images and videos using **Azure AI Vision**, **Cust
 | **People Detection** | Bounding boxes around people (no identification) | "count people in the image" |
 | **Background Removal** | Separates foreground subject from background | "remove background from product photo" |
 
-### OCR — Read API (async)
+### OCR — Vision 4.0 Read
 
-The Read API is the primary OCR tool for dense text, handwriting, and multi-page documents.
+For current **Image Analysis 4.0** OCR, text extraction is returned directly in the response body.
 
-**Async pattern (same as Document Translation and batch operations):**
+**Current Vision 4.0 pattern:**
 
 ```
 POST /imageanalysis:analyze?features=read
-  → 202 Accepted + Operation-Location header
-
-GET <Operation-Location URL>
-  → poll until { "status": "succeeded" }
+  → 200 OK
   → read "readResult" in response body
 ```
 
-::: warning Async OCR Pattern
-The initial `POST` returns `202 Accepted` — it does **not** contain the extracted text. You must `GET` the `Operation-Location` URL and poll until `status: succeeded`. Many candidates try to parse the initial POST response.
+::: warning OCR API Version Trap
+For **Vision 4.0** OCR, `imageanalysis:analyze?features=read` is synchronous.
+The older Computer Vision Read API used the async `202 Accepted → Operation-Location → GET` polling pattern. Do not mix the two API shapes in exam answers.
 :::
 
 ---
@@ -162,7 +160,7 @@ Many Face API capabilities (identification, verification, emotion detection) req
 ---
 
 <FlashcardDeck storage-key="ai-102-domain-4-cards" :cards="[
-  { front: 'What is the async OCR pattern for the Read API?', back: 'POST image → 202 Accepted + Operation-Location header → GET that URL → poll until status: succeeded → read results. Never parse the initial POST response body.' },
+  { front: 'What is the OCR pattern for Image Analysis 4.0?', back: 'POST to `imageanalysis:analyze?features=read` and read `readResult` from the `200 OK` response body. The older Read API used async polling, but Vision 4.0 OCR is synchronous.' },
   { front: 'What is the difference between Custom Vision Classification and Object Detection?', back: 'Classification assigns tags to the whole image. Object Detection assigns tags AND returns bounding box coordinates for each detected object.' },
   { front: 'What does Video Indexer analyze that Spatial Analysis does not?', back: 'Video Indexer provides semantic insights: topics, brands, faces, transcripts, sentiment. Spatial Analysis measures real-time movement (count, dwell time, distance) in live feeds.' },
   { front: 'What is the difference between Face Verification and Face Identification?', back: 'Verification = 1:1 (are these two faces the same person?). Identification = 1:N (who is this person from a known PersonGroup?).' },

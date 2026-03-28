@@ -20,7 +20,7 @@ This exam is for **Software Developers** and **AI Engineers** who need to assemb
 ::: info Currently Studying ⏳
 **Target Date**: TBD
 
-**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-26
+**Notes Prepared**: March 2026 · **Last Updated**: 2026-03-28
 :::
 
 ---
@@ -101,14 +101,38 @@ This exam is for **Software Developers** and **AI Engineers** who need to assemb
 ## Official Resources
 
 - [AI-102 Exam Detail Page](https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-102/)
+- [AI-102 Study Guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-102)
 - [Microsoft Learn: AI Engineer Path](https://learn.microsoft.com/en-us/training/paths/build-ai-solutions-with-azure-ai-services/)
 - [Azure AI Foundry Documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/)
+- [Microsoft Practice Assessment](https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-102/practice/assessment?assessment-type=practice&assessmentId=72)
 
-## External Resources
+## Hands-On Labs
 
+- [Microsoft Learning Lab Portal](https://microsoftlearning.github.io/AI-102-AIEngineer/)
 - [GitHub: MicrosoftLearning/AI-102-AIEngineer](https://github.com/MicrosoftLearning/AI-102-AIEngineer)
+
+## Community Notes & Study Guides
+
+- [Kenneth Leung's AI-102 Notes](https://github.com/kennethleungty/Azure-AI-Engineer-Associate-Notes)
+- [John Folberth's AI-102 Study Guide](https://app-blog-prd-eus.azurewebsites.net/ai-102-microsoft-azure-ai-engineer-associate-study-guide/)
+- [GitHub: JFolberth/Microsoft-AI-102-Study-Guide](https://github.com/JFolberth/Microsoft-AI-102-Study-Guide)
+- [GitHub: AzureMentor/Azure-AI-102-Study-Guide](https://github.com/AzureMentor/Azure-AI-102-Study-Guide)
+- [Refactored: Ultimate AI-102 Study Guide](https://www.refactored.pro/ai-102-ultimate-study-guide)
+
+## Video Walkthroughs
+
+- [ExamPro Full AI-102 Course](https://www.youtube.com/watch?v=scJ4mobwjBQ)
+- [John Savill AI-102 Cram Session](https://www.youtube.com/watch?v=I7fdWafTcPY)
+
+## Supplementary Reading
+
+- [AzureTechInsider AI-102 Exam Prep Article](https://azuretechinsider.com/ai-102-exam-certification-prep-questions/)
+- [FlashGenius 2026 AI-102 Guide](https://flashgenius.net/blog-article/microsoft-certified-azure-ai-engineer-associate-ai-102-the-complete-2025-guide)
+
+::: warning Resource Quality
+The links above are curated for official docs, labs, or higher-signal community study material. I intentionally left out braindump-style exam-question sites and the inaccessible NotebookLM link.
+:::
 
 ---
 
 [Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md)
-

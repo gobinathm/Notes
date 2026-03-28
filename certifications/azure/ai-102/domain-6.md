@@ -135,11 +135,11 @@ Before projecting complex nested data, use the **Shaper Skill** in your skillset
 | **Keyword Search** | BM25 exact/fuzzy text matching | Precise term lookups |
 | **Vector Search** | Embeddings + HNSW algorithm — finds semantically similar docs | Conceptual similarity, paraphrases |
 | **Hybrid Search** | Combines keyword + vector scores using RRF (Reciprocal Rank Fusion) | Best overall recall |
-| **Semantic Ranking** | LLM-based L2 re-ranker applied *after* retrieval | Surfacing the single best answer |
+| **Semantic Ranking** | Language-understanding L2 re-ranker applied *after* retrieval | Surfacing the single best answer |
 
 ::: warning Semantic Ranking vs Vector Search
 **Vector search** finds semantically *similar* documents using embeddings — it is a *retrieval* technique.
-**Semantic ranking** *re-ranks already retrieved results* using an LLM to surface the single best answer — it is a *post-retrieval* step.
+**Semantic ranking** *re-ranks already retrieved results* using Microsoft language understanding / machine reading comprehension models — it is a *post-retrieval* step.
 
 They are not the same. The exam tests this distinction directly.
 :::
@@ -161,7 +161,7 @@ Hierarchical Navigable Small World — the approximate nearest-neighbor algorith
   { front: 'Which Knowledge Store projection type is used for Power BI analytics?', back: 'Table Projections — store enriched data in Azure Table Storage, queryable by Power BI or SQL tools.' },
   { front: 'What skill reshapes nested enriched data before projecting to the Knowledge Store?', back: 'Shaper Skill — flattens and restructures the enriched document output into the schema required by the projection.' },
   { front: 'What is Hybrid Search?', back: 'Combining keyword search (BM25) with vector search (embeddings) using RRF score fusion for better recall than either alone.' },
-  { front: 'What is Semantic Ranking and when is it applied?', back: 'An LLM-based L2 re-ranker applied after retrieval to surface the single best answer. It is a post-retrieval step, not a retrieval method.' },
+  { front: 'What is Semantic Ranking and when is it applied?', back: 'A language-understanding L2 re-ranker applied after retrieval to surface the single best answer. It is a post-retrieval step, not a retrieval method.' },
   { front: 'Which Document Intelligence model type requires only 5 training documents?', back: 'Custom Template model — for fixed-layout documents where fields appear in the same position. Neural models require 100+ documents.' }
 ]" />
 

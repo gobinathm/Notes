@@ -37,7 +37,7 @@ head:
 - **Sandboxed Execution**: Using **Code Interpreter** for safe Python execution.
 
 ## 👁️ Vision & NLP
-- **OCR Pattern**: POST to `/analyze` -> Get `Operation-Location` -> Poll until `succeeded`.
+- **OCR Pattern**: For Vision 4.0, `imageanalysis:analyze?features=read` returns `readResult` in the `200 OK` response body; older Read APIs used polling.
 - **Face Identification**: 1:N search against a `PersonGroup`.
 - **CLU**: Map user utterances to Intents. Use `prebuilt` entities for dates/numbers.
 - **QA**: Import data sources (URLs, PDFs) to create a conversational KB.
