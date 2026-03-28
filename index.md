@@ -13,7 +13,7 @@ description: Study notes from technology certifications I've cleared and ones I'
       <span class="cert-stat-label">Passed</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">4</span>
+      <span class="cert-stat-num">5</span>
       <span class="cert-stat-label">In Progress</span>
     </div>
     <div class="cert-stat">
@@ -40,7 +40,7 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="section-header">
   <h2>Currently Studying</h2>
-  <span class="section-count">4 active</span>
+  <span class="section-count">5 active</span>
 </div>
 
 <div class="cert-grid">
@@ -59,6 +59,42 @@ These started as plain markdown files. When I decided to share them as a site, I
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
       <span class="date-val">Mar 30</span>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card studying">
+  <div class="cert-ribbon intermediate">Intermediate</div>
+  <span class="provider-tag azure">Azure</span>
+  <h3><a href="./certifications/azure/ai-102/">AI-102: Azure AI Engineer Associate</a></h3>
+  <p>Design, implement, and monitor AI solutions using Azure AI services, Azure OpenAI, and responsible AI principles.</p>
+  <div class="cert-prereqs">Azure fundamentals, Python/C# experience, AI/ML concepts</div>
+  <div class="cert-dates">
+    <div class="cert-date-item study-by">
+      <span class="date-label">Study by</span>
+      <span class="date-val">Mar 31</span>
+    </div>
+    <div class="cert-date-item exam-target">
+      <span class="date-label">Exam</span>
+      <span class="date-val">Apr 30</span>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card studying">
+  <div class="cert-ribbon intermediate">Intermediate</div>
+  <span class="provider-tag aws">AWS</span>
+  <h3><a href="./certifications/aws/mla-c01/">MLA-C01: ML Engineer Associate</a></h3>
+  <p>Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML services at production scale.</p>
+  <div class="cert-prereqs">1 year AWS experience, SageMaker hands-on, ML fundamentals</div>
+  <div class="cert-dates">
+    <div class="cert-date-item study-by">
+      <span class="date-label">Study by</span>
+      <span class="date-val">Apr 30</span>
+    </div>
+    <div class="cert-date-item exam-target">
+      <span class="date-label">Exam</span>
+      <span class="date-val">May 15</span>
     </div>
   </div>
 </div>
@@ -84,35 +120,17 @@ These started as plain markdown files. When I decided to share them as a site, I
 <div class="cert-card studying">
   <div class="cert-ribbon intermediate">Intermediate</div>
   <span class="provider-tag azure">Azure</span>
-  <h3><a href="./certifications/azure/ai-102/">AI-102: Azure AI Engineer Associate</a></h3>
-  <p>Design, implement, and monitor AI solutions using Azure AI services, Azure OpenAI, and responsible AI principles.</p>
-  <div class="cert-prereqs">Azure fundamentals, Python/C# experience, AI/ML concepts</div>
+  <h3><a href="./certifications/azure/dp-800/">DP-800: SQL AI Developer Associate (beta)</a></h3>
+  <p>Design AI-enabled SQL database solutions using Azure SQL, SQL Server, Fabric SQL databases, vectors, embeddings, and retrieval-augmented application patterns.</p>
+  <div class="cert-prereqs">Strong T-SQL, SQL schema design, CI/CD basics, AI concepts like embeddings and vectors</div>
   <div class="cert-dates">
     <div class="cert-date-item study-by">
       <span class="date-label">Study by</span>
-      <span class="date-val">Mar 31</span>
+      <span class="date-val">Dec 2026</span>
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">Apr 30</span>
-    </div>
-  </div>
-</div>
-
-<div class="cert-card studying">
-  <div class="cert-ribbon advanced">Advanced</div>
-  <span class="provider-tag aws">AWS</span>
-  <h3><a href="./certifications/aws/mla-c01/">MLA-C01: ML Engineer Associate</a></h3>
-  <p>Build, deploy, and maintain ML solutions using Amazon SageMaker and AWS ML services at production scale.</p>
-  <div class="cert-prereqs">1 year AWS experience, SageMaker hands-on, ML fundamentals</div>
-  <div class="cert-dates">
-    <div class="cert-date-item study-by">
-      <span class="date-label">Study by</span>
-      <span class="date-val">Apr 30</span>
-    </div>
-    <div class="cert-date-item exam-target">
-      <span class="date-label">Exam</span>
-      <span class="date-val">May 15</span>
+      <span class="date-val">TBD</span>
     </div>
   </div>
 </div>

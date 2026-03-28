@@ -123,6 +123,7 @@ export default defineConfig({
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
               { text: 'AI-102: Azure AI Engineer Associate', link: '/certifications/azure/ai-102/' },
+              { text: 'DP-800: SQL AI Developer Associate (beta)', link: '/certifications/azure/dp-800/' },
             ]
           },
           {
@@ -199,6 +200,18 @@ export default defineConfig({
                 { text: 'Domain 6: Doc Intelligence', link: '/certifications/azure/ai-102/domain-6' },
                 { text: 'Exam Guide', link: '/certifications/azure/ai-102/exam-guide' },
                 { text: 'Cheatsheet', link: '/certifications/azure/ai-102/cheatsheet' }
+              ]
+            },
+            {
+              text: 'DP-800: SQL AI Developer Associate (beta)',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/dp-800/' },
+                { text: 'Domain 1: Design & Develop', link: '/certifications/azure/dp-800/domain-1' },
+                { text: 'Domain 2: Secure, Optimize & Deploy', link: '/certifications/azure/dp-800/domain-2' },
+                { text: 'Domain 3: AI Capabilities', link: '/certifications/azure/dp-800/domain-3' },
+                { text: 'Exam Guide', link: '/certifications/azure/dp-800/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/dp-800/cheatsheet' }
               ]
             },
             {
