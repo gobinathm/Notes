@@ -78,6 +78,26 @@ If the question is about **semantic search**, **vector databases**, or comparing
 If the question is about **chat, summarization, or text generation**, think **Titan Text**.
 :::
 
+### Multimodal Model Selection
+
+Some Bedrock foundation models can process **more than text**, including **images** and, in some scenarios, broader multimodal inputs.
+
+| Model | Best Fit |
+|---|---|
+| **Amazon Nova Pro** | Multimodal analysis tasks that combine text with visual inputs |
+| **Claude Sonnet** | Strong reasoning model that can also fit multimodal analysis scenarios |
+| **Titan Image Generator** | Text-to-image generation and image editing, not semantic retrieval |
+
+**How to think about it:**
+- If the requirement is to **analyze photos or videos** and extract trends, attributes, or visual patterns, think **multimodal FM**
+- If the requirement is to **generate images from text prompts**, think **Titan Image Generator**
+- If the requirement is to build dashboards from extracted insights with low operational overhead, pair multimodal Bedrock analysis with managed orchestration and managed BI tooling
+
+::: tip
+For low-ops visual analysis scenarios, a common pattern is:
+**Bedrock multimodal FM** → **AWS Step Functions** for orchestration → **Amazon QuickSight** for dashboards
+:::
+
 ---
 
 ## 1.2 Prompt Engineering Strategies

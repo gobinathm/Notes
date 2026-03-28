@@ -86,7 +86,7 @@ The exam distinguishes between techniques that reduce cost vs. improve latency. 
 - **Higher temperature** increases diversity for creative generation
 - **Lower topP** keeps sampling tighter and more predictable
 - **`maxTokens`** limits output size and cost
-- **`stopSequences`** helps enforce cleaner output boundaries
+- **`stopSequences`** stops generation when a specified token or phrase appears, helping enforce cleaner output boundaries
 
 **Best-fit examples:**
 - Contracts, policy language, compliance wording → lower temperature

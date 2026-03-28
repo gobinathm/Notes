@@ -480,6 +480,89 @@ html:not(.dark) .provider-tag.github {
   color: #0066B3;
 }
 
+.ecosystem-tag,
+.tier-chip,
+.category-chip {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.ecosystem-tag.microsoft {
+  background: rgba(115, 115, 115, 0.18);
+  color: var(--vp-c-text-2);
+}
+
+.ecosystem-tag.aws {
+  background: rgba(255, 153, 0, 0.15);
+  color: #FF9900;
+}
+
+html:not(.dark) .ecosystem-tag.microsoft {
+  background: rgba(36, 41, 46, 0.08);
+  color: #24292e;
+}
+
+html:not(.dark) .ecosystem-tag.aws {
+  background: rgba(255, 153, 0, 0.12);
+  color: #b45309;
+}
+
+.tier-chip.aws {
+  background: rgba(255, 153, 0, 0.14);
+  color: #FF9900;
+}
+
+.tier-chip.microsoft {
+  background: rgba(115, 115, 115, 0.18);
+  color: var(--vp-c-text-2);
+}
+
+html:not(.dark) .tier-chip.microsoft {
+  background: rgba(36, 41, 46, 0.08);
+  color: #24292e;
+}
+
+.category-chip.microsoft {
+  background: rgba(115, 115, 115, 0.1);
+  color: var(--vp-c-text-2);
+}
+
+.category-chip.aws {
+  background: rgba(255, 153, 0, 0.1);
+  color: #d97706;
+}
+
+html:not(.dark) .category-chip.microsoft {
+  background: rgba(36, 41, 46, 0.06);
+  color: #4b5563;
+}
+
+html:not(.dark) .category-chip.aws {
+  background: rgba(255, 153, 0, 0.08);
+  color: #92400e;
+}
+
+.tier-chip.azure {
+  background: rgba(0, 120, 212, 0.14);
+  color: #0078D4;
+}
+
+.tier-chip.github {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--vp-c-text-2);
+}
+
+html:not(.dark) .tier-chip.github {
+  background: rgba(36, 41, 46, 0.08);
+  color: #24292e;
+}
+
 /* ── Corner ribbon (difficulty level) ── */
 .cert-ribbon {
   position: absolute;
@@ -885,6 +968,14 @@ html:not(.dark) .cert-tl-entry:hover {
   border-color: rgba(16, 185, 129, 0.18);
 }
 
+.cert-tl-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
 .cert-tl-name {
   flex: 1;
   font-size: 0.88rem;
@@ -925,6 +1016,23 @@ html:not(.dark) .cert-tl-entry:hover {
 .cert-tl-entry.advanced:hover {
   background: rgba(239, 68, 68, 0.09);
   border-color: rgba(239, 68, 68, 0.25);
+}
+
+.section-subtext {
+  margin: -0.2rem 0 0.9rem;
+  font-size: 0.92rem;
+  color: var(--vp-c-text-2);
+}
+
+@media (max-width: 768px) {
+  .cert-tl-entry {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cert-tl-badges {
+    width: 100%;
+  }
 }
 
 /* On the Radar — quarter-grouped columns */

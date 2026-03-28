@@ -174,7 +174,7 @@ Task requires tool calls, external APIs, or multi-step planning?
 - `max_tokens`: Cap on output tokens — controls cost and response length
 - `temperature`: Controls creativity vs. determinism (0.0–1.0)
 - `topP`: Narrows or widens the token probability pool used for sampling
-- `stopSequences`: Explicitly tells the model where to stop generating
+- `stopSequences`: Explicitly tells the model to stop generating when a specified token or phrase appears
 
 ### InvokeModel vs. Converse
 
@@ -295,6 +295,32 @@ Need a pre-trained open-source LLM deployed on your own infra?
 The exam will not ask you to configure SageMaker training pipelines in detail. Know **when to choose SageMaker vs. Bedrock** and what SageMaker JumpStart provides.
 :::
 
+### SageMaker Inference Optimization Patterns
+
+When a fine-tuned LLM is deployed on a **SageMaker endpoint**, the exam may test whether you can improve **GPU utilization** and **cost efficiency** without changing the model itself.
+
+**Important ideas:**
+- **DJL Serving (Deep Java Library)** supports advanced LLM serving patterns on SageMaker
+- **Continuous batching** improves throughput by processing more requests together
+- If real-world requests are much shorter than the configured maximum sequence length, lowering that limit can free memory
+- Freed memory can often be used to support **larger effective batch sizes** and higher concurrency per instance
+
+**GPU parallelism trade-off:**
+- If model weights and activations fit within fewer GPUs than originally allocated, reduce the **tensor parallel** setting
+- This can allow **multiple model replicas per instance** instead of one oversized replica spread across all GPUs
+- The result is often better utilization and lower cost for the same traffic
+
+::: tip
+For SageMaker LLM serving questions, watch for this pattern:
+- **Actual requests are much shorter than the configured max sequence length**
+- **Instance concurrency is low**
+- **The model can fit on fewer GPUs**
+
+That usually points to:
+- reducing **maximum sequence length**
+- adjusting **tensor parallelism**
+:::
+
 ---
 
 ## 2.6 Amazon Comprehend
@@ -353,6 +379,28 @@ Amazon Bedrock (InvokeModel / InvokeAgent)
 - **API Gateway**: Handles auth (IAM, Cognito, API Keys), throttling, CORS, and request/response transformation
 - **Lambda**: Stateless compute to build the prompt, call Bedrock, and format the response
 - **Bedrock**: Foundation model inference
+
+### API Gateway WebSocket APIs for Real-Time GenAI
+
+API Gateway **WebSocket APIs** are used when the application needs a **persistent, bidirectional connection** instead of simple request-response HTTP.
+
+**Why this matters:**
+- The client can send messages to the backend at any time
+- The backend can push updates or model output back immediately
+- The connection stays open, so the app avoids repeated reconnect overhead and client polling
+
+**Good fit:**
+- Real-time chat interfaces
+- Collaborative applications
+- Streaming GenAI responses where the user sends input and receives incremental output over an ongoing connection
+
+**How to think about it on the exam:**
+- **HTTP API Gateway** = standard request/response API exposure
+- **WebSocket API Gateway** = persistent, full-duplex communication for interactive real-time applications
+
+::: tip
+If the scenario says **bidirectional streaming**, **server push**, **persistent connection**, or **real-time collaboration**, think **API Gateway WebSocket API** rather than a basic HTTP API.
+:::
 
 ### ECS / EKS for GenAI Application Backends
 
@@ -422,6 +470,33 @@ Bedrock Flows is a **visual, low-code workflow orchestration** tool for chaining
 - **Bedrock Agents**: autonomous reasoning, decides at runtime which tools to call
 - **Bedrock Flows**: predefined workflow graph, each step is explicit — no autonomous decision-making
 Choose Flows when the workflow is known upfront and deterministic; choose Agents when the task requires dynamic planning.
+:::
+
+### Low-Ops Multimodal Analysis Pattern
+
+When the workload needs to analyze **images or video**, extract insights, and present summary trends with minimal infrastructure management, think in terms of a **fully managed AWS stack**.
+
+**Typical pattern:**
+```text
+Photos / videos
+    ↓
+Amazon Bedrock multimodal FM (for visual analysis)
+    ↓
+AWS Step Functions (coordinate stages, branching, retries)
+    ↓
+Store extracted results
+    ↓
+Amazon QuickSight dashboard
+```
+
+**Why this is low ops:**
+- **Bedrock** avoids custom model training and hosting
+- **Step Functions** handles workflow state, retries, and orchestration without servers
+- **QuickSight** provides managed dashboards without running BI infrastructure
+
+::: tip
+If the scenario says **analyze visual content**, **extract structured insights**, and **show trends in dashboards** with the **least operational overhead**, a strong answer is:
+**Bedrock multimodal model + Step Functions + QuickSight**
 :::
 
 ---

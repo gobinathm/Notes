@@ -91,6 +91,27 @@ Knowledge Base citations are the native Bedrock mechanism for source attribution
 - Each line contains a prompt (and optionally a reference/expected answer for accuracy scoring)
 - Example line: `{"prompt": "What is the capital of France?", "referenceResponse": "Paris"}`
 
+### Evaluation Workflow Patterns
+
+When a company wants to replace a production model with a new one, the evaluation process should be treated as a **gated workflow**, not an ad hoc test run.
+
+**Typical sequence:**
+1. **Define evaluation metrics** such as relevance, accuracy, fluency, and groundedness
+2. **Create a test dataset** with realistic scenarios, difficult prompts, and edge cases
+3. **Run controlled comparisons** between candidate models using the same dataset
+4. **Apply quality gates** so weak results do not progress to the next stage
+5. **Analyze results and produce a decision report** before promotion to production
+
+**Important exam ideas:**
+- Do not compare models before defining the metrics and dataset
+- A high-quality evaluation dataset should include **diverse scenarios and edge cases**
+- **A/B testing** is a valid comparison pattern when you need to compare a new model against an existing production model
+- **AWS Step Functions** is a strong answer when the workflow requires sequential stages, approvals, branching, retries, and state tracking between evaluation steps
+
+::: tip
+If the question emphasizes **sequential validation**, **approval gates**, or **promotion only after passing review**, think in terms of a **workflow orchestration pattern** rather than a single evaluation job.
+:::
+
 ---
 
 ## 5.3 CloudWatch Monitoring

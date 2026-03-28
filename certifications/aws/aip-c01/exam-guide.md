@@ -32,18 +32,22 @@ The AIP-C01 is a **Professional-level** exam for developers building GenAI appli
 | "AWS-native embeddings for RAG" | **Titan Text Embeddings** |
 | "Generate summaries / conversational text with an AWS-native model" | **Amazon Titan Text** |
 | "Convert text to vectors for semantic search" | **Amazon Titan Embeddings** |
+| "Analyze images/video with low ops and summarize trends in dashboards" | **Bedrock multimodal FM + Step Functions + QuickSight** |
 | "Document Q&A / knowledge retrieval" | **Knowledge Bases (RAG)** |
 | "Multi-step reasoning / tool use / external API calls" | **Bedrock Agents + Action Groups** |
 | "Unified message-based API across models" | **Converse API** |
 | "Full synchronous response" | **InvokeModel** |
 | "Model-specific request JSON / schema varies by FM" | **InvokeModel** |
 | "Streaming / low-latency UX / chat interface" | **InvokeModelWithResponseStream** |
+| "Persistent bidirectional real-time connection / server push" | **API Gateway WebSocket API** |
 | "Vector store for RAG" | **Amazon OpenSearch Serverless** |
 | "Store embeddings + perform low-latency similarity / k-NN search" | **Amazon OpenSearch Service / Serverless Vector Engine** |
 | "Validate structured data quality before RAG / FM ingestion" | **AWS Glue Data Quality** |
 | "Fully managed RAG with minimal custom pipeline code" | **Bedrock Knowledge Bases** |
+| "Peak-period throttling, same FM, keep Bedrock API compatibility, low ops overhead" | **Cross-Region inference profile** |
 | "Content moderation / block harmful content" | **Guardrails for Amazon Bedrock** |
 | "Block a business-prohibited subject like investment advice" | **Guardrails Denied Topics** |
+| "SageMaker LLM endpoint underutilized: short real sequence lengths, low concurrency, too many GPUs" | **Reduce max sequence length + adjust tensor parallelism** |
 | "Predictable throughput / guaranteed no throttling" | **Provisioned Throughput (PTU)** |
 | "Bulk, non-real-time inference jobs" | **Batch inference** |
 | "Audit trail / compliance logging" | **AWS CloudTrail** |
@@ -52,6 +56,7 @@ The AIP-C01 is a **Professional-level** exam for developers building GenAI appli
 | "Private connectivity to Bedrock" | **VPC Endpoint (PrivateLink) — bedrock-runtime** |
 | "Knowledge changes frequently / need source citations" | **RAG** |
 | "Detect hallucinations in RAG output" | **Groundedness metric** |
+| "Sequential evaluation stages with approval gates before model promotion" | **Step Functions + Bedrock Model Evaluation / A-B comparison** |
 | "Log all prompts and responses for AI governance" | **Model Invocation Logging** |
 | "FM inference may exceed 15 minutes" | **ECS / Bedrock Batch — not Lambda** |
 | "API response time could exceed 29 seconds" | **Async submit-and-poll — not synchronous API Gateway** |

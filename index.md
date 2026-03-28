@@ -156,6 +156,8 @@ These started as plain markdown files. When I decided to share them as a site, I
   <span class="section-count">9 certs</span>
 </div>
 
+<p class="section-subtext">Tags show the ecosystem and the vendor-defined level or category.</p>
+
 <div class="cert-tl-track">
 
   <div class="cert-tl-group">
@@ -165,11 +167,19 @@ These started as plain markdown files. When I decided to share them as a site, I
     </div>
     <div class="cert-tl-entries">
       <div class="cert-tl-entry intermediate">
-        <span class="provider-tag github">GitHub</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Specialty</span>
+          <span class="category-chip microsoft">Cloud &amp; AI Platform</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/github/gh-100/">GH-100: GitHub Administration</a>
       </div>
       <div class="cert-tl-entry intermediate">
-        <span class="provider-tag github">GitHub</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Specialty</span>
+          <span class="category-chip microsoft">Security</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/github/gh-500/">GH-500: GitHub Advanced Security</a>
       </div>
     </div>
@@ -181,20 +191,36 @@ These started as plain markdown files. When I decided to share them as a site, I
       <span class="cert-tl-dot"></span>
     </div>
     <div class="cert-tl-entries">
-      <div class="cert-tl-entry beginner">
-        <span class="provider-tag github">GitHub</span>
+      <div class="cert-tl-entry advanced">
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Specialty</span>
+          <span class="category-chip microsoft">Cloud &amp; AI Platform</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/github/gh-300/">GH-300: GitHub Copilot</a>
       </div>
       <div class="cert-tl-entry beginner">
-        <span class="provider-tag github">GitHub</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Specialty</span>
+          <span class="category-chip microsoft">Cloud &amp; AI Platform</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/github/gh-900/">GH-900: GitHub Foundations</a>
       </div>
       <div class="cert-tl-entry beginner">
-        <span class="provider-tag azure">Azure</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Business</span>
+          <span class="category-chip microsoft">AI Business Solutions</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/azure/ab-730">AB-730: AI Business Professional</a>
       </div>
       <div class="cert-tl-entry beginner">
-        <span class="provider-tag azure">Azure</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Business</span>
+          <span class="category-chip microsoft">AI Business Solutions</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/azure/ab-731/">AB-731: AI Transformation Leader</a>
       </div>
     </div>
@@ -207,11 +233,19 @@ These started as plain markdown files. When I decided to share them as a site, I
     </div>
     <div class="cert-tl-entries">
       <div class="cert-tl-entry intermediate">
-        <span class="provider-tag github">GitHub</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag microsoft">Microsoft</span>
+          <span class="tier-chip microsoft">Specialty</span>
+          <span class="category-chip microsoft">Cloud &amp; AI Platform</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/github/gh-actions/">GH-200: GitHub Actions</a>
       </div>
       <div class="cert-tl-entry beginner">
-        <span class="provider-tag aws">AWS</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag aws">AWS</span>
+          <span class="tier-chip aws">Foundational</span>
+          <span class="category-chip aws">AI Foundations</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/aws/aif-c01/">AIF-C01: AI Practitioner</a>
       </div>
     </div>
@@ -224,7 +258,11 @@ These started as plain markdown files. When I decided to share them as a site, I
     </div>
     <div class="cert-tl-entries">
       <div class="cert-tl-entry beginner">
-        <span class="provider-tag aws">AWS</span>
+        <div class="cert-tl-badges">
+          <span class="ecosystem-tag aws">AWS</span>
+          <span class="tier-chip aws">Foundational</span>
+          <span class="category-chip aws">Cloud Foundations</span>
+        </div>
         <a class="cert-tl-name" href="./certifications/aws/clf-c02/">CLF-C02: Cloud Practitioner</a>
       </div>
     </div>
