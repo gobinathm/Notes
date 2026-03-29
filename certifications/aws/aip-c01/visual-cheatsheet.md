@@ -28,7 +28,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">Visual Cheatsheet</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for final review, pattern recognition, Bedrock API comparisons, RAG flows, Guardrails, and exam-speed recall.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-cheatsheet.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open cheatsheet ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-cheatsheet.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open cheatsheet ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
@@ -52,7 +52,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">Glossary</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for term lookup, category filtering, and clarifying AI/ML, RAG, agentic, safety, evaluation, and AWS service vocabulary.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-glossary.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open glossary ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-glossary.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open glossary ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
@@ -76,7 +76,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">20-Hour Fast Track Study Plan</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for learners who want a structured 20-hour fast-track path with session ordering, topic grouping, and review prompts.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-study-plan.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open 20-hour plan ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-study-plan.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open 20-hour plan ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
@@ -100,7 +100,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">AWS Service Decision Flowchart</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for quick service selection across Bedrock, Q Business, Kendra, SageMaker, Comprehend, Textract, Rekognition, and orchestration choices.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-flowchart.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open flowchart ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-flowchart.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open flowchart ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
@@ -128,7 +128,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">Flashcards</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for active recall of services, terms, model choices, and exam distinctions without rereading full notes.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-flashcards.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open flashcards ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-flashcards.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open flashcards ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
@@ -152,7 +152,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">Practice Quiz</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for scenario practice, answer checking, and seeing whether the concepts are actually sticking under exam-style pressure.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-quiz.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open quiz ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-quiz.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open quiz ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
@@ -176,7 +176,7 @@ The visual kits linked from this page were created with AI assistance and then i
         <h2 style="margin:0 0 6px 0;">Exam Scorecard</h2>
         <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);max-width:60ch;">Best for tracking mock scores, readiness trend, and domain-by-domain weakness over time.</p>
       </div>
-      <a href="/cheatsheets/aip-c01-scorecard.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open scorecard ↗</a>
+      <a href="/cheatsheets/aip-c01/aip-c01-scorecard.html" target="_blank" style="font-size:0.95rem;white-space:nowrap;font-weight:600;">Open scorecard ↗</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;">
       <div style="border:1px solid var(--vp-c-divider);border-radius:12px;padding:14px;background:var(--vp-c-bg-soft);">
