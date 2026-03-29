@@ -57,23 +57,21 @@ The exam tests *integration and application* of GenAI services — not building 
 ::: warning Anthropic Model Access
 Amazon Bedrock access is generally easier than before, but some accounts still require an explicit access request for **Anthropic** models such as Claude.
 
-If a hands-on step uses Claude and your account does not have access yet:
+Before using Claude models in your own AWS account:
 - Open the **Model Catalog** in the Bedrock console
 - Request access for the Anthropic model you need
 - Submit a reasonable use case, such as **educational use with an online course**
 
-If you want to avoid the access delay, use a non-Anthropic model for the lab.
+If access is not yet available, use a different supported model until approval is granted.
 :::
 
 ::: danger Paid Account Required
-Amazon Bedrock and several newer AWS AI services used in AIP-C01 hands-on work are **not part of the AWS Free Tier**.
+Amazon Bedrock and several newer AWS AI services relevant to AIP-C01 are **not part of the AWS Free Tier**.
 
-If you want to follow along in your own account:
-- Expect a small amount of real spend
+If you plan to practice in your own account:
+- Expect some real spend
 - Use a **paid AWS account**
-- Set up a **billing alarm** before you start
-
-If you want zero cost, treat the walkthroughs as watch-only instead of hands-on.
+- Set up a **billing alarm** before you begin
 :::
 
 ::: warning Bedrock Quotas Can Block Hands-on Labs

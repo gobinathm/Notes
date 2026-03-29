@@ -73,6 +73,19 @@ Knowledge Base citations are the native Bedrock mechanism for source attribution
 - Validating safety content decisions that require human judgment
 - Ground truth labels are unavailable or difficult to define algorithmically
 
+### LLM-as-a-Judge
+
+An **LLM-as-a-Judge** pattern uses one model to evaluate the quality of another model's response against a rubric.
+
+**Typical use:**
+- Score answers for relevance, helpfulness, or rubric compliance
+- Compare multiple candidate responses at scale
+- Support regression testing when manual review is too slow
+
+::: warning
+LLM-as-a-Judge is useful for scalable evaluation, but it is still an **automated evaluation technique**, not a substitute for human review in subjective or high-stakes cases.
+:::
+
 ---
 
 ## 5.2 Setting Up a Model Evaluation Job
@@ -159,6 +172,19 @@ Enable `enableTrace: true` in `InvokeAgent` to inspect:
 - Which Action Group it decided to call and why
 - What Knowledge Base query it ran
 - The final synthesis of results
+
+### AWS X-Ray for Distributed Tracing
+
+Use **AWS X-Ray** when the problem is tracing a request across multiple services in a GenAI application stack.
+
+**Good fit:**
+- API Gateway → Lambda → Bedrock
+- Lambda → external APIs → Bedrock
+- Multi-service workflows where latency attribution matters
+
+**How to think about it:**
+- **CloudWatch** = metrics, logs, alarms
+- **X-Ray** = end-to-end request tracing across services
 
 ### Common Agent Issues
 

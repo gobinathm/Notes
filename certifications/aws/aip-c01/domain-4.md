@@ -92,6 +92,19 @@ The exam distinguishes between techniques that reduce cost vs. improve latency. 
 - Contracts, policy language, compliance wording → lower temperature
 - Brainstorming, alternate copy, variant generation → higher temperature
 
+### Prompt Caching
+
+Prompt caching reduces repeated inference cost and latency when many requests share the same large static prompt prefix.
+
+**How to think about it:**
+- Cache the repeated prefix, such as a long system prompt, policy block, or embedded manual excerpt
+- Later calls reuse that cached prefix instead of recomputing it from scratch
+- Best fit when the expensive part of the prompt stays mostly unchanged across many requests
+
+::: tip
+If the question asks for the **lowest-cost** or **lowest-latency** way to reuse a long, repeated prompt prefix, think **Prompt Caching**.
+:::
+
 ### Semantic Caching
 
 Semantic caching avoids FM invocations entirely for repeat questions by returning a cached response when a new question is semantically equivalent to one already answered.

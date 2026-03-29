@@ -59,6 +59,19 @@ Lower **topP** = tighter token selection
 
 ---
 
+## High-Value Service Map
+
+| Service / Feature | Purpose | Quick Refresher |
+|---|---|---|
+| **Amazon Bedrock** | Serverless FM access | The central managed entry point for Claude, Titan, Llama, and other supported models |
+| **Knowledge Bases** | Automated RAG | Handles ingestion, chunking, embedding, storage, and retrieval for private data |
+| **Bedrock Agents** | Multi-step reasoning | Best when the workflow must use tools or take actions through Action Groups |
+| **Bedrock Flows** | Orchestrated workflows | Better than Agents when the path is deterministic and explicitly defined |
+| **Prompt Caching** | Cost + latency optimization | Reuses a repeated static prompt prefix such as a long system prompt |
+| **Amazon OpenSearch Serverless / Vector Engine** | Semantic search | Stores embeddings and supports low-latency similarity search for RAG |
+
+---
+
 ## Guardrails — Four Filter Types
 
 | Filter Type | What It Controls |
@@ -73,6 +86,19 @@ Lower **topP** = tighter token selection
 - Must be explicitly applied per API call via `guardrailIdentifier` + `guardrailVersion`
 - PII modes: **Redact** (mask with placeholder) vs. **Block** (reject request/response)
 - **Denied Topics** = business-policy blocking at the topic level, not just exact keyword blocking
+
+---
+
+## Safety, Governance, and Ops
+
+| Service / Feature | Purpose | Quick Refresher |
+|---|---|---|
+| **Bedrock Guardrails** | Content filtering | Filters PII, harmful content, and denied topics across model inputs and outputs |
+| **Model Evaluation** | Quality control | Uses human or automated metrics such as Groundedness, Relevance, Accuracy, and Fluency |
+| **IAM Policies** | Access control | Scope `bedrock:InvokeModel` permissions tightly; Bedrock does not train on your data by default |
+| **AWS PrivateLink** | Data privacy | Keeps Bedrock traffic between your VPC and AWS backbone instead of the public internet |
+| **CloudWatch** | Monitoring | Token counts, latency, alarms, dashboards |
+| **AWS X-Ray** | Tracing | End-to-end tracing across multi-service GenAI request paths |
 
 ---
 
@@ -118,6 +144,17 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 
 ---
 
+## Optimization Concepts
+
+| Concept | Purpose | Quick Refresher |
+|---|---|---|
+| **Provisioned Throughput** | Guaranteed capacity | Use for steady production workloads to avoid throttling |
+| **Model Distillation** | Cost optimization | Train a smaller student model to mimic a larger teacher model |
+| **Temperature** | Randomness control | `0.0` = deterministic; higher values = more creative |
+| **Prompt Caching** | Repeated-prefix reuse | Saves cost and latency when large static prompt prefixes repeat across requests |
+
+---
+
 ## Model Evaluation Metrics
 
 | Metric | What It Measures |
@@ -143,6 +180,12 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 **Content moderation / PII?**  
 → Guardrails for Amazon Bedrock
 
+**Lowest cost for repeated large prompt prefixes?**  
+→ Prompt Caching
+
+**Highest grounding / accuracy for enterprise knowledge questions?**  
+→ RAG with Knowledge Bases + strong retrieval
+
 **Audit trail for compliance?**  
 → AWS CloudTrail (not CloudWatch)
 
@@ -167,6 +210,9 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 **Log all prompts and responses for AI governance?**  
 → Model Invocation Logging (to S3 or CloudWatch Logs)
 
+**Need a fixed multi-step workflow with retry/error handling?**  
+→ Step Functions or Bedrock Flows, not Agents
+
 ---
 
 ## Key Terminology
@@ -182,6 +228,8 @@ Batch Inference = ~50% cheaper than on-demand for non-real-time high-volume jobs
 - **OpenSearch Serverless**: Managed, serverless vector store used by Bedrock Knowledge Bases
 - **Batch Inference**: Asynchronous bulk FM inference via S3 JSONL input/output
 - **Model Invocation Logging**: Bedrock feature that logs all prompts + responses to S3/CloudWatch Logs
+- **Prompt Caching**: Reuse of a static prompt prefix to reduce repeated compute and cost
+- **LLM-as-a-Judge**: Using one model to evaluate the quality of another model's output
 
 ---
 
