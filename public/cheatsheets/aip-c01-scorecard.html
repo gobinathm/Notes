@@ -301,36 +301,108 @@ function render() {
 
 function renderTable() {
   const wrap = document.getElementById('tableWrap');
+  wrap.replaceChildren();
   if (!entries.length) {
-    wrap.innerHTML = `<div class="empty-state"><div class="em-icon">📋</div><p>No scores logged yet.<br>Enter your first practice test score above to start tracking.<br><span>Tip: log at least 2 scores to see trends and domain weaknesses.</span></p></div>`;
+    const emptyState = document.createElement('div');
+    emptyState.className = 'empty-state';
+
+    const icon = document.createElement('div');
+    icon.className = 'em-icon';
+    icon.textContent = '📋';
+
+    const copy = document.createElement('p');
+    copy.append('No scores logged yet.');
+    copy.append(document.createElement('br'));
+    copy.append('Enter your first practice test score above to start tracking.');
+    copy.append(document.createElement('br'));
+
+    const tip = document.createElement('span');
+    tip.textContent = 'Tip: log at least 2 scores to see trends and domain weaknesses.';
+    copy.append(tip);
+
+    emptyState.append(icon, copy);
+    wrap.appendChild(emptyState);
     return;
   }
-  const sorted = [...entries].sort((a,b) => b.id - a.id);
-  let rows = sorted.map(e => {
-    const s = e.score;
-    const tag = !s ? '' : s >= 750 ? '<span class="tag tag-pass">PASS</span>' : s >= 700 ? '<span class="tag tag-close">CLOSE</span>' : '<span class="tag tag-fail">FAIL</span>';
-    const domCells = e.d.map((v,i) => `<td style="color:${DOMAIN_META[i].color}">${v !== null ? v+'%' : '—'}</td>`).join('');
-    return `<tr>
-      <td style="color:var(--dim)">${e.date}</td>
-      <td>${e.source}</td>
-      <td class="score-cell">${s ? s + ' ' + tag : '—'}</td>
-      ${domCells}
-      <td><button class="del-btn" onclick="deleteEntry(${e.id})">✕</button></td>
-    </tr>`;
-  }).join('');
 
-  wrap.innerHTML = `<table>
-    <thead><tr>
-      <th>Date</th><th>Source</th><th>Score</th>
-      <th>D1<small style="opacity:.5"> 31%</small></th>
-      <th>D2<small style="opacity:.5"> 26%</small></th>
-      <th>D3<small style="opacity:.5"> 20%</small></th>
-      <th>D4<small style="opacity:.5"> 12%</small></th>
-      <th>D5<small style="opacity:.5"> 11%</small></th>
-      <th></th>
-    </tr></thead>
-    <tbody>${rows}</tbody>
-  </table>`;
+  const sorted = [...entries].sort((a,b) => b.id - a.id);
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  const headers = [
+    { label: 'Date' },
+    { label: 'Source' },
+    { label: 'Score' },
+    { label: 'D1', weight: '31%' },
+    { label: 'D2', weight: '26%' },
+    { label: 'D3', weight: '20%' },
+    { label: 'D4', weight: '12%' },
+    { label: 'D5', weight: '11%' },
+    { label: '' },
+  ];
+
+  headers.forEach(({ label, weight }) => {
+    const th = document.createElement('th');
+    th.append(label);
+    if (weight) {
+      const small = document.createElement('small');
+      small.style.opacity = '.5';
+      small.textContent = ` ${weight}`;
+      th.appendChild(small);
+    }
+    headRow.appendChild(th);
+  });
+
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  sorted.forEach(e => {
+    const row = document.createElement('tr');
+
+    const dateCell = document.createElement('td');
+    dateCell.style.color = 'var(--dim)';
+    dateCell.textContent = e.date;
+    row.appendChild(dateCell);
+
+    const sourceCell = document.createElement('td');
+    sourceCell.textContent = e.source;
+    row.appendChild(sourceCell);
+
+    const scoreCell = document.createElement('td');
+    scoreCell.className = 'score-cell';
+    if (e.score) {
+      scoreCell.append(`${e.score} `);
+      const tag = document.createElement('span');
+      tag.className = e.score >= 750 ? 'tag tag-pass' : e.score >= 700 ? 'tag tag-close' : 'tag tag-fail';
+      tag.textContent = e.score >= 750 ? 'PASS' : e.score >= 700 ? 'CLOSE' : 'FAIL';
+      scoreCell.appendChild(tag);
+    } else {
+      scoreCell.textContent = '—';
+    }
+    row.appendChild(scoreCell);
+
+    e.d.forEach((v, i) => {
+      const domainCell = document.createElement('td');
+      domainCell.style.color = DOMAIN_META[i].color;
+      domainCell.textContent = v !== null ? `${v}%` : '—';
+      row.appendChild(domainCell);
+    });
+
+    const actionCell = document.createElement('td');
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'del-btn';
+    deleteButton.type = 'button';
+    deleteButton.textContent = '✕';
+    deleteButton.addEventListener('click', () => deleteEntry(e.id));
+    actionCell.appendChild(deleteButton);
+    row.appendChild(actionCell);
+
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(tbody);
+  wrap.appendChild(table);
 }
 
 function renderAnalysis() {

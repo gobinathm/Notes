@@ -705,6 +705,10 @@ function setFilter(catId) {
   render();
 }
 
+function htmlToText(html) {
+  return new DOMParser().parseFromString(html, 'text/html').body.textContent || '';
+}
+
 function buildCards() {
   const query = document.getElementById('searchInput').value.trim().toLowerCase();
   const main = document.getElementById('main');
@@ -721,7 +725,7 @@ function buildCards() {
       terms = terms.filter(t =>
         t.name.toLowerCase().includes(query) ||
         (t.abbr && t.abbr.toLowerCase().includes(query)) ||
-        t.def.toLowerCase().replace(/<[^>]+>/g,'').includes(query) ||
+        htmlToText(t.def).toLowerCase().includes(query) ||
         (t.example && t.example.toLowerCase().includes(query))
       );
     }
