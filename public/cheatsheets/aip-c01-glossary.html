@@ -768,7 +768,7 @@ function buildCards() {
           ${abbrHtml}
           ${examBadge}
         </div>
-        <div class="term-def">${highlight(t.def.replace(/<strong>/g,'<strong>').replace(/<\/strong>/g,'</strong>'), query)}</div>
+        <div class="term-def">${highlight(t.def, query)}</div>
         ${exHtml}
       `;
       grid.appendChild(card);
