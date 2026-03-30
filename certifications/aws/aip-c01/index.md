@@ -21,6 +21,8 @@ Deep architectural reasoning required. Questions test hands-on familiarity with 
 - **Multiple response** — two or more correct responses out of five or more options; you must select *all* correct answers to receive credit
 
 **Scoring:** Compensatory model — you do not need to pass each domain individually. Only the overall scaled score (750+) matters. Sections with higher weights have more questions.
+
+**Note:** A few people I know who recently took the exam said that simply reading the questions and answer choices takes a significant amount of time, and that more than 90% of the exam is scenario-based.
 :::
 
 ::: info Currently Studying ⏳

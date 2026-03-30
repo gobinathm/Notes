@@ -54,11 +54,11 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="cert-dates">
     <div class="cert-date-item study-by">
       <span class="date-label">Study by</span>
-      <span class="date-val">Mar 10</span>
+      <span class="date-val">Apr 2026</span>
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">Mar 30</span>
+      <span class="date-val">Apr 2026</span>
     </div>
   </div>
 </div>
@@ -72,11 +72,11 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="cert-dates">
     <div class="cert-date-item study-by">
       <span class="date-label">Study by</span>
-      <span class="date-val">Mar 31</span>
+      <span class="date-val">Mar 2026</span>
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">Apr 30</span>
+      <span class="date-val">Apr 2026</span>
     </div>
   </div>
 </div>
@@ -90,17 +90,17 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="cert-dates">
     <div class="cert-date-item study-by">
       <span class="date-label">Study by</span>
-      <span class="date-val">Apr 30</span>
+      <span class="date-val">Apr 2026</span>
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">May 15</span>
+      <span class="date-val">May 2026</span>
     </div>
   </div>
 </div>
 
 <div class="cert-card studying">
-  <div class="cert-ribbon intermediate">Intermediate</div>
+  <div class="cert-ribbon beginner">Beginner</div>
   <span class="provider-tag gcp">Google Cloud</span>
   <h3><a href="./certifications/google-cloud/gen-ai-leader/">GCP-GAIL: Generative AI Leader</a></h3>
   <p>Lead generative AI strategy and implementation across organizations using Google Cloud's Vertex AI platform and Gemini models.</p>
@@ -108,11 +108,11 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="cert-dates">
     <div class="cert-date-item study-by">
       <span class="date-label">Study by</span>
-      <span class="date-val">Mar 10</span>
+      <span class="date-val">Mar 2026</span>
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">Jun 30</span>
+      <span class="date-val">Jun 2026</span>
     </div>
   </div>
 </div>
@@ -130,7 +130,7 @@ These started as plain markdown files. When I decided to share them as a site, I
     </div>
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
-      <span class="date-val">TBD</span>
+      <span class="date-val">Dec 2026</span>
     </div>
   </div>
 </div>
