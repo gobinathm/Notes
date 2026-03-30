@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0d14;
+    --surface: rgba(255,255,255,0.04);
+    --surface-hover: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.08);
+    --border-bright: rgba(255,255,255,0.15);
+    --text: #e8eaf0;
+    --muted: #7a7f8e;
+    --accent-blue: #4a9eff;
+    --accent-teal: #00d4aa;
+    --accent-purple: #a78bfa;
+    --accent-amber: #fbbf24;
+    --accent-rose: #fb7185;
+    --glow-blue: rgba(74,158,255,0.15);
+    --glow-teal: rgba(0,212,170,0.12);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  .header {
+    padding: 40px 32px 28px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(74,158,255,0.05) 0%, transparent 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(74,158,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: var(--accent-teal); background: rgba(0,212,170,0.1);
+    border: 1px solid rgba(0,212,170,0.25);
+    padding: 4px 10px; border-radius: 20px; margin-bottom: 14px;
+    letter-spacing: 0.08em;
+  }
+  .badge::before { content: '◆'; font-size: 8px; }
+  h1 {
+    font-family: var(--sans); font-size: 28px; font-weight: 800;
+    letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 6px;
+  }
+  h1 span { color: var(--accent-blue); }
+  .subtitle { color: var(--muted); font-size: 14px; font-weight: 400; }
+
+  /* Stats bar */
+  .stats {
+    display: flex; gap: 0; border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .stat {
+    flex: 1; padding: 14px 20px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-val {
+    font-family: var(--mono); font-size: 20px; font-weight: 700;
+    color: var(--accent-blue);
+  }
+  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+  /* Domain weight pills */
+  .domain-bar {
+    padding: 16px 32px;
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.15);
+  }
+  .domain-label { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-right: 4px; }
+  .dpill {
+    font-size: 11px; font-family: var(--mono); font-weight: 500;
+    padding: 4px 12px; border-radius: 20px;
+    border: 1px solid;
+  }
+  .dpill.d1 { color: var(--accent-blue); background: rgba(74,158,255,0.08); border-color: rgba(74,158,255,0.25); }
+  .dpill.d2 { color: var(--accent-teal); background: rgba(0,212,170,0.08); border-color: rgba(0,212,170,0.25); }
+  .dpill.d3 { color: var(--accent-purple); background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.25); }
+
+  /* Tab nav */
+  .tabs {
+    display: flex; gap: 0; border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    background: rgba(0,0,0,0.1);
+  }
+  .tab {
+    padding: 12px 20px; font-size: 13px; font-weight: 600;
+    color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .tab.active { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+  .tab:hover:not(.active) { color: var(--text); }
+  .tab-icon { font-size: 14px; }
+
+  /* Content */
+  .content { padding: 28px 32px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Session cards */
+  .sessions-grid { display: flex; flex-direction: column; gap: 14px; }
+
+  .session-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .session-card:hover { border-color: var(--border-bright); }
+
+  .session-header {
+    display: flex; align-items: center; gap: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .session-num {
+    width: 60px; min-width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 18px; font-weight: 700;
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .session-meta { flex: 1; padding: 14px 18px; }
+  .session-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .session-sub { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .session-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .stag {
+    font-size: 10px; font-family: var(--mono); padding: 2px 7px;
+    border-radius: 10px; border: 1px solid; font-weight: 500;
+  }
+
+  .session-toggle {
+    width: 48px; height: 60px; display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 16px; flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .session-card.open .session-toggle { transform: rotate(90deg); }
+
+  .session-body {
+    display: none; padding: 0 18px 18px; border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .session-card.open .session-body { display: block; }
+
+  /* Body sections */
+  .body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 640px) { .body-grid { grid-template-columns: 1fr; } }
+
+  .body-section h4 {
+    font-size: 11px; font-family: var(--mono); font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .body-section h4::before { content: '▸'; font-size: 10px; }
+
+  .topic-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .topic-list li {
+    font-size: 13px; padding: 6px 10px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .topic-list li::before { content: '—'; color: var(--muted); font-family: var(--mono); flex-shrink: 0; margin-top: 1px; }
+
+  .resource-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .resource-list li {
+    font-size: 12px; padding: 7px 10px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .res-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .res-text { flex: 1; }
+  .res-text strong { color: var(--text); display: block; margin-bottom: 1px; }
+  .res-text span { color: var(--muted); font-size: 11px; }
+
+  /* Review box */
+  .review-box {
+    background: rgba(251,191,36,0.05);
+    border: 1px solid rgba(251,191,36,0.2);
+    border-radius: 8px; padding: 14px;
+    margin-top: 12px;
+  }
+  .review-box h4 {
+    font-size: 11px; font-family: var(--mono); color: var(--accent-amber);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .review-box h4::before { content: '⏱'; }
+  .review-items { display: flex; flex-direction: column; gap: 5px; }
+  .review-item {
+    font-size: 12px; color: var(--text);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .review-item::before { content: '□'; font-family: var(--mono); color: var(--accent-amber); flex-shrink: 0; }
+
+  /* Pareto panel */
+  .pareto-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .pareto-grid { grid-template-columns: 1fr; } }
+
+  .pareto-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px;
+  }
+  .pareto-card h3 {
+    font-size: 13px; font-weight: 700; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .weight-bar {
+    height: 4px; border-radius: 2px; margin-bottom: 12px;
+    background: var(--border);
+    position: relative; overflow: hidden;
+  }
+  .weight-fill { height: 100%; border-radius: 2px; }
+  .pareto-items { display: flex; flex-direction: column; gap: 6px; }
+  .pareto-item { font-size: 12px; color: var(--muted); display: flex; align-items: flex-start; gap: 7px; }
+  .pareto-item span:first-child { color: var(--text); font-size: 13px; flex-shrink: 0; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple), var(--accent-teal));
+    opacity: 0.3;
+  }
+  .tl-item { position: relative; margin-bottom: 16px; }
+  .tl-dot {
+    position: absolute; left: -24px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 2px solid;
+  }
+  .tl-item h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .tl-item p { font-size: 12px; color: var(--muted); }
+
+  /* Color classes */
+  .c-blue { color: var(--accent-blue); }
+  .c-teal { color: var(--accent-teal); }
+  .c-purple { color: var(--accent-purple); }
+  .c-amber { color: var(--accent-amber); }
+  .c-rose { color: var(--accent-rose); }
+
+  .bg-blue { background: rgba(74,158,255,0.08); border-color: rgba(74,158,255,0.2); }
+  .bg-teal { background: rgba(0,212,170,0.08); border-color: rgba(0,212,170,0.2); }
+  .bg-purple { background: rgba(167,139,250,0.08); border-color: rgba(167,139,250,0.2); }
+  .bg-amber { background: rgba(251,191,36,0.08); border-color: rgba(251,191,36,0.2); }
+  .bg-rose { background: rgba(251,113,133,0.08); border-color: rgba(251,113,133,0.2); }
+
+  .num-blue { color: var(--accent-blue); }
+  .num-teal { color: var(--accent-teal); }
+  .num-purple { color: var(--accent-purple); }
+  .num-amber { color: var(--accent-amber); }
+  .num-rose { color: var(--accent-rose); }
+
+  .border-l-blue { border-left: 3px solid var(--accent-blue); }
+  .border-l-teal { border-left: 3px solid var(--accent-teal); }
+  .border-l-purple { border-left: 3px solid var(--accent-purple); }
+
+  .dot-blue { border-color: var(--accent-blue); background: rgba(74,158,255,0.3); }
+  .dot-teal { border-color: var(--accent-teal); background: rgba(0,212,170,0.3); }
+  .dot-purple { border-color: var(--accent-purple); background: rgba(167,139,250,0.3); }
+  .dot-amber { border-color: var(--accent-amber); background: rgba(251,191,36,0.3); }
+
+  /* Info callout */
+  .callout {
+    display: flex; gap: 12px; padding: 14px 16px;
+    border-radius: 8px; margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* Progress tracker */
+  .progress-tracker {
+    display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px;
+    margin: 0 0 24px;
+  }
+  .prog-cell {
+    aspect-ratio: 1; border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; user-select: none;
+    color: var(--muted);
+  }
+  .prog-cell.done { background: rgba(0,212,170,0.15); border-color: rgba(0,212,170,0.4); color: var(--accent-teal); }
+  .prog-cell:hover:not(.done) { background: var(--surface-hover); color: var(--text); }
+  .prog-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; font-family: var(--mono); }
+  .prog-count { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .prog-count span { color: var(--accent-teal); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">Exam DP-800 · SQL AI Developer Associate</div>
+  <h1>20-Hour <span>80/20</span> Study Plan</h1>
+  <p class="subtitle">10 × 2-hour sessions · Pareto-focused · 15-min review per session</p>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-val">10</div><div class="stat-label">Sessions</div></div>
+  <div class="stat"><div class="stat-val">20h</div><div class="stat-label">Total Time</div></div>
+  <div class="stat"><div class="stat-val">105m</div><div class="stat-label">Core / Session</div></div>
+  <div class="stat"><div class="stat-val">15m</div><div class="stat-label">Review / Session</div></div>
+</div>
+
+<div class="domain-bar">
+  <span class="domain-label">DOMAINS:</span>
+  <span class="dpill d1">D1 · Design &amp; Develop 35–40%</span>
+  <span class="dpill d2">D2 · Secure, Optimize &amp; Deploy 35–40%</span>
+  <span class="dpill d3">D3 · AI Capabilities 25–30%</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('sessions')"><span class="tab-icon">📅</span> Sessions</div>
+  <div class="tab" onclick="switchTab('pareto')"><span class="tab-icon">🎯</span> 80/20 Map</div>
+  <div class="tab" onclick="switchTab('tracker')"><span class="tab-icon">✅</span> Progress</div>
+</div>
+
+<div class="content">
+
+  <!-- SESSIONS PANEL -->
+  <div class="panel active" id="panel-sessions">
+    <div class="sessions-grid" id="sessionsGrid"></div>
+  </div>
+
+  <!-- PARETO PANEL -->
+  <div class="panel" id="panel-pareto">
+    <div class="callout bg-blue" style="border:1px solid rgba(74,158,255,0.2);">
+      <span class="callout-icon">💡</span>
+      <div>The <strong>20% of topics that drive 80% of marks</strong> on DP-800 are the ones that sit at the intersection of multiple exam domains. These are your highest-leverage areas — master these first.</div>
+    </div>
+
+    <div class="pareto-grid">
+      <div class="pareto-card border-l-blue">
+        <h3 class="c-blue">🗄️ Design &amp; Develop</h3>
+        <div class="weight-bar"><div class="weight-fill" style="width:38%;background:var(--accent-blue);"></div></div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px;">35–40% of exam</div>
+        <div class="pareto-items">
+          <div class="pareto-item"><span>★★★</span> Vector data type + JSON columns</div>
+          <div class="pareto-item"><span>★★★</span> CTEs + Window functions</div>
+          <div class="pareto-item"><span>★★★</span> Stored procedures + triggers</div>
+          <div class="pareto-item"><span>★★</span> Partitioning + columnstore indexes</div>
+          <div class="pareto-item"><span>★★</span> Graph queries + MATCH operator</div>
+          <div class="pareto-item"><span>★★</span> Temporal &amp; in-memory tables</div>
+          <div class="pareto-item"><span>★</span> Sequences, constraints, TVFs</div>
+        </div>
+      </div>
+
+      <div class="pareto-card border-l-teal">
+        <h3 class="c-teal">🔒 Secure, Optimize &amp; Deploy</h3>
+        <div class="weight-bar"><div class="weight-fill" style="width:38%;background:var(--accent-teal);"></div></div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px;">35–40% of exam</div>
+        <div class="pareto-items">
+          <div class="pareto-item"><span>★★★</span> Row-Level Security (RLS)</div>
+          <div class="pareto-item"><span>★★★</span> Dynamic Data Masking</div>
+          <div class="pareto-item"><span>★★★</span> SQL Database Projects + CI/CD</div>
+          <div class="pareto-item"><span>★★★</span> Data API Builder (DAB)</div>
+          <div class="pareto-item"><span>★★</span> Query Store + execution plans</div>
+          <div class="pareto-item"><span>★★</span> Transaction isolation levels</div>
+          <div class="pareto-item"><span>★</span> Always Encrypted, auditing</div>
+        </div>
+      </div>
+
+      <div class="pareto-card border-l-purple">
+        <h3 class="c-purple">🤖 AI Capabilities</h3>
+        <div class="weight-bar"><div class="weight-fill" style="width:28%;background:var(--accent-purple);"></div></div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px;">25–30% of exam</div>
+        <div class="pareto-items">
+          <div class="pareto-item"><span>★★★</span> Vector search (ANN vs ENN)</div>
+          <div class="pareto-item"><span>★★★</span> Hybrid search + RRF</div>
+          <div class="pareto-item"><span>★★★</span> RAG with sp_invoke_external_rest_endpoint</div>
+          <div class="pareto-item"><span>★★</span> Embedding generation + maintenance</div>
+          <div class="pareto-item"><span>★★</span> External models + VECTOR_DISTANCE</div>
+          <div class="pareto-item"><span>★★</span> Full-text vs semantic vs hybrid</div>
+          <div class="pareto-item"><span>★</span> Multimodal models, chunking strategy</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:16px;">🏆 The 20% High-Yield Topics — Memorise These Cold</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div>
+          <div style="font-size:11px;font-family:var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Cross-Domain Power Topics</div>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot dot-blue"></div><h4>VECTOR data type &amp; VECTOR_DISTANCE()</h4><p>Appears in Design, AI, and Security domains</p></div>
+            <div class="tl-item"><div class="tl-dot dot-teal"></div><h4>Data API Builder (DAB) config files</h4><p>REST + GraphQL + security in one topic</p></div>
+            <div class="tl-item"><div class="tl-dot dot-purple"></div><h4>SQL Database Projects (SDK-style)</h4><p>CI/CD, schema drift, branching policies</p></div>
+            <div class="tl-item"><div class="tl-dot dot-amber"></div><h4>sp_invoke_external_rest_endpoint</h4><p>Core RAG primitive — used in 3+ question types</p></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-family:var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px;">Scenario Speed-Read Patterns</div>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot dot-blue"></div><h4>"Query is slow on large table"</h4><p>→ Columnstore index or partitioning</p></div>
+            <div class="tl-item"><div class="tl-dot dot-teal"></div><h4>"User sees others' data"</h4><p>→ Row-Level Security (RLS)</p></div>
+            <div class="tl-item"><div class="tl-dot dot-purple"></div><h4>"Find semantically similar docs"</h4><p>→ Hybrid search + RRF ranking</p></div>
+            <div class="tl-item"><div class="tl-dot dot-amber"></div><h4>"Real-time AI answer from DB"</h4><p>→ RAG + sp_invoke_external_rest_endpoint</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACKER PANEL -->
+  <div class="panel" id="panel-tracker">
+    <div style="margin-bottom:20px;">
+      <div class="prog-label">CLICK TO MARK SESSION COMPLETE</div>
+      <div class="progress-tracker" id="progressTracker"></div>
+      <div class="prog-count">Completed: <span id="progCount">0</span> / 10 sessions · <span id="progHours">0</span>h of 20h</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:14px;">📋 Pre-Exam Checklist</h3>
+      <div id="checklist" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const sessions = [
+  {
+    num: "01",
+    title: "T-SQL Foundations & Advanced Querying",
+    subtitle: "105 min study + 15 min review",
+    domain: "D1",
+    color: "blue",
+    tags: ["CTEs", "Window Functions", "JSON Functions"],
+    topics: [
+      "Common Table Expressions (CTEs) — recursive and non-recursive",
+      "Window functions: ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD, NTILE",
+      "JSON functions: JSON_VALUE, JSON_ARRAY, JSON_OBJECT, OPENJSON, JSON_ARRAYAGG",
+      "Correlated subqueries and correlated UPDATE/DELETE",
+      "Error handling with TRY/CATCH and THROW",
+      "Regex functions: REGEXP_LIKE, REGEXP_REPLACE, REGEXP_SUBSTR"
+    ],
+    resources: [
+      { icon: "📄", name: "MS Learn: T-SQL query fundamentals", url: "https://learn.microsoft.com/en-us/sql/t-sql/queries/queries", note: "Microsoft Docs — free, authoritative" },
+      { icon: "📄", name: "Window functions deep dive", url: "https://learn.microsoft.com/en-us/sql/t-sql/functions/ranking-functions-transact-sql", note: "MS Docs — ranking + analytic functions" },
+      { icon: "🎥", name: "JSON in SQL Server (Channel 9 / MS)", url: "https://learn.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server", note: "Hands-on JSON query examples" },
+      { icon: "🛠️", name: "Azure SQL Database free tier", url: "https://azure.microsoft.com/free/", note: "Spin up a free Azure SQL DB for practice" }
+    ],
+    review: [
+      "Write one CTE with recursion from memory",
+      "List 5 window functions and their use cases",
+      "Explain JSON_ARRAYAGG vs JSON_ARRAY difference",
+      "Quiz yourself: when would you use OPENJSON?",
+      "Flashcard: REGEXP_LIKE vs REGEXP_MATCHES"
+    ]
+  },
+  {
+    num: "02",
+    title: "Table Design — Specialized & Advanced",
+    subtitle: "105 min study + 15 min review",
+    domain: "D1",
+    color: "blue",
+    tags: ["Temporal", "In-Memory", "Columnstore", "Graph", "Partitioning"],
+    topics: [
+      "Temporal tables — SYSTEM_TIME, FOR SYSTEM_TIME AS OF, history tables",
+      "In-memory OLTP — memory-optimized tables, natively compiled stored procedures",
+      "Columnstore indexes — clustered vs non-clustered, delta stores, compression",
+      "Table partitioning — partition functions, schemes, aligned indexes",
+      "Graph tables — NODE and EDGE tables, MATCH clause, SHORTEST_PATH",
+      "External tables (PolyBase, SQL external data sources)",
+      "Ledger tables — append-only vs updatable ledger"
+    ],
+    resources: [
+      { icon: "📄", name: "Temporal tables — MS Docs", url: "https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables", note: "Core concept, frequently tested" },
+      { icon: "📄", name: "In-Memory OLTP overview", url: "https://learn.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/overview-and-usage-scenarios", note: "MS Docs — performance scenarios" },
+      { icon: "📄", name: "Graph database with SQL Server", url: "https://learn.microsoft.com/en-us/sql/relational-databases/graphs/sql-graph-overview", note: "MATCH operator examples" },
+      { icon: "📄", name: "Columnstore index design guide", url: "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-design-guidance", note: "When to use, best practices" }
+    ],
+    review: [
+      "Draw the lifecycle of a temporal table row with history",
+      "Contrast columnstore vs rowstore — 3 key differences",
+      "Write a MATCH clause query from memory",
+      "Explain partition function vs partition scheme",
+      "When is in-memory OLTP NOT a good fit?"
+    ]
+  },
+  {
+    num: "03",
+    title: "Programmability Objects",
+    subtitle: "105 min study + 15 min review",
+    domain: "D1",
+    color: "blue",
+    tags: ["Stored Procs", "Views", "Functions", "Triggers"],
+    topics: [
+      "Views — indexed views, WITH SCHEMABINDING, updatable views",
+      "Scalar vs table-valued functions (inline vs multi-statement TVF)",
+      "Stored procedures — input/output params, EXEC, sp_executesql, error handling",
+      "DML triggers — AFTER vs INSTEAD OF, inserted/deleted pseudo-tables",
+      "DDL triggers and logon triggers — use cases",
+      "SEQUENCE objects — CREATE SEQUENCE, NEXT VALUE FOR, cache options",
+      "AI-relevant: stored procedures as RAG primitives"
+    ],
+    resources: [
+      { icon: "📄", name: "Create and use stored procedures", url: "https://learn.microsoft.com/en-us/sql/relational-databases/stored-procedures/stored-procedures-database-engine", note: "MS Docs foundation" },
+      { icon: "📄", name: "Table-valued functions guide", url: "https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/create-user-defined-functions-database-engine", note: "Inline vs multi-statement TVF comparison" },
+      { icon: "📄", name: "DML triggers", url: "https://learn.microsoft.com/en-us/sql/relational-databases/triggers/dml-triggers", note: "AFTER vs INSTEAD OF with examples" },
+      { icon: "📄", name: "SEQUENCE objects", url: "https://learn.microsoft.com/en-us/sql/t-sql/statements/create-sequence-transact-sql", note: "Sequences vs IDENTITY columns" }
+    ],
+    review: [
+      "Contrast scalar function vs inline TVF — performance implications",
+      "AFTER trigger vs INSTEAD OF trigger — when each applies",
+      "Write a stored procedure skeleton with error handling",
+      "SEQUENCE vs IDENTITY — 3 key differences",
+      "Can you UPDATE through a view? Under what conditions?"
+    ]
+  },
+  {
+    num: "04",
+    title: "Security — RLS, DDM, Encryption & Access",
+    subtitle: "105 min study + 15 min review",
+    domain: "D2",
+    color: "teal",
+    tags: ["RLS", "DDM", "Always Encrypted", "Permissions"],
+    topics: [
+      "Row-Level Security — CREATE SECURITY POLICY, inline TVF predicates, FILTER vs BLOCK",
+      "Dynamic Data Masking — DEFAULT, EMAIL, PARTIAL, CUSTOM masking, UNMASK permission",
+      "Always Encrypted — deterministic vs randomized encryption, CMK, CEK",
+      "Column-level encryption — ENCRYPTBYKEY, DECRYPTBYKEY, symmetric keys",
+      "Object-level permissions — GRANT, DENY, REVOKE, schema-level vs table-level",
+      "Passwordless authentication — Managed Identity, Azure AD auth",
+      "Auditing — SQL Audit, server vs database level, log destinations"
+    ],
+    resources: [
+      { icon: "📄", name: "Row-Level Security", url: "https://learn.microsoft.com/en-us/sql/relational-databases/security/row-level-security", note: "MS Docs — most tested security feature" },
+      { icon: "📄", name: "Dynamic Data Masking", url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview", note: "Azure SQL DDM overview with examples" },
+      { icon: "📄", name: "Always Encrypted", url: "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine", note: "Deterministic vs randomized — key distinction" },
+      { icon: "📄", name: "Managed Identity for Azure SQL", url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/authentication-azure-ad-user-assigned-managed-identity", note: "Passwordless auth patterns" }
+    ],
+    review: [
+      "Sketch the RLS architecture: policy → function → predicate",
+      "DDM: which masking type for partial phone number?",
+      "Always Encrypted: deterministic vs randomized — when each?",
+      "Chain: User → Role → Schema → Table permissions",
+      "What is a Managed Identity and why use it over SQL auth?"
+    ]
+  },
+  {
+    num: "05",
+    title: "Query Performance Optimization",
+    subtitle: "105 min study + 15 min review",
+    domain: "D2",
+    color: "teal",
+    tags: ["Query Store", "Execution Plans", "DMVs", "Blocking"],
+    topics: [
+      "Reading execution plans — clustered index scan vs seek, key lookups, sort operators",
+      "Query Store — force plan, query regression detection, Query Performance Insight",
+      "Dynamic Management Views (DMVs) — sys.dm_exec_*, sys.dm_os_wait_stats",
+      "Transaction isolation levels — READ UNCOMMITTED through SERIALIZABLE, SNAPSHOT",
+      "Blocking and deadlocks — detection, resolution, deadlock graphs",
+      "Concurrency controls — optimistic vs pessimistic, RCSI",
+      "Statistics — auto-update, manual UPDATE STATISTICS, filtered statistics"
+    ],
+    resources: [
+      { icon: "📄", name: "Query Store best practices", url: "https://learn.microsoft.com/en-us/sql/relational-databases/performance/best-practice-with-the-query-store", note: "MS Docs — frequently tested" },
+      { icon: "📄", name: "Execution plan operators reference", url: "https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference", note: "What each icon means" },
+      { icon: "📄", name: "Transaction isolation levels", url: "https://learn.microsoft.com/en-us/sql/connect/jdbc/understanding-isolation-levels", note: "Isolation level trade-offs table" },
+      { icon: "🛠️", name: "Plan Explorer (SentryOne — free)", url: "https://www.sentryone.com/plan-explorer", note: "Visual plan analysis tool" }
+    ],
+    review: [
+      "What does a key lookup in an execution plan tell you?",
+      "Query Store: what's forced plan and when would you use it?",
+      "List isolation levels from lowest to highest lock contention",
+      "Top 3 DMVs you'd query when diagnosing a slow system",
+      "SNAPSHOT vs READ COMMITTED SNAPSHOT — key difference?"
+    ]
+  },
+  {
+    num: "06",
+    title: "CI/CD with SQL Database Projects",
+    subtitle: "105 min study + 15 min review",
+    domain: "D2",
+    color: "teal",
+    tags: ["SQL Projects", "GitHub", "Schema Drift", "Testing"],
+    topics: [
+      "SQL Database Projects — SDK-style vs legacy, .sqlproj structure",
+      "Source control for SQL — dacpac, sqlpackage, publish profiles",
+      "Schema drift detection — comparing source vs target, SqlPackage /Action:Report",
+      "CI/CD pipeline design — GitHub Actions for SQL, build → test → deploy stages",
+      "Unit tests — tSQLt framework, CREATE PROCEDURE test cases, assertions",
+      "Secrets management — Azure Key Vault in pipelines, connection string injection",
+      "Branching policies — protection rules, code owners, PR approval gates"
+    ],
+    resources: [
+      { icon: "📄", name: "SQL Database Projects overview", url: "https://learn.microsoft.com/en-us/azure-data-studio/extensions/sql-database-project-extension", note: "Azure Data Studio + VS Code" },
+      { icon: "📄", name: "SDK-style SQL projects", url: "https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/sql-database-projects", note: "New SDK-style format — exam focus" },
+      { icon: "📄", name: "GitHub Actions for Azure SQL", url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/github-actions-deploy-database", note: "End-to-end CI/CD example" },
+      { icon: "📄", name: "tSQLt unit testing framework", url: "https://tsqlt.org/", note: "Free framework used in exam scenarios" }
+    ],
+    review: [
+      "What is schema drift and how do you detect it with SqlPackage?",
+      "Describe the 3 stages of a SQL CI/CD pipeline",
+      "What goes in a .sqlproj file vs a publish profile?",
+      "tSQLt: how do you assert a stored procedure returns the right result?",
+      "Why store connection strings in Key Vault, not pipeline variables?"
+    ]
+  },
+  {
+    num: "07",
+    title: "Data API Builder (DAB) & Azure Integration",
+    subtitle: "105 min study + 15 min review",
+    domain: "D2",
+    color: "teal",
+    tags: ["DAB", "REST", "GraphQL", "CDC", "CES"],
+    topics: [
+      "DAB config files — dab-config.json structure, entities, data sources",
+      "REST endpoint configuration — HTTP methods, pagination, filtering, caching",
+      "GraphQL configuration — relationships, mutations, subscriptions",
+      "Expose stored procedures and views via DAB",
+      "Securing DAB endpoints — Managed Identity, JWT, anonymous vs authenticated",
+      "Change event streaming (CES), CDC, Change Tracking — when to use each",
+      "Azure Functions with SQL trigger binding — event-driven patterns",
+      "Azure Monitor + Application Insights + Log Analytics for SQL"
+    ],
+    resources: [
+      { icon: "📄", name: "Data API Builder documentation", url: "https://learn.microsoft.com/en-us/azure/data-api-builder/overview-to-data-api-builder", note: "Core DAB reference — read all sections" },
+      { icon: "📄", name: "DAB config file reference", url: "https://learn.microsoft.com/en-us/azure/data-api-builder/reference-configuration", note: "Config file schema — study this carefully" },
+      { icon: "📄", name: "SQL trigger binding (Azure Functions)", url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-azure-sql-trigger", note: "Event-driven SQL patterns" },
+      { icon: "📄", name: "Change data capture overview", url: "https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server", note: "CDC vs Change Tracking comparison" }
+    ],
+    review: [
+      "Sketch a dab-config.json for a table with REST + GraphQL",
+      "CDC vs Change Tracking vs CES — pick the right one for each scenario",
+      "How do you expose a stored procedure as a REST endpoint in DAB?",
+      "What's the difference: GraphQL relationships vs REST pagination?",
+      "Azure Functions SQL trigger — what event types does it support?"
+    ]
+  },
+  {
+    num: "08",
+    title: "Vector Search & Intelligent Search",
+    subtitle: "105 min study + 15 min review",
+    domain: "D3",
+    color: "purple",
+    tags: ["VECTOR type", "ANN vs ENN", "Full-text", "Hybrid Search"],
+    topics: [
+      "VECTOR data type — dimensions, supported operations, VECTORPROPERTY()",
+      "VECTOR_NORMALIZE, VECTOR_DISTANCE (cosine, dot product, Euclidean)",
+      "Vector indexes — DiskANN, IVF flat; ANN vs ENN trade-offs",
+      "Full-text search — CONTAINS, FREETEXT, FREETEXTTABLE, full-text catalogs",
+      "Semantic vector search — VECTOR_SEARCH(), top-K retrieval",
+      "Hybrid search design — combining BM25 + vector scores",
+      "Reciprocal Rank Fusion (RRF) — formula, implementation in T-SQL",
+      "Evaluating search quality — NDCG, MRR, recall@k concepts"
+    ],
+    resources: [
+      { icon: "📄", name: "Vector support in Azure SQL", url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications", note: "Core VECTOR type reference" },
+      { icon: "📄", name: "VECTOR_DISTANCE function", url: "https://learn.microsoft.com/en-us/sql/t-sql/functions/vector-distance-transact-sql", note: "Distance metrics — memorise these" },
+      { icon: "📄", name: "Full-text search in SQL Server", url: "https://learn.microsoft.com/en-us/sql/relational-databases/search/full-text-search", note: "CONTAINS vs FREETEXT distinction" },
+      { icon: "📄", name: "Reciprocal rank fusion explained", url: "https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking", note: "Azure AI Search RRF — apply to SQL hybrid" }
+    ],
+    review: [
+      "ANN vs ENN — when to sacrifice accuracy for speed?",
+      "Write a VECTOR_DISTANCE() query with cosine similarity",
+      "RRF formula: explain what the constant k=60 does",
+      "Full-text: CONTAINS vs FREETEXT — key difference",
+      "Design a hybrid search: what does each component contribute?"
+    ]
+  },
+  {
+    num: "09",
+    title: "Embeddings, External Models & RAG",
+    subtitle: "105 min study + 15 min review",
+    domain: "D3",
+    color: "purple",
+    tags: ["RAG", "Embeddings", "External Models", "sp_invoke"],
+    topics: [
+      "External models — CREATE EXTERNAL MODEL, model types (embedding, chat completion)",
+      "Embedding generation — using external models from SQL, choosing dimensions",
+      "Embedding maintenance strategies — table triggers, Change Tracking, Azure Functions, CDC/CES",
+      "Chunking for embeddings — fixed size, sentence, semantic chunking; overlap",
+      "RAG pattern — retrieval → augmentation → generation flow",
+      "sp_invoke_external_rest_endpoint — syntax, parameters, response handling",
+      "Convert structured SQL results to JSON for LLM context (FOR JSON PATH)",
+      "Extract LLM responses — OPENJSON on returned JSON payload"
+    ],
+    resources: [
+      { icon: "📄", name: "External models in SQL (Fabric)", url: "https://learn.microsoft.com/en-us/fabric/data-warehouse/ai-supported-query", note: "CREATE EXTERNAL MODEL reference" },
+      { icon: "📄", name: "sp_invoke_external_rest_endpoint", url: "https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-invoke-external-rest-endpoint-transact-sql", note: "Study the syntax — exam favourite" },
+      { icon: "📄", name: "RAG with Azure SQL + OpenAI", url: "https://learn.microsoft.com/en-us/samples/azure-samples/azure-sql-db-openai/azure-sql-db-openai/", note: "End-to-end sample on GitHub" },
+      { icon: "📄", name: "FOR JSON in SQL Server", url: "https://learn.microsoft.com/en-us/sql/relational-databases/json/format-query-results-as-json-with-for-json-sql-server", note: "Structuring SQL results as LLM context" }
+    ],
+    review: [
+      "Sketch the 5-step RAG flow using only SQL objects",
+      "sp_invoke_external_rest_endpoint: what are the key parameters?",
+      "Embedding maintenance: triggers vs CDC vs Azure Functions — trade-offs",
+      "Why chunk large documents before embedding?",
+      "FOR JSON PATH vs FOR JSON AUTO — when does each produce the right shape?"
+    ]
+  },
+  {
+    num: "10",
+    title: "AI-Assisted Development & GitHub Copilot + Mock Exam",
+    subtitle: "60 min Copilot/MCP + 45 min mock exam review",
+    domain: "D1+D2+D3",
+    color: "amber",
+    tags: ["GitHub Copilot", "MCP", "Fabric", "Mock Exam"],
+    topics: [
+      "GitHub Copilot in SQL — enabling, instruction files (.github/copilot-instructions.md)",
+      "Copilot in Microsoft Fabric — enable in workspace settings",
+      "MCP server options — Microsoft SQL Server MCP, Fabric Lakehouse MCP endpoint",
+      "Configure model options in Copilot chat — temperature, model selection",
+      "Security considerations — data exfiltration risk, prompt injection awareness",
+      "Securing GraphQL, REST, and MCP endpoints — Managed Identity, API keys",
+      "Full mock exam: 30 scenario questions across all 3 domains",
+      "Identify weak spots → revisit Sessions 4–9 notes"
+    ],
+    resources: [
+      { icon: "📄", name: "GitHub Copilot for SQL", url: "https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot", note: "Copilot setup and instruction files" },
+      { icon: "📄", name: "MCP in Fabric (preview)", url: "https://learn.microsoft.com/en-us/fabric/data-engineering/mcp-overview", note: "Fabric MCP server configuration" },
+      { icon: "📄", name: "DP-800 practice assessment (MS)", url: "https://learn.microsoft.com/en-us/credentials/certifications/exams/dp-800/practice/assessment", note: "Official free practice questions" },
+      { icon: "📄", name: "Exam DP-800 study guide (official)", url: "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800", note: "Re-read skills list before exam day" }
+    ],
+    review: [
+      "Copilot instruction files: what should they contain for SQL projects?",
+      "MCP endpoint: how does SQL Server MCP differ from REST DAB endpoint?",
+      "Security risk of AI tools: what is prompt injection in SQL context?",
+      "Score your mock exam — flag any topic scoring < 70%",
+      "Schedule your real exam within 7 days of completing this plan!"
+    ]
+  }
+];
+
+function colorClass(c) { return `c-${c}`; }
+function bgClass(c) { return `bg-${c}`; }
+function numClass(c) { return `num-${c}`; }
+
+function renderSessions() {
+  const grid = document.getElementById('sessionsGrid');
+  grid.innerHTML = sessions.map((s, i) => `
+    <div class="session-card" id="card-${i}">
+      <div class="session-header" onclick="toggleCard(${i})">
+        <div class="session-num ${bgClass(s.color)} ${numClass(s.color)}">${s.num}</div>
+        <div class="session-meta">
+          <div class="session-title">${s.title}</div>
+          <div class="session-sub">
+            <span class="${colorClass(s.color)}" style="font-family:var(--mono);font-size:11px;">${s.domain}</span>
+            <span>${s.subtitle}</span>
+          </div>
+          <div class="session-tags" style="margin-top:5px;">
+            ${s.tags.map(t => `<span class="stag ${bgClass(s.color)} ${colorClass(s.color)}">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="session-toggle">▶</div>
+      </div>
+      <div class="session-body">
+        <div class="body-grid">
+          <div class="body-section">
+            <h4>Topics Covered</h4>
+            <ul class="topic-list">
+              ${s.topics.map(t => `<li>${t}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="body-section">
+            <h4>Best Resources</h4>
+            <ul class="resource-list">
+              ${s.resources.map(r => `<li>
+                <span class="res-icon">${r.icon}</span>
+                <div class="res-text">
+                  <strong>${r.name}</strong>
+                  <span>${r.note}</span>
+                </div>
+              </li>`).join('')}
+            </ul>
+          </div>
+        </div>
+        <div class="review-box">
+          <h4>15-Minute Session Review</h4>
+          <div class="review-items">
+            ${s.review.map(r => `<div class="review-item">${r}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCard(i) {
+  const card = document.getElementById(`card-${i}`);
+  card.classList.toggle('open');
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`panel-${name}`).classList.add('active');
+  event.target.closest('.tab').classList.add('active');
+}
+
+// Progress tracker
+const completedSessions = new Set();
+function renderTracker() {
+  const tracker = document.getElementById('progressTracker');
+  tracker.innerHTML = sessions.map((s, i) => `
+    <div class="prog-cell ${completedSessions.has(i) ? 'done' : ''}"
+         onclick="toggleProgress(${i})" title="Session ${s.num}: ${s.title}">
+      ${s.num}
+    </div>
+  `).join('');
+  document.getElementById('progCount').textContent = completedSessions.size;
+  document.getElementById('progHours').textContent = completedSessions.size * 2;
+}
+
+function toggleProgress(i) {
+  if (completedSessions.has(i)) completedSessions.delete(i);
+  else completedSessions.add(i);
+  renderTracker();
+}
+
+const checklistItems = [
+  "Completed all 10 study sessions",
+  "Scored 80%+ on the official MS practice assessment",
+  "Can explain RLS, DDM, and Always Encrypted differences without notes",
+  "Know sp_invoke_external_rest_endpoint syntax cold",
+  "Can sketch a full RAG flow using SQL objects",
+  "Understand ANN vs ENN and when to use each",
+  "Know DAB config file structure for REST and GraphQL",
+  "Understand SQL Database Projects CI/CD pipeline end-to-end",
+  "Can identify blocking/deadlock scenarios from symptoms",
+  "Read all 3 domain sections of the official study guide",
+  "Scheduled the exam (momentum is everything!)"
+];
+
+function renderChecklist() {
+  document.getElementById('checklist').innerHTML = checklistItems.map((item, i) => `
+    <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:8px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);transition:background 0.2s;" onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background='var(--surface)'">
+      <input type="checkbox" id="chk-${i}" style="margin-top:3px;accent-color:var(--accent-teal);">
+      <span style="font-size:13px;">${item}</span>
+    </label>
+  `).join('');
+}
+
+renderSessions();
+renderTracker();
+renderChecklist();
+</script>
+</body>
+</html>

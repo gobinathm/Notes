@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DP-800 · Mock Exam Scorecard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);
+  --gb:rgba(255,255,255,0.08);--gbh:rgba(255,255,255,0.14);
+  --text:#e2e8f6;--dim:#8892b0;--muted:#3a4060;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
+  --d1:#4a9eff;--d2:#00d4aa;--d3:#a78bfa;--amber:#fbbf24;--rose:#fb7185;
+  --pass:#4ade80;--fail:#f87171;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 60% 40% at 10% 0%,rgba(74,158,255,0.06) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 90% 100%,rgba(167,139,250,0.05) 0%,transparent 60%);
+  pointer-events:none;z-index:0}
+.masthead{position:sticky;top:0;z-index:100;background:rgba(6,8,16,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gb);padding:12px 36px;display:flex;align-items:center;justify-content:space-between}
+.mast-title{font-size:16px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(135deg,#fff 0%,var(--pass) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mast-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.btn{padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid;transition:all .15s;font-family:var(--sans)}
+.btn-primary{background:rgba(74,158,255,0.12);border-color:rgba(74,158,255,0.3);color:var(--d1)}
+.btn-primary:hover{background:rgba(74,158,255,0.22)}
+.btn-ghost{background:var(--s1);border-color:var(--gb);color:var(--dim)}
+.btn-ghost:hover{background:var(--s2);color:var(--text)}
+.page{position:relative;z-index:1;padding:28px 36px 64px;max-width:1100px;margin:0 auto}
+
+/* SCORE INPUT */
+.score-header{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:24px}
+.score-card{background:var(--s1);border:1px solid var(--gb);border-radius:12px;padding:20px;text-align:center;position:relative;overflow:hidden}
+.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.score-card.d1::before{background:var(--d1)}.score-card.d2::before{background:var(--d2)}.score-card.d3::before{background:var(--d3)}
+.score-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:10px}
+.score-input-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
+.score-input{background:var(--s2);border:1px solid var(--gb);border-radius:8px;
+  color:var(--text);font-family:var(--mono);font-size:28px;font-weight:700;
+  text-align:center;width:80px;padding:8px 0;outline:none;transition:border-color .2s}
+.score-input:focus{border-color:var(--gbh)}
+.score-slash{font-family:var(--mono);font-size:20px;color:var(--muted)}
+.score-total{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--muted)}
+.score-pct{font-size:13px;font-weight:600}
+.score-bar{height:6px;background:var(--muted);border-radius:3px;overflow:hidden;margin-top:6px}
+.score-bar-fill{height:100%;border-radius:3px;transition:width .5s}
+
+/* OVERALL */
+.overall-card{background:var(--s1);border:1px solid var(--gb);border-radius:14px;padding:24px;margin-bottom:24px;
+  display:flex;align-items:center;gap:24px}
+.overall-score{font-family:var(--mono);font-size:64px;font-weight:700;line-height:1;width:160px;text-align:center;flex-shrink:0}
+.overall-info{flex:1}
+.overall-label{font-size:20px;font-weight:700;margin-bottom:6px}
+.overall-sub{font-size:13px;color:var(--dim);margin-bottom:16px}
+.overall-bar{height:8px;background:var(--muted);border-radius:4px;overflow:hidden}
+.overall-bar-fill{height:100%;border-radius:4px;transition:width .6s}
+.pass-mark{position:relative}
+.pass-mark::after{content:'700 pass mark';position:absolute;top:-18px;font-family:var(--mono);font-size:9px;color:var(--amber);white-space:nowrap}
+
+/* TOPIC GRID */
+.section-head{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--dim);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--gb);
+  display:flex;align-items:center;gap:8px}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px}
+.topic-row{background:var(--s1);border:1px solid var(--gb);border-radius:8px;padding:12px 14px;
+  display:flex;align-items:center;gap:12px}
+.topic-status{width:10px;height:10px;border-radius:50%;flex-shrink:0;transition:background .3s}
+.topic-name{flex:1;font-size:12px}
+.topic-score{font-family:var(--mono);font-size:11px;cursor:pointer}
+.topic-input{background:none;border:none;outline:none;font-family:var(--mono);font-size:11px;color:var(--text);width:40px;text-align:right}
+
+/* WEAK AREA PANEL */
+.weak-panel{background:rgba(251,191,36,0.04);border:1px solid rgba(251,191,36,0.18);border-radius:10px;padding:16px;margin-bottom:20px}
+.weak-title{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--amber);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.weak-list{display:flex;flex-direction:column;gap:6px}
+.weak-item{font-size:12px;display:flex;align-items:flex-start;gap:8px;padding:7px 10px;background:rgba(251,191,36,0.04);border-radius:6px}
+.weak-item::before{content:'⚠';flex-shrink:0;margin-top:1px}
+
+/* ATTEMPT HISTORY */
+.history-table{width:100%;border-collapse:collapse;font-size:12px}
+.history-table th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--gb)}
+.history-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.pass-badge{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:8px;font-weight:700}
+.pass-badge.pass{color:var(--pass);background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25)}
+.pass-badge.fail{color:var(--fail);background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.25)}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <div><div class="mast-eye">DP-800 · SQL AI Developer Associate</div><div class="mast-title">Mock Exam Scorecard</div></div>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-ghost" onclick="resetScores()">↺ Reset</button>
+    <button class="btn btn-primary" onclick="saveAttempt()">+ Save Attempt</button>
+  </div>
+</div>
+
+<div class="page">
+  <div style="margin-bottom:24px">
+    <div style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);margin-bottom:6px">Pass Score: 700 / 1000 · Exam Time: 120 min · ~40–60 questions</div>
+  </div>
+
+  <!-- Domain Score Inputs -->
+  <div class="score-header">
+    <div class="score-card d1">
+      <div class="score-label">D1 · Design &amp; Develop (35–40%)</div>
+      <div class="score-input-row">
+        <input class="score-input" type="number" id="d1score" min="0" max="100" value="0" oninput="recalc()">
+        <span class="score-slash">/</span>
+        <span class="score-total">100</span>
+      </div>
+      <div class="score-pct" id="d1pct" style="color:var(--d1)">0%</div>
+      <div class="score-bar"><div class="score-bar-fill" id="d1bar" style="width:0%;background:var(--d1)"></div></div>
+    </div>
+    <div class="score-card d2">
+      <div class="score-label">D2 · Secure, Optimize &amp; Deploy (35–40%)</div>
+      <div class="score-input-row">
+        <input class="score-input" type="number" id="d2score" min="0" max="100" value="0" oninput="recalc()">
+        <span class="score-slash">/</span>
+        <span class="score-total">100</span>
+      </div>
+      <div class="score-pct" id="d2pct" style="color:var(--d2)">0%</div>
+      <div class="score-bar"><div class="score-bar-fill" id="d2bar" style="width:0%;background:var(--d2)"></div></div>
+    </div>
+    <div class="score-card d3">
+      <div class="score-label">D3 · AI Capabilities (25–30%)</div>
+      <div class="score-input-row">
+        <input class="score-input" type="number" id="d3score" min="0" max="100" value="0" oninput="recalc()">
+        <span class="score-slash">/</span>
+        <span class="score-total">100</span>
+      </div>
+      <div class="score-pct" id="d3pct" style="color:var(--d3)">0%</div>
+      <div class="score-bar"><div class="score-bar-fill" id="d3bar" style="width:0%;background:var(--d3)"></div></div>
+    </div>
+  </div>
+
+  <!-- Overall Score -->
+  <div class="overall-card">
+    <div class="overall-score" id="overallScore" style="color:var(--dim)">0</div>
+    <div class="overall-info">
+      <div class="overall-label" id="overallLabel">Enter your scores above</div>
+      <div class="overall-sub" id="overallSub">Weighted: D1 × 37.5% + D2 × 37.5% + D3 × 25%</div>
+      <div style="position:relative;padding-top:20px">
+        <div style="position:absolute;top:0;left:70%;height:100%;border-left:1px dashed rgba(251,191,36,0.4)">
+          <span class="pass-mark" style="position:absolute;top:4px;left:6px;font-family:var(--mono);font-size:9px;color:var(--amber)">700 pass</span>
+        </div>
+        <div class="overall-bar"><div class="overall-bar-fill" id="overallBar" style="width:0%;background:linear-gradient(90deg,var(--d1),var(--d3))"></div></div>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:4px">Verdict</div>
+      <div id="verdict" style="font-size:28px;font-weight:800">—</div>
+    </div>
+  </div>
+
+  <!-- Topic-level tracking -->
+  <div class="section-head"><span>📊</span> Topic-Level Performance Tracking</div>
+  <div class="topic-grid" id="topicGrid"></div>
+
+  <!-- Weak areas -->
+  <div class="weak-panel" id="weakPanel" style="display:none">
+    <div class="weak-title"><span>⚠️</span> Weak Areas — Prioritise These</div>
+    <div class="weak-list" id="weakList"></div>
+  </div>
+
+  <!-- Attempt History -->
+  <div class="section-head"><span>📋</span> Attempt History</div>
+  <table class="history-table">
+    <tr><th>#</th><th>Date</th><th>D1</th><th>D2</th><th>D3</th><th>Overall</th><th>Result</th><th>Notes</th></tr>
+    <tbody id="historyBody"></tbody>
+  </table>
+  <div style="color:var(--muted);font-size:11px;font-family:var(--mono);margin-top:8px">Press "Save Attempt" to log a result · Data stored in localStorage</div>
+</div>
+
+<script>
+const topics = [
+  {id:'cte',name:'CTEs & Window Functions',dom:'d1',session:1},
+  {id:'json',name:'JSON Functions (JSON_VALUE, OPENJSON, FOR JSON)',dom:'d1',session:1},
+  {id:'regex',name:'Regex & Fuzzy Matching',dom:'d1',session:1},
+  {id:'temporal',name:'Temporal Tables',dom:'d1',session:2},
+  {id:'inmem',name:'In-Memory OLTP',dom:'d1',session:2},
+  {id:'colstore',name:'Columnstore Indexes',dom:'d1',session:2},
+  {id:'graph',name:'Graph Tables & MATCH',dom:'d1',session:2},
+  {id:'tvf',name:'Stored Procedures & TVFs',dom:'d1',session:3},
+  {id:'triggers',name:'Triggers (AFTER vs INSTEAD OF)',dom:'d1',session:3},
+  {id:'rls',name:'Row-Level Security (RLS)',dom:'d2',session:4},
+  {id:'ddm',name:'Dynamic Data Masking',dom:'d2',session:4},
+  {id:'ae',name:'Always Encrypted',dom:'d2',session:4},
+  {id:'mi',name:'Managed Identity & Passwordless Auth',dom:'d2',session:4},
+  {id:'qstore',name:'Query Store & Execution Plans',dom:'d2',session:5},
+  {id:'iso',name:'Transaction Isolation Levels',dom:'d2',session:5},
+  {id:'dmv',name:'DMVs & Blocking/Deadlocks',dom:'d2',session:5},
+  {id:'sqlproj',name:'SQL Database Projects & CI/CD',dom:'d2',session:6},
+  {id:'tsqlt',name:'tSQLt Unit Testing',dom:'d2',session:6},
+  {id:'drift',name:'Schema Drift Detection',dom:'d2',session:6},
+  {id:'dab',name:'Data API Builder (DAB)',dom:'d2',session:7},
+  {id:'change',name:'CDC / Change Tracking / CES',dom:'d2',session:7},
+  {id:'azfn',name:'Azure Functions SQL Trigger',dom:'d2',session:7},
+  {id:'vector',name:'VECTOR Data Type & VECTOR_DISTANCE',dom:'d3',session:8},
+  {id:'annenn',name:'ANN vs ENN & DiskANN Index',dom:'d3',session:8},
+  {id:'fts',name:'Full-Text Search (CONTAINS/FREETEXT)',dom:'d3',session:8},
+  {id:'hybrid',name:'Hybrid Search + RRF',dom:'d3',session:8},
+  {id:'embed',name:'Embedding Generation & External Models',dom:'d3',session:9},
+  {id:'chunk',name:'Chunking Strategies',dom:'d3',session:9},
+  {id:'rag',name:'RAG Pattern & sp_invoke',dom:'d3',session:9},
+  {id:'copilot',name:'GitHub Copilot & MCP for SQL',dom:'d2',session:10},
+];
+
+const colMap = {d1:'--d1',d2:'--d2',d3:'--d3'};
+let topicScores = {};
+let attempts = JSON.parse(localStorage.getItem('dp800_attempts') || '[]');
+
+function renderTopics(){
+  const grid = document.getElementById('topicGrid');
+  grid.innerHTML = topics.map(t=>`
+    <div class="topic-row">
+      <div class="topic-status" id="status-${t.id}" style="background:var(--muted)"></div>
+      <div class="topic-name">${t.name}<br><span style="font-size:10px;color:var(--muted);font-family:var(--mono)">S${t.session} · ${t.dom.toUpperCase()}</span></div>
+      <input class="topic-input" type="number" min="0" max="10" placeholder="—" id="topic-${t.id}"
+        oninput="updateTopic('${t.id}',this.value)" style="color:var(${colMap[t.dom]})">
+      <span style="font-family:var(--mono);font-size:10px;color:var(--muted)">/10</span>
+    </div>
+  `).join('');
+}
+
+function updateTopic(id, val){
+  const v = parseFloat(val);
+  topicScores[id] = isNaN(v) ? null : Math.min(10, Math.max(0, v));
+  const status = document.getElementById('status-'+id);
+  if(topicScores[id] === null) status.style.background = 'var(--muted)';
+  else if(topicScores[id] >= 7) status.style.background = 'var(--pass)';
+  else if(topicScores[id] >= 5) status.style.background = 'var(--amber)';
+  else status.style.background = 'var(--fail)';
+  renderWeakAreas();
+}
+
+function renderWeakAreas(){
+  const weak = topics.filter(t=>topicScores[t.id]!==null && topicScores[t.id]!==undefined && topicScores[t.id]<7);
+  const panel = document.getElementById('weakPanel');
+  const list = document.getElementById('weakList');
+  if(!weak.length){panel.style.display='none';return;}
+  panel.style.display='block';
+  const studySessions = {...{1:'CTEs/JSON/Regex',2:'Specialized Tables',3:'Programmability',4:'Security',5:'Performance',6:'CI/CD',7:'DAB/Integration',8:'Vector Search',9:'RAG/Embeddings',10:'AI Tools/Mock'}};
+  list.innerHTML = weak.sort((a,b)=>(topicScores[a.id]||0)-(topicScores[b.id]||0)).map(t=>`
+    <div class="weak-item">
+      <span>${t.name}</span>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--amber);margin-left:auto">${topicScores[t.id]}/10</span>
+      <span style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:8px">→ Revisit Session ${t.session}</span>
+    </div>
+  `).join('');
+}
+
+function recalc(){
+  const d1 = Math.min(100,Math.max(0,parseFloat(document.getElementById('d1score').value)||0));
+  const d2 = Math.min(100,Math.max(0,parseFloat(document.getElementById('d2score').value)||0));
+  const d3 = Math.min(100,Math.max(0,parseFloat(document.getElementById('d3score').value)||0));
+  ['d1','d2','d3'].forEach((d,i)=>{
+    const v=[d1,d2,d3][i];
+    document.getElementById(d+'pct').textContent = v+'%';
+    document.getElementById(d+'bar').style.width = v+'%';
+  });
+  const overall = Math.round(d1*3.75 + d2*3.75 + d3*2.5);
+  document.getElementById('overallScore').textContent = overall;
+  document.getElementById('overallBar').style.width = (overall/10)+'%';
+  const col = overall >= 700 ? 'var(--pass)' : overall >= 600 ? 'var(--amber)' : 'var(--fail)';
+  document.getElementById('overallScore').style.color = col;
+  document.getElementById('verdict').textContent = overall >= 700 ? '✓ PASS' : '✗ FAIL';
+  document.getElementById('verdict').style.color = col;
+  const gap = 700 - overall;
+  document.getElementById('overallLabel').textContent = overall >= 700
+    ? `Passing Score — ${overall - 700} points above threshold`
+    : `${gap} points needed to pass`;
+}
+
+function saveAttempt(){
+  const d1=parseFloat(document.getElementById('d1score').value)||0;
+  const d2=parseFloat(document.getElementById('d2score').value)||0;
+  const d3=parseFloat(document.getElementById('d3score').value)||0;
+  const overall=Math.round(d1*3.75+d2*3.75+d3*2.5);
+  attempts.push({date:new Date().toLocaleDateString('en-CA'),d1,d2,d3,overall,pass:overall>=700});
+  localStorage.setItem('dp800_attempts',JSON.stringify(attempts));
+  renderHistory();
+}
+
+function renderHistory(){
+  const tbody = document.getElementById('historyBody');
+  tbody.innerHTML = attempts.length ? attempts.map((a,i)=>`
+    <tr>
+      <td style="font-family:var(--mono);color:var(--muted)">${i+1}</td>
+      <td style="font-family:var(--mono)">${a.date}</td>
+      <td style="color:var(--d1);font-family:var(--mono)">${a.d1}%</td>
+      <td style="color:var(--d2);font-family:var(--mono)">${a.d2}%</td>
+      <td style="color:var(--d3);font-family:var(--mono)">${a.d3}%</td>
+      <td style="font-family:var(--mono);font-weight:700;color:${a.pass?'var(--pass)':'var(--fail)'}">${a.overall}</td>
+      <td><span class="pass-badge ${a.pass?'pass':'fail'}">${a.pass?'PASS':'FAIL'}</span></td>
+      <td style="color:var(--dim)">${a.pass?'Ready to book!':'Review weak domains'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:20px;font-family:var(--mono)">No attempts saved yet</td></tr>';
+}
+
+function resetScores(){
+  ['d1score','d2score','d3score'].forEach(id=>document.getElementById(id).value=0);
+  recalc();
+}
+
+renderTopics();
+renderHistory();
+</script>
+</body>
+</html>

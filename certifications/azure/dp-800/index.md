@@ -84,6 +84,7 @@ According to the official study guide, DP-800 currently measures three skill are
     },
     { id: 'exam-guide', label: 'Reviewed beta exam guide', link: './exam-guide' },
     { id: 'cheatsheet', label: 'Reviewed quick reference', link: './cheatsheet' },
+    { id: 'visual-cheatsheet', label: 'Reviewed visual study kit', link: './visual-cheatsheet' },
     { id: 'ready', label: 'Ready for exam' }
   ]"
 />
@@ -116,4 +117,4 @@ As of **March 28, 2026**, Microsoft states that the **Practice Assessment is not
 
 ---
 
-[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md) · [Exam Guide →](./exam-guide.md)
+[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md) · [Visual Study Kit →](./visual-cheatsheet.md) · [Exam Guide →](./exam-guide.md)

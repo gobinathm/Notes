@@ -9,7 +9,7 @@ head:
 
 # DP-800: Cheatsheet
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Study Kit →](./visual-cheatsheet.md)
 
 ---
 
@@ -90,4 +90,4 @@ Retrieved data + generated answer -> RAG
 
 ---
 
-[← Overview](./index.md) · [← Exam Guide](./exam-guide.md)
+[← Overview](./index.md) · [← Exam Guide](./exam-guide.md) · [Visual Study Kit →](./visual-cheatsheet.md)

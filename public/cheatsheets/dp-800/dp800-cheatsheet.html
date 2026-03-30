@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DP-800 · 5-Minute Cheat Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.10);
+  --gb:rgba(255,255,255,0.08);--gbh:rgba(255,255,255,0.14);
+  --text:#e2e8f6;--dim:#8892b0;--muted:#3a4060;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
+  --d1:#4a9eff;--d2:#00d4aa;--d3:#a78bfa;--amber:#fbbf24;--rose:#fb7185;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:12px;line-height:1.5;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 60% 40% at 10% 0%,rgba(74,158,255,0.07) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 90% 100%,rgba(167,139,250,0.06) 0%,transparent 60%),
+  radial-gradient(ellipse 40% 50% at 50% 50%,rgba(0,212,170,0.03) 0%,transparent 70%);
+  pointer-events:none;z-index:0}
+
+/* HEADER */
+.masthead{position:sticky;top:0;z-index:100;background:rgba(6,8,16,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gb);padding:12px 36px;display:flex;align-items:center;justify-content:space-between}
+.mast-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.mast-title{font-size:16px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(135deg,#fff 0%,var(--d1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mast-pills{display:flex;gap:8px}
+.mpill{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid;font-weight:500}
+.mpill.d1{color:var(--d1);background:rgba(74,158,255,0.1);border-color:rgba(74,158,255,0.25)}
+.mpill.d2{color:var(--d2);background:rgba(0,212,170,0.1);border-color:rgba(0,212,170,0.25)}
+.mpill.d3{color:var(--d3);background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.25)}
+
+/* LAYOUT */
+.page{position:relative;z-index:1;padding:24px 36px 48px;max-width:1400px;margin:0 auto}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.grid21{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
+.grid12{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:14px}
+.full{margin-bottom:14px}
+
+/* CARDS */
+.card{background:var(--s1);border:1px solid var(--gb);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.d1::before{background:linear-gradient(90deg,var(--d1),transparent)}
+.card.d2::before{background:linear-gradient(90deg,var(--d2),transparent)}
+.card.d3::before{background:linear-gradient(90deg,var(--d3),transparent)}
+.card.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.card.rose::before{background:linear-gradient(90deg,var(--rose),transparent)}
+.card-title{font-size:10px;font-family:var(--mono);font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--dim);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.card-title span{font-size:13px}
+
+/* TABLE */
+.ct{width:100%;border-collapse:collapse;font-size:11px}
+.ct th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--dim);padding:4px 8px;text-align:left;border-bottom:1px solid var(--gb)}
+.ct td{padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top}
+.ct tr:last-child td{border-bottom:none}
+.ct tr:hover td{background:var(--s2)}
+.mono{font-family:var(--mono);font-size:10px;color:var(--d1)}
+.mono.t{color:var(--d2)}
+.mono.p{color:var(--d3)}
+.tag{display:inline-block;font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:8px;border:1px solid;margin:1px}
+.tag.g{color:#4ade80;background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.2)}
+.tag.r{color:var(--rose);background:rgba(251,113,133,0.08);border-color:rgba(251,113,133,0.2)}
+.tag.b{color:var(--d1);background:rgba(74,158,255,0.08);border-color:rgba(74,158,255,0.2)}
+.tag.t{color:var(--d2);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)}
+.tag.p{color:var(--d3);background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2)}
+.tag.a{color:var(--amber);background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.2)}
+
+/* BOXES */
+.boxlist{display:flex;flex-direction:column;gap:5px}
+.box{background:var(--s2);border:1px solid var(--gb);border-radius:6px;padding:7px 10px;font-size:11px}
+.box strong{display:block;font-size:11px;font-weight:600;margin-bottom:1px}
+.box span{color:var(--dim);font-size:10px}
+.kv{display:flex;gap:8px;align-items:baseline;margin-bottom:3px}
+.kv .k{font-family:var(--mono);font-size:10px;color:var(--d1);flex-shrink:0;min-width:140px}
+.kv .v{font-size:11px;color:var(--text)}
+.kv.t .k{color:var(--d2)}
+.kv.p .k{color:var(--d3)}
+.kv.a .k{color:var(--amber)}
+
+/* FLOW */
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0}
+.fstep{background:var(--s3);border:1px solid var(--gbh);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+.farr{color:var(--dim);font-size:14px}
+.fstep.d1{border-color:rgba(74,158,255,0.3);color:var(--d1)}
+.fstep.d2{border-color:rgba(0,212,170,0.3);color:var(--d2)}
+.fstep.d3{border-color:rgba(167,139,250,0.3);color:var(--d3)}
+.fstep.a{border-color:rgba(251,191,36,0.3);color:var(--amber)}
+
+/* COMPARISON */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vs-col{background:var(--s2);border-radius:6px;padding:8px 10px}
+.vs-head{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:600}
+.vs-item{font-size:11px;padding:2px 0;color:var(--dim);display:flex;gap:6px}
+.vs-item::before{content:'▸';flex-shrink:0;font-size:9px;margin-top:3px}
+
+/* CODE BLOCK */
+.codeblock{background:#0d1117;border:1px solid var(--gb);border-radius:6px;
+  padding:10px 12px;font-family:var(--mono);font-size:10px;line-height:1.6;overflow-x:auto;margin:6px 0}
+.kw{color:#ff7b72}.fn{color:#79c0ff}.str{color:#a5d6ff}.cm{color:#8b949e}.op{color:#d2a8ff}
+
+/* DOMAIN BADGES */
+.dom-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;
+  font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:2px 8px;border-radius:12px;border:1px solid}
+.dom-badge.d1{color:var(--d1);background:rgba(74,158,255,0.1);border-color:rgba(74,158,255,0.25)}
+.dom-badge.d2{color:var(--d2);background:rgba(0,212,170,0.1);border-color:rgba(0,212,170,0.25)}
+.dom-badge.d3{color:var(--d3);background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.25)}
+
+/* SCORE BAR */
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+.score-label{font-size:11px;min-width:180px;flex-shrink:0}
+.score-track{flex:1;height:6px;background:var(--muted);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px}
+.score-pct{font-family:var(--mono);font-size:10px;min-width:40px;text-align:right}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div>
+    <div class="mast-eyebrow">Microsoft Certification · SQL AI Developer Associate</div>
+    <div class="mast-title">DP-800 · 5-Minute Cheat Sheet</div>
+  </div>
+  <div class="mast-pills">
+    <span class="mpill d1">D1 · Design &amp; Develop 35–40%</span>
+    <span class="mpill d2">D2 · Secure, Optimize &amp; Deploy 35–40%</span>
+    <span class="mpill d3">D3 · AI Capabilities 25–30%</span>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ROW 1 -->
+<div class="grid3">
+
+  <!-- D1: T-SQL Power Features -->
+  <div class="card d1">
+    <div class="card-title"><span>📝</span> D1 · T-SQL Power Features</div>
+    <table class="ct">
+      <tr><th>Feature</th><th>Key Syntax / Pattern</th><th>When</th></tr>
+      <tr><td><strong>CTE</strong></td><td><span class="mono">WITH cte AS (SELECT …) SELECT …</span></td><td>Recursive hierarchies, readability</td></tr>
+      <tr><td><strong>Window</strong></td><td><span class="mono">ROW_NUMBER() OVER (PARTITION BY … ORDER BY …)</span></td><td>Ranking, running totals, lag/lead</td></tr>
+      <tr><td><strong>JSON</strong></td><td><span class="mono">JSON_VALUE / OPENJSON / FOR JSON PATH</span></td><td>Semi-structured data, LLM payloads</td></tr>
+      <tr><td><strong>REGEXP</strong></td><td><span class="mono">REGEXP_LIKE(col, pattern)</span></td><td>Pattern matching (Fabric SQL)</td></tr>
+      <tr><td><strong>Fuzzy</strong></td><td><span class="mono">EDIT_DISTANCE(a, b)</span></td><td>Typo tolerance, similarity search</td></tr>
+      <tr><td><strong>Graph</strong></td><td><span class="mono">MATCH (node1-(edge)->node2)</span></td><td>Social, recommendation graphs</td></tr>
+      <tr><td><strong>Error</strong></td><td><span class="mono">BEGIN TRY … END TRY BEGIN CATCH THROW END CATCH</span></td><td>Stored procedures, RAG callers</td></tr>
+    </table>
+  </div>
+
+  <!-- D1: Specialized Tables -->
+  <div class="card d1">
+    <div class="card-title"><span>🗄️</span> D1 · Specialized Table Types</div>
+    <div class="boxlist">
+      <div class="box"><strong>Temporal Table</strong><span>SYSTEM_TIME history. FOR SYSTEM_TIME AS OF '2024-01-01'. Point-in-time queries. Separate history table auto-managed.</span></div>
+      <div class="box"><strong>In-Memory OLTP</strong><span>MEMORY_OPTIMIZED=ON. No locks — version-based concurrency. Natively compiled SPs. Best for high-throughput OLTP.</span></div>
+      <div class="box"><strong>Columnstore Index</strong><span>Clustered (replaces row store) vs Non-clustered. Delta store → compressed. Best for analytics / aggregations on large tables.</span></div>
+      <div class="box"><strong>Ledger Table</strong><span>Append-only or updatable. Cryptographic hash chain. Tamper-evident audit trail.</span></div>
+      <div class="box"><strong>Graph Table</strong><span>NODE table (entities) + EDGE table (relationships). MATCH clause for pattern traversal. SHORTEST_PATH for path queries.</span></div>
+      <div class="box"><strong>External Table</strong><span>PolyBase / Fabric. Reads from blob, ADLS, or other DB. No data moved. Push-down filtering.</span></div>
+    </div>
+  </div>
+
+  <!-- D1: Programmability -->
+  <div class="card d1">
+    <div class="card-title"><span>⚙️</span> D1 · Programmability Objects</div>
+    <table class="ct">
+      <tr><th>Object</th><th>Key Facts</th></tr>
+      <tr><td><strong>View</strong></td><td>WITH SCHEMABINDING for indexed views. Updatable if single-table, no aggregates. NOT WITH CHECK OPTION trap.</td></tr>
+      <tr><td><strong>Inline TVF</strong></td><td>Returns table, single SELECT. Optimised like a view — prefer over multi-statement TVF.</td></tr>
+      <tr><td><strong>Multi-stmt TVF</strong></td><td>Uses table variable. Optimizer can't see row count — cardinality issues. Avoid if performance matters.</td></tr>
+      <tr><td><strong>Scalar UDF</strong></td><td>Inhibits parallelism. Use inline TVF or computed column instead where possible.</td></tr>
+      <tr><td><strong>Stored Proc</strong></td><td>Input/output params. sp_executesql for parameterized dynamic SQL. Core RAG executor.</td></tr>
+      <tr><td><strong>AFTER Trigger</strong></td><td>Fires after DML. Uses inserted/deleted pseudo-tables. Good for audit, embedding update.</td></tr>
+      <tr><td><strong>INSTEAD OF</strong></td><td>Replaces DML. Needed for views. Risky — easy to break insert logic.</td></tr>
+      <tr><td><strong>SEQUENCE</strong></td><td>NEXT VALUE FOR seq. Can gap-skip on rollback. Useful across tables (unlike IDENTITY).</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ROW 2 -->
+<div class="grid3">
+
+  <!-- D2: Security -->
+  <div class="card d2">
+    <div class="card-title"><span>🔒</span> D2 · Security Quick Reference</div>
+    <table class="ct">
+      <tr><th>Feature</th><th>Syntax / Config</th><th>Notes</th></tr>
+      <tr><td><strong>RLS</strong></td><td><span class="mono t">CREATE SECURITY POLICY</span><br><span class="mono t">FILTER PREDICATE fn(col)</span></td><td>FILTER = SELECT. BLOCK = DML. Inline TVF predicate is mandatory.</td></tr>
+      <tr><td><strong>DDM</strong></td><td><span class="mono t">MASKED WITH (FUNCTION='default()')</span></td><td>DEFAULT/EMAIL/PARTIAL/CUSTOM. UNMASK permission bypasses. Not encryption — app-layer only.</td></tr>
+      <tr><td><strong>Always Encrypted</strong></td><td>CMK (stored in Key Vault) → CEK → Column</td><td>Deterministic = can filter/join. Randomized = more secure, no search. Driver-side encryption.</td></tr>
+      <tr><td><strong>Column Encryption</strong></td><td><span class="mono t">ENCRYPTBYKEY / DECRYPTBYKEY</span></td><td>Symmetric key. Server-side. Weaker than Always Encrypted.</td></tr>
+      <tr><td><strong>RLS Predicate</strong></td><td><span class="mono t">CREATE FUNCTION … RETURNS TABLE WITH (NOEXPAND)</span></td><td>Must use SCHEMABINDING. One policy per table max.</td></tr>
+      <tr><td><strong>Passwordless</strong></td><td>Managed Identity → Azure AD token</td><td>No password in connection string. System-assigned vs user-assigned MI.</td></tr>
+      <tr><td><strong>Auditing</strong></td><td>Server-level &gt; DB-level. Destinations: Blob, Log Analytics, Event Hub.</td><td>Action groups: SUCCESSFUL_DATABASE_AUTHENTICATION_GROUP etc.</td></tr>
+    </table>
+  </div>
+
+  <!-- D2: Performance -->
+  <div class="card d2">
+    <div class="card-title"><span>⚡</span> D2 · Query Performance Toolkit</div>
+    <div class="boxlist">
+      <div class="box"><strong>Execution Plan Red Flags</strong><span>Key Lookup → add covering index. Sort operator → add ORDER BY to index. Clustered Index Scan on large table → check WHERE clause selectivity. Nested Loops on large sets → index or join hint.</span></div>
+      <div class="box"><strong>Query Store Workflow</strong><span>Regressed Queries → find plan change → Force Plan. Top Resource Consumers → spot recurring expensive queries. Query Performance Insight (Azure) → cloud UI overlay.</span></div>
+      <div class="box"><strong>Top DMVs</strong><span class="mono" style="font-size:10px;line-height:1.8">sys.dm_exec_query_stats → CPU/reads per query<br>sys.dm_exec_requests → active sessions<br>sys.dm_os_wait_stats → bottleneck type<br>sys.dm_exec_query_plan → XML plan</span></div>
+      <div class="box"><strong>Isolation Levels (low → high lock)</strong><span>READ UNCOMMITTED → READ COMMITTED → REPEATABLE READ → SERIALIZABLE → SNAPSHOT (optimistic, no locks on reads)</span></div>
+      <div class="box"><strong>Blocking / Deadlock</strong><span>Deadlock = circular wait. Graph in Event Session / Extended Events. Resolution: retry logic, lock timeout, index to reduce hold time. RCSI eliminates most read blocks.</span></div>
+    </div>
+  </div>
+
+  <!-- D2: CI/CD -->
+  <div class="card d2">
+    <div class="card-title"><span>🔄</span> D2 · SQL DB Projects &amp; CI/CD</div>
+    <div class="kv d2"><span class="k t">.sqlproj (SDK-style)</span><span class="v">MSBuild project. Declares SQL objects. No scripts — declarative model.</span></div>
+    <div class="kv d2"><span class="k t">dacpac</span><span class="v">Compiled artifact. Contains schema snapshot. Input to SqlPackage.</span></div>
+    <div class="kv d2"><span class="k t">publish profile (.publish.xml)</span><span class="v">Target server, auth, deployment options (IgnorePermissions etc.)</span></div>
+    <div class="kv d2"><span class="k t">Schema Drift</span><span class="v">SqlPackage /Action:Report compares dacpac → target. Returns drift XML.</span></div>
+    <div class="kv d2"><span class="k t">tSQLt</span><span class="v">Unit test framework. FakeTable, AssertEquals, ExpectException. Runs in SQL.</span></div>
+    <div style="margin-top:10px">
+      <div class="card-title" style="margin-bottom:6px"><span>🔁</span> Pipeline Stages</div>
+      <div class="flow">
+        <div class="fstep d2">PR → Branch Policy</div><span class="farr">→</span>
+        <div class="fstep d2">Build dacpac</div><span class="farr">→</span>
+        <div class="fstep d2">Unit Tests (tSQLt)</div><span class="farr">→</span>
+        <div class="fstep d2">Schema Drift Report</div><span class="farr">→</span>
+        <div class="fstep d2">Deploy to Staging</div><span class="farr">→</span>
+        <div class="fstep d2">Approval Gate</div><span class="farr">→</span>
+        <div class="fstep d2">Prod</div>
+      </div>
+    </div>
+    <div style="margin-top:8px">
+      <div class="kv d2"><span class="k t">Secrets Management</span><span class="v">Azure Key Vault → pipeline variable injection. Never hardcode in .sqlproj.</span></div>
+      <div class="kv d2"><span class="k t">Code Owners</span><span class="v">CODEOWNERS file. Protects main/prod branches. Enforces PR review by owner.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 3 -->
+<div class="grid3">
+
+  <!-- D2: DAB -->
+  <div class="card d2">
+    <div class="card-title"><span>🌐</span> D2 · Data API Builder (DAB)</div>
+    <div class="codeblock"><span class="cm">// dab-config.json skeleton</span>
+<span class="op">{</span>
+  <span class="str">"data-source"</span>: <span class="op">{</span> <span class="str">"database-type"</span>: <span class="str">"mssql"</span>, <span class="str">"connection-string"</span>: <span class="str">"@env('CONN')"</span> <span class="op">}</span>,
+  <span class="str">"entities"</span>: <span class="op">{</span>
+    <span class="str">"Product"</span>: <span class="op">{</span>
+      <span class="str">"source"</span>: <span class="str">"dbo.Products"</span>,
+      <span class="str">"permissions"</span>: <span class="op">[{</span><span class="str">"role"</span>:<span class="str">"authenticated"</span>,<span class="str">"actions"</span>:[<span class="str">"read"</span>]<span class="op">}]</span>,
+      <span class="str">"rest"</span>: <span class="op">{</span> <span class="str">"enabled"</span>: <span class="kw">true</span>, <span class="str">"path"</span>: <span class="str">"/products"</span> <span class="op">}</span>,
+      <span class="str">"graphql"</span>: <span class="op">{</span> <span class="str">"enabled"</span>: <span class="kw">true</span>, <span class="str">"type"</span>: <span class="str">"Product"</span> <span class="op">}</span>
+    <span class="op">}</span>
+  <span class="op">}</span>
+<span class="op">}</span></div>
+    <table class="ct" style="margin-top:6px">
+      <tr><th>Config Key</th><th>Purpose</th></tr>
+      <tr><td><span class="mono t">rest.path</span></td><td>URL path override. Default = entity name.</td></tr>
+      <tr><td><span class="mono t">graphql.type</span></td><td>GraphQL type name. Enables relationships.</td></tr>
+      <tr><td><span class="mono t">permissions.role</span></td><td>anonymous | authenticated | custom role</td></tr>
+      <tr><td><span class="mono t">source.type = stored-procedure</span></td><td>Expose SP as REST/GraphQL endpoint</td></tr>
+      <tr><td><span class="mono t">cache.enabled = true</span></td><td>In-memory cache, TTL configurable</td></tr>
+      <tr><td><span class="mono t">pagination.$limit</span></td><td>Max page size. Use $after cursor for keyset.</td></tr>
+    </table>
+  </div>
+
+  <!-- D2: Change Tracking & Events -->
+  <div class="card d2">
+    <div class="card-title"><span>📡</span> D2 · Change Detection &amp; Integration</div>
+    <table class="ct">
+      <tr><th>Method</th><th>Granularity</th><th>Best For</th><th>Overhead</th></tr>
+      <tr><td><strong>Change Tracking</strong></td><td>Row (changed/deleted flag)</td><td>Sync, lightweight embedding triggers</td><td><tag class="g">Low</tag></td></tr>
+      <tr><td><strong>CDC</strong></td><td>Row + before/after column values</td><td>Audit, ETL, embedding pipelines</td><td><tag class="a">Medium</tag></td></tr>
+      <tr><td><strong>CES</strong></td><td>Real-time event stream</td><td>Streaming analytics, event-driven AI</td><td><tag class="r">Higher</tag></td></tr>
+      <tr><td><strong>Az Functions SQL Trigger</strong></td><td>Row-level, event-driven</td><td>Serverless embedding refresh on change</td><td><tag class="g">Low</tag></td></tr>
+      <tr><td><strong>Logic Apps</strong></td><td>Connector-based polling</td><td>Low-code integration pipelines</td><td><tag class="a">Medium</tag></td></tr>
+    </table>
+    <div style="margin-top:10px">
+      <div class="card-title" style="margin-bottom:5px"><span>📊</span> Azure Monitor Targets</div>
+      <div class="kv d2"><span class="k t">Application Insights</span><span class="v">DAB &amp; app-layer telemetry. Request traces, dependency calls, exceptions.</span></div>
+      <div class="kv d2"><span class="k t">Log Analytics Workspace</span><span class="v">SQL audit logs, diagnostics. KQL queries across resources.</span></div>
+      <div class="kv d2"><span class="k t">SQL Insights</span><span class="v">DMV-based monitoring. CPU, blocking, wait stats time series.</span></div>
+    </div>
+  </div>
+
+  <!-- D3: Vector & Embeddings -->
+  <div class="card d3">
+    <div class="card-title"><span>🧮</span> D3 · Vector Data &amp; Embeddings</div>
+    <div class="codeblock"><span class="cm">-- Declare vector column (up to 1998 dims)</span>
+<span class="kw">CREATE TABLE</span> docs <span class="op">(</span>
+  id <span class="fn">INT</span>, content <span class="fn">NVARCHAR(MAX)</span>,
+  embedding <span class="fn">VECTOR</span><span class="op">(</span><span class="str">1536</span><span class="op">)</span>   <span class="cm">-- text-embedding-3-small dims</span>
+<span class="op">)</span>;
+<span class="cm">-- Cosine similarity search</span>
+<span class="kw">SELECT TOP</span> <span class="str">5</span> id, content,
+  <span class="fn">VECTOR_DISTANCE</span><span class="op">(</span><span class="str">'cosine'</span>, embedding, <span class="op">@</span>queryVec<span class="op">)</span> <span class="kw">AS</span> dist
+<span class="kw">FROM</span> docs <span class="kw">ORDER BY</span> dist;</div>
+    <table class="ct" style="margin-top:6px">
+      <tr><th>Function</th><th>Purpose</th></tr>
+      <tr><td><span class="mono p">VECTOR_DISTANCE(metric, v1, v2)</span></td><td>cosine | dot_product | euclidean</td></tr>
+      <tr><td><span class="mono p">VECTOR_NORMALIZE(v)</span></td><td>Unit vector — required before dot product</td></tr>
+      <tr><td><span class="mono p">VECTORPROPERTY(col, 'Dimensions')</span></td><td>Returns dimension count of a VECTOR column</td></tr>
+      <tr><td><span class="mono p">VECTOR_SEARCH()</span></td><td>ANN top-K via index (DiskANN). Fast at scale.</td></tr>
+    </table>
+    <div style="margin-top:8px">
+    <div class="vs">
+      <div class="vs-col"><div class="vs-head" style="color:var(--d3)">ANN (Approximate)</div>
+        <div class="vs-item">Uses vector index (DiskANN)</div>
+        <div class="vs-item">Fast — O(log n)</div>
+        <div class="vs-item">May miss some matches</div>
+        <div class="vs-item">Production scale</div>
+      </div>
+      <div class="vs-col"><div class="vs-head" style="color:var(--rose)">ENN (Exact)</div>
+        <div class="vs-item">Full table scan</div>
+        <div class="vs-item">Slow — O(n)</div>
+        <div class="vs-item">100% recall</div>
+        <div class="vs-item">Small datasets / testing</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 4 -->
+<div class="grid3">
+
+  <!-- D3: Intelligent Search -->
+  <div class="card d3">
+    <div class="card-title"><span>🔍</span> D3 · Intelligent Search Strategies</div>
+    <table class="ct">
+      <tr><th>Type</th><th>Mechanism</th><th>Use When</th></tr>
+      <tr><td><strong>Full-Text</strong></td><td>BM25 TF-IDF scoring. CONTAINS / FREETEXT / FREETEXTTABLE. Requires full-text index.</td><td>Keyword search, exact phrase matching, stemming</td></tr>
+      <tr><td><strong>Semantic Vector</strong></td><td>VECTOR_DISTANCE on embeddings. Meaning-based retrieval.</td><td>Conceptual match, multilingual, paraphrase detection</td></tr>
+      <tr><td><strong>Hybrid Search</strong></td><td>Full-text score + vector score merged via RRF.</td><td>Best of both — production RAG retrieval</td></tr>
+    </table>
+    <div style="margin-top:10px">
+      <div class="card-title" style="margin-bottom:5px"><span>🎯</span> Reciprocal Rank Fusion (RRF)</div>
+      <div class="codeblock"><span class="cm">-- RRF score formula</span>
+score = <span class="str">1</span> / <span class="op">(</span>k + rank_in_list<span class="op">)</span>   <span class="cm">-- k=60 (constant to smooth outliers)</span>
+<span class="cm">-- Combine: full_text_score + vector_score</span>
+<span class="cm">-- ORDER BY combined_rrf_score DESC</span></div>
+      <div style="font-size:11px;color:var(--dim);margin-top:4px">k=60 prevents top-rank results from dominating. Higher k = more uniform distribution.</div>
+    </div>
+    <div style="margin-top:8px">
+      <div class="kv p"><span class="k">CONTAINS(col, 'term')</span><span class="v">Exact / inflectional / thesaurus / proximity</span></div>
+      <div class="kv p"><span class="k">FREETEXT(col, 'phrase')</span><span class="v">NLP tokenization — more forgiving than CONTAINS</span></div>
+      <div class="kv p"><span class="k">FREETEXTTABLE</span><span class="v">Returns RANK score — joinable for RRF hybrid</span></div>
+    </div>
+  </div>
+
+  <!-- D3: External Models & Embeddings -->
+  <div class="card d3">
+    <div class="card-title"><span>🤖</span> D3 · External Models &amp; Embedding Maintenance</div>
+    <div class="codeblock"><span class="cm">-- Create external model (Fabric SQL)</span>
+<span class="kw">CREATE EXTERNAL MODEL</span> myEmbedModel
+  <span class="kw">WITH</span> <span class="op">(</span>LOCATION = <span class="str">'https://…/openai'</span>,
+        CREDENTIAL = oaiCred,
+        TASK = <span class="str">'EMBEDDINGS'</span>,
+        MODEL = <span class="str">'text-embedding-3-small'</span><span class="op">)</span>;</div>
+    <table class="ct" style="margin-top:6px">
+      <tr><th>Maintenance Method</th><th>Trade-off</th></tr>
+      <tr><td><strong>AFTER INSERT/UPDATE Trigger</strong></td><td>Synchronous — blocks write. Simple. Risk: trigger failure = write failure.</td></tr>
+      <tr><td><strong>Change Tracking + batch job</strong></td><td>Asynchronous — no write overhead. Slight lag. Good for bulk tables.</td></tr>
+      <tr><td><strong>CDC + Azure Function</strong></td><td>Event-driven. Near real-time. Serverless scale. Recommended for prod.</td></tr>
+      <tr><td><strong>CES</strong></td><td>Streaming. Lowest latency. Most complex to manage.</td></tr>
+    </table>
+    <div style="margin-top:8px">
+      <div class="card-title" style="margin-bottom:5px"><span>🗂️</span> Chunking Strategies</div>
+      <div class="kv p"><span class="k">Fixed-size</span><span class="v">Simple. Risk: breaks mid-sentence. Use overlap (10–15%).</span></div>
+      <div class="kv p"><span class="k">Sentence</span><span class="v">NLP sentence boundaries. Better semantic units.</span></div>
+      <div class="kv p"><span class="k">Semantic</span><span class="v">Topic-based splits. Best quality. Most complex.</span></div>
+      <div class="kv p"><span class="k">Include which cols?</span><span class="v">Content cols + context cols (category, date). Exclude IDs, foreign keys.</span></div>
+    </div>
+  </div>
+
+  <!-- D3: RAG Pipeline -->
+  <div class="card d3">
+    <div class="card-title"><span>⚡</span> D3 · RAG Pattern in SQL</div>
+    <div class="flow" style="margin-bottom:10px">
+      <div class="fstep d3">User Query</div><span class="farr">→</span>
+      <div class="fstep d3">Embed Query</div><span class="farr">→</span>
+      <div class="fstep d3">Hybrid Search</div><span class="farr">→</span>
+      <div class="fstep d3">RRF Rank</div><span class="farr">→</span>
+      <div class="fstep a">Build Prompt (FOR JSON)</div><span class="farr">→</span>
+      <div class="fstep a">sp_invoke LLM</div><span class="farr">→</span>
+      <div class="fstep a">OPENJSON Response</div>
+    </div>
+    <div class="codeblock"><span class="cm">-- Core RAG stored procedure pattern</span>
+<span class="kw">EXEC</span> <span class="fn">sp_invoke_external_rest_endpoint</span>
+  <span class="op">@url</span> = <span class="str">N'https://&lt;openai&gt;/chat/completions'</span>,
+  <span class="op">@method</span> = <span class="str">N'POST'</span>,
+  <span class="op">@credential</span> = <span class="op">[</span>myCredential<span class="op">]</span>,
+  <span class="op">@payload</span> = <span class="op">@</span>jsonPayload,   <span class="cm">-- built via FOR JSON PATH</span>
+  <span class="op">@response</span> = <span class="op">@</span>result <span class="kw">OUTPUT</span>;
+
+<span class="cm">-- Extract answer from response</span>
+<span class="kw">SELECT</span> <span class="fn">JSON_VALUE</span><span class="op">(@</span>result, <span class="str">'$.result.choices[0].message.content'</span><span class="op">)</span>;</div>
+    <div style="margin-top:8px">
+      <div class="kv a"><span class="k">FOR JSON PATH</span><span class="v">Converts SQL rows → JSON context for LLM prompt</span></div>
+      <div class="kv a"><span class="k">FOR JSON AUTO</span><span class="v">Auto-infers structure — less control, quick prototype</span></div>
+      <div class="kv a"><span class="k">OPENJSON(@resp,'$.choices')</span><span class="v">Parse LLM response array back to rows</span></div>
+      <div class="kv a"><span class="k">@credential</span><span class="v">DATABASE SCOPED CREDENTIAL — stores API key securely</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 5: Scenario Quick-Decide -->
+<div class="full">
+  <div class="card amber">
+    <div class="card-title"><span>🎯</span> Scenario Speed-Decide · Exam Pattern Recognition</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+      <div>
+        <div style="font-size:10px;font-family:var(--mono);color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Security Scenarios</div>
+        <div class="boxlist">
+          <div class="box"><strong>"Users see only their own rows"</strong><span>→ Row-Level Security (RLS) with FILTER predicate</span></div>
+          <div class="box"><strong>"Hide last 4 digits of SSN"</strong><span>→ Dynamic Data Masking, PARTIAL function</span></div>
+          <div class="box"><strong>"Encrypt SSN — app must query it"</strong><span>→ Always Encrypted DETERMINISTIC (allows equality filter)</span></div>
+          <div class="box"><strong>"Encrypt but no search needed"</strong><span>→ Always Encrypted RANDOMIZED (stronger)</span></div>
+          <div class="box"><strong>"No passwords in code"</strong><span>→ Managed Identity + Azure AD authentication</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-family:var(--mono);color:var(--d2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Performance Scenarios</div>
+        <div class="boxlist">
+          <div class="box"><strong>"Slow aggregation on 500M rows"</strong><span>→ Add clustered columnstore index</span></div>
+          <div class="box"><strong>"Query plan regressed after stats update"</strong><span>→ Query Store → Force previous plan</span></div>
+          <div class="box"><strong>"Readers blocking writers"</strong><span>→ Enable RCSI (READ_COMMITTED_SNAPSHOT)</span></div>
+          <div class="box"><strong>"Need point-in-time data audit"</strong><span>→ Temporal table + FOR SYSTEM_TIME AS OF</span></div>
+          <div class="box"><strong>"Deadlock on two tables"</strong><span>→ Enforce consistent lock order + add index</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-family:var(--mono);color:var(--d3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">AI / Search Scenarios</div>
+        <div class="boxlist">
+          <div class="box"><strong>"Find semantically similar documents"</strong><span>→ VECTOR_DISTANCE cosine on embedding column</span></div>
+          <div class="box"><strong>"Best search across keyword + meaning"</strong><span>→ Hybrid search + RRF ranking</span></div>
+          <div class="box"><strong>"Generate answer from DB content"</strong><span>→ RAG: hybrid search → FOR JSON → sp_invoke → OPENJSON</span></div>
+          <div class="box"><strong>"Embeddings must stay current"</strong><span>→ Azure Function SQL trigger (CDC-based, async)</span></div>
+          <div class="box"><strong>"100% recall needed on small set"</strong><span>→ ENN (exact). Large set → ANN + DiskANN index</span></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-family:var(--mono);color:var(--d1);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Deployment / Integration</div>
+        <div class="boxlist">
+          <div class="box"><strong>"Expose table as REST + GraphQL"</strong><span>→ Data API Builder (DAB) with entity config</span></div>
+          <div class="box"><strong>"DB schema out of sync with code"</strong><span>→ SQL DB Projects + SqlPackage schema drift report</span></div>
+          <div class="box"><strong>"Real-time row change triggers AI update"</strong><span>→ Azure Functions SQL trigger binding</span></div>
+          <div class="box"><strong>"Need Copilot to understand SQL conventions"</strong><span>→ .github/copilot-instructions.md instruction file</span></div>
+          <div class="box"><strong>"GraphQL endpoint must use Managed Identity"</strong><span>→ DAB + Managed Identity auth, no API key</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>

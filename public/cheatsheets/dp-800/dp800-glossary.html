@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DP-800 · Glossary</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);
+  --gb:rgba(255,255,255,0.08);--gbh:rgba(255,255,255,0.14);
+  --text:#e2e8f6;--dim:#8892b0;--muted:#3a4060;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
+  --d1:#4a9eff;--d2:#00d4aa;--d3:#a78bfa;--amber:#fbbf24;--rose:#fb7185;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.5;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 60% 40% at 10% 0%,rgba(74,158,255,0.06) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 90% 100%,rgba(167,139,250,0.05) 0%,transparent 60%);
+  pointer-events:none;z-index:0}
+.masthead{position:sticky;top:0;z-index:100;background:rgba(6,8,16,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gb);padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mast-title{font-size:16px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(135deg,#fff 0%,var(--d2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mast-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid var(--gb);border-radius:8px;padding:6px 14px;flex:1;max-width:360px}
+.search-box input{background:none;border:none;outline:none;color:var(--text);font-family:var(--sans);font-size:13px;width:100%}
+.search-box input::placeholder{color:var(--muted)}
+.filter-pills{display:flex;gap:6px;flex-wrap:wrap}
+.fpill{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:16px;border:1px solid var(--gb);
+  color:var(--dim);cursor:pointer;transition:all .15s;background:var(--s1)}
+.fpill:hover,.fpill.active{color:var(--text);background:var(--s2);border-color:var(--gbh)}
+.fpill.d1.active{color:var(--d1);background:rgba(74,158,255,0.1);border-color:rgba(74,158,255,0.3)}
+.fpill.d2.active{color:var(--d2);background:rgba(0,212,170,0.1);border-color:rgba(0,212,170,0.3)}
+.fpill.d3.active{color:var(--d3);background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.3)}
+.page{position:relative;z-index:1;padding:24px 36px 48px;max-width:1200px;margin:0 auto}
+.stats-bar{display:flex;gap:20px;margin-bottom:24px;padding:12px 20px;background:var(--s1);border:1px solid var(--gb);border-radius:8px}
+.sstat{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.sstat span{color:var(--text);font-weight:600;font-size:14px;margin-right:4px}
+.section{margin-bottom:32px}
+.section-head{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--dim);border-bottom:1px solid var(--gb);padding-bottom:8px;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px}
+.section-head span{font-size:13px}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px}
+.gterm{background:var(--s1);border:1px solid var(--gb);border-radius:8px;padding:12px 14px;
+  transition:border-color .15s,background .15s;position:relative;overflow:hidden}
+.gterm:hover{border-color:var(--gbh);background:var(--s2)}
+.gterm::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.gterm.d1::before{background:var(--d1)}.gterm.d2::before{background:var(--d2)}.gterm.d3::before{background:var(--d3)}
+.gterm.amber::before{background:var(--amber)}.gterm.rose::before{background:var(--rose)}
+.gterm-name{font-size:13px;font-weight:700;margin-bottom:4px}
+.gterm-body{font-size:12px;color:var(--dim);line-height:1.5}
+.gterm-badge{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:9px;
+  padding:2px 7px;border-radius:10px;border:1px solid;font-weight:600}
+.badge-d1{color:var(--d1);background:rgba(74,158,255,0.08);border-color:rgba(74,158,255,0.2)}
+.badge-d2{color:var(--d2);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)}
+.badge-d3{color:var(--d3);background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2)}
+.badge-all{color:var(--amber);background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.2)}
+.mono{font-family:var(--mono);font-size:11px;color:var(--d1)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <div><div class="mast-eye">DP-800 · SQL AI Developer Associate</div><div class="mast-title">Glossary · 120 Terms</div></div>
+  <div class="search-box"><span style="color:var(--dim)">⌕</span><input type="text" id="searchInput" placeholder="Search terms…" oninput="filterTerms()"></div>
+  <div class="filter-pills">
+    <span class="fpill active" onclick="setFilter('all',this)">All</span>
+    <span class="fpill d1" onclick="setFilter('d1',this)">D1 Design</span>
+    <span class="fpill d2" onclick="setFilter('d2',this)">D2 Secure</span>
+    <span class="fpill d3" onclick="setFilter('d3',this)">D3 AI</span>
+  </div>
+</div>
+
+<div class="page">
+<div class="stats-bar">
+  <div class="sstat"><span id="visCount">120</span> terms shown</div>
+  <div class="sstat"><span>3</span> domains</div>
+  <div class="sstat"><span>DP-800</span> exam coverage</div>
+</div>
+<div id="glossaryContainer"></div>
+</div>
+
+<script>
+const terms = [
+  // D1 — T-SQL & Design
+  {n:"CTE (Common Table Expression)",d:"Named temporary result set defined with WITH clause. Recursive CTEs use UNION ALL with anchor + recursive member. Improves readability vs nested subqueries.",cat:"d1",sec:"T-SQL Advanced"},
+  {n:"Window Function",d:"Performs calculation across a set of rows related to current row. Uses OVER(PARTITION BY … ORDER BY …). Examples: ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD, SUM, AVG.",cat:"d1",sec:"T-SQL Advanced"},
+  {n:"ROW_NUMBER()",d:"Assigns unique sequential integer to rows within partition. No ties — unlike RANK(). Partition resets counter. Common for pagination and deduplication.",cat:"d1",sec:"T-SQL Advanced"},
+  {n:"RANK() vs DENSE_RANK()",d:"RANK skips numbers on tie (1,1,3). DENSE_RANK does not skip (1,1,2). Use DENSE_RANK when gaps in ranking are undesirable.",cat:"d1",sec:"T-SQL Advanced"},
+  {n:"LAG / LEAD",d:"Access previous (LAG) or next (LEAD) row value without self-join. LAG(col, offset, default) OVER (ORDER BY …). Essential for time-series comparisons.",cat:"d1",sec:"T-SQL Advanced"},
+  {n:"JSON_VALUE()",d:"Extracts scalar value from JSON string at given path. Returns NULL if path missing. Use JSON_QUERY for objects/arrays.",cat:"d1",sec:"JSON Functions"},
+  {n:"OPENJSON()",d:"Rowset function — parses JSON and returns rows. WITH clause defines schema. Used to unpack LLM response arrays into table rows.",cat:"d1",sec:"JSON Functions"},
+  {n:"FOR JSON PATH",d:"Converts query results to JSON. Explicit column aliasing with dot notation controls nesting. Use in RAG to build LLM context payload.",cat:"d1",sec:"JSON Functions"},
+  {n:"JSON_OBJECT()",d:"Constructs JSON object literal from key-value pairs in T-SQL. Part of SQL:2016 standard, available in SQL Server 2022+.",cat:"d1",sec:"JSON Functions"},
+  {n:"JSON_ARRAYAGG()",d:"Aggregates values into a JSON array. Similar to STRING_AGG but outputs JSON. Fabric SQL / SQL 2022+.",cat:"d1",sec:"JSON Functions"},
+  {n:"REGEXP_LIKE()",d:"Tests if string matches a regular expression pattern. Returns boolean. Available in SQL database (Fabric) and Azure SQL. Not in older SQL Server.",cat:"d1",sec:"Regex"},
+  {n:"REGEXP_REPLACE()",d:"Replaces substrings matching regex pattern with replacement string. Supports capture groups.",cat:"d1",sec:"Regex"},
+  {n:"EDIT_DISTANCE()",d:"Returns Levenshtein distance between two strings — count of single-char edits needed to transform one into the other. Lower = more similar.",cat:"d1",sec:"Fuzzy Matching"},
+  {n:"JARO_WINKLER_DISTANCE()",d:"String similarity metric that weights prefix matches more heavily. Returns 0–1 (1 = identical). Better than Levenshtein for short strings like names.",cat:"d1",sec:"Fuzzy Matching"},
+  {n:"EDIT_DISTANCE_SIMILARITY()",d:"Normalized similarity score 0–100 based on edit distance. Easier to interpret threshold than raw edit distance.",cat:"d1",sec:"Fuzzy Matching"},
+  {n:"Temporal Table",d:"System-versioned table that stores full history. SYSTEM_TIME period columns track validity. FOR SYSTEM_TIME AS OF queries past state. Separate history table auto-maintained.",cat:"d1",sec:"Specialized Tables"},
+  {n:"FOR SYSTEM_TIME AS OF",d:"Temporal query clause. Returns rows valid at specified point in time. Used for auditing, rollback scenarios, change comparison.",cat:"d1",sec:"Specialized Tables"},
+  {n:"In-Memory OLTP",d:"Memory-optimized tables (MEMORY_OPTIMIZED=ON). Version-based concurrency — no locks. Natively compiled stored procedures. Best for very high-throughput OLTP workloads.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Natively Compiled SP",d:"Stored procedure compiled to native code at CREATE time. Runs in memory-optimized context. Significant perf gain over interpreted T-SQL for OLTP.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Columnstore Index",d:"Column-oriented storage. Clustered CSI replaces row store entirely. Non-clustered CSI added alongside row store. Delta store handles recent inserts before compression into segments.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Delta Store",d:"Small B-tree structure in columnstore that temporarily holds newly inserted rows before they are compressed into a columnstore segment. Tuple mover flushes periodically.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Ledger Table",d:"Append-only or updatable table with a cryptographic hash chain. Any tampering invalidates the chain. Used for compliance audit trails and financial records.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Graph Table (NODE)",d:"Special table type for graph databases. Each row = graph node (entity). Carries $node_id system column. Used with EDGE tables and MATCH operator.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Graph Table (EDGE)",d:"Connects two NODE tables. Each row = relationship. Has $from_id and $to_id. Supports MATCH pattern traversal and SHORTEST_PATH.",cat:"d1",sec:"Specialized Tables"},
+  {n:"MATCH Operator",d:"Graph query clause. Pattern: MATCH (n1-(e)->n2). Used in FROM/WHERE for multi-hop traversal queries. Only valid on NODE/EDGE tables.",cat:"d1",sec:"Specialized Tables"},
+  {n:"SHORTEST_PATH()",d:"Graph function that finds shortest path between two nodes. Returns path of edge traversals. Used with LAST_NODE and STRING_AGG to reconstruct path.",cat:"d1",sec:"Specialized Tables"},
+  {n:"External Table",d:"Virtualized table over external data source (blob storage, ADLS, another DB). Read via PolyBase. No data moved. Fabric supports external tables to lakehouses.",cat:"d1",sec:"Specialized Tables"},
+  {n:"Partition Function",d:"Defines boundary values for partitioning. RANGE LEFT/RIGHT determines which partition boundary values belong to. Created independently of partition scheme.",cat:"d1",sec:"Partitioning"},
+  {n:"Partition Scheme",d:"Maps partition function ranges to filegroups. Created after partition function. Tables and indexes can be partitioned on the same scheme for alignment.",cat:"d1",sec:"Partitioning"},
+  {n:"Aligned Index",d:"Index using the same partition scheme as the underlying table. Enables partition elimination — only relevant partitions are scanned.",cat:"d1",sec:"Partitioning"},
+  {n:"Indexed View",d:"View with a unique clustered index, materializing results physically. Requires WITH SCHEMABINDING. SELECT referencing it may auto-use index (Enterprise) or needs NOEXPAND hint.",cat:"d1",sec:"Programmability"},
+  {n:"WITH SCHEMABINDING",d:"Binds view/function to underlying objects, preventing schema changes to referenced tables. Required for indexed views and RLS predicate functions.",cat:"d1",sec:"Programmability"},
+  {n:"Inline TVF",d:"Table-valued function with single SELECT statement. Treated like a parameterized view — optimizer can look inside. Better performance than multi-statement TVF.",cat:"d1",sec:"Programmability"},
+  {n:"Multi-Statement TVF",d:"TVF using table variable with multiple statements. Optimizer estimates 1 row by default (cardinality blindness). Performance risk on large datasets.",cat:"d1",sec:"Programmability"},
+  {n:"Scalar UDF",d:"Returns single value. Inhibits parallelism and may cause row-by-row execution. Prefer inline TVF, computed column, or inline expression for performance-critical paths.",cat:"d1",sec:"Programmability"},
+  {n:"AFTER Trigger",d:"DML trigger that fires after INSERT/UPDATE/DELETE completes. Has access to inserted and deleted pseudo-tables. Used for audit, cascade, embedding refresh.",cat:"d1",sec:"Programmability"},
+  {n:"INSTEAD OF Trigger",d:"Replaces the DML operation with custom logic. Required for making views updatable when they span multiple tables. Use carefully — easy to break data integrity.",cat:"d1",sec:"Programmability"},
+  {n:"sp_executesql",d:"System SP for parameterized dynamic SQL. Prevents SQL injection. Enables plan reuse (parameter sniffing benefits apply). Preferred over EXEC() for dynamic SQL.",cat:"d1",sec:"Programmability"},
+  {n:"SEQUENCE Object",d:"Database-level counter. NEXT VALUE FOR seq. Not tied to a single table (unlike IDENTITY). Can gap-skip on rollback. Supports min/max/cycle/cache options.",cat:"d1",sec:"Programmability"},
+  {n:"Correlated Subquery",d:"Subquery that references columns from the outer query. Re-executed for each outer row. Often replaced by JOIN for performance — but sometimes unavoidable for filtering.",cat:"d1",sec:"T-SQL Advanced"},
+  // D2 — Security, Performance, CI/CD, Integration
+  {n:"Row-Level Security (RLS)",d:"Security policy that filters rows based on user context. Uses CREATE SECURITY POLICY with FILTER PREDICATE (limits SELECT) and BLOCK PREDICATE (limits DML). Inline TVF mandatory.",cat:"d2",sec:"Security"},
+  {n:"FILTER Predicate",d:"RLS predicate applied to SELECT, UPDATE, DELETE. Returns 1/0 based on SESSION_CONTEXT or user identity. Transparent to the application.",cat:"d2",sec:"Security"},
+  {n:"BLOCK Predicate",d:"RLS predicate that prevents INSERT/UPDATE/DELETE of rows violating the policy. AFTER INSERT, AFTER UPDATE, BEFORE UPDATE, BEFORE DELETE variants.",cat:"d2",sec:"Security"},
+  {n:"Dynamic Data Masking (DDM)",d:"Real-time column masking for non-privileged users. Masking functions: default(), email(), partial(), random(), datetime(). UNMASK permission bypasses masking. Not encryption.",cat:"d2",sec:"Security"},
+  {n:"UNMASK Permission",d:"Database-level permission that bypasses DDM masking — user sees actual values. Db_owner always sees unmasked data. Grant to privileged roles only.",cat:"d2",sec:"Security"},
+  {n:"Always Encrypted",d:"Client-side encryption — SQL Server never sees plaintext. CMK (Column Master Key) held in Key Vault or cert store. CEK (Column Encryption Key) encrypts data. Driver decrypts client-side.",cat:"d2",sec:"Security"},
+  {n:"Deterministic Encryption (AE)",d:"Same plaintext always produces same ciphertext. Allows equality comparisons and indexes. Less secure than randomized — patterns visible.",cat:"d2",sec:"Security"},
+  {n:"Randomized Encryption (AE)",d:"Same plaintext produces different ciphertext each time. Cannot filter or index. Most secure option. Use for SSNs and high-sensitivity data not queried by equality.",cat:"d2",sec:"Security"},
+  {n:"CMK (Column Master Key)",d:"Root key in Always Encrypted hierarchy. Stored in Azure Key Vault, Windows cert store, or HSM. Never leaves secure store — only used to decrypt CEK.",cat:"d2",sec:"Security"},
+  {n:"CEK (Column Encryption Key)",d:"Encrypts actual column data in Always Encrypted. Stored encrypted by CMK in database. Rotatable independently of CMK.",cat:"d2",sec:"Security"},
+  {n:"Managed Identity",d:"Azure AD identity for Azure resources. System-assigned (per resource lifecycle) or user-assigned (shared across resources). Enables passwordless auth to Azure SQL.",cat:"d2",sec:"Security"},
+  {n:"Database Scoped Credential",d:"Stores external auth credentials (API keys, storage SAS tokens) securely in the database. Used by sp_invoke_external_rest_endpoint and external data sources.",cat:"d2",sec:"Security"},
+  {n:"SQL Audit",d:"Records database events to blob storage, Log Analytics, or Event Hub. Server-level audit captures all DBs. DB-level audit captures specific DB. Action groups define what to capture.",cat:"d2",sec:"Security"},
+  {n:"Execution Plan",d:"Visual/XML representation of the query execution strategy chosen by the optimizer. Key operators: Index Seek (good), Key Lookup (check), Sort (can be expensive), Hash Join/Merge/Nested Loops.",cat:"d2",sec:"Performance"},
+  {n:"Key Lookup",d:"Execution plan operator: rowstore lookup by row locator to fetch non-indexed columns. Indicates a covering index is needed. Each lookup = extra I/O per qualifying row.",cat:"d2",sec:"Performance"},
+  {n:"Covering Index",d:"Non-clustered index that includes all columns needed by a query (in key or INCLUDE clause), eliminating key lookups. INCLUDE adds non-key columns to leaf level.",cat:"d2",sec:"Performance"},
+  {n:"Query Store",d:"SQL Server feature that captures query plans and runtime stats over time. Detects plan regressions. Allows forcing a specific plan. Query Performance Insight in Azure SQL is the cloud UI.",cat:"d2",sec:"Performance"},
+  {n:"Forced Plan",d:"Query Store feature that pins a specific execution plan for a query. Protects against optimizer regressions. Can be set via SSMS or sys.sp_query_store_force_plan.",cat:"d2",sec:"Performance"},
+  {n:"DMV (Dynamic Management View)",d:"System views exposing server internals. sys.dm_exec_query_stats (CPU/reads per query), sys.dm_exec_requests (active sessions), sys.dm_os_wait_stats (bottleneck analysis).",cat:"d2",sec:"Performance"},
+  {n:"RCSI (Read Committed Snapshot Isolation)",d:"Database-level setting. Read-committed transactions read last committed version — no shared locks on reads. Eliminates reader-writer blocking. Recommended for most OLTP.",cat:"d2",sec:"Performance"},
+  {n:"SNAPSHOT Isolation",d:"Transaction-level consistency via row versioning. Readers see DB snapshot at transaction start. Serializable reads without locks. More tempdb overhead than RCSI.",cat:"d2",sec:"Performance"},
+  {n:"Deadlock",d:"Circular wait between two or more transactions, each holding a lock the other needs. SQL Server detects and kills victim (cheapest rollback). Extended Events captures deadlock graph.",cat:"d2",sec:"Performance"},
+  {n:"Deadlock Graph",d:"XML representation of the deadlock: resources, transactions, and wait chains. Captured by Extended Events system_health session. Invaluable for root cause analysis.",cat:"d2",sec:"Performance"},
+  {n:"Statistics",d:"Histogram of column value distribution. Optimizer uses to estimate row counts. AUTO_UPDATE_STATISTICS enabled by default. Manual UPDATE STATISTICS after bulk loads.",cat:"d2",sec:"Performance"},
+  {n:"Parameter Sniffing",d:"Optimizer compiles plan based on first execution's parameter values. Can be suboptimal for skewed data. Solutions: OPTION(RECOMPILE), optimize for hint, sp_executesql.",cat:"d2",sec:"Performance"},
+  {n:"SQL Database Project",d:"Declarative database model stored in source control. Compiled to dacpac. SDK-style (.sqlproj) is the modern format. Compatible with Azure Data Studio and VS Code.",cat:"d2",sec:"CI/CD"},
+  {n:"dacpac",d:"Data-tier Application Package — compiled snapshot of database schema. Input to SqlPackage for deploy, drift report, and schema comparison. Output of SQL DB Project build.",cat:"d2",sec:"CI/CD"},
+  {n:"SqlPackage",d:"CLI tool for dacpac operations: Publish (deploy), Extract (create dacpac), Report (drift), Drift (schema comparison). Core CI/CD deployment tool for SQL.",cat:"d2",sec:"CI/CD"},
+  {n:"Schema Drift",d:"Divergence between declared schema (SQL project) and deployed database. Detected via SqlPackage /Action:Report. Addressed by updating project and redeploying.",cat:"d2",sec:"CI/CD"},
+  {n:"tSQLt",d:"Open-source unit testing framework for SQL Server. FakeTable mocks dependencies. AssertEquals, AssertResultSetsHaveSameMetaData, ExpectException. Tests run as SQL transactions (auto-rollback).",cat:"d2",sec:"CI/CD"},
+  {n:"FakeTable (tSQLt)",d:"tSQLt command that replaces a real table with an empty mock during test execution. Isolates the stored procedure under test from production data.",cat:"d2",sec:"CI/CD"},
+  {n:"Publish Profile (.publish.xml)",d:"XML file defining deployment target: server, database, auth, and SqlPackage options (IgnorePermissions, BlockOnPossibleDataLoss etc.). Checked into source control.",cat:"d2",sec:"CI/CD"},
+  {n:"CODEOWNERS",d:"GitHub file (.github/CODEOWNERS) mapping file paths to required reviewers. Enforces PR approval by domain owners. Branch protection rule: require code owner review.",cat:"d2",sec:"CI/CD"},
+  {n:"Data API Builder (DAB)",d:"Open-source engine from Microsoft that exposes SQL tables, views, and stored procedures as REST and GraphQL APIs. Config-driven via dab-config.json. Supports Azure SQL and Fabric.",cat:"d2",sec:"Integration"},
+  {n:"dab-config.json",d:"DAB configuration file. Defines data-source, runtime options, and entities. Each entity maps a SQL object to API endpoints with permissions, caching, and pagination settings.",cat:"d2",sec:"Integration"},
+  {n:"DAB Entity",d:"A named API resource in DAB config. Maps to a SQL table, view, or stored procedure. Configures REST path, GraphQL type, permissions, and relationships.",cat:"d2",sec:"Integration"},
+  {n:"GraphQL Relationship (DAB)",d:"DAB config that links two entities via foreign key. Enables nested GraphQL queries (e.g., product with its category). Defined in entity's relationships section.",cat:"d2",sec:"Integration"},
+  {n:"Change Tracking (SQL)",d:"Lightweight tracking of which rows changed (insert/update/delete) since a sync version. Returns row identity + change type. No before/after values. Very low overhead.",cat:"d2",sec:"Integration"},
+  {n:"CDC (Change Data Capture)",d:"Captures before/after column values for changed rows using transaction log. Stored in change tables. Higher overhead than Change Tracking. Used for ETL and embedding pipelines.",cat:"d2",sec:"Integration"},
+  {n:"CES (Change Event Streaming)",d:"Real-time streaming of database change events. Lowest latency. Higher operational complexity. Used for event-driven AI pipelines needing sub-second freshness.",cat:"d2",sec:"Integration"},
+  {n:"Azure Functions SQL Trigger",d:"Azure Function triggered by SQL Server row changes. Event-driven serverless pattern for embedding refresh, notification, downstream processing. Uses CDC under the hood.",cat:"d2",sec:"Integration"},
+  {n:"Application Insights",d:"Azure APM service. Captures request traces, dependency calls, exceptions, custom events. Ideal for DAB and application-layer telemetry. Integrates with Log Analytics.",cat:"d2",sec:"Monitoring"},
+  {n:"Log Analytics Workspace",d:"Central log store for Azure Monitor. Receives SQL audit logs, diagnostic settings, Application Insights data. Query with KQL. Basis for alerts and dashboards.",cat:"d2",sec:"Monitoring"},
+  {n:"GitHub Copilot (SQL)",d:"AI coding assistant in VS Code/Azure Data Studio. Suggests T-SQL, stored procedures, DAB configs. Instruction files (.github/copilot-instructions.md) customize SQL conventions.",cat:"d2",sec:"AI-Assisted Dev"},
+  {n:"Copilot Instructions File",d:".github/copilot-instructions.md — defines project-wide Copilot behavior: naming conventions, preferred patterns, security rules. Checked into source control.",cat:"d2",sec:"AI-Assisted Dev"},
+  {n:"MCP (Model Context Protocol)",d:"Protocol for AI model tool integration. Microsoft SQL Server MCP exposes schema/query capabilities to AI agents. Fabric Lakehouse MCP similarly for Fabric objects.",cat:"d2",sec:"AI-Assisted Dev"},
+  {n:"Prompt Injection",d:"Security attack where malicious content in data manipulates AI model instructions. Risk when SQL data is fed directly to LLMs without sanitization. Mitigate: input validation, output filtering.",cat:"d2",sec:"AI-Assisted Dev"},
+  // D3 — AI Capabilities
+  {n:"VECTOR Data Type",d:"Native SQL Server / Fabric data type for storing high-dimensional float arrays (embeddings). Up to 1998 dimensions. Supports VECTOR_DISTANCE, VECTOR_NORMALIZE, VECTOR_SEARCH operations.",cat:"d3",sec:"Vector Data"},
+  {n:"VECTOR_DISTANCE()",d:"Function returning distance between two vectors. Metrics: 'cosine' (angle), 'dot_product' (requires normalized), 'euclidean' (L2 distance). Lower cosine = more similar.",cat:"d3",sec:"Vector Data"},
+  {n:"Cosine Similarity",d:"Measures angle between two vectors (0=orthogonal, 1=identical direction). Most common for text embeddings. Insensitive to vector magnitude. VECTOR_DISTANCE('cosine',v1,v2).",cat:"d3",sec:"Vector Data"},
+  {n:"VECTOR_NORMALIZE()",d:"Converts vector to unit length (magnitude=1). Required before dot product comparisons. Pre-normalizing at insert time saves compute at query time.",cat:"d3",sec:"Vector Data"},
+  {n:"VECTORPROPERTY()",d:"Returns metadata about a VECTOR column: 'Dimensions', 'BaseType'. Used to verify schema without querying information_schema.",cat:"d3",sec:"Vector Data"},
+  {n:"DiskANN",d:"Disk-based Approximate Nearest Neighbor index algorithm. Used by VECTOR_SEARCH in Azure SQL and Fabric. Balances recall and query speed. Good for millions of vectors.",cat:"d3",sec:"Vector Index"},
+  {n:"ANN (Approximate Nearest Neighbor)",d:"Fast vector search that trades perfect recall for speed. Uses an index (DiskANN). O(log n) complexity. Production choice for large-scale vector retrieval.",cat:"d3",sec:"Vector Index"},
+  {n:"ENN (Exact Nearest Neighbor)",d:"Brute-force full table scan. 100% recall. O(n) complexity. Suitable only for small datasets (thousands) or testing. Becomes impractical at scale.",cat:"d3",sec:"Vector Index"},
+  {n:"VECTOR_SEARCH()",d:"T-SQL function performing ANN search using a vector index. Returns top-K nearest neighbors efficiently. Requires a vector index on the column.",cat:"d3",sec:"Vector Search"},
+  {n:"Full-Text Search",d:"SQL Server feature for linguistic text search. Requires full-text catalog and full-text index. CONTAINS for precise matching, FREETEXT for NLP-based matching.",cat:"d3",sec:"Intelligent Search"},
+  {n:"CONTAINS()",d:"Full-text predicate for precise term matching. Supports: exact phrase, inflectional (FORMSOF), thesaurus, proximity (NEAR), Boolean (AND/OR/NOT). Returns boolean.",cat:"d3",sec:"Intelligent Search"},
+  {n:"FREETEXT()",d:"Full-text predicate using NLP tokenization. Breaks phrase into words, applies stemming, drops stopwords. More forgiving than CONTAINS. Returns boolean.",cat:"d3",sec:"Intelligent Search"},
+  {n:"FREETEXTTABLE()",d:"Returns table with KEY and RANK columns for full-text matches. RANK enables joining with vector distance scores for RRF hybrid search.",cat:"d3",sec:"Intelligent Search"},
+  {n:"Hybrid Search",d:"Combines full-text (BM25/TF-IDF) and vector (semantic) search results. Captures both keyword precision and semantic understanding. Merged via Reciprocal Rank Fusion (RRF).",cat:"d3",sec:"Intelligent Search"},
+  {n:"RRF (Reciprocal Rank Fusion)",d:"Algorithm to merge ranked result lists. Score = 1/(k + rank). k=60 is standard constant. Sum scores across both lists. Re-rank by combined score. Robust to score scale differences.",cat:"d3",sec:"Intelligent Search"},
+  {n:"BM25",d:"Best Match 25 — probabilistic ranking algorithm for full-text search. TF-IDF variant with length normalization. Standard in SQL Server full-text and Azure Cognitive Search.",cat:"d3",sec:"Intelligent Search"},
+  {n:"Embedding",d:"Dense vector representation of text/image capturing semantic meaning. Generated by embedding models (e.g., text-embedding-3-small: 1536 dims). Similar meanings → similar vectors.",cat:"d3",sec:"Embeddings"},
+  {n:"Embedding Model",d:"ML model that converts input (text, image) to a fixed-size vector. Accessed via external model in Fabric or sp_invoke_external_rest_endpoint. Dimension count is fixed per model.",cat:"d3",sec:"Embeddings"},
+  {n:"External Model",d:"SQL object wrapping an external AI model endpoint. CREATE EXTERNAL MODEL defines connection, task type (EMBEDDINGS, CHAT_COMPLETION), and model name. Fabric SQL feature.",cat:"d3",sec:"Embeddings"},
+  {n:"Chunking",d:"Splitting large documents into smaller segments before embedding. Fixed-size (by token/char), sentence-based, or semantic (topic-based). Overlap prevents context loss at boundaries.",cat:"d3",sec:"Embeddings"},
+  {n:"Chunk Overlap",d:"Repeated content between consecutive chunks (typically 10–15%). Prevents context loss at chunk boundaries. Critical for preserving sentence continuity in fixed-size chunking.",cat:"d3",sec:"Embeddings"},
+  {n:"RAG (Retrieval-Augmented Generation)",d:"Pattern: retrieve relevant context from a data store → augment an LLM prompt with it → generate a grounded answer. Reduces hallucination by grounding LLM in factual data.",cat:"d3",sec:"RAG"},
+  {n:"sp_invoke_external_rest_endpoint",d:"System stored procedure that calls an external REST endpoint from T-SQL. Used to invoke OpenAI/Azure AI APIs for embeddings, chat completions. Returns JSON response.",cat:"d3",sec:"RAG"},
+  {n:"DATABASE SCOPED CREDENTIAL",d:"Securely stores API keys or tokens in the database for use by sp_invoke_external_rest_endpoint and external data sources. Never stored in plain text in code.",cat:"d3",sec:"RAG"},
+  {n:"Grounding",d:"Technique of providing LLM with relevant context (retrieved from DB) to anchor its response to facts. Core goal of RAG. Reduces hallucination and improves accuracy.",cat:"d3",sec:"RAG"},
+  {n:"Hallucination",d:"LLM generating plausible-sounding but factually incorrect output. Mitigated by RAG (grounding with retrieved facts) and temperature=0 for deterministic tasks.",cat:"d3",sec:"RAG"},
+  {n:"Temperature (LLM)",d:"Sampling parameter controlling LLM response randomness. 0 = deterministic/consistent. 1+ = creative/variable. For SQL/data tasks, use 0–0.2. For creative tasks, 0.7–1.0.",cat:"d3",sec:"RAG"},
+  {n:"Semantic Chunking",d:"Advanced chunking strategy that splits documents at topic/semantic boundaries rather than fixed size. Best quality embeddings. Requires NLP preprocessing.",cat:"d3",sec:"Embeddings"},
+  {n:"Multimodal Model",d:"AI model processing multiple input types (text + image, text + audio). For DP-800: understanding when to use multimodal endpoints vs text-only embedding models.",cat:"d3",sec:"External Models"},
+  {n:"NDCG (Normalized Discounted Cumulative Gain)",d:"Search quality metric. Measures ranking quality — relevant results appearing higher score better. Range 0–1. Used to evaluate vector and hybrid search effectiveness.",cat:"d3",sec:"Search Evaluation"},
+  {n:"Recall@K",d:"Fraction of relevant documents found in top-K results. ANN may have recall@10=0.95 meaning 95% of true nearest neighbors are in top 10. Trade-off vs speed.",cat:"d3",sec:"Search Evaluation"},
+];
+
+const sections = [...new Set(terms.map(t=>t.sec))];
+let currentFilter = 'all';
+
+function renderGlossary(filtered){
+  const container = document.getElementById('glossaryContainer');
+  const bySec = {};
+  filtered.forEach(t=>{if(!bySec[t.sec])bySec[t.sec]=[];bySec[t.sec].push(t)});
+  container.innerHTML = Object.entries(bySec).map(([sec,items])=>`
+    <div class="section">
+      <div class="section-head"><span>◆</span>${sec} <span style="font-size:11px;margin-left:auto">${items.length} terms</span></div>
+      <div class="glossary-grid">
+        ${items.map(t=>`
+          <div class="gterm ${t.cat}" data-cat="${t.cat}" data-name="${t.n.toLowerCase()}">
+            <span class="gterm-badge badge-${t.cat==='amber'?'all':t.cat}">${t.cat.toUpperCase()}</span>
+            <div class="gterm-name">${t.n}</div>
+            <div class="gterm-body">${t.d}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('visCount').textContent = filtered.length;
+}
+
+function filterTerms(){
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  let filtered = terms.filter(t=>
+    (currentFilter==='all'||t.cat===currentFilter) &&
+    (t.n.toLowerCase().includes(q)||t.d.toLowerCase().includes(q))
+  );
+  renderGlossary(filtered);
+}
+
+function setFilter(f,el){
+  currentFilter=f;
+  document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  filterTerms();
+}
+
+renderGlossary(terms);
+</script>
+</body>
+</html>

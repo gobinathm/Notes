@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DP-800 · Service Decision Flowchart</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);
+  --gb:rgba(255,255,255,0.08);--gbh:rgba(255,255,255,0.14);
+  --text:#e2e8f6;--dim:#8892b0;--muted:#3a4060;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
+  --d1:#4a9eff;--d2:#00d4aa;--d3:#a78bfa;--amber:#fbbf24;--rose:#fb7185;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 60% 40% at 10% 0%,rgba(74,158,255,0.06) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 90% 100%,rgba(167,139,250,0.05) 0%,transparent 60%);
+  pointer-events:none;z-index:0}
+.masthead{position:sticky;top:0;z-index:100;background:rgba(6,8,16,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gb);padding:12px 36px;display:flex;align-items:center;justify-content:space-between}
+.mast-title{font-size:16px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(135deg,#fff 0%,var(--rose) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mast-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.tab-row{display:flex;gap:0;border-bottom:1px solid var(--gb);padding:0 36px;background:rgba(0,0,0,0.2);position:sticky;top:53px;z-index:99;backdrop-filter:blur(20px)}
+.tab{padding:10px 18px;font-size:12px;font-weight:600;color:var(--dim);cursor:pointer;
+  border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:var(--d1);border-bottom-color:var(--d1)}
+.tab:hover:not(.active){color:var(--text)}
+.page{position:relative;z-index:1;padding:28px 36px 64px;max-width:1300px;margin:0 auto}
+.panel{display:none}.panel.active{display:block}
+/* DECISION TREE */
+.tree{display:flex;flex-direction:column;align-items:center;gap:0}
+.node-row{display:flex;justify-content:center;gap:20px;position:relative}
+.node{border:1px solid;border-radius:10px;padding:12px 18px;text-align:center;position:relative;transition:all .2s;max-width:200px}
+.node:hover{transform:translateY(-2px)}
+.node.question{background:rgba(74,158,255,0.08);border-color:rgba(74,158,255,0.3);color:var(--d1)}
+.node.solution{background:rgba(0,212,170,0.06);border-color:rgba(0,212,170,0.25);color:var(--d2)}
+.node.warning{background:rgba(251,191,36,0.06);border-color:rgba(251,191,36,0.25);color:var(--amber)}
+.node.danger{background:rgba(251,113,133,0.06);border-color:rgba(251,113,133,0.25);color:var(--rose)}
+.node-q{font-size:12px;font-weight:700}
+.node-sub{font-size:10px;color:var(--dim);margin-top:4px}
+.connector{height:24px;width:2px;background:var(--gb);margin:0 auto}
+.branch-line{height:2px;background:var(--gb)}
+.label-y{font-family:var(--mono);font-size:9px;color:var(--d2);text-transform:uppercase}
+.label-n{font-family:var(--mono);font-size:9px;color:var(--rose);text-transform:uppercase}
+/* REFERENCE CARDS */
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.ref-card{background:var(--s1);border:1px solid var(--gb);border-radius:10px;padding:16px;position:relative;overflow:hidden}
+.ref-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.ref-card.d1::before{background:var(--d1)}.ref-card.d2::before{background:var(--d2)}.ref-card.d3::before{background:var(--d3)}
+.ref-card.amber::before{background:var(--amber)}.ref-card.rose::before{background:var(--rose)}
+.ref-title{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ref-badge{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:8px;border:1px solid}
+.badge-d1{color:var(--d1);background:rgba(74,158,255,0.08);border-color:rgba(74,158,255,0.2)}
+.badge-d2{color:var(--d2);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)}
+.badge-d3{color:var(--d3);background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2)}
+.badge-amber{color:var(--amber);background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.2)}
+.ref-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.ref-list li{font-size:11px;color:var(--dim);display:flex;align-items:flex-start;gap:7px}
+.ref-list li::before{content:'▸';font-size:9px;flex-shrink:0;margin-top:2px;color:var(--muted)}
+.ref-list li strong{color:var(--text)}
+.mono{font-family:var(--mono);font-size:10px;color:var(--d1)}
+.mono.t{color:var(--d2)}.mono.p{color:var(--d3)}
+.section-head{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--dim);margin-bottom:12px;margin-top:24px;display:flex;align-items:center;gap:8px;
+  padding-bottom:6px;border-bottom:1px solid var(--gb)}
+.decision-table{width:100%;border-collapse:collapse;font-size:12px}
+.decision-table th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--dim);padding:6px 10px;text-align:left;border-bottom:1px solid var(--gb)}
+.decision-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top}
+.decision-table tr:last-child td{border-bottom:none}
+.decision-table tr:hover td{background:var(--s2)}
+.tag{display:inline-block;font-family:var(--mono);font-size:9px;padding:1px 6px;border-radius:8px;border:1px solid;margin:1px}
+.tag.g{color:#4ade80;background:rgba(74,222,128,0.08);border-color:rgba(74,222,128,0.2)}
+.tag.a{color:var(--amber);background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.2)}
+.tag.r{color:var(--rose);background:rgba(251,113,133,0.08);border-color:rgba(251,113,133,0.2)}
+.tag.b{color:var(--d1);background:rgba(74,158,255,0.08);border-color:rgba(74,158,255,0.2)}
+.tag.t{color:var(--d2);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)}
+.tag.p{color:var(--d3);background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2)}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <div><div class="mast-eye">DP-800 · SQL AI Developer Associate</div><div class="mast-title">Service &amp; Feature Decision Guide</div></div>
+</div>
+<div class="tab-row">
+  <div class="tab active" onclick="switchTab('security',this)">🔒 Security Decisions</div>
+  <div class="tab" onclick="switchTab('search',this)">🔍 Search Strategy</div>
+  <div class="tab" onclick="switchTab('change',this)">📡 Change Detection</div>
+  <div class="tab" onclick="switchTab('index',this)">📊 Index Selection</div>
+  <div class="tab" onclick="switchTab('tables',this)">🗄️ Table Type Selection</div>
+  <div class="tab" onclick="switchTab('rag',this)">🤖 RAG Architecture</div>
+</div>
+
+<div class="page">
+
+<!-- SECURITY DECISIONS -->
+<div class="panel active" id="panel-security">
+  <div class="section-head"><span>🔒</span> Security Feature Selection</div>
+  <table class="decision-table">
+    <tr><th>Scenario / Requirement</th><th>Correct Feature</th><th>Why</th><th>Common Trap</th></tr>
+    <tr><td>Users must only see their own rows</td><td><strong>Row-Level Security (RLS)</strong> — FILTER predicate</td><td>Transparent to app. Policy enforced in DB regardless of query source.</td><td>Using WHERE in every query — dev can forget it.</td></tr>
+    <tr><td>Show masked SSN to most users, real value to admins</td><td><strong>Dynamic Data Masking (DDM)</strong></td><td>db_owner and UNMASK-privileged users see real data. Others see mask.</td><td>DDM is NOT encryption — app-tier only. Privileged queries bypass it.</td></tr>
+    <tr><td>Encrypt a column. App needs to search/join on it (equality).</td><td><strong>Always Encrypted — DETERMINISTIC</strong></td><td>Same plaintext → same ciphertext → equality comparisons work.</td><td>Choosing RANDOMIZED blocks any filtering on the column.</td></tr>
+    <tr><td>Encrypt highly sensitive column. No filtering needed.</td><td><strong>Always Encrypted — RANDOMIZED</strong></td><td>Each encryption unique — no pattern leakage. Most secure.</td><td>Using DETERMINISTIC unnecessarily exposes patterns.</td></tr>
+    <tr><td>Azure resource must connect to Azure SQL — no passwords in code</td><td><strong>Managed Identity + Azure AD token</strong></td><td>No secret to rotate/leak. Integrates with Azure RBAC.</td><td>Storing connection string in app config or pipeline YAML.</td></tr>
+    <tr><td>Prevent user UPDATE from changing row to one they can't see</td><td><strong>RLS BEFORE UPDATE BLOCK predicate</strong></td><td>Checks the new values against the predicate before allowing UPDATE.</td><td>Using FILTER only — doesn't prevent exfiltration via UPDATE.</td></tr>
+    <tr><td>Store API key for external REST calls in T-SQL</td><td><strong>DATABASE SCOPED CREDENTIAL</strong></td><td>Encrypted in DB, referenced by name. Never appears in plain T-SQL.</td><td>Hardcoding in stored procedure or T-SQL variable.</td></tr>
+    <tr><td>Secure DAB GraphQL/REST endpoint in production</td><td><strong>Managed Identity + Azure AD JWT validation</strong></td><td>Roles map to permissions in dab-config.json. No key management.</td><td>Using anonymous role for non-public data; API key in URL params.</td></tr>
+  </table>
+</div>
+
+<!-- SEARCH STRATEGY -->
+<div class="panel" id="panel-search">
+  <div class="section-head"><span>🔍</span> Search Strategy Decision Tree</div>
+  <table class="decision-table">
+    <tr><th>Requirement</th><th>Search Type</th><th>Implementation</th><th>Key Functions</th></tr>
+    <tr><td>Find documents containing exact phrase "product recall"</td><td><strong>Full-Text</strong></td><td>Full-text index + catalog on content column</td><td><span class="mono">CONTAINS(col, '"product recall"')</span></td></tr>
+    <tr><td>Find documents about "car accident" even if they say "vehicle collision"</td><td><strong>Semantic Vector</strong></td><td>Embedding column + VECTOR_DISTANCE cosine</td><td><span class="mono">VECTOR_DISTANCE('cosine', emb, @qEmb)</span></td></tr>
+    <tr><td>Find documents matching both keyword and semantic meaning — production RAG</td><td><strong>Hybrid (Full-text + Vector + RRF)</strong></td><td>Both indexes. FREETEXTTABLE + VECTOR_SEARCH. Merge via RRF.</td><td>RRF: <span class="mono">1.0/(60+rank)</span> summed, ORDER BY combined score</td></tr>
+    <tr><td>Multilingual search — users query in French, docs in English</td><td><strong>Semantic Vector</strong></td><td>Multilingual embedding model (e.g., text-embedding-3-large)</td><td>Embeddings capture cross-lingual semantics</td></tr>
+    <tr><td>100% recall required on 5,000 rows, latency not critical</td><td><strong>ENN (Exact Nearest Neighbor)</strong></td><td>ORDER BY VECTOR_DISTANCE — no index needed</td><td>Full table scan <span class="tag r">No index</span></td></tr>
+    <tr><td>Sub-50ms search on 5 million rows</td><td><strong>ANN (DiskANN index)</strong></td><td>CREATE VECTOR INDEX, VECTOR_SEARCH()</td><td><span class="tag g">Index required</span> DiskANN</td></tr>
+    <tr><td>Stemming — "runs" matches "running", "ran"</td><td><strong>Full-Text with FORMSOF</strong></td><td>Full-text index + CONTAINS FORMSOF(INFLECTIONAL)</td><td><span class="mono">CONTAINS(col, 'FORMSOF(INFLECTIONAL, run)')</span></td></tr>
+    <tr><td>Merge full-text (RANK 0-1000) and vector (distance 0-1) scores</td><td><strong>RRF (Reciprocal Rank Fusion)</strong></td><td>Rank each list separately, apply 1/(60+rank), sum scores</td><td>Scale-invariant: works regardless of score ranges</td></tr>
+  </table>
+</div>
+
+<!-- CHANGE DETECTION -->
+<div class="panel" id="panel-change">
+  <div class="section-head"><span>📡</span> Change Detection Method Selection</div>
+  <table class="decision-table">
+    <tr><th>Method</th><th>What It Captures</th><th>Overhead</th><th>Best For</th><th>Not For</th></tr>
+    <tr><td><strong>Change Tracking</strong></td><td>Row identity + change type (INSERT/UPDATE/DELETE) since a sync version. No column values.</td><td><tag class="g">Very Low</tag></td><td>Sync scenarios. Lightweight embedding trigger where you re-read the row.</td><td>When you need before/after column values without re-querying.</td></tr>
+    <tr><td><strong>CDC (Change Data Capture)</strong></td><td>Before AND after column values for each change, from transaction log.</td><td><tag class="a">Medium</tag></td><td>ETL pipelines. Embedding refresh when you need exact new column values. Audit with history.</td><td>Very high-write tables (log read overhead). Doesn't work with memory-optimized tables.</td></tr>
+    <tr><td><strong>CES (Change Event Streaming)</strong></td><td>Real-time event stream of changes as they happen.</td><td><tag class="r">Higher</tag></td><td>Event-driven AI pipelines. Sub-second embedding freshness. Stream processing.</td><td>Simple batch sync. Teams without stream processing expertise.</td></tr>
+    <tr><td><strong>Azure Functions SQL Trigger</strong></td><td>CDC-based row change events delivered to a serverless function.</td><td><tag class="g">Low (on DB)</tag></td><td>Event-driven embedding refresh. Serverless, auto-scales. No polling overhead on DB.</td><td>When you need before-values (gets only new values). Long-running processing per row.</td></tr>
+    <tr><td><strong>AFTER Trigger (SQL)</strong></td><td>DML operation. Synchronous — fires within the transaction.</td><td><tag class="a">Medium (blocks write)</tag></td><td>Simple audit logging. Small tables with infrequent writes. Cascading updates.</td><td>Calling external APIs (embedding) — blocks write transaction, risk of failure.</td></tr>
+    <tr><td><strong>Azure Logic Apps</strong></td><td>Connector-based polling or event reception from SQL/storage.</td><td><tag class="a">Medium</tag></td><td>Low-code integration. Connecting SQL to non-technical downstream systems.</td><td>High-volume, low-latency scenarios. Cost-sensitive high-frequency polling.</td></tr>
+  </table>
+</div>
+
+<!-- INDEX SELECTION -->
+<div class="panel" id="panel-index">
+  <div class="section-head"><span>📊</span> Index Type Selection Guide</div>
+  <table class="decision-table">
+    <tr><th>Scenario</th><th>Index Type</th><th>Key Characteristics</th></tr>
+    <tr><td>OLTP: point lookups, frequent single-row reads by PK</td><td><strong>Clustered Index (B-tree)</strong></td><td>Row store. Fast single row / range scans. One per table. Defines physical row order.</td></tr>
+    <tr><td>Support queries that filter on non-PK columns, avoid key lookups</td><td><strong>Non-Clustered Index + INCLUDE</strong></td><td>Leaf level includes extra columns. Eliminates key lookup. Multiple per table.</td></tr>
+    <tr><td>Analytics: aggregations, GROUP BY, large table scans</td><td><strong>Clustered Columnstore Index (CCI)</strong></td><td>Column storage. Compression. Vectorized processing. Replaces row store. ~10x read perf for analytics.</td></tr>
+    <tr><td>Mixed OLTP + Analytics on same table</td><td><strong>Non-Clustered Columnstore Index (NCCI)</strong></td><td>Added alongside clustered row-store index. Analytics benefit without losing row-store OLTP perf.</td></tr>
+    <tr><td>Partitioned table — enforce partition elimination</td><td><strong>Aligned Index (same partition scheme)</strong></td><td>Index uses same partition function. Optimizer can skip irrelevant partitions.</td></tr>
+    <tr><td>Semantic vector similarity search — production scale (millions)</td><td><strong>DiskANN Vector Index</strong></td><td>ANN graph index. O(log n). Used by VECTOR_SEARCH(). Supports cosine/euclidean/dot_product.</td></tr>
+    <tr><td>Full-text keyword search with stemming/proximity</td><td><strong>Full-Text Index</strong></td><td>Requires full-text catalog. Linguistic processing. CONTAINS/FREETEXT predicates.</td></tr>
+    <tr><td>View needs to return aggregated data fast without recomputing</td><td><strong>Indexed View (Clustered Index on View)</strong></td><td>Materializes the view result. SCHEMABINDING required. Auto-maintained on DML. Enterprise: auto-used; Standard: NOEXPAND hint.</td></tr>
+  </table>
+</div>
+
+<!-- TABLE TYPE SELECTION -->
+<div class="panel" id="panel-tables">
+  <div class="section-head"><span>🗄️</span> Specialized Table Type Decision Guide</div>
+  <div class="ref-grid">
+    <div class="ref-card d1">
+      <div class="ref-title"><span class="ref-badge badge-d1">D1</span> Temporal Table</div>
+      <ul class="ref-list">
+        <li><strong>Use when:</strong> You need to query historical state (point-in-time, period-of-time)</li>
+        <li><strong>Key clause:</strong> FOR SYSTEM_TIME AS OF / BETWEEN / ALL</li>
+        <li><strong>Auto-managed:</strong> History table maintained by SQL Server</li>
+        <li><strong>Don't use for:</strong> Compliance tamper-evidence (use Ledger for that)</li>
+        <li><strong>Exam tip:</strong> SYSTEM_TIME period columns cannot be nullable</li>
+      </ul>
+    </div>
+    <div class="ref-card d1">
+      <div class="ref-title"><span class="ref-badge badge-d1">D1</span> In-Memory OLTP</div>
+      <ul class="ref-list">
+        <li><strong>Use when:</strong> Very high-throughput OLTP, latch contention, lock bottlenecks</li>
+        <li><strong>Mechanism:</strong> Version-based concurrency — no locks on reads or writes</li>
+        <li><strong>Bonus:</strong> Natively compiled SPs for extra performance</li>
+        <li><strong>Don't use for:</strong> Large tables (memory-bound), analytics, complex joins</li>
+        <li><strong>Exam tip:</strong> Does NOT support CDC — use Change Tracking instead</li>
+      </ul>
+    </div>
+    <div class="ref-card d1">
+      <div class="ref-title"><span class="ref-badge badge-d1">D1</span> Ledger Table</div>
+      <ul class="ref-list">
+        <li><strong>Use when:</strong> Compliance requires proof data was not tampered with</li>
+        <li><strong>Two types:</strong> Append-only (no UPDATE/DELETE) vs Updatable (history maintained)</li>
+        <li><strong>Mechanism:</strong> SHA-256 hash chain across all committed transactions</li>
+        <li><strong>Exam tip:</strong> Temporal ≠ Ledger. Temporal = time-travel. Ledger = tamper-proof.</li>
+      </ul>
+    </div>
+    <div class="ref-card d1">
+      <div class="ref-title"><span class="ref-badge badge-d1">D1</span> Graph Tables</div>
+      <ul class="ref-list">
+        <li><strong>Use when:</strong> Modeling entity relationships, social graphs, recommendations</li>
+        <li><strong>NODE table:</strong> Entities (Person, Product). Has $node_id.</li>
+        <li><strong>EDGE table:</strong> Relationships (Follows, Purchased). Has $from_id, $to_id.</li>
+        <li><strong>Query:</strong> MATCH clause for pattern traversal. SHORTEST_PATH for paths.</li>
+        <li><strong>Exam tip:</strong> MATCH is in WHERE or FROM — not a function call</li>
+      </ul>
+    </div>
+    <div class="ref-card d1">
+      <div class="ref-title"><span class="ref-badge badge-d1">D1</span> External Tables</div>
+      <ul class="ref-list">
+        <li><strong>Use when:</strong> Query data in blob/ADLS/another DB without copying it</li>
+        <li><strong>Fabric:</strong> External tables over Fabric Lakehouse files</li>
+        <li><strong>Push-down:</strong> Some predicates pushed to source for filtering</li>
+        <li><strong>Exam tip:</strong> Write support limited. Not for hot-path OLTP.</li>
+      </ul>
+    </div>
+    <div class="ref-card amber">
+      <div class="ref-title"><span class="ref-badge badge-amber">ALL</span> Partitioned Tables</div>
+      <ul class="ref-list">
+        <li><strong>Use when:</strong> Very large tables needing partition elimination or archive switching</li>
+        <li><strong>Partition function:</strong> Defines boundary values and LEFT/RIGHT assignment</li>
+        <li><strong>Partition scheme:</strong> Maps function ranges to filegroups</li>
+        <li><strong>Elimination:</strong> WHERE on partition key → only relevant partitions scanned</li>
+        <li><strong>Exam tip:</strong> Index must use same partition scheme to be "aligned"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- RAG ARCHITECTURE -->
+<div class="panel" id="panel-rag">
+  <div class="section-head"><span>🤖</span> RAG Architecture Decision Guide</div>
+  <div class="ref-grid">
+    <div class="ref-card d3">
+      <div class="ref-title"><span class="ref-badge badge-d3">D3</span> Embedding Model Choice</div>
+      <ul class="ref-list">
+        <li><strong>text-embedding-3-small (1536 dims):</strong> Good quality, low cost. Most scenarios.</li>
+        <li><strong>text-embedding-3-large (3072 dims):</strong> Higher quality. More storage/compute.</li>
+        <li><strong>Multilingual-e5:</strong> Cross-lingual embeddings. When users query in other languages.</li>
+        <li><strong>Multimodal:</strong> When content includes images alongside text (e.g., product images + description)</li>
+        <li><strong>Exam tip:</strong> Match embedding model at query time to the one used at index time</li>
+      </ul>
+    </div>
+    <div class="ref-card d3">
+      <div class="ref-title"><span class="ref-badge badge-d3">D3</span> Chunking Strategy</div>
+      <ul class="ref-list">
+        <li><strong>Fixed-size (100–512 tokens):</strong> Simple, fast. Use 10-15% overlap. First choice.</li>
+        <li><strong>Sentence:</strong> NLP boundary detection. Better semantic units. Moderate complexity.</li>
+        <li><strong>Semantic:</strong> Topic-based splits. Best embedding quality. Most complex.</li>
+        <li><strong>Whole document:</strong> Only for very short documents (&lt;200 tokens)</li>
+        <li><strong>Exam tip:</strong> Overlap prevents context loss at chunk boundaries — always mention it</li>
+      </ul>
+    </div>
+    <div class="ref-card d3">
+      <div class="ref-title"><span class="ref-badge badge-d3">D3</span> Embedding Maintenance</div>
+      <ul class="ref-list">
+        <li><strong>Trigger (sync):</strong> Simple. Blocks write. Only for small tables with rare writes.</li>
+        <li><strong>Change Tracking + batch:</strong> Async, low overhead. Minutes of lag. Good for large tables.</li>
+        <li><strong>CDC + Azure Functions:</strong> Near real-time. Serverless scale. <span class="tag g">Recommended</span></li>
+        <li><strong>CES:</strong> Sub-second. Complex. Only when latency &lt; 1s is a requirement.</li>
+        <li><strong>Exam tip:</strong> Az Functions SQL trigger = async, no write-path overhead</li>
+      </ul>
+    </div>
+    <div class="ref-card d3">
+      <div class="ref-title"><span class="ref-badge badge-d3">D3</span> sp_invoke_external_rest_endpoint</div>
+      <ul class="ref-list">
+        <li><strong>Purpose:</strong> Call any REST API from T-SQL — OpenAI, Azure AI, custom APIs</li>
+        <li><strong>@credential:</strong> DATABASE SCOPED CREDENTIAL (never inline API key)</li>
+        <li><strong>@payload:</strong> JSON body, typically built with FOR JSON PATH</li>
+        <li><strong>@response OUTPUT:</strong> JSON response, parsed with JSON_VALUE / OPENJSON</li>
+        <li><strong>Exam tip:</strong> Core primitive for both embedding generation AND LLM chat completion in RAG</li>
+      </ul>
+    </div>
+    <div class="ref-card amber">
+      <div class="ref-title"><span class="ref-badge badge-amber">ALL</span> RAG vs Fine-Tuning</div>
+      <ul class="ref-list">
+        <li><strong>RAG:</strong> Retrieves facts at query time. No model retraining. Data stays current. No hallucination on retrieved facts.</li>
+        <li><strong>Fine-Tuning:</strong> Bakes knowledge into model weights. Data becomes stale. Can't update without retraining. Use for style/format, not knowledge.</li>
+        <li><strong>Exam tip:</strong> For DP-800, always prefer RAG for enterprise SQL data scenarios. Fine-tuning is out of scope.</li>
+      </ul>
+    </div>
+    <div class="ref-card d2">
+      <div class="ref-title"><span class="ref-badge badge-d2">D2</span> DAB vs Direct SQL + sp_invoke</div>
+      <ul class="ref-list">
+        <li><strong>DAB:</strong> Declarative REST/GraphQL over SQL objects. No custom code. Config-driven. Best for standard CRUD + search APIs.</li>
+        <li><strong>Stored Proc + sp_invoke:</strong> Custom logic, RAG pipelines, complex orchestration, embedding generation. Use when DAB is too simple.</li>
+        <li><strong>Exam tip:</strong> DAB exposes SPs too — use stored-procedure source type for custom logic via DAB endpoint.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+function switchTab(id, el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>

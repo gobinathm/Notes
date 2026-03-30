@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DP-800 · Flashcards</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.10);
+  --gb:rgba(255,255,255,0.08);--gbh:rgba(255,255,255,0.16);
+  --text:#e2e8f6;--dim:#8892b0;--muted:#3a4060;
+  --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
+  --d1:#4a9eff;--d2:#00d4aa;--d3:#a78bfa;--amber:#fbbf24;--rose:#fb7185;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 60% 40% at 20% 10%,rgba(74,158,255,0.07) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 50% at 80% 80%,rgba(167,139,250,0.06) 0%,transparent 60%);
+  pointer-events:none;z-index:0}
+.masthead{position:sticky;top:0;z-index:100;background:rgba(6,8,16,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--gb);padding:12px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mast-title{font-size:16px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(135deg,#fff 0%,var(--amber) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mast-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.filter-pills{display:flex;gap:6px;flex-wrap:wrap}
+.fpill{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:16px;border:1px solid var(--gb);
+  color:var(--dim);cursor:pointer;transition:all .15s;background:var(--s1)}
+.fpill.active{color:var(--text);border-color:var(--gbh);background:var(--s2)}
+.fpill.d1.active{color:var(--d1);background:rgba(74,158,255,0.1);border-color:rgba(74,158,255,0.3)}
+.fpill.d2.active{color:var(--d2);background:rgba(0,212,170,0.1);border-color:rgba(0,212,170,0.3)}
+.fpill.d3.active{color:var(--d3);background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.3)}
+.mast-right{display:flex;align-items:center;gap:14px}
+.progress-info{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.progress-info span{color:var(--text)}
+.page{position:relative;z-index:1;padding:32px 36px 64px;max-width:800px;margin:0 auto}
+/* CARD */
+.card-area{perspective:1200px;margin-bottom:32px}
+.flip-card{width:100%;min-height:320px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.flip-card.flipped{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;border-radius:16px;border:1px solid var(--gb);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:32px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.card-front{background:linear-gradient(135deg,var(--s1) 0%,var(--s2) 100%)}
+.card-back{background:linear-gradient(135deg,var(--s2) 0%,var(--s3) 100%);transform:rotateY(180deg)}
+.card-corner-badge{position:absolute;top:16px;right:16px;font-family:var(--mono);font-size:9px;
+  padding:3px 9px;border-radius:10px;border:1px solid;font-weight:600}
+.badge-d1{color:var(--d1);background:rgba(74,158,255,0.08);border-color:rgba(74,158,255,0.2)}
+.badge-d2{color:var(--d2);background:rgba(0,212,170,0.08);border-color:rgba(0,212,170,0.2)}
+.badge-d3{color:var(--d3);background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.2)}
+.card-num{position:absolute;top:16px;left:16px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.card-label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:16px}
+.card-label.back-label{color:var(--dim)}
+.card-q{font-size:20px;font-weight:700;text-align:center;line-height:1.4;max-width:600px}
+.card-a{font-size:15px;text-align:center;line-height:1.6;max-width:600px;color:var(--text)}
+.card-code{background:rgba(0,0,0,0.4);border:1px solid var(--gb);border-radius:6px;padding:10px 14px;
+  font-family:var(--mono);font-size:11px;line-height:1.6;margin-top:12px;text-align:left;width:100%;max-width:560px}
+.card-hint{font-size:11px;color:var(--muted);margin-top:12px;font-family:var(--mono)}
+.kw{color:#ff7b72}.fn{color:#79c0ff}.str{color:#a5d6ff}.cm{color:#8b949e}
+/* ACCENT LINE */
+.card-front::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+.card-front.d1::after{background:linear-gradient(90deg,var(--d1),transparent)}
+.card-front.d2::after{background:linear-gradient(90deg,var(--d2),transparent)}
+.card-front.d3::after{background:linear-gradient(90deg,var(--d3),transparent)}
+.card-back::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 16px 16px}
+.card-back.d1::after{background:linear-gradient(90deg,transparent,var(--d1))}
+.card-back.d2::after{background:linear-gradient(90deg,transparent,var(--d2))}
+.card-back.d3::after{background:linear-gradient(90deg,transparent,var(--d3))}
+/* CONTROLS */
+.controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px}
+.btn{padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid;transition:all .15s;font-family:var(--sans)}
+.btn-flip{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:var(--amber)}
+.btn-flip:hover{background:rgba(251,191,36,0.2);border-color:rgba(251,191,36,0.5)}
+.btn-prev{background:var(--s1);border-color:var(--gb);color:var(--dim)}
+.btn-prev:hover{background:var(--s2);color:var(--text);border-color:var(--gbh)}
+.btn-next{background:rgba(74,158,255,0.1);border-color:rgba(74,158,255,0.3);color:var(--d1)}
+.btn-next:hover{background:rgba(74,158,255,0.2);border-color:rgba(74,158,255,0.5)}
+.btn-know{background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.3);color:#4ade80}
+.btn-know:hover{background:rgba(74,222,128,0.2)}
+.btn-review{background:rgba(251,113,133,0.1);border-color:rgba(251,113,133,0.3);color:var(--rose)}
+.btn-review:hover{background:rgba(251,113,133,0.2)}
+/* PROGRESS */
+.prog-track{height:6px;background:var(--muted);border-radius:3px;margin-bottom:20px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--d1),var(--d3));border-radius:3px;transition:width .3s}
+/* LEGEND */
+.legend{display:flex;gap:16px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--dim)}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+/* MINI MAP */
+.minimap{display:grid;grid-template-columns:repeat(auto-fill,minmax(28px,1fr));gap:4px;margin-top:24px}
+.mm-cell{height:28px;border-radius:5px;border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;color:var(--muted);cursor:pointer;transition:all .15s;background:var(--s1)}
+.mm-cell.current{border-color:var(--amber);color:var(--amber);background:rgba(251,191,36,0.1)}
+.mm-cell.know{border-color:rgba(74,222,128,0.4);color:#4ade80;background:rgba(74,222,128,0.08)}
+.mm-cell.review{border-color:rgba(251,113,133,0.4);color:var(--rose);background:rgba(251,113,133,0.08)}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <div><div class="mast-eye">DP-800 · SQL AI Developer Associate</div><div class="mast-title">Flashcards · 60 Cards</div></div>
+  <div class="mast-right">
+    <div class="progress-info">Card <span id="cardNum">1</span> of <span id="cardTotal">60</span> · ✓ <span id="knowCount">0</span> · ↻ <span id="reviewCount">0</span></div>
+    <div class="filter-pills">
+      <span class="fpill active" onclick="setFilter('all',this)">All</span>
+      <span class="fpill d1" onclick="setFilter('d1',this)">D1</span>
+      <span class="fpill d2" onclick="setFilter('d2',this)">D2</span>
+      <span class="fpill d3" onclick="setFilter('d3',this)">D3</span>
+      <span class="fpill review" onclick="setFilter('review',this)">Review Pile</span>
+    </div>
+    <button class="btn btn-prev" onclick="shuffle()">⇄ Shuffle</button>
+  </div>
+</div>
+
+<div class="page">
+  <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="card-area">
+    <div class="flip-card" id="flipCard" onclick="flipCard()">
+      <div class="card-face card-front" id="cardFront">
+        <div class="card-num" id="cardNumBadge">01</div>
+        <div class="card-corner-badge" id="frontBadge"></div>
+        <div class="card-label">Question</div>
+        <div class="card-q" id="cardQ"></div>
+        <div class="card-hint">Click to reveal answer</div>
+      </div>
+      <div class="card-face card-back" id="cardBack">
+        <div class="card-corner-badge" id="backBadge"></div>
+        <div class="card-label back-label">Answer</div>
+        <div class="card-a" id="cardA"></div>
+        <div id="cardCodeBlock"></div>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button class="btn btn-review" onclick="markReview()">↻ Need Review</button>
+    <button class="btn btn-prev" onclick="prevCard()">← Prev</button>
+    <button class="btn btn-flip" onclick="flipCard()">↕ Flip</button>
+    <button class="btn btn-next" onclick="nextCard()">Next →</button>
+    <button class="btn btn-know" onclick="markKnow()">✓ Got It</button>
+  </div>
+  <div class="minimap" id="minimap"></div>
+</div>
+
+<script>
+const allCards = [
+  // D1
+  {q:"What does DENSE_RANK() do differently from RANK()?",a:"DENSE_RANK() does not skip numbers after ties. Ties get same rank, next rank is consecutive (1,1,2). RANK() skips: 1,1,3.",cat:"d1"},
+  {q:"Name 3 window functions and their use cases.",a:"ROW_NUMBER → unique row ID/pagination. LAG/LEAD → compare to previous/next row. SUM OVER → running total. NTILE → divide into N buckets.",cat:"d1"},
+  {q:"What is the difference between FOR JSON PATH and FOR JSON AUTO?",a:"PATH: explicit column-name aliasing controls nesting. AUTO: auto-infers structure from table names. Use PATH for predictable LLM payload structure.",cat:"d1"},
+  {q:"Temporal table: what does FOR SYSTEM_TIME AS OF do?",a:"Returns rows valid at the specified point in time. SQL Server queries both main table and system-maintained history table automatically.",cat:"d1"},
+  {q:"When is a Multi-Statement TVF a performance risk?",a:"Optimizer estimates 1 row regardless of actual output. This causes cardinality errors and bad plan choices (e.g., nested loops on huge result sets). Prefer Inline TVF.",cat:"d1"},
+  {q:"AFTER trigger vs INSTEAD OF trigger — key difference?",a:"AFTER fires after the DML completes. INSTEAD OF replaces the DML — original operation never happens. INSTEAD OF needed for non-updatable views.",cat:"d1"},
+  {q:"What is the inserted pseudo-table in an UPDATE trigger?",a:"Contains the NEW (post-update) values of changed rows. The deleted pseudo-table has the OLD (pre-update) values. Both available simultaneously in UPDATE triggers.",cat:"d1"},
+  {q:"Columnstore index: what is the delta store?",a:"A small B-tree rowstore that holds newly inserted rows before they accumulate enough to be compressed into a columnstore segment. Flushed by the Tuple Mover.",cat:"d1"},
+  {q:"Graph table: what does MATCH(u-(f)->t) mean?",a:"Pattern traversal: user node u connected via follow edge f to target node t. Direction matters. Part of FROM clause in graph queries.",cat:"d1"},
+  {q:"SEQUENCE vs IDENTITY — 3 differences.",a:"1) SEQUENCE is schema-level, shared across tables. IDENTITY is per-column. 2) SEQUENCE uses NEXT VALUE FOR. 3) SEQUENCE supports min/max/cycle/cache; IDENTITY is simpler.",cat:"d1"},
+  {q:"What makes an Inline TVF better than a Scalar UDF for performance?",a:"Inline TVF: optimizer sees inside (no black box), can push predicates in, supports parallelism. Scalar UDF: inhibits parallelism, row-by-row execution, plan bloat.",cat:"d1"},
+  {q:"Ledger table vs Temporal table — what's unique about Ledger?",a:"Ledger provides cryptographic hash chain for tamper evidence. Temporal tracks history for time-travel queries. Ledger proves data hasn't been altered; Temporal doesn't.",cat:"d1"},
+  {q:"What does REGEXP_LIKE() return and where is it available?",a:"Returns boolean: true if string matches the pattern. Available in Fabric SQL / Azure SQL. Not in older on-premises SQL Server versions.",cat:"d1"},
+  {q:"EDIT_DISTANCE vs JARO_WINKLER — when to use each?",a:"EDIT_DISTANCE (Levenshtein): count of character-level edits. Better for general typo detection. JARO_WINKLER: weights prefix matches, better for name matching (Smith/Smyth).",cat:"d1"},
+  {q:"What is partition elimination and what enables it?",a:"Query optimizer skips irrelevant partitions when filtering on the partition key. Requires: partitioned table/index + WHERE clause on partition key + aligned index.",cat:"d1"},
+  // D2 Security
+  {q:"RLS FILTER vs BLOCK predicate — functional difference?",a:"FILTER limits SELECT (and implicit reads from UPDATE/DELETE). BLOCK prevents DML. BEFORE UPDATE BLOCK prevents making rows invisible to the policy. Both use inline TVF.",cat:"d2"},
+  {q:"DDM: which masking function for showing only the last 4 digits of a phone number?",a:"PARTIAL(0,'XXXXXXXX',4) — shows 0 chars from start, masks middle, shows 4 from end. Or PARTIAL(0,'****',4) with custom mask string.",cat:"d2"},
+  {q:"Always Encrypted — when MUST you use DETERMINISTIC encryption?",a:"When the column needs equality filtering (WHERE col = @val) or joining, or when an index is required. Deterministic: same plaintext → same ciphertext → comparable.",cat:"d2"},
+  {q:"What holds the CMK in Always Encrypted and why?",a:"Azure Key Vault (or Windows cert store). CMK never enters SQL Server — only used client-side to decrypt the CEK. Separation of duties: DBA can't decrypt data.",cat:"d2"},
+  {q:"Managed Identity: system-assigned vs user-assigned?",a:"System-assigned: tied to one resource's lifecycle (deleted with resource). User-assigned: standalone, shareable across multiple resources. Use user-assigned for shared services.",cat:"d2"},
+  // D2 Performance
+  {q:"A Key Lookup in an execution plan means what, and how do you fix it?",a:"Non-clustered index found the rows but had to go back to clustered index for other columns. Fix: add needed columns as INCLUDE columns to the non-clustered index.",cat:"d2"},
+  {q:"Query Store: describe the plan regression workflow.",a:"1) Detect via Regressed Queries view or alerts. 2) Identify last known good plan ID. 3) Force it with sp_query_store_force_plan. 4) Investigate root cause (stats, schema change).",cat:"d2"},
+  {q:"RCSI vs SNAPSHOT isolation — key difference?",a:"RCSI: database-level, READ COMMITTED statements get row versions. Eliminates reader-writer blocking. SNAPSHOT: session-level, entire transaction sees consistent snapshot. More tempdb usage.",cat:"d2"},
+  {q:"LCK_M_X wait type — what does it indicate?",a:"Exclusive lock waits — processes are blocked waiting for exclusive locks held by other transactions. Indicates write-write contention or long-running transactions holding locks.",cat:"d2"},
+  {q:"What is parameter sniffing and when is it a problem?",a:"Optimizer compiles a plan based on the first execution's parameter values. Problem: if data is skewed, a plan optimal for one value set is terrible for another. Fix: OPTION(RECOMPILE) or OPTIMIZE FOR hint.",cat:"d2"},
+  // D2 CI/CD
+  {q:"What is the difference between dacpac and a migration script?",a:"dacpac declares the desired end state (schema snapshot). SqlPackage generates differential scripts at deploy time. Migration scripts are imperative — explicit change sequences. dacpac is declarative.",cat:"d2"},
+  {q:"SqlPackage /Action:Report — what does it do and when is it used?",a:"Compares dacpac against target database. Outputs XML report of schema differences without deploying. Used in CI to detect schema drift before deployment.",cat:"d2"},
+  {q:"tSQLt FakeTable — what does it do and why is it useful?",a:"Replaces a real table with an empty mock within a test transaction. Isolates the unit under test from real data. Auto-rolls back after test — no cleanup needed.",cat:"d2"},
+  {q:"What should a .github/copilot-instructions.md file contain for a SQL project?",a:"Naming conventions (table/SP prefixes), required patterns (SET NOCOUNT ON, TRY/CATCH, parameterized queries), forbidden patterns (SELECT *, dynamic SQL without sp_executesql), testing requirements.",cat:"d2"},
+  {q:"Where should production connection strings be stored in a GitHub Actions pipeline?",a:"GitHub repository secrets (Settings → Secrets → Actions). Referenced as ${{ secrets.SECRET_NAME }}. Never in YAML, .sqlproj, or publish profiles committed to the repo.",cat:"d2"},
+  // D2 DAB
+  {q:"DAB dab-config.json: what does the 'permissions' section control?",a:"Which roles (anonymous, authenticated, custom) can perform which actions (create, read, update, delete, execute) on an entity. Role-based access control for REST and GraphQL endpoints.",cat:"d2"},
+  {q:"How do you expose a stored procedure as a REST endpoint in DAB?",a:"Set source.type = 'stored-procedure' in the entity config. Parameters map to request body (POST). Set rest.methods to ['post']. Permissions control who can execute.",cat:"d2"},
+  {q:"CDC vs Change Tracking — when does each make sense for embedding refresh?",a:"Change Tracking: lightweight, row identity only, use when you can re-read the row yourself. CDC: captures before/after column values from log, needed when you need exactly what changed without re-querying.",cat:"d2"},
+  {q:"Azure Functions SQL trigger binding — what does it monitor and how does it trigger?",a:"Monitors a SQL table using CDC. Triggers an Azure Function for each batch of changed rows. Serverless, auto-scales, no polling overhead on the database.",cat:"d2"},
+  // D3 Vector
+  {q:"VECTOR_DISTANCE: cosine vs dot_product — when to use each?",a:"Use cosine for non-normalized vectors (most cases). Use dot_product ONLY after normalizing with VECTOR_NORMALIZE() — then it's mathematically equivalent to cosine but faster.",cat:"d3"},
+  {q:"What does VECTOR_NORMALIZE() do and why pre-normalize?",a:"Converts vector to unit length (magnitude=1). Pre-normalizing at insert: dot_product = cosine (faster). Avoids runtime normalization on every similarity query.",cat:"d3"},
+  {q:"ANN vs ENN — trade-off in one sentence each.",a:"ANN: approximate, O(log n), may miss some matches — production scale. ENN: exact, O(n) full scan, 100% recall — small datasets / testing only.",cat:"d3"},
+  {q:"DiskANN is used for what purpose in Azure SQL?",a:"DiskANN is the vector index algorithm powering VECTOR_SEARCH(). It enables Approximate Nearest Neighbor search at scale (millions of vectors) with low latency via disk-based graph index.",cat:"d3"},
+  {q:"VECTORPROPERTY(col, 'Dimensions') — what does it return?",a:"Returns the number of float dimensions declared for the VECTOR column. Example: VECTORPROPERTY(embedding, 'Dimensions') → 1536 for text-embedding-3-small.",cat:"d3"},
+  // D3 Search
+  {q:"RRF formula — write it and explain k=60.",a:"score = 1 / (k + rank). k=60 flattens the curve — prevents top-ranked items from dominating (without k, rank 1 gets 1.0, rank 2 gets 0.5). Higher k = more uniform distribution.",cat:"d3"},
+  {q:"CONTAINS vs FREETEXT — key difference.",a:"CONTAINS: precise control — exact phrase, FORMSOF(INFLECTIONAL), NEAR, Boolean. FREETEXT: NLP tokenization, stemming, stopword removal. More forgiving, less control.",cat:"d3"},
+  {q:"FREETEXTTABLE vs FREETEXT — why use FREETEXTTABLE for hybrid search?",a:"FREETEXTTABLE returns a ranked table (KEY, RANK columns). RANK can be used in RRF scoring calculations. FREETEXT returns boolean only — no rank to merge.",cat:"d3"},
+  {q:"What is semantic vector search and when does it beat full-text search?",a:"Semantic vector search finds documents similar in meaning using embeddings. Beats full-text for: paraphrase matching, multilingual search, conceptual similarity, when exact keywords aren't used.",cat:"d3"},
+  {q:"Hybrid search — what does each component contribute?",a:"Full-text: keyword precision, exact terminology, domain-specific terms. Vector: semantic understanding, paraphrases, concepts. RRF: merges both ranked lists robustly without score normalization.",cat:"d3"},
+  // D3 RAG
+  {q:"Describe the 5-step RAG pattern using only SQL objects.",a:"1) Embed user query (sp_invoke → OpenAI). 2) Hybrid search (FREETEXTTABLE + VECTOR_SEARCH). 3) RRF re-rank top results. 4) Build prompt (FOR JSON PATH). 5) Call LLM (sp_invoke) → OPENJSON response.",cat:"d3"},
+  {q:"sp_invoke_external_rest_endpoint — list the 4 key parameters.",a:"@url: endpoint URL. @method: HTTP method (POST). @credential: DATABASE SCOPED CREDENTIAL name. @payload: JSON request body. @response OUTPUT: receives JSON response.",cat:"d3"},
+  {q:"What is the risk of prompt injection in a RAG system and how do you mitigate it?",a:"Risk: malicious text in retrieved DB content instructs the LLM to ignore safety rules or reveal data. Mitigate: sanitize retrieved content, use system prompt to define LLM role strictly, validate output.",cat:"d3"},
+  {q:"Fixed-size chunking: what is overlap and why is it needed?",a:"Overlap repeats 10–15% of previous chunk at the start of the next. Prevents losing context at chunk boundaries (e.g., a sentence split across two chunks). Critical for preserving semantic continuity.",cat:"d3"},
+  {q:"For embedding maintenance: AFTER trigger vs Azure Functions SQL trigger — when to use each?",a:"Trigger: simple, synchronous, small tables — but blocks the write transaction. Az Functions SQL trigger: async, no write overhead, scales serverlessly — production choice for high-write tables.",cat:"d3"},
+  {q:"CREATE EXTERNAL MODEL — what task types does it support?",a:"EMBEDDINGS: converts text to vectors. CHAT_COMPLETION: invoke an LLM for text generation. Fabric SQL feature. Provides abstraction over Azure OpenAI / Azure AI services endpoints.",cat:"d3"},
+  {q:"Grounding vs Hallucination — define both and how RAG helps.",a:"Hallucination: LLM generates plausible but false content from training data. Grounding: anchoring LLM output to retrieved facts. RAG reduces hallucination by providing verified context before generation.",cat:"d3"},
+  {q:"What columns should typically be included in an embedding and which should be excluded?",a:"Include: content columns (title, description, body), context columns (category, tags, type). Exclude: primary keys, foreign keys, system dates, binary columns — they add noise, not meaning.",cat:"d3"},
+  {q:"MCP (Model Context Protocol) — what does it enable for SQL development?",a:"Allows AI agents (Copilot, Claude) to discover and interact with SQL Server schema, run queries, and access Fabric objects. Enables AI-assisted development with live database context.",cat:"d3"},
+  {q:"OPENJSON — describe its use in a RAG response handler.",a:"After sp_invoke returns LLM response JSON, OPENJSON parses the choices array into rows. Example: OPENJSON(@result, '$.result.choices') WITH (content NVARCHAR(MAX) '$.message.content').",cat:"d3"},
+];
+
+let cards = [...allCards];
+let currentIndex = 0;
+let isFlipped = false;
+let cardStates = {};
+let currentFilter = 'all';
+
+function setFilter(f, el){
+  currentFilter = f;
+  document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  if(f === 'review') {
+    cards = allCards.filter((_,i) => cardStates[getKey(i)] === 'review');
+    if(!cards.length){ alert('No cards in Review pile yet! Mark some cards first.'); setFilter('all', document.querySelector('.fpill')); return; }
+  } else if(f === 'all') {
+    cards = [...allCards];
+  } else {
+    cards = allCards.filter(c=>c.cat===f);
+  }
+  currentIndex = 0; isFlipped = false;
+  renderCard(); renderMinimap();
+}
+
+function getKey(i){ return `${currentFilter}_${i}`; }
+
+function shuffle(){
+  for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];}
+  currentIndex=0;isFlipped=false;renderCard();renderMinimap();
+}
+
+function renderCard(){
+  const c = cards[currentIndex];
+  if(!c) return;
+  const cat = c.cat;
+  const fc = document.getElementById('flipCard');
+  const front = document.getElementById('cardFront');
+  const back = document.getElementById('cardBack');
+  fc.classList.remove('flipped');
+  isFlipped = false;
+  front.className = `card-face card-front ${cat}`;
+  back.className = `card-face card-back ${cat}`;
+  document.getElementById('cardNumBadge').textContent = String(currentIndex+1).padStart(2,'0');
+  document.getElementById('frontBadge').textContent = cat.toUpperCase();
+  document.getElementById('frontBadge').className = `card-corner-badge badge-${cat}`;
+  document.getElementById('backBadge').textContent = cat.toUpperCase();
+  document.getElementById('backBadge').className = `card-corner-badge badge-${cat}`;
+  document.getElementById('cardQ').textContent = c.q;
+  document.getElementById('cardA').textContent = c.a;
+  const codeBlock = document.getElementById('cardCodeBlock');
+  codeBlock.innerHTML = c.code ? `<div class="card-code">${c.code}</div>` : '';
+  document.getElementById('cardNum').textContent = currentIndex+1;
+  document.getElementById('cardTotal').textContent = cards.length;
+  const pct = ((currentIndex+1)/cards.length)*100;
+  document.getElementById('progFill').style.width = pct+'%';
+  updateCounts();
+}
+
+function flipCard(){ const fc=document.getElementById('flipCard'); fc.classList.toggle('flipped'); isFlipped=!isFlipped; }
+function nextCard(){ if(currentIndex<cards.length-1){currentIndex++;isFlipped=false;renderCard();renderMinimap();} }
+function prevCard(){ if(currentIndex>0){currentIndex--;isFlipped=false;renderCard();renderMinimap();} }
+
+function markKnow(){
+  cardStates[currentIndex] = 'know';
+  updateCounts(); renderMinimap();
+  setTimeout(nextCard, 300);
+}
+function markReview(){
+  cardStates[currentIndex] = 'review';
+  updateCounts(); renderMinimap();
+  setTimeout(nextCard, 300);
+}
+
+function updateCounts(){
+  const knowC = Object.values(cardStates).filter(v=>v==='know').length;
+  const reviewC = Object.values(cardStates).filter(v=>v==='review').length;
+  document.getElementById('knowCount').textContent = knowC;
+  document.getElementById('reviewCount').textContent = reviewC;
+}
+
+function renderMinimap(){
+  const mm = document.getElementById('minimap');
+  mm.innerHTML = cards.map((_,i)=>`
+    <div class="mm-cell ${i===currentIndex?'current':''} ${cardStates[i]||''}"
+         onclick="jumpTo(${i})">${i+1}</div>
+  `).join('');
+}
+
+function jumpTo(i){ currentIndex=i; isFlipped=false; renderCard(); renderMinimap(); }
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight') nextCard();
+  else if(e.key==='ArrowLeft') prevCard();
+  else if(e.key===' '){e.preventDefault();flipCard();}
+  else if(e.key==='k'||e.key==='K') markKnow();
+  else if(e.key==='r'||e.key==='R') markReview();
+});
+
+renderCard();
+renderMinimap();
+</script>
+</body>
+</html>
