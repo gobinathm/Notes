@@ -244,7 +244,6 @@ function renderWeakAreas(){
   const list = document.getElementById('weakList');
   if(!weak.length){panel.style.display='none';return;}
   panel.style.display='block';
-  const studySessions = {...{1:'CTEs/JSON/Regex',2:'Specialized Tables',3:'Programmability',4:'Security',5:'Performance',6:'CI/CD',7:'DAB/Integration',8:'Vector Search',9:'RAG/Embeddings',10:'AI Tools/Mock'}};
   list.innerHTML = weak.sort((a,b)=>(topicScores[a.id]||0)-(topicScores[b.id]||0)).map(t=>`
     <div class="weak-item">
       <span>${t.name}</span>
