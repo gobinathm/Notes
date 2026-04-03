@@ -25,8 +25,10 @@ This is one of the two highest-weighted sections. The exam expects you to be str
 |---|---|
 | **Data types and sizing** | Pick the smallest correct type, especially for keys, money, and text-heavy columns. |
 | **Indexes** | Understand clustered vs nonclustered, filtered indexes, included columns, and when columnstore fits analytics workloads. |
+| **JSON columns and indexes** | Know when semi-structured payloads belong in JSON columns, how JSON path access affects query design, and when indexing JSON access paths improves retrieval. |
 | **Specialized tables** | Know when to use in-memory, temporal, external, ledger, and graph tables. |
 | **Constraints** | Expect PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, and DEFAULT questions tied to integrity. |
+| **SEQUENCES** | Use when you need reusable number generation across objects or more control than `IDENTITY`. |
 | **Partitioning** | Use for large tables with predictable access patterns and maintenance needs. |
 
 ### Specialized table quick map
@@ -43,6 +45,30 @@ This is one of the two highest-weighted sections. The exam expects you to be str
 If the requirement is simply "keep historical versions", think **temporal** first.  
 If the requirement is "prove nobody tampered with records", think **ledger**.
 :::
+
+### JSON columns and indexes
+
+Microsoft explicitly lists **JSON columns and indexes** in this domain.
+
+| Need | Direction |
+|---|---|
+| Store semi-structured app payloads without fully normalizing first | Use a JSON column |
+| Query specific properties repeatedly | Extract predictable paths and support them with indexing strategy |
+| Return model-ready payloads or API-shaped output | Combine relational data with JSON shaping functions |
+
+::: tip
+If the scenario mixes relational rows with evolving application metadata, JSON columns are often the bridge. The exam is less about "JSON instead of SQL" and more about **SQL plus JSON where it improves flexibility**.
+:::
+
+### `SEQUENCE` vs `IDENTITY`
+
+| Need | Prefer |
+|---|---|
+| Auto-number tied to one table insert path | **IDENTITY** |
+| Reusable number generation across multiple tables or processes | **SEQUENCE** |
+| Need to request the next value before insert logic completes | **SEQUENCE** |
+
+`SEQUENCE` is an explicit exam skill. Expect questions that test whether you need a table-bound incrementing key or a broader reusable numbering mechanism.
 
 ---
 
@@ -62,6 +88,17 @@ If the requirement is "prove nobody tampered with records", think **ledger**.
 | Automatically react to insert/update/delete | **Trigger** |
 | Expose consistent app-facing write API | **Stored procedure** |
 | Capture every row change event at source | **Trigger** |
+
+### Programmability object distinctions
+
+Microsoft’s wording here is implementation-oriented, so expect questions that ask which object to **create and manage**, not just what each object means.
+
+| Object | Best fit |
+|---|---|
+| **View** | Abstraction, controlled projection, simplified read surface |
+| **Function** | Reusable calculation or table-returning logic inside queries |
+| **Stored procedure** | Controlled operational entry point, parameterized write/read workflow |
+| **Trigger** | Automatic database-side reaction to DML events |
 
 ---
 
@@ -86,6 +123,15 @@ If the requirement is "prove nobody tampered with records", think **ledger**.
 | Turn JSON into rows | `OPENJSON` |
 | Build JSON output | `JSON_OBJECT`, `JSON_ARRAY`, aggregates |
 
+### Other T-SQL patterns Microsoft is clearly signaling
+
+- **Correlated subqueries** when each outer row affects inner execution
+- **Window framing and ranking** for ordered analytics patterns
+- **Regular expressions** for matching and validation scenarios
+- **Fuzzy functions** when exact string matching is too strict
+- **Graph traversal** for node/edge relationships
+- **Error handling** to keep database code predictable under failure
+
 ::: tip
 DP-800 repeatedly blends **structured** and **semi-structured** data. If a scenario mentions application payloads, model prompts, or API responses, expect JSON shaping to matter.
 :::
@@ -103,6 +149,15 @@ This is one of the most distinctive parts of DP-800.
 - Configure **model options** and **MCP tools**
 - Create **instruction files** to shape Copilot behavior
 - Connect to **MCP endpoints** such as SQL Server or Fabric lakehouse
+
+### Coverage note
+
+This objective is not only about generating SQL faster. Microsoft also expects you to understand:
+
+- how Copilot behavior is shaped by **instruction files**
+- how **MCP servers and tools** improve context quality
+- how **model choice and tool access** affect security and accuracy
+- why generated changes still need **review, testing, and least privilege**
 
 ### Practical interpretation
 

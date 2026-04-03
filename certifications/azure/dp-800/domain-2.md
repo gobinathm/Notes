@@ -41,6 +41,13 @@ If the requirement is "DBA must not see plaintext", think **Always Encrypted**, 
 - Use **Managed Identity** to secure model endpoints and service-to-service access.
 - Secure **REST**, **GraphQL**, and **MCP** endpoints the same way you would secure the database itself: authentication, authorization, auditability, and least privilege.
 
+### Security implementation clues Microsoft is signaling
+
+- **Object-level permissions** for least-privilege access
+- **Passwordless authentication** where supported
+- correct distinction between **obfuscation**, **server-side encryption**, and **client-side protection**
+- compliance evidence through **auditing**
+
 ---
 
 ## 2.2 Optimize database performance
@@ -61,6 +68,18 @@ If the requirement is "DBA must not see plaintext", think **Always Encrypted**, 
 - Parameter sensitivity / unstable plans
 - Wrong isolation level for workload behavior
 - Transaction scope too broad
+- Poorly chosen database configuration defaults
+
+### Recommend database configurations
+
+The official study guide explicitly includes **recommending database configurations**, so do not treat this domain as query tuning only.
+
+| If the scenario emphasizes... | Review |
+|---|---|
+| Workload concurrency and contention | isolation level, row versioning, transaction scope |
+| Plan instability or regressions | Query Store configuration and plan forcing options |
+| Monitoring gaps | baseline, telemetry, and diagnostic configuration |
+| Scaling behavior | indexing, storage layout, and service/database settings together |
 
 ### Isolation level mental shortcut
 
@@ -84,6 +103,8 @@ This section is very Microsoft-specific and likely exam-relevant.
 
 - Create and validate database models with **SQL Database Projects**
 - Use **SDK-style models**
+- Design a **testing strategy**
+- Run **unit tests** and **integration tests**
 - Store **reference/static data** in source control where appropriate
 - Configure branching, PRs, and conflict resolution
 - Detect **schema drift**
@@ -110,6 +131,15 @@ If the question mentions any of these, expect stronger pipeline controls:
 - **schema drift**
 - **secret rotation**
 
+### Testing strategy matters here
+
+Microsoft explicitly calls out **unit tests** and **integration tests** in this objective.
+
+| Test type | What it protects |
+|---|---|
+| **Unit tests** | Stored procedure, function, and schema behavior in controlled conditions |
+| **Integration tests** | Application-to-database behavior, deployment safety, and environment correctness |
+
 ::: warning Common Trap
 If a scenario needs repeatable deployments and reviewable schema history, do **not** rely on ad hoc manual SQL scripts as the primary answer. Prefer a **SQL Database Project + CI/CD pipeline** approach.
 :::
@@ -127,6 +157,8 @@ DAB exposes database entities through **REST** and **GraphQL** using configurati
 | **Entity configuration** | Controls what gets exposed and how |
 | **Pagination/search/filtering** | Shapes endpoint usability and cost |
 | **GraphQL relationships** | Makes relational models easier to consume |
+| **REST or GraphQL endpoint config** | Determines how the SQL surface is exposed to clients |
+| **Data caching** | Helps reduce repeated reads and improves API responsiveness in the right scenarios |
 | **Deployment config** | Needed for predictable API rollout |
 
 ### When DAB is the right answer
@@ -134,6 +166,20 @@ DAB exposes database entities through **REST** and **GraphQL** using configurati
 - You need quick API exposure over existing SQL objects
 - You want REST and GraphQL without building a custom app layer from scratch
 - You need to expose stored procedures, views, and relationships
+
+### Azure Monitor configurations
+
+The official study guide also includes **Azure Monitor configurations**, especially:
+
+- **Application Insights**
+- **Log Analytics**
+
+Use these when the scenario is about:
+
+- API or app telemetry tied to SQL-backed services
+- operational diagnostics and troubleshooting
+- centralized queryable logs and monitoring signals
+- observing integration paths, not just the database engine
 
 ### Change propagation options
 

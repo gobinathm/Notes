@@ -31,6 +31,10 @@ Microsoft currently lists DP-800 as a **beta** exam. Beta exams are **not scored
 This exam is for developers who already work comfortably with **T-SQL**, **database design**, and **deployment workflows**, and now need to add **AI-assisted development**, **embeddings/vector search**, and **RAG patterns** into SQL-backed applications.
 :::
 
+::: info Official Scope Note
+Microsoft has not released a large official learning path for this exam yet, but the official **study guide** clearly defines what is assessed. These notes follow that study guide and fill coverage around the three published skill areas.
+:::
+
 ---
 
 ## What the Exam Covers
@@ -56,7 +60,7 @@ According to the official study guide, DP-800 currently measures three skill are
       label: 'Domain 1: Design and develop database solutions (35-40%)',
       link: './domain-1',
       children: [
-        { id: 'd1-objects', label: 'Tables, indexes, temporal, ledger, graph', link: 'https://learn.microsoft.com/en-us/sql/relational-databases/tables/tables' },
+        { id: 'd1-objects', label: 'Tables, indexes, JSON columns/indexes, temporal, ledger, graph, sequences', link: 'https://learn.microsoft.com/en-us/sql/relational-databases/tables/tables' },
         { id: 'd1-tsql', label: 'Advanced T-SQL, JSON, regex, window functions', link: 'https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql' },
         { id: 'd1-copilot', label: 'GitHub Copilot, MCP, AI-assisted SQL workflows', link: 'https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/sql-projects' }
       ]
@@ -67,9 +71,9 @@ According to the official study guide, DP-800 currently measures three skill are
       link: './domain-2',
       children: [
         { id: 'd2-security', label: 'Encryption, masking, RLS, auditing, passwordless auth', link: 'https://learn.microsoft.com/en-us/azure/azure-sql/database/security-overview' },
-        { id: 'd2-performance', label: 'Query Store, plans, DMVs, blocking, deadlocks', link: 'https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store' },
+        { id: 'd2-performance', label: 'Query Store, plans, DMVs, blocking, deadlocks, database configuration', link: 'https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store' },
         { id: 'd2-devops', label: 'SQL Database Projects, tests, schema drift, deployments', link: 'https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/sql-database-projects' },
-        { id: 'd2-dab', label: 'Data API builder with REST and GraphQL', link: 'https://learn.microsoft.com/en-us/azure/data-api-builder/' }
+        { id: 'd2-dab', label: 'Data API builder, REST/GraphQL, caching, Azure Monitor', link: 'https://learn.microsoft.com/en-us/azure/data-api-builder/' }
       ]
     },
     {
@@ -78,10 +82,11 @@ According to the official study guide, DP-800 currently measures three skill are
       link: './domain-3',
       children: [
         { id: 'd3-models', label: 'External models, embeddings, chunking, embedding refresh', link: 'https://learn.microsoft.com/en-us/sql/sql-server/ai/vectors' },
-        { id: 'd3-search', label: 'Vector search, hybrid search, ANN vs ENN, RRF', link: 'https://learn.microsoft.com/en-us/sql/sql-server/ai/vector-search' },
+        { id: 'd3-search', label: 'Vector search, VECTOR_* functions, hybrid search, ANN vs ENN, RRF', link: 'https://learn.microsoft.com/en-us/sql/sql-server/ai/vector-search' },
         { id: 'd3-rag', label: 'RAG with sp_invoke_external_rest_endpoint and JSON shaping', link: 'https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-invoke-external-rest-endpoint-transact-sql' }
       ]
     },
+    { id: 'objectives', label: 'Reviewed official exam objectives', link: './objectives' },
     { id: 'exam-guide', label: 'Reviewed beta exam guide', link: './exam-guide' },
     { id: 'cheatsheet', label: 'Reviewed quick reference', link: './cheatsheet' },
     { id: 'visual-cheatsheet', label: 'Reviewed visual study kit', link: './visual-cheatsheet' },
@@ -97,6 +102,7 @@ According to the official study guide, DP-800 currently measures three skill are
 - [DP-800 Study Guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-800)
 - [DP-800T00-A Course: Develop AI-enabled database solutions](https://learn.microsoft.com/en-us/training/courses/dp-800t00)
 - [Exam Sandbox](https://aka.ms/examdemo)
+- [Exam Objectives Crosswalk](./objectives.md)
 
 ## Core Documentation
 
@@ -117,4 +123,4 @@ As of **March 28, 2026**, Microsoft states that the **Practice Assessment is not
 
 ---
 
-[Start Study Notes →](./domain-1.md) · [Cheatsheet →](./cheatsheet.md) · [Visual Study Kit →](./visual-cheatsheet.md) · [Exam Guide →](./exam-guide.md)
+[Start Study Notes →](./domain-1.md) · [Objectives →](./objectives.md) · [Cheatsheet →](./cheatsheet.md) · [Visual Study Kit →](./visual-cheatsheet.md) · [Exam Guide →](./exam-guide.md)

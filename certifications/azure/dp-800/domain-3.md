@@ -26,6 +26,17 @@ The study guide expects you to evaluate models by:
 - model size
 - structured output support
 
+### Create and manage external models
+
+Microsoft’s study guide is broader than model selection alone. It also expects you to understand how SQL solutions **create and manage external models**.
+
+| Concern | Why it matters |
+|---|---|
+| **Model capability fit** | Different models fit different retrieval, generation, and structured-output tasks |
+| **Operational management** | External models are dependencies that affect latency, cost, and failure paths |
+| **Security and access** | Endpoint configuration and credentials must be handled safely |
+| **Refresh and compatibility** | Model changes can affect embedding quality and downstream search behavior |
+
 ### Embedding pipeline
 
 ```text
@@ -76,10 +87,21 @@ If the source data changes frequently, the correct answer usually includes a **r
 
 - vector data type
 - vector indexes
+- vector index types and metrics
 - vector size and dimensionality
 - vector distance and normalization functions
 - ANN vs ENN search behavior
 - reciprocal rank fusion (RRF)
+- vector and hybrid search performance evaluation
+
+### Functions Microsoft is signaling explicitly
+
+| Function | What to remember |
+|---|---|
+| **`VECTOR_SEARCH`** | Search vectors for nearest matches |
+| **`VECTOR_DISTANCE`** | Compare how close vectors are |
+| **`VECTOR_NORMALIZE`** | Normalize vectors before comparison when the pattern requires it |
+| **`VECTORPROPERTY`** | Inspect vector metadata such as dimensionality |
 
 ### ANN vs ENN
 
@@ -94,6 +116,17 @@ Hybrid search matters because enterprise SQL use cases often need both:
 
 - exact domain terms, codes, and identifiers
 - semantic similarity over meaning
+
+### Evaluate vector and hybrid search performance
+
+This is an official study-guide verb and deserves explicit attention.
+
+| What to evaluate | Why |
+|---|---|
+| **Recall vs speed** | ANN can improve speed but may trade away exactness |
+| **Exactness requirements** | ENN may be the better fit when correctness matters more than latency |
+| **Query pattern mix** | Hybrid retrieval helps when exact terms and semantic meaning both matter |
+| **Ranking quality** | RRF improves blended ranking when combining lexical and vector results |
 
 ### Reciprocal Rank Fusion
 
@@ -120,6 +153,13 @@ That means you should be ready to think in this pattern:
 - SQL shapes data into JSON
 - SQL calls external AI endpoint
 - app or SQL layer parses the response
+
+### RAG implementation details the notes should anchor
+
+- Use SQL retrieval first, not free-form prompting against stale memory
+- Shape context into **JSON or prompt-ready text**
+- Call external endpoints from SQL workflows when the scenario is SQL-centered
+- Keep the answer tied to **current enterprise data**
 
 ### When RAG is the right answer
 
