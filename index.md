@@ -13,11 +13,11 @@ description: Study notes from technology certifications I've cleared and ones I'
       <span class="cert-stat-label">Passed</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">5</span>
+      <span class="cert-stat-num">6</span>
       <span class="cert-stat-label">In Progress</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">7</span>
+      <span class="cert-stat-num">9</span>
       <span class="cert-stat-label">Planned</span>
     </div>
   </div>
@@ -40,7 +40,7 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="section-header">
   <h2>Currently Studying</h2>
-  <span class="section-count">5 active</span>
+  <span class="section-count">6 active</span>
 </div>
 
 <div class="cert-grid">
@@ -77,6 +77,24 @@ These started as plain markdown files. When I decided to share them as a site, I
     <div class="cert-date-item exam-target">
       <span class="date-label">Exam</span>
       <span class="date-val">Apr 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="cert-card studying">
+  <div class="cert-ribbon beginner">Beginner</div>
+  <span class="provider-tag azure">Azure</span>
+  <h3><a href="./certifications/azure/ai-900/">AI-900: Azure AI Fundamentals</a></h3>
+  <p>Foundational AI, machine learning, computer vision, NLP, and generative AI concepts using Microsoft Azure AI services.</p>
+  <div class="cert-prereqs">Basic cloud concepts, client-server applications, AI workload awareness</div>
+  <div class="cert-dates">
+    <div class="cert-date-item study-by">
+      <span class="date-label">Study by</span>
+      <span class="date-val">May 2026</span>
+    </div>
+    <div class="cert-date-item exam-target">
+      <span class="date-label">Exam</span>
+      <span class="date-val">Jun 2026</span>
     </div>
   </div>
 </div>
@@ -146,7 +164,6 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="radar-group">
     <div class="radar-group-label">Q2 2026</div>
     <div class="radar-group-items">
-      <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">AI-900: Azure AI Foundations</span></div>
       <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">DP-700: Fabric Data Engineer Associate</span></div>
     </div>
   </div>
@@ -167,6 +184,13 @@ These started as plain markdown files. When I decided to share them as a site, I
       <div class="radar-item"><span class="provider-tag aws">AWS</span><span class="radar-item-name">SAA-C03: Solutions Architect</span></div>
       <div class="radar-item"><span class="provider-tag python">Python</span><span class="radar-item-name">PCAP: Associate Python Programmer</span></div>
       <div class="radar-item"><span class="provider-tag pmi">PMI</span><span class="radar-item-name">GenAI for Project Managers</span></div>
+    </div>
+  </div>
+
+  <div class="radar-group">
+    <div class="radar-group-label">Q1 2027</div>
+    <div class="radar-group-items">
+      <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">AB-900: M365 Copilot and Agent Administration Fundamentals</span></div>
     </div>
   </div>
 

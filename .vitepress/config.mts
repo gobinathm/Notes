@@ -122,6 +122,7 @@ export default defineConfig({
             items: [
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
+              { text: 'AI-900: Azure AI Fundamentals', link: '/certifications/azure/ai-900/' },
               { text: 'AI-102: Azure AI Engineer Associate', link: '/certifications/azure/ai-102/' },
               { text: 'DP-800: SQL AI Developer Associate (beta)', link: '/certifications/azure/dp-800/' },
             ]
@@ -185,6 +186,21 @@ export default defineConfig({
                 { text: 'Domain 3: Adoption', link: '/certifications/azure/ab-731/domain-3' },
                 { text: 'Exam Guide', link: '/certifications/azure/ab-731/exam-guide' },
                 { text: 'Cheatsheet', link: '/certifications/azure/ab-731/cheatsheet' }
+              ]
+            },
+            {
+              text: 'AI-900: Azure AI Fundamentals',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ai-900/' },
+                { text: 'Domain 1: AI Workloads', link: '/certifications/azure/ai-900/domain-1' },
+                { text: 'Domain 2: Machine Learning', link: '/certifications/azure/ai-900/domain-2' },
+                { text: 'Domain 3: Computer Vision', link: '/certifications/azure/ai-900/domain-3' },
+                { text: 'Domain 4: NLP Workloads', link: '/certifications/azure/ai-900/domain-4' },
+                { text: 'Domain 5: Generative AI', link: '/certifications/azure/ai-900/domain-5' },
+                { text: 'Exam Guide', link: '/certifications/azure/ai-900/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ai-900/cheatsheet' },
+                { text: 'Exam Tips', link: '/certifications/azure/ai-900/exam-tips' }
               ]
             },
             {
