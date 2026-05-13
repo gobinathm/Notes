@@ -120,6 +120,7 @@ export default defineConfig({
           {
             text: 'Azure',
             items: [
+              { text: 'AB-100: Agentic AI Business Solutions Architect', link: '/certifications/azure/ab-100/' },
               { text: 'AB-730: AI Business Professional', link: '/certifications/azure/ab-730/' },
               { text: 'AB-731: AI Transformation Leader', link: '/certifications/azure/ab-731/' },
               { text: 'AI-900: Azure AI Fundamentals', link: '/certifications/azure/ai-900/' },
@@ -164,6 +165,18 @@ export default defineConfig({
           text: '🔷 Microsoft Certifications',
           collapsed: true,
           items: [
+            {
+              text: 'AB-100: Agentic AI Business Solutions Architect',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/certifications/azure/ab-100/' },
+                { text: 'Domain 1: Plan AI-powered Business Solutions', link: '/certifications/azure/ab-100/domain-1' },
+                { text: 'Domain 2: Design AI-powered Business Solutions', link: '/certifications/azure/ab-100/domain-2' },
+                { text: 'Domain 3: Deploy AI-powered Business Solutions', link: '/certifications/azure/ab-100/domain-3' },
+                { text: 'Exam Guide', link: '/certifications/azure/ab-100/exam-guide' },
+                { text: 'Cheatsheet', link: '/certifications/azure/ab-100/cheatsheet' }
+              ]
+            },
             {
               text: 'AB-730: AI Business Professional',
               collapsed: true,

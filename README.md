@@ -10,6 +10,7 @@ Study notes I prepared while clearing technology certifications.
 
 | Certification | Provider | Status |
 |---|---|---|
+| [AB-100: Agentic AI Business Solutions Architect](https://notes.gobinath.com/certifications/azure/ab-100/) | Microsoft | In Progress |
 | [MLA-C01: AWS ML Engineer Associate](https://notes.gobinath.com/certifications/aws/mla-c01/) | AWS | In Progress |
 | [GCP-GAIL: Generative AI Leader](https://notes.gobinath.com/certifications/google-cloud/gen-ai-leader/) | Google Cloud | In Progress |
 | [AI-102: Azure AI Engineer Associate](https://notes.gobinath.com/certifications/azure/ai-102/) | Microsoft | In Progress |

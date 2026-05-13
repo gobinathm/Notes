@@ -13,11 +13,11 @@ description: Study notes from technology certifications I've cleared and ones I'
       <span class="cert-stat-label">Passed</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">6</span>
+      <span class="cert-stat-num">7</span>
       <span class="cert-stat-label">In Progress</span>
     </div>
     <div class="cert-stat">
-      <span class="cert-stat-num">9</span>
+      <span class="cert-stat-num">8</span>
       <span class="cert-stat-label">Planned</span>
     </div>
   </div>
@@ -40,10 +40,28 @@ These started as plain markdown files. When I decided to share them as a site, I
 
 <div class="section-header">
   <h2>Currently Studying</h2>
-  <span class="section-count">6 active</span>
+  <span class="section-count">7 active</span>
 </div>
 
 <div class="cert-grid">
+
+<div class="cert-card studying">
+  <div class="cert-ribbon advanced">Advanced</div>
+  <span class="provider-tag azure">Azure</span>
+  <h3><a href="./certifications/azure/ab-100/">AB-100: Agentic AI Business Solutions Architect</a></h3>
+  <p>Architect agentic-first AI business solutions using Microsoft Copilot, Copilot Studio, Microsoft Foundry, Dynamics 365, and Power Platform.</p>
+  <div class="cert-prereqs">Solution architecture, Dynamics 365, Power Platform, Copilot Studio, Microsoft Foundry, responsible AI</div>
+  <div class="cert-dates">
+    <div class="cert-date-item study-by">
+      <span class="date-label">Study by</span>
+      <span class="date-val">TBD</span>
+    </div>
+    <div class="cert-date-item exam-target">
+      <span class="date-label">Exam</span>
+      <span class="date-val">TBD</span>
+    </div>
+  </div>
+</div>
 
 <div class="cert-card studying">
   <div class="cert-ribbon advanced">Advanced</div>
@@ -179,7 +197,6 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="radar-group">
     <div class="radar-group-label">Q4 2026</div>
     <div class="radar-group-items">
-      <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">AB-100: Agentic AI Business Solutions Architect</span></div>
       <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">DP-800: SQL AI Developer Associate</span></div>
       <div class="radar-item"><span class="provider-tag aws">AWS</span><span class="radar-item-name">SAA-C03: Solutions Architect</span></div>
       <div class="radar-item"><span class="provider-tag python">Python</span><span class="radar-item-name">PCAP: Associate Python Programmer</span></div>
