@@ -197,7 +197,7 @@ These started as plain markdown files. When I decided to share them as a site, I
   <div class="radar-group">
     <div class="radar-group-label">Q4 2026</div>
     <div class="radar-group-items">
-      <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">DP-800: SQL AI Developer Associate</span></div>
+      <div class="radar-item"><span class="provider-tag azure">Azure</span><span class="radar-item-name">DP-800: Developing AI-Enabled Database Solutions</span></div>
       <div class="radar-item"><span class="provider-tag aws">AWS</span><span class="radar-item-name">SAA-C03: Solutions Architect</span></div>
       <div class="radar-item"><span class="provider-tag python">Python</span><span class="radar-item-name">PCAP: Associate Python Programmer</span></div>
       <div class="radar-item"><span class="provider-tag pmi">PMI</span><span class="radar-item-name">GenAI for Project Managers</span></div>
