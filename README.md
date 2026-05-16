@@ -44,7 +44,7 @@ This repo uses GitHub Actions for site deployment, worker deployment, code scann
 
 ### Maintainer Notes
 
-- Run `npm run docs:build` locally before pushing site/content changes.
+- Run `pnpm run docs:build` locally before pushing site/content changes.
 - The worker workflow requires:
   - `CLOUDFLARE_API_TOKEN`
   - `CLOUDFLARE_ACCOUNT_ID`

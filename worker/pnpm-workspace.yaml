@@ -1,0 +1,9 @@
+packages:
+  - .
+
+minimumReleaseAge: 7200
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - workerd
