@@ -257,6 +257,51 @@ Use **AWS Glue Data Quality** when the problem is **"validate and block poor-qua
 Use **Guardrails** when the problem is filtering model inputs/outputs at inference time.
 :::
 
+### Complex Data Processing for FM Consumption
+
+Not all FM input starts as clean text. The exam may describe audio, images, PDFs, tables, or noisy user-generated content that must be normalized before inference or ingestion.
+
+| Source Data | AWS Processing Pattern | GenAI Use |
+|---|---|---|
+| Audio calls or lectures | Amazon Transcribe, then Bedrock | Summaries, subtitles, support-call analysis |
+| Multilingual text | Amazon Translate with custom terminology | Localized answers or translated subtitles |
+| Scanned documents | Textract, then cleanup/chunking | RAG ingestion from forms or PDFs |
+| Structured records | AWS Glue Data Quality | Validate before embedding or prompting |
+| Large preprocessing jobs | SageMaker Processing | Repeatable data transformation before training/inference |
+
+**Typical multimodal pipeline:**
+
+```text
+Raw media or document
+    ↓
+Extract text / metadata
+    ↓
+Normalize, redact, and validate
+    ↓
+Chunk and embed if used for RAG
+    ↓
+Invoke FM with clean, bounded input
+```
+
+::: tip Exam Scenario
+If the scenario requires **domain-specific transcription terms**, choose **Amazon Transcribe custom vocabulary**. If it then needs multilingual output with consistent terminology, add **Amazon Translate custom terminology**.
+:::
+
+### Input Formatting and Normalization
+
+Before invoking an FM, applications should shape user input into a predictable prompt contract.
+
+**Common steps:**
+- Remove unsupported file content and convert to plain text
+- Normalize casing, whitespace, dates, and units when the downstream task needs consistency
+- Redact or mask PII before sending sensitive text to the model
+- Apply prompt templates so task instructions, context, and user input are clearly separated
+- Enforce output schemas when the application expects JSON or structured fields
+
+::: warning Exam Trap
+Do not use fine-tuning to fix messy input. If the issue is **bad, inconsistent, or unsafe input data**, fix it with validation, transformation, redaction, and prompt formatting before inference.
+:::
+
 ---
 
 ## 1.4 Vector Stores
@@ -325,6 +370,71 @@ OpenSearch is a strong answer for **semantic search**, **content recommendation*
 ::: tip
 When the exam describes a retrieval system that misses relevant information, think about **recall**. When it retrieves too much irrelevant context, think about **precision**, metadata filtering, or reranking.
 :::
+
+### Metadata Frameworks for Search
+
+Metadata improves retrieval by narrowing the search space before or after vector similarity search.
+
+**Useful metadata fields:**
+- `tenant_id`
+- `department`
+- `document_type`
+- `region`
+- `effective_date`
+- `security_classification`
+- `source_system`
+
+**Why it matters:**
+- Enforces user-specific or tenant-specific retrieval boundaries
+- Improves precision by filtering irrelevant chunks
+- Supports compliance requirements such as region, department, or classification scoping
+- Avoids creating separate vector stores for every category when filters are enough
+
+::: tip
+If the question says **users must only retrieve documents they are authorized to see**, metadata alone is not enough. Combine metadata filters with IAM/application authorization and per-document ACLs.
+:::
+
+### High-Performance Vector Architectures
+
+Large RAG systems need retrieval designs that balance recall, latency, cost, and isolation.
+
+| Pattern | Use When | Trade-off |
+|---|---|---|
+| Sharded vector index | Very large embedding collections | More operational design complexity |
+| Multi-index by tenant/domain | Tenants or business units need isolation | More indexes to manage |
+| Hierarchical retrieval | Need broad section context plus precise chunks | More complex retrieval pipeline |
+| Hybrid search | Exact terms matter with semantic meaning | More tuning, but better enterprise relevance |
+| Reranking | Initial top-K has noisy results | Additional latency and cost |
+
+**Hierarchical retrieval flow:**
+
+```text
+User query
+    ↓
+Retrieve fine-grained child chunks
+    ↓
+Attach parent section/document context
+    ↓
+Rerank and filter
+    ↓
+Send grounded context to FM
+```
+
+### Vector Store Maintenance
+
+Vector stores become stale unless ingestion and updates are designed intentionally.
+
+| Maintenance Pattern | Best For |
+|---|---|
+| Event-driven updates | Documents change frequently and updates must be near real time |
+| Scheduled refresh | Predictable daily or hourly document updates |
+| Full rebuild | Embedding model changes, chunking strategy changes, or index corruption |
+| Versioned indexes | Testing a new embedding model or retrieval strategy before cutover |
+
+**Important exam ideas:**
+- Updating S3 source documents does not automatically guarantee fresh retrieval results
+- Changing chunking or embedding models usually requires reprocessing and reindexing
+- Monitor ingestion failures separately from query-time retrieval latency
 
 ---
 

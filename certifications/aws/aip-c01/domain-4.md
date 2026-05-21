@@ -197,4 +197,62 @@ When you receive a `ThrottlingException`:
 
 ---
 
+## 4.5 Deployment and Inference Optimization
+
+The exam may ask how to optimize FM serving when Bedrock on-demand calls are not enough or when a custom model runs on SageMaker.
+
+### Real-Time vs. Asynchronous vs. Batch
+
+| Requirement | Best Pattern |
+|---|---|
+| User waits for immediate answer | Real-time endpoint or synchronous Bedrock call |
+| Request takes longer than API timeout but user can poll later | Async queue with SQS, Step Functions, or SageMaker asynchronous inference |
+| Thousands of offline prompts | Bedrock Batch Inference or SageMaker Batch Transform |
+| Streaming user experience | `InvokeModelWithResponseStream` or WebSocket/API streaming |
+
+::: tip
+Streaming improves perceived latency, but it does not reduce token cost. Batch inference reduces cost for offline work, but it is not interactive.
+:::
+
+### SageMaker LLM Deployment Optimizations
+
+| Optimization | Use When | Trade-off |
+|---|---|---|
+| Continuous batching | Many concurrent generation requests | More serving complexity |
+| Tensor parallelism tuning | Model is spread across more GPUs than needed | Must fit model and activations safely |
+| Lower max sequence length | Real requests are much shorter than configured limit | Cannot handle rare very-long requests |
+| Multiple replicas per instance | Model fits on fewer GPUs | Requires careful capacity testing |
+| Model weight caching | Startup time or scale-out is slow | More storage/design considerations |
+
+**Exam pattern:** if traffic is low but GPU utilization is poor, do not simply add larger instances. Tune sequence length, batching, tensor parallelism, and replica layout.
+
+### Quantization and Compilation
+
+| Technique | Goal | Best For |
+|---|---|---|
+| Quantization | Reduce model memory and speed up inference | Cost/latency optimization with acceptable quality trade-off |
+| Compilation | Optimize model execution for target hardware | Stable deployment target and high-throughput workloads |
+| Distillation | Smaller model learns from a larger model | Lower-cost production serving |
+
+::: warning Exam Trap
+Optimization techniques can affect output quality. For regulated or quality-sensitive workloads, pair quantization/compilation/distillation with evaluation gates before production rollout.
+:::
+
+### Edge and Hybrid Deployment
+
+Edge or hybrid deployment appears when latency, connectivity, or data locality requirements dominate.
+
+| Requirement | Pattern |
+|---|---|
+| Run near users or devices | Edge deployment where supported |
+| Keep workloads close to on-premises systems | Outposts or hybrid architecture |
+| Ultra-low-latency telecom/location use case | Wavelength-style edge pattern |
+| Fully managed FM with least ops | Bedrock in-region, not custom edge hosting |
+
+::: tip
+Choose edge/hybrid only when the scenario explicitly requires low-latency local processing, intermittent connectivity, or data locality. Otherwise, managed regional Bedrock or SageMaker is usually simpler.
+:::
+
+---
+
 [← Domain 3](./domain-3.md) · [Next: Domain 5 →](./domain-5.md)

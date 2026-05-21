@@ -309,4 +309,97 @@ Macie operates at the S3 bucket/object level before data ever reaches Bedrock. C
 
 ---
 
+## 3.7 Enterprise Identity, Governance, and Compliance Controls
+
+Production GenAI systems often sit behind enterprise identity, organization policies, data-governance controls, and audit requirements.
+
+### Authentication and Federation
+
+| Requirement | AWS Service / Pattern |
+|---|---|
+| Customer-facing app sign-in | Amazon Cognito |
+| Workforce access to AWS apps/accounts | IAM Identity Center |
+| Existing enterprise IdP | SAML or OIDC federation |
+| Temporary access instead of long-lived keys | IAM roles and STS credentials |
+| API-level access control | IAM authorization, Lambda authorizers, or Cognito authorizers |
+
+**How to choose:**
+- **Cognito**: app users, user pools, social/OIDC sign-in, token-based app auth
+- **IAM Identity Center**: workforce identities and AWS account/application access
+- **SAML/OIDC federation**: integrate with an existing IdP so users do not receive long-lived AWS credentials
+
+::: tip Exam Scenario
+If the scenario says **existing IdP**, **temporary credentials**, or **central workforce access**, think federation with IAM roles, IAM Identity Center, SAML, or OIDC rather than static IAM users.
+:::
+
+### Lake Formation and Governed Data Access
+
+Use **AWS Lake Formation** when the GenAI pipeline reads governed data from a data lake and access must be controlled at a fine-grained level.
+
+| Need | Best Fit |
+|---|---|
+| Govern table/column/row access in a data lake | Lake Formation |
+| Discover sensitive data in S3 before ingestion | Macie |
+| Redact text PII during processing | Comprehend or Guardrails |
+| Encrypt storage with customer-managed keys | AWS KMS |
+
+**GenAI relevance:** if RAG or model evaluation datasets are built from governed data lake assets, Lake Formation controls who and what can read the source data before it becomes model context.
+
+### Service Control Policies and Organization Guardrails
+
+**SCPs** enforce organization-level permission boundaries across AWS accounts.
+
+**Use SCPs to:**
+- Restrict approved AWS regions for GenAI workloads
+- Deny access to unapproved Bedrock model IDs
+- Require use of approved accounts or VPC endpoint patterns
+- Prevent teams from disabling required logging or encryption controls
+
+::: warning Exam Trap
+IAM policies grant permissions within an account. **SCPs set the maximum permissions an account can use**. If the requirement is organization-wide restriction, SCPs are the stronger governance control.
+:::
+
+### Model Cards, Data Lineage, and Decision Logging
+
+Governance questions may ask how to document, explain, and audit GenAI systems.
+
+| Governance Need | Pattern |
+|---|---|
+| Document intended use and limitations | Model cards / AI Service Cards |
+| Track source data used for retrieval or evaluation | Data lineage metadata |
+| Audit who called which model | CloudTrail |
+| Capture prompts and responses for investigation | Model Invocation Logging |
+| Explain RAG responses to users | Citations and source attribution |
+| Support deletion/retention requirements | Data lifecycle policies and index rebuild/update workflows |
+
+**Right to be forgotten pattern:**
+
+```text
+Delete source record/document
+    ↓
+Remove or expire derived chunks
+    ↓
+Rebuild or update vector index
+    ↓
+Verify retrieval no longer returns deleted content
+```
+
+### Continuous Monitoring and Remediation
+
+Use monitoring when model behavior or data quality can drift after deployment.
+
+| Signal | Tool / Pattern |
+|---|---|
+| Endpoint performance drift | SageMaker Model Monitor |
+| Bedrock latency, token usage, throttling | CloudWatch metrics and alarms |
+| Suspicious API activity | CloudTrail and Security Hub |
+| Unsafe prompts or outputs | Guardrails metrics/log review |
+| Failed ingestion or stale vector data | Pipeline metrics and EventBridge remediation |
+
+::: tip
+If the scenario describes **automated remediation**, pair detection with EventBridge, Lambda, or Step Functions so the system can quarantine data, roll back config, or trigger a review workflow.
+:::
+
+---
+
 [← Domain 2](./domain-2.md) · [Next: Domain 4 →](./domain-4.md)

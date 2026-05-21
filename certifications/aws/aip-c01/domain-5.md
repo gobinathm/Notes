@@ -194,4 +194,156 @@ Use **AWS X-Ray** when the problem is tracing a request across multiple services
 
 ---
 
+## 5.6 Deployment Validation and Quality Gates
+
+Testing GenAI applications means validating model quality, prompt behavior, retrieval, safety, latency, and rollout risk before production traffic shifts.
+
+### LLM Unit Tests
+
+LLM unit tests check whether a prompt or workflow still satisfies expected behavior.
+
+| Test Type | Example |
+|---|---|
+| Format test | Response must be valid JSON with required fields |
+| Refusal test | Model must refuse disallowed advice |
+| Grounding test | Answer must cite retrieved source chunks |
+| Regression test | Known prompts should not degrade after prompt/model update |
+| Safety test | Prompt injection should not override system instructions |
+
+::: tip
+LLM tests are usually probabilistic. Use rubrics, thresholds, deterministic settings where possible, and human review for high-risk failures.
+:::
+
+### Canary and Shadow Deployment
+
+| Rollout Pattern | How It Works | Best For |
+|---|---|---|
+| Canary deployment | Send a small percentage of real traffic to the new version | Controlled production rollout |
+| Shadow mode | Send copied traffic to new model without returning its answer to users | Risk-free comparison |
+| Blue/green | Switch between full old and new environments | Fast rollback |
+| A/B test | Split users between variants and compare metrics | Product or quality comparison |
+
+**Evaluation gate pattern:**
+
+```text
+Deploy candidate version
+    ↓
+Run synthetic tests and offline evaluation
+    ↓
+Shift small canary traffic
+    ↓
+Monitor quality, safety, latency, and cost
+    ↓
+Promote, pause, or roll back
+```
+
+::: tip Exam Scenario
+If the scenario asks to validate a model with production-like inputs **without affecting users**, choose **shadow mode**. If it asks for gradual real-user rollout, choose **canary**.
+:::
+
+### Comprehensive Reporting
+
+Evaluation reports should include:
+- Dataset version and prompt/model version
+- Relevance, accuracy, groundedness, fluency, and safety scores
+- Latency and token-cost metrics
+- Failure examples and root-cause categories
+- Promotion recommendation and rollback criteria
+
+---
+
+## 5.7 Retrieval and Prompt Troubleshooting
+
+When a RAG answer is bad, first isolate whether the failure is retrieval, prompt construction, or model generation.
+
+### Retrieval Quality Testing
+
+| Symptom | Likely Cause | Diagnostic |
+|---|---|---|
+| Relevant source is not retrieved | Low recall | Increase candidate set, inspect chunking, verify embeddings |
+| Irrelevant chunks dominate | Low precision | Add metadata filters, rerank, reduce top-K |
+| Good chunks retrieved but answer is wrong | Prompt/model issue | Inspect final prompt and grounding instructions |
+| Citations point to weak sources | Retrieval ranking issue | Evaluate reranker and source scoring |
+| New documents do not appear | Stale index | Check ingestion jobs and sync status |
+
+**Retrieval test set:** maintain known question-to-source mappings so changes to chunking, embeddings, filters, or rerankers can be measured.
+
+### Embedding Drift and Vectorization Issues
+
+| Issue | What To Check |
+|---|---|
+| Embedding model changed | Re-embed old content or version the index |
+| Chunking strategy changed | Rebuild affected chunks and compare retrieval quality |
+| Source parser changed | Inspect extracted text before embedding |
+| Vector dimensions mismatch | Confirm index schema matches embedding model output |
+| Tenant/domain leakage | Verify metadata filters and ACL enforcement |
+
+::: warning Exam Trap
+If retrieval quality drops after changing the embedding model, do not just tune the prompt. Rebuild or version the vector index so stored document vectors and query vectors use compatible embeddings.
+:::
+
+### Prompt Drift and Maintenance
+
+Prompt drift happens when prompt edits, context changes, or model changes alter behavior over time.
+
+**Controls:**
+- Store prompts in version control or Bedrock Prompt Management
+- Run regression prompts before promotion
+- Log prompt versions with each invocation
+- Track format failures, refusal failures, and safety failures separately
+- Roll back to a previous approved prompt version when quality drops
+
+### CloudWatch Logs and X-Ray for Prompt Observability
+
+Use logs and traces to understand where prompt or workflow behavior changed.
+
+| Tool | Use |
+|---|---|
+| CloudWatch Logs | Inspect application prompt assembly, errors, and model responses if logging is enabled |
+| Model Invocation Logging | Capture Bedrock prompt/response payloads for audit and debugging |
+| X-Ray | Trace latency across API Gateway, Lambda/ECS, retrieval, tools, and Bedrock |
+| CloudWatch Metrics | Monitor latency, token count, throttling, and error trends |
+
+### Schema Validation
+
+For structured outputs, validate the response before downstream systems consume it.
+
+```text
+FM response
+    ↓
+JSON parse / schema validation
+    ↓ valid
+Application consumes output
+    ↓ invalid
+Retry, repair, or route to human review
+```
+
+::: tip
+If the application fails because model output is malformed, the best answer is usually schema enforcement, validation, and retry/repair logic, not changing IAM or adding more capacity.
+:::
+
+---
+
+## 5.8 Agent Performance Frameworks
+
+Agent evaluation should measure task success, tool use, retrieval quality, and trace behavior.
+
+| Metric | What It Measures |
+|---|---|
+| Task success rate | Did the agent complete the user's goal? |
+| Tool selection accuracy | Did it choose the right action group or API? |
+| Tool argument accuracy | Were parameters valid and complete? |
+| Retrieval usefulness | Did knowledge base context help the final answer? |
+| Loop/error rate | Did the agent repeat steps or get stuck? |
+| Human escalation rate | How often human review was required |
+
+**Trace analysis checklist:**
+- Was the user intent interpreted correctly?
+- Did the agent call a tool when retrieval alone was enough?
+- Did it query the Knowledge Base with useful search terms?
+- Did it recover from tool errors?
+- Did it stop after completing the task?
+
+---
+
 [← Domain 4](./domain-4.md) · [← Back to Overview](./index.md)

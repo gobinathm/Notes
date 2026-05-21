@@ -562,4 +562,289 @@ Always use **Standard** for human review workflows — Express's 5-minute cap ru
 
 ---
 
+## 2.10 Production GenAI Architecture Patterns
+
+Production GenAI systems need more than a model invocation. The exam often tests whether you can design for safe rollout, model routing, resilience, prompt lifecycle control, and promotion gates.
+
+### Standard Production Stack
+
+```text
+Client
+    ↓
+API Gateway / ALB
+    ↓
+Lambda or ECS service
+    ↓
+Prompt Management + model routing configuration
+    ↓
+Amazon Bedrock / SageMaker endpoint
+    ↓
+CloudWatch, X-Ray, CloudTrail, evaluation reports
+```
+
+**Core idea:** keep routing, prompt versions, safety controls, and rollout decisions outside hardcoded application logic whenever possible.
+
+### Dynamic Model Selection with AppConfig
+
+Use **AWS AppConfig** when the application needs to switch models, prompts, routing percentages, or inference parameters without redeploying code.
+
+| Requirement | Pattern |
+|---|---|
+| Compare two models in production | AppConfig flag or weighted routing rule |
+| Shift traffic gradually to a new model | AppConfig deployment strategy |
+| Roll back quickly after quality regression | AppConfig rollback on alarm |
+| Use different models by tenant, task, or latency tier | Config-driven model router |
+
+**Example routing logic:**
+
+```text
+Request arrives
+    ↓
+Read AppConfig profile
+    ↓
+Route by task type, tenant, latency target, or experiment bucket
+    ↓
+Invoke selected Bedrock model or SageMaker endpoint
+```
+
+::: tip Exam Scenario
+If the scenario says **switch models without redeploying**, **run A/B tests**, or **gradually roll out a new prompt/model**, think **AWS AppConfig** plus CloudWatch alarms.
+:::
+
+### Fallback Models and Circuit Breakers
+
+A resilient GenAI app should handle throttling, model unavailability, and latency spikes.
+
+| Failure Mode | Resilient Pattern |
+|---|---|
+| Primary model is throttled | Retry with exponential backoff and jitter |
+| Primary model remains unavailable | Fall back to a cheaper/faster/alternate model |
+| Dependency repeatedly fails | Open a circuit breaker and stop calling it temporarily |
+| Regional capacity is constrained | Use cross-region inference profile |
+| Long-running task fails mid-flow | Step Functions retry/catch handling |
+
+**Fallback model pattern:**
+
+```text
+Invoke preferred model
+    ↓ failure / timeout / throttling
+Invoke fallback model
+    ↓
+Return response with degraded capability if needed
+```
+
+**Circuit breaker pattern:**
+
+```text
+Too many failures in a time window
+    ↓
+Open circuit
+    ↓
+Temporarily route to fallback path
+    ↓
+After cooldown, test primary model again
+```
+
+::: warning Exam Trap
+Do not choose Provisioned Throughput as the first answer for every throttling scenario. For occasional spikes, first consider retries, backoff, request smoothing, cross-region inference, or model fallback. Provisioned Throughput fits predictable sustained traffic.
+:::
+
+### Prompt Management and Governance
+
+**Amazon Bedrock Prompt Management** stores, versions, and reuses prompts. Use it when prompts need controlled lifecycle management instead of being scattered across application code.
+
+| Need | Best Fit |
+|---|---|
+| Reuse a prompt across services | Bedrock Prompt Management |
+| Track prompt versions | Bedrock Prompt Management |
+| Test a candidate prompt before promotion | Evaluation job + versioned prompt |
+| Enforce independent content safety policy | Bedrock Guardrails |
+| Orchestrate multiple deterministic prompt steps | Bedrock Flows or Step Functions |
+
+**Governed prompt lifecycle:**
+
+```text
+Draft prompt
+    ↓
+Evaluate against test dataset
+    ↓
+Approve version
+    ↓
+Deploy via configuration
+    ↓
+Monitor quality, cost, latency, and safety signals
+```
+
+::: tip
+Prompt Management is about **versioning and reuse**. Guardrails are about **safety enforcement**. Model evaluation is about **measuring output quality**.
+:::
+
+### CI/CD and Evaluation Gates
+
+For production rollouts, treat prompts, model configs, and agent definitions like deployable artifacts.
+
+**Typical pipeline:**
+
+```text
+CodePipeline / CI
+    ↓
+Static checks for app code and IaC
+    ↓
+Deploy candidate prompt/model/agent config to test environment
+    ↓
+Run Bedrock model evaluation or custom test harness
+    ↓
+Promote only if quality, safety, latency, and cost thresholds pass
+```
+
+| Gate | What It Catches |
+|---|---|
+| Prompt regression tests | Output format drift, missing required fields |
+| RAG evaluation | Poor retrieval, weak groundedness, bad citations |
+| Safety tests | Prompt injection, denied topics, PII leakage |
+| Latency/cost checks | Slow models, excessive token usage |
+| Human approval | High-risk content or regulated workflows |
+
+::: tip Exam Scenario
+If the scenario asks for **promotion only after passing quality checks**, choose a CI/CD or Step Functions workflow with evaluation gates. A single manual prompt edit is not enough for production governance.
+:::
+
+### SageMaker Model Registry and CodePipeline
+
+Use **SageMaker Model Registry** when the workload involves custom or fine-tuned models managed through SageMaker.
+
+| Service | Role |
+|---|---|
+| **SageMaker Model Registry** | Tracks model versions, metadata, and approval state |
+| **SageMaker endpoint configuration** | Defines endpoint deployment settings |
+| **CodePipeline** | Automates build, test, approval, and deployment |
+| **CloudFormation / CDK** | Standardizes repeatable infrastructure |
+
+**When this matters:**
+- A team fine-tunes a model in SageMaker and needs version control
+- Compliance requires approval before production deployment
+- Rollback to a previous approved model version must be possible
+- Infrastructure and deployment steps must be repeatable
+
+### CloudFormation, CDK, and Reusable Components
+
+For enterprise GenAI apps, reusable infrastructure reduces inconsistent security, logging, and quota behavior.
+
+**Reusable stack components:**
+- API Gateway or ALB front door
+- Lambda or ECS application layer
+- IAM execution roles with least privilege
+- Bedrock model access policy scoped to approved model IDs
+- CloudWatch logs, dashboards, and alarms
+- Guardrails and prompt versions
+- Knowledge Base data source and vector store
+
+::: tip
+If the question emphasizes **standardized technical components**, **repeatable deployments**, or **internal platform patterns**, think **CloudFormation/CDK** plus reusable Bedrock invocation components.
+:::
+
+---
+
+## 2.11 Enterprise Integration, MCP, and Amazon Q
+
+Enterprise GenAI questions often involve existing systems, identity boundaries, developer tooling, and managed business assistants. The exam expects you to choose integration patterns, not just model APIs.
+
+### MCP Server Patterns
+
+**Model Context Protocol (MCP)** servers expose tools and context to AI agents or developer assistants. On AWS, the hosting pattern depends on latency, scale, and dependency complexity.
+
+| Hosting Pattern | Best For | Avoid When |
+|---|---|---|
+| Lambda MCP server | Lightweight tools, short calls, low ops | Long-running sessions or heavy dependencies |
+| ECS MCP server | Predictable service process, concurrency control, container dependencies | Simple event-driven tools |
+| EKS MCP server | Existing Kubernetes platform or advanced scheduling | Team does not operate Kubernetes |
+
+**Common MCP architecture:**
+
+```text
+AI assistant / agent
+    ↓
+MCP server on Lambda or ECS
+    ↓
+AWS APIs, databases, internal services
+    ↓
+Structured tool response back to model
+```
+
+::: tip Exam Scenario
+If MCP tools need **predictable latency**, **controlled concurrency**, or **long-running container dependencies**, choose **ECS** over Lambda.
+:::
+
+### Event-Driven and CDC-Based RAG
+
+Use event-driven patterns when retrieval data must stay aligned with operational systems.
+
+| Source Change | Pattern |
+|---|---|
+| New S3 document | EventBridge or S3 event triggers ingestion workflow |
+| Database row changes | Change data capture stream updates search/index pipeline |
+| SaaS content updates | Connector sync or scheduled refresh |
+| Large batch refresh | Step Functions orchestrates extraction, transformation, embedding, and indexing |
+
+**CDC for RAG:**
+
+```text
+Operational database changes
+    ↓
+CDC stream
+    ↓
+Transform changed records into retrieval documents
+    ↓
+Embed and upsert vector index
+```
+
+::: warning Exam Trap
+Do not rebuild an entire vector store for every small source-system update unless the scenario explicitly requires a full reindex. Use incremental updates or CDC when freshness and efficiency both matter.
+:::
+
+### Cross-Account and Hub-and-Spoke Access
+
+Large organizations often centralize Bedrock access, model governance, or shared services in a platform account.
+
+| Requirement | Pattern |
+|---|---|
+| Central AI platform account serves many workloads | Hub-and-spoke account design |
+| Share approved resources across accounts | AWS RAM where supported |
+| Restrict which models teams can invoke | IAM policies and SCPs |
+| Centralize logging and audit | CloudTrail organization trail and centralized log archive |
+| Keep workload data separated | Per-account/per-tenant data stores and scoped roles |
+
+**Exam framing:** centralization helps with governance, but sensitive data and tenant boundaries still need explicit access control.
+
+### Fine-Grained RAG Authorization
+
+RAG systems must not retrieve documents the user is not allowed to see.
+
+**Layered approach:**
+- Authenticate the user with Cognito, IAM Identity Center, or enterprise IdP
+- Map the user to groups, roles, tenants, or entitlements
+- Store ACL metadata with each document chunk
+- Apply metadata filters at retrieval time
+- Enforce authorization again in application logic before returning citations or source links
+
+::: tip
+If the scenario mentions **document-level permissions**, **tenant isolation**, or **users seeing only authorized content**, look for ACL-aware retrieval, metadata filters, and application authorization. A plain vector similarity search is not enough.
+:::
+
+### Amazon Q Service Map
+
+Amazon Q services appear as distractors and best answers when the requirement is a managed assistant rather than a custom Bedrock app.
+
+| Service | Choose When |
+|---|---|
+| **Amazon Q Business** | Enterprise assistant over company data sources with managed connectors and permissions |
+| **Amazon Q Developer** | Developer productivity, code explanation, code generation, AWS guidance |
+| **Amazon Q in QuickSight** | Natural-language BI, dashboard authoring, and data storytelling |
+| **Amazon Q in Connect** | Contact-center agent assistance and customer support workflows |
+| **Amazon Bedrock** | Build a custom GenAI app, agent, RAG system, or model integration |
+
+::: warning Exam Trap
+Choose **Amazon Q** when the scenario asks for a managed business/developer assistant with minimal custom development. Choose **Bedrock** when the scenario asks you to build the GenAI application architecture yourself.
+:::
+
 [← Domain 1](./domain-1.md) · [Next: Domain 3 →](./domain-3.md)
