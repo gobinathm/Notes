@@ -6,6 +6,12 @@ export default defineConfig({
   title: "Tech Certification Study Notes",
   description: "Comprehensive study notes for various technology certifications",
 
+  vite: {
+    build: {
+      target: 'esnext'
+    }
+  },
+
   // Exclude repository files from VitePress processing
   srcExclude: ['**/README.md', '**/CONTRIBUTING.md', '**/ADDING_CERTIFICATIONS.md', '.templates/**/*.md'],
 
