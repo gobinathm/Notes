@@ -31,7 +31,7 @@ A business-focused certification on driving AI adoption using Microsoft solution
 
 A podcast-style walkthrough of key exam tactics. Made to listen on the drive to the exam center as a last-minute refresher.
 
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/6maqO31HDv7q5xUgtEFnw3?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<SpotifyEpisode episode="https://open.spotify.com/embed/episode/6maqO31HDv7q5xUgtEFnw3?utm_source=generator&theme=0" title="AB-731 audio refresher" />
 
 ::: info This is NOT a technical exam
 Think like a transformation leader, not an engineer. Questions focus on business value, adoption strategy, and responsible AI governance.

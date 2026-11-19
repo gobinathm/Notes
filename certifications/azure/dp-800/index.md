@@ -31,7 +31,7 @@ Microsoft currently lists DP-800 as a **beta** exam. Beta exams are **not scored
 
 A podcast-style walkthrough of key exam tactics. Useful as a final pass before practice questions or exam-day review.
 
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://creators.spotify.com/pod/profile/gobinathm/embed/episodes/Exam-Refreshers-DP-800-Last-Minute-Guide-Microsoft-Certified-SQL-AI-Developer-Associate-e3hbvc9/a-acint5v" width="100%" height="152" frameBorder="0" scrolling="no" loading="lazy"></iframe>
+<SpotifyEpisode episode="https://creators.spotify.com/pod/profile/gobinathm/embed/episodes/Exam-Refreshers-DP-800-Last-Minute-Guide-Microsoft-Certified-SQL-AI-Developer-Associate-e3hbvc9/a-acint5v" title="DP-800 audio refresher" />
 
 ::: tip Target Candidate
 This exam is for developers who already work comfortably with **T-SQL**, **database design**, and **deployment workflows**, and now need to add **AI-assisted development**, **embeddings/vector search**, and **RAG patterns** into SQL-backed applications.

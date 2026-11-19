@@ -36,7 +36,7 @@ This exam validates your ability to write effective prompts, manage AI conversat
 
 A podcast-style walkthrough of key exam tactics. Made to listen on the drive to the exam center as a last-minute refresher.
 
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/563bv7mpmhIg4DAqqbQkyH?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<SpotifyEpisode episode="https://open.spotify.com/embed/episode/563bv7mpmhIg4DAqqbQkyH?utm_source=generator&theme=0" title="AB-730 audio refresher" />
 
 ---
 
