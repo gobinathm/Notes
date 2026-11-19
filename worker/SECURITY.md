@@ -135,13 +135,14 @@ generationConfig: {
 {
   timestamp: "2026-02-23T10:30:00.000Z",
   type: "prompt_injection_attempt",
-  ip: "203.0.113.42",
-  userAgent: "Mozilla/5.0...",
-  question: "Ignore previous instructions...",
   detected: true,
   blocked: true
 }
 ```
+
+**Privacy:** the IP address, user agent and question text are never logged, so the public
+privacy promises on `privacy.md` and `ai-disclaimer.md` hold. Per-IP rate and abuse counters live in
+memory only and reset on cold start.
 
 **Storage:**
 - Console: Always (for Cloudflare logs)
@@ -224,8 +225,7 @@ Expected: HTTP 200 with AI answer
 2. Filter by `[SECURITY]` prefix
 3. Monitor for:
    - Spike in prompt injection attempts
-   - Unusual IP patterns
-   - Repeated blocks from same IP
+   - Spike in unsafe AI responses
 
 ### KV Logging (Optional)
 

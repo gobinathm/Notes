@@ -134,12 +134,11 @@ function validateAIResponse(response) {
  * @param {object} env - Environment with KV binding (optional)
  */
 async function logSecurityEvent(event, env) {
+  // Privacy: never log the visitor's IP address, user agent or question text (see ai-disclaimer.md).
+  // Only the event type and outcome are recorded. Per-IP abuse tracking stays in memory.
   const logEntry = {
     timestamp: new Date().toISOString(),
     type: event.type,
-    ip: event.ip,
-    userAgent: event.userAgent,
-    question: event.question?.substring(0, 200),
     detected: event.detected,
     blocked: event.blocked
   };
@@ -151,7 +150,7 @@ async function logSecurityEvent(event, env) {
   if (env?.SECURITY_LOGS) {
     try {
       await env.SECURITY_LOGS.put(
-        `log:${Date.now()}:${event.ip}`,
+        `log:${Date.now()}:${event.type}`,
         JSON.stringify(logEntry),
         { expirationTtl: 604800 } // 7 days
       );
@@ -384,9 +383,6 @@ export default {
         // Log security event
         await logSecurityEvent({
           type: 'prompt_injection_attempt',
-          ip: clientIP,
-          userAgent: request.headers.get('User-Agent'),
-          question: question,
           detected: true,
           blocked: true
         }, env);
@@ -435,9 +431,6 @@ export default {
         console.error('Unsafe AI response:', validation.reason);
         await logSecurityEvent({
           type: 'unsafe_ai_response',
-          ip: clientIP,
-          userAgent: request.headers.get('User-Agent'),
-          question: mode === 'qa' ? question : 'flashcard_generation',
           detected: true,
           blocked: true
         }, env);

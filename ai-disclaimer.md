@@ -39,7 +39,7 @@ When you use the assistant:
 3. The proxy forwards the request to **Google Gemini** (an AI language model) for processing
 4. The response is returned to your browser and displayed
 
-The proxy server is a **Cloudflare Worker** that validates requests and enforces rate limits. It keeps no questions or page content. To enforce rate limits it counts requests per IP address in memory only; the counts are never written to storage and reset when the Worker restarts. If a question looks like a prompt-injection attempt, or the AI's answer is blocked as unsafe, the Worker logs the IP address, browser user agent and the first 200 characters of the question as a security event.
+The proxy server is a **Cloudflare Worker** that validates requests and enforces rate limits. It keeps no questions or page content. To enforce rate limits it counts requests per IP address in memory only; the counts are never written to storage and reset when the Worker restarts. Blocked requests are logged only as an event type and time, without your IP address or question.
 
 ## What I DON'T Store
 
