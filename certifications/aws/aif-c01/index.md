@@ -88,7 +88,7 @@ For the complete and official list of exam objectives, refer to the **[AWS Certi
 ## Study Materials
 
 ### 📚 [Study Notes](./domain-1.md)
-Comprehensive study notes covering all exam topics across 5 domains
+Study notes covering all exam topics across 5 domains
 
 ### 🎯 [Exam Guide](./exam-guide.md)
 Exam traps, common pitfalls, and quick decision rules

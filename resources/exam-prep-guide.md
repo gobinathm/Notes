@@ -34,7 +34,7 @@ Strategies and tactics I've picked up across multiple certification exams.
 
 <div class="cert-card studying">
   <h3>📚 Multiple Sources</h3>
-  <p>Don't rely on one resource. Combine official docs, video courses, practice exams, labs, and community forums for well-rounded preparation.</p>
+  <p>Don't rely on one resource. Combine official docs, video courses, practice exams, labs, and community forums.</p>
 </div>
 
 <div class="cert-card studying">
@@ -45,8 +45,6 @@ Strategies and tactics I've picked up across multiple certification exams.
 </div>
 
 ## Building a Study Plan
-
-A structured approach beats random studying every time.
 
 <div class="prep-timeline">
 

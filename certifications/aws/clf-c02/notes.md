@@ -1,11 +1,11 @@
 ---
 title: "CLF-C02 - Study Notes"
-description: "Comprehensive study notes for CLF-C02 AWS Certified Cloud Practitioner"
+description: "Study notes for CLF-C02 AWS Certified Cloud Practitioner"
 ---
 
 # CLF-C02: Study Notes
 
-Comprehensive study notes for the CLF-C02 AWS Certified Cloud Practitioner certification.
+Study notes for the CLF-C02 AWS Certified Cloud Practitioner certification.
 
 [← Back to Overview](./index.md) | [← Objectives](./objectives.md) | [Exam Tips →](./exam-tips.md)
 

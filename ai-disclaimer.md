@@ -39,9 +39,9 @@ When you use the assistant:
 3. The proxy forwards the request to **Google Gemini** (an AI language model) for processing
 4. The response is returned to your browser and displayed
 
-The proxy server is a **Cloudflare Worker** that validates requests and enforces rate limits. It does not store any data.
+The proxy server is a **Cloudflare Worker** that validates requests and enforces rate limits. It keeps no questions or page content. To enforce rate limits it counts requests per IP address in memory only; the counts are never written to storage and reset when the Worker restarts. Blocked requests are logged only as an event type and time, without your IP address or question.
 
-## What We DON'T Store
+## What I DON'T Store
 
 - ❌ **No conversation history** — Each page visit starts fresh; nothing is saved between sessions
 - ❌ **No personal data** — No login, no accounts, no identifying information
