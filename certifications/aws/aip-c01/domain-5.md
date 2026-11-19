@@ -241,7 +241,7 @@ Promote, pause, or roll back
 If the scenario asks to validate a model with production-like inputs **without affecting users**, choose **shadow mode**. If it asks for gradual real-user rollout, choose **canary**.
 :::
 
-### Comprehensive Reporting
+### What an Evaluation Report Includes
 
 Evaluation reports should include:
 - Dataset version and prompt/model version

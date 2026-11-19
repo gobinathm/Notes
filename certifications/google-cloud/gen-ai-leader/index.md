@@ -92,7 +92,7 @@ The Generative AI Leader certification validates your ability to design, impleme
 ## Study Materials
 
 ### 📚 [Study Notes](./domain-1.md)
-Comprehensive study notes covering all exam topics across 4 domains
+Study notes covering all exam topics across 4 domains
 
 ### 🎯 [Exam Guide](./exam-guide.md)
 Exam traps, common pitfalls, and quick decision rules

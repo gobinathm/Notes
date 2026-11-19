@@ -58,7 +58,7 @@ The exam tests your knowledge of **which** Copilot feature to use for specific b
 - **Persistent Knowledge**: Unlike a chat, a Page is designed to be shared and edited over time.
 
 ### 🔄 Data Movement Between Apps
-The exam tests how you leverage AI across the ecosystem.
+The exam tests how you use AI to move work between apps.
 
 - **Excel to PPT**: Use Copilot to analyze data in Excel, then "Copy/Paste" the insights into a PowerPoint prompt to generate visual slides.
 - **Word to PPT**: Directly use the "Create from file" feature in PowerPoint to transform a Word report into a presentation.

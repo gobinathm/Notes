@@ -47,7 +47,7 @@ The AWS Certified Cloud Practitioner validates your overall understanding of the
 Official exam domains and objectives outline
 
 ### 📚 [Study Notes](./notes.md)
-Comprehensive study notes covering all exam topics
+Study notes covering all exam topics
 
 ### 💡 [Exam Tips](./exam-tips.md)
 Exam strategies, common traps, and study advice

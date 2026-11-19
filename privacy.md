@@ -7,10 +7,6 @@ description: Privacy policy for Tech Certification Study Notes
 
 *Last Updated: January 14, 2026*
 
-## My Commitment to Privacy
-
-Your privacy is important to me. This site is designed with privacy as a priority.
-
 ## What I Track
 
 I use **Umami Analytics** (hosted in the EU) to understand how visitors use my study notes. I collect:
@@ -53,8 +49,8 @@ This site links to external resources (AWS, GitHub, etc.). Those sites have thei
 
 ## Questions?
 
-open an issue on [GitHub](https://github.com/gobinathm/Notes/issues).
+Open an issue on [GitHub](https://github.com/gobinathm/Notes/issues).
 
 ---
 
-**Summary:** I count visitors anonymously to improve study materials. No personal data, no cookies, no tracking.
+**Summary:** I count visitors anonymously to improve study materials. No personal data, no cookies, no cross-site tracking.

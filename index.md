@@ -26,7 +26,7 @@ description: Study notes from technology certifications I've cleared and ones I'
 
 ## What's Inside Each Certification
 
-These started as plain markdown files. When I decided to share them as a site, I added interactive features to make them more useful for anyone studying.
+These started as plain markdown files.
 
 <div class="features-grid">
   <div class="feature-item">📝 <strong>Study Notes</strong> — All exam domains covered</div>
