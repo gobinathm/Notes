@@ -41,7 +41,7 @@ When you use the assistant:
 
 The proxy server is a **Cloudflare Worker** that validates requests and enforces rate limits. It does not store any data.
 
-## What We DON'T Store
+## What I DON'T Store
 
 - ❌ **No conversation history** — Each page visit starts fresh; nothing is saved between sessions
 - ❌ **No personal data** — No login, no accounts, no identifying information
