@@ -222,12 +222,12 @@ const openShare = (url: string) => {
 }
 
 .share-btn.copy {
-  background: rgba(16, 185, 129, 0.2);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+  background: rgba(255, 212, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 212, 0, 0.1);
 }
 .share-btn.copy:hover {
-  background: rgba(16, 185, 129, 0.35);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
+  background: rgba(255, 212, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(255, 212, 0, 0.25);
 }
 
 /* Light mode: slightly more opaque for visibility */
@@ -239,7 +239,7 @@ const openShare = (url: string) => {
 :not(.dark) .share-btn.reddit { color: #FF4500; }
 :not(.dark) .share-btn.facebook { color: #1877F2; }
 :not(.dark) .share-btn.email { color: #6B7280; }
-:not(.dark) .share-btn.copy { color: #10b981; }
+:not(.dark) .share-btn.copy { color: #121211; }
 
 @media (max-width: 640px) {
   .share-buttons {

@@ -235,8 +235,8 @@ const exampleQuestions = [
             <rect class="bot-eye left-eye" x="17" y="23" width="12" height="12" rx="4" fill="white"/>
             <rect class="bot-eye right-eye" x="35" y="23" width="12" height="12" rx="4" fill="white"/>
             <!-- Pupils -->
-            <circle class="bot-pupil" cx="23" cy="29" r="3" fill="#064e3b"/>
-            <circle class="bot-pupil" cx="41" cy="29" r="3" fill="#064e3b"/>
+            <circle class="bot-pupil" cx="23" cy="29" r="3" fill="#121211"/>
+            <circle class="bot-pupil" cx="41" cy="29" r="3" fill="#121211"/>
           </g>
           <!-- Mouth -->
           <rect x="21" y="40" width="22" height="5" rx="2.5" fill="white" fill-opacity="0.85"/>
@@ -245,7 +245,7 @@ const exampleQuestions = [
           <line x1="36" y1="40" x2="36" y2="45" stroke="var(--vp-c-brand-1)" stroke-width="1.5"/>
           <!-- AI label near antenna, top-right -->
           <g class="ai-label-group">
-            <circle class="ai-dot-svg" cx="43" cy="5" r="3" fill="#34d399"/>
+            <circle class="ai-dot-svg" cx="43" cy="5" r="3" fill="#ffd400"/>
             <text x="54" y="9" font-size="11" font-weight="900" fill="var(--vp-c-brand-1)" text-anchor="middle" font-family="system-ui, sans-serif" letter-spacing="0.5">AI</text>
           </g>
         </svg>
@@ -397,7 +397,7 @@ const exampleQuestions = [
 
 .chatbot-fab:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 4px 12px rgba(16, 185, 129, 0.4));
+  filter: drop-shadow(0 4px 12px rgba(255, 212, 0, 0.4));
 }
 
 .chatbot-fab.pulse .bot-svg {
@@ -405,8 +405,8 @@ const exampleQuestions = [
 }
 
 @keyframes fab-pulse {
-  0%, 100% { filter: drop-shadow(0 2px 6px rgba(16, 185, 129, 0.3)); }
-  50% { filter: drop-shadow(0 2px 14px rgba(16, 185, 129, 0.6)); }
+  0%, 100% { filter: drop-shadow(0 2px 6px rgba(255, 212, 0, 0.3)); }
+  50% { filter: drop-shadow(0 2px 14px rgba(255, 212, 0, 0.6)); }
 }
 
 .fab-icon {
@@ -448,12 +448,12 @@ const exampleQuestions = [
 /* AI dot pulsating glow (inside SVG) */
 .fab-icon :deep(.ai-dot-svg) {
   animation: ai-dot-pulse 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 2px #34d399);
+  filter: drop-shadow(0 0 2px #ffd400);
 }
 
 @keyframes ai-dot-pulse {
-  0%, 100% { r: 3; opacity: 1; filter: drop-shadow(0 0 2px #34d399); }
-  50% { r: 4; opacity: 0.7; filter: drop-shadow(0 0 6px #34d399); }
+  0%, 100% { r: 3; opacity: 1; filter: drop-shadow(0 0 2px #ffd400); }
+  50% { r: 4; opacity: 0.7; filter: drop-shadow(0 0 6px #ffd400); }
 }
 
 /* Chat Panel */
@@ -548,7 +548,7 @@ html.dark .chatbot-panel {
 
 .mode-btn.active {
   background: var(--vp-c-brand-1);
-  color: white;
+  color: var(--vp-c-bg);
   border-color: var(--vp-c-brand-1);
 }
 
@@ -602,7 +602,7 @@ html.dark .chatbot-panel {
 
 .example-btn:hover {
   border-color: var(--vp-c-brand-1);
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(255, 212, 0, 0.08);
 }
 
 /* Messages */
@@ -682,8 +682,8 @@ html.dark .message-bubble :deep(pre) {
 }
 
 .chat-message.user .message-bubble {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
+  background: var(--gobi-y);
+  color: #121211;
   border-bottom-right-radius: 4px;
 }
 
@@ -721,8 +721,8 @@ html.dark .message-bubble :deep(pre) {
 /* Flashcard mode */
 .generate-btn {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
+  background: var(--gobi-y);
+  color: #121211;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -733,7 +733,7 @@ html.dark .message-bubble :deep(pre) {
 
 .generate-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 212, 0, 0.3);
 }
 
 .generate-btn.regenerate {
@@ -746,7 +746,7 @@ html.dark .message-bubble :deep(pre) {
 }
 
 .generate-btn.regenerate:hover {
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(255, 212, 0, 0.08);
 }
 
 .flashcard-loading {
@@ -826,7 +826,7 @@ html.dark .message-bubble :deep(pre) {
   border-radius: 10px;
   border: none;
   background: var(--vp-c-brand-1);
-  color: white;
+  color: var(--vp-c-bg);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -836,7 +836,7 @@ html.dark .message-bubble :deep(pre) {
 }
 
 .send-btn:hover:not(:disabled) {
-  background: #059669;
+  background: #f0c800;
 }
 
 .send-btn:disabled {

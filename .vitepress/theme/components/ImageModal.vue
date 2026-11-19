@@ -236,7 +236,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 0.5rem;
   background: var(--vp-c-brand-1);
-  color: white;
+  color: var(--vp-c-bg);
   padding: 0.75rem 1.5rem;
   border-radius: 30px;
   text-decoration: none !important;
