@@ -242,7 +242,7 @@ const reset = () => {
 }
 
 .dot.active {
-  background: var(--vp-c-brand);
+  background: var(--gobi-y);
   width: 12px;
   height: 12px;
 }

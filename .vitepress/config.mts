@@ -6,6 +6,15 @@ export default defineConfig({
   title: "Tech Certification Study Notes",
   description: "Comprehensive study notes for various technology certifications",
 
+  // Dark by default for every visitor, with the toggle to switch to light (docs/DESIGN.md §3 on gobinath.com)
+  appearance: 'dark',
+
+  // Render pages dark so the site is dark without JavaScript too; the head script removes it for light.
+  transformHtml(code) {
+    return code.replace(/<html(\s[^>]*)?>/, (tag) =>
+      /class="/.test(tag) ? tag.replace('class="', 'class="dark ') : tag.replace('<html', '<html class="dark"'))
+  },
+
   vite: {
     build: {
       target: 'esnext'
@@ -76,7 +85,11 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
-    ['meta', { name: 'theme-color', content: '#10b981' }],
+    ['meta', { name: 'theme-color', content: '#0b0b0a' }],
+    // Theme: dark by default for every visitor (gobinath.com docs/DESIGN.md §3). The <html> is rendered
+    // with class="dark" (see transformHtml) so it is dark without JavaScript; this removes it before
+    // paint only if the visitor chose light.
+    ['script', {}, `;(function(){try{var p=localStorage.getItem('vitepress-theme-appearance');var l=p==='light'||(p==='auto'&&!matchMedia('(prefers-color-scheme: dark)').matches);if(l){document.documentElement.classList.remove('dark');document.querySelector('meta[name="theme-color"]').content='#f7f6f0'}}catch(e){}})()`],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
     ['meta', { property: 'og:site_name', content: 'Tech Certification Study Notes' }],
@@ -99,8 +112,7 @@ export default defineConfig({
       }
     })],
 
-    // Fonts — self-hosted (Inter bundled by VitePress, Dancing Script in /fonts/)
-    ['link', { rel: 'preload', href: '/fonts/dancing-script-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
+    // Fonts: Archivo, Newsreader, JetBrains Mono, self-hosted through Fontsource (imported in theme/index.ts)
 
     // Umami Analytics (Privacy-First)
     ['link', { rel: 'preconnect', href: 'https://api-gateway.umami.dev' }],

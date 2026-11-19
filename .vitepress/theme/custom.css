@@ -16,115 +16,164 @@
 
 /* =========================================
    1. CSS Variables & Configuration
+   Brand rules: gobinath.com docs/DESIGN.md §3. Dark by default for every visitor,
+   light on request. Black, off-white and yellow only; yellow is never body text on light.
    ========================================= */
-/* Self-hosted Dancing Script (footer only) */
-@font-face {
-  font-family: 'Dancing Script';
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url('/fonts/dancing-script-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+:root {
+  /* Light theme (opt-in) */
+  --gobi-y: #ffd400;
+  --gobi-y-line: #d9b300;
+  --gobi-ink: #121211;
+  --gobi-bg: #f7f6f0;
+  --gobi-bg-alt: #efeee7;
+  --gobi-fg: #121211;
+  --gobi-mut: #5e5d55;
+  --gobi-rule: rgba(0, 0, 0, 0.12);
+  --gobi-field: rgba(0, 0, 0, 0.035);
+
+  --vp-c-bg: var(--gobi-bg);
+  --vp-c-bg-alt: var(--gobi-bg-alt);
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: var(--gobi-bg-alt);
+  --vp-c-text-1: var(--gobi-fg);
+  --vp-c-text-2: var(--gobi-mut);
+  --vp-c-divider: var(--gobi-rule);
+  --vp-c-gutter: var(--gobi-rule);
+
+  /* Brand: ink text with a yellow marker on light */
+  --vp-c-brand-1: var(--gobi-ink);
+  --vp-c-brand-2: #3a3a36;
+  --vp-c-brand-3: var(--gobi-ink);
+  --vp-c-brand-soft: rgba(255, 212, 0, 0.28);
+
+  --color-accent: var(--gobi-y);
+  --color-accent-light: var(--gobi-y);
+  --color-accent-dim: rgba(255, 212, 0, 0.18);
+
+  --vp-button-brand-bg: var(--gobi-y);
+  --vp-button-brand-text: var(--gobi-ink);
+  --vp-button-brand-hover-bg: #ffe14d;
+  --vp-button-brand-hover-text: var(--gobi-ink);
+  --vp-button-brand-active-bg: #f0c800;
+  --vp-button-brand-active-text: var(--gobi-ink);
+
+  /* Typography (self-hosted through Fontsource) */
+  --vp-font-family-base: 'Newsreader Variable', Georgia, serif;
+  --vp-font-family-mono: 'JetBrains Mono Variable', ui-monospace, Menlo, Consolas, monospace;
+  --gobi-display: 'Archivo Variable', system-ui, sans-serif;
 }
 
-:root {
-  /* --- Brand Colors (derived from gobinath.com) --- */
-  --vp-c-brand-1: #10b981;
-  /* Emerald 500 - Primary Brand Color */
-  --vp-c-brand-2: #34d399;
-  /* Emerald 400 - Light Accent */
-  --vp-c-brand-3: #059669;
-  /* Emerald 600 - Darker Shade */
-  --vp-c-brand-soft: rgba(16, 185, 129, 0.14);
+/* Dark theme (default) */
+.dark {
+  --gobi-bg: #0b0b0a;
+  --gobi-bg-alt: #121211;
+  --gobi-fg: #f2f1ea;
+  --gobi-mut: #a3a297;
+  --gobi-rule: rgba(255, 255, 255, 0.14);
+  --gobi-field: rgba(255, 255, 255, 0.05);
 
-  /* --- Additional Accent Vars --- */
-  --color-accent: #10b981;
-  --color-accent-light: #34d399;
-  --color-accent-dim: rgba(16, 185, 129, 0.15);
+  --vp-c-bg-elv: #161614;
+  --vp-c-bg-soft: #161614;
 
-  /* --- Typography Config --- */
-  --vp-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  --vp-font-family-mono: 'Fira Code', 'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-  --font-cursive: 'Dancing Script', cursive;
+  /* Yellow reads as text on dark, as on the main site's night sections */
+  --vp-c-brand-1: var(--gobi-y);
+  --vp-c-brand-2: #ffe14d;
+  --vp-c-brand-3: var(--gobi-y);
+  --vp-c-brand-soft: rgba(255, 212, 0, 0.14);
 }
 
 /* =========================================
    2. Global Resets & Theming
    ========================================= */
-
-/* Ensure smooth scrolling globally */
 html {
   scroll-behavior: smooth;
+  background-color: var(--gobi-bg);
 }
 
-/* Force transparency on body to allow HTML background to show through */
 body {
-  background: transparent !important;
+  background: var(--gobi-bg) !important;
 }
 
 .VPContent {
   background-color: transparent !important;
 }
 
-/* --- Dark Mode Theme --- */
-html.dark {
-  --vp-c-bg: #0a0a0f !important;
-  /* Main Dark Background */
-  --vp-c-bg-alt: #121217;
-
-  background-color: #0a0a0f !important;
-  /* Mesh Gradient Background */
-  background-image:
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(139, 9 UI Components, 92, 246, 0.15) 0, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.15) 0, transparent 50%) !important;
-  background-attachment: fixed;
-  background-size: 100% 100%;
+.dark .glass-effect {
+  background-color: rgba(11, 11, 10, 0.75);
+  border-right: 1px solid var(--gobi-rule);
 }
 
-@media (max-width: 768px) {
-  html.dark {
-    background-attachment: scroll !important;
+/* Links: text colour with a yellow underline, filled on hover (same as gobinath.com) */
+.vp-doc a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--gobi-y-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.dark .vp-doc a {
+  text-decoration-color: var(--gobi-y);
+}
+.vp-doc a:hover {
+  background: var(--gobi-y);
+  color: var(--gobi-ink);
+  text-decoration-color: var(--gobi-y);
+}
+
+:focus-visible {
+  outline: 3px solid var(--gobi-y);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--gobi-y);
+  color: var(--gobi-ink);
+}
+
+mark {
+  color: inherit;
+  background: linear-gradient(transparent 58%, var(--gobi-y) 58% 92%, transparent 92%);
+}
+.dark mark {
+  background: none;
+  color: var(--gobi-y);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
-  html:not(.dark) {
-    background-attachment: scroll !important;
-  }
-}
-
-html.dark .glass-effect {
-  background-color: rgba(10, 10, 15, 0.7);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* --- Light Mode Theme --- */
-html:not(.dark) {
-  background-color: #f8fafc !important;
-  background-image:
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.08) 0, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.08) 0, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.08) 0, transparent 50%) !important;
-  background-attachment: fixed;
-  background-size: 100% 100%;
 }
 
 /* =========================================
    3. Typography & Readability
    ========================================= */
 .vp-doc {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.VPNavBarTitle .title {
+  font-family: var(--gobi-display);
+  letter-spacing: -0.015em;
 }
 
 .vp-doc h1 {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  border-bottom: 2px solid var(--vp-c-brand-1);
+  font-weight: 800;
+  font-stretch: 112%;
+  border-bottom: 2px solid var(--gobi-y);
   padding-bottom: 0.5rem;
   margin-top: 1.5rem;
-  font-family: var(--vp-font-family-base);
 }
 
 .vp-doc h2 {
@@ -135,22 +184,17 @@ html:not(.dark) {
   border-top: 1px solid var(--vp-c-divider);
 }
 
-/* Gradient Text Effect (Used in Header & Footer) */
+/* Site title and footer name: plain text, yellow dot is the only accent */
 .gradient-text,
 .VPNavBarTitle .title {
-  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2), #a78bfa);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: bold;
-  animation: gradient-shift 6s ease infinite;
+  color: var(--vp-c-text-1);
+  font-weight: 800;
 }
 
-/* Cursive Text Utility */
+/* Footer sign-off (was a cursive font; now Newsreader italic) */
 .cursive-text {
-  font-family: var(--font-cursive);
-  font-size: 1.1rem;
+  font-style: italic;
+  font-size: 1.05rem;
 }
 
 /* =========================================
@@ -226,12 +270,12 @@ html:not(.dark) .VPNavBar {
 
 /* Hero Title Animation */
 .VPHome .VPHero .name {
-  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2), #a78bfa);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 6s ease infinite;
+  color: var(--vp-c-text-1);
+  -webkit-text-fill-color: currentColor;
+  font-family: var(--gobi-display);
+  font-weight: 800;
+  font-stretch: 118%;
+  letter-spacing: -0.035em;
 }
 
 /* =========================================
@@ -255,7 +299,7 @@ html:not(.dark) .VPNavBar {
 }
 
 .vp-doc .custom-block.tip {
-  background-color: rgba(16, 185, 129, 0.1);
+  background-color: rgba(255, 212, 0, 0.1);
   /* Brand tint */
   border-left: 4px solid var(--vp-c-brand-1);
 }
@@ -373,12 +417,12 @@ html:not(.dark) .VPNavBar {
 }
 
 .cert-card.studying {
-  background: rgba(16, 185, 129, 0.06);
+  background: rgba(255, 212, 0, 0.06);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .cert-card.studying:hover {
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 8px 24px rgba(255, 212, 0, 0.15);
 }
 
 .cert-card.completed {
@@ -400,7 +444,7 @@ html:not(.dark) .cert-card:hover {
 }
 
 html:not(.dark) .cert-card.studying {
-  background: rgba(16, 185, 129, 0.06);
+  background: rgba(255, 212, 0, 0.06);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -584,7 +628,7 @@ html:not(.dark) .tier-chip.github {
 }
 
 .cert-ribbon.beginner {
-  background: #10b981;
+  background: var(--gobi-y);
 }
 
 .cert-ribbon.intermediate {
@@ -662,7 +706,7 @@ html:not(.dark) .cert-dates {
 }
 
 .cert-date-item.exam-target .date-val {
-  color: #059669;
+  color: var(--gobi-mut);
 }
 
 html:not(.dark) .cert-date-item.study-by .date-val {
@@ -670,7 +714,7 @@ html:not(.dark) .cert-date-item.study-by .date-val {
 }
 
 html:not(.dark) .cert-date-item.exam-target .date-val {
-  color: #047857;
+  color: var(--gobi-mut);
 }
 
 /* Prerequisites */
@@ -720,12 +764,9 @@ html:not(.dark) .cert-hero {
   margin: 0 0 1rem !important;
   padding: 0 !important;
   border: none !important;
-  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2), #a78bfa);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 8s ease infinite;
+  color: var(--vp-c-text-1);
+  font-family: var(--gobi-display);
+  font-stretch: 112%;
 }
 
 .cert-hero-subtitle {
@@ -893,7 +934,7 @@ html:not(.dark) .cert-badge:hover {
   top: 0.55rem;
   bottom: 0.2rem;
   width: 2px;
-  background: linear-gradient(to bottom, #10b981 0%, rgba(16, 185, 129, 0.1) 100%);
+  background: linear-gradient(to bottom, var(--gobi-y) 0%, rgba(255, 212, 0, 0.1) 100%);
 }
 
 .cert-tl-group {
@@ -930,9 +971,9 @@ html:not(.dark) .cert-badge:hover {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--vp-c-brand-1);
+  background: var(--gobi-y);
   border: 2px solid var(--vp-c-bg);
-  box-shadow: 0 0 0 2px var(--vp-c-brand-1);
+  box-shadow: 0 0 0 2px var(--gobi-y);
   flex-shrink: 0;
 }
 
@@ -954,8 +995,8 @@ html:not(.dark) .cert-badge:hover {
 }
 
 .cert-tl-entry:hover {
-  background: rgba(16, 185, 129, 0.04);
-  border-color: rgba(16, 185, 129, 0.2);
+  background: rgba(255, 212, 0, 0.04);
+  border-color: rgba(255, 212, 0, 0.2);
 }
 
 html:not(.dark) .cert-tl-entry {
@@ -964,8 +1005,8 @@ html:not(.dark) .cert-tl-entry {
 }
 
 html:not(.dark) .cert-tl-entry:hover {
-  background: rgba(16, 185, 129, 0.04);
-  border-color: rgba(16, 185, 129, 0.18);
+  background: rgba(255, 212, 0, 0.04);
+  border-color: rgba(255, 212, 0, 0.18);
 }
 
 .cert-tl-badges {
@@ -989,13 +1030,13 @@ html:not(.dark) .cert-tl-entry:hover {
 }
 
 .cert-tl-entry.beginner {
-  background: rgba(16, 185, 129, 0.05);
-  border-color: rgba(16, 185, 129, 0.12);
+  background: rgba(255, 212, 0, 0.05);
+  border-color: rgba(255, 212, 0, 0.12);
 }
 
 .cert-tl-entry.beginner:hover {
-  background: rgba(16, 185, 129, 0.09);
-  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(255, 212, 0, 0.09);
+  border-color: rgba(255, 212, 0, 0.25);
 }
 
 .cert-tl-entry.intermediate {
@@ -1098,14 +1139,14 @@ html:not(.dark) .radar-group {
   font-size: 0.85rem;
   padding: 0.6rem 0.8rem;
   border-radius: 8px;
-  background: rgba(16, 185, 129, 0.05);
-  border: 1px solid rgba(16, 185, 129, 0.1);
+  background: rgba(255, 212, 0, 0.05);
+  border: 1px solid rgba(255, 212, 0, 0.1);
   color: var(--vp-c-text-2);
 }
 
 html:not(.dark) .feature-item {
-  background: rgba(16, 185, 129, 0.04);
-  border-color: rgba(16, 185, 129, 0.12);
+  background: rgba(255, 212, 0, 0.04);
+  border-color: rgba(255, 212, 0, 0.12);
 }
 
 /* =========================================
@@ -1246,7 +1287,7 @@ html:not(.dark) .styled-details {
 }
 
 .styled-details summary:hover {
-  background: rgba(16, 185, 129, 0.06);
+  background: rgba(255, 212, 0, 0.06);
 }
 
 .styled-details > :not(summary) {
@@ -1277,16 +1318,16 @@ html:not(.dark) .styled-details {
   font-size: 0.85rem;
   padding: 0.4rem 0.9rem;
   border-radius: 8px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(255, 212, 0, 0.1);
+  border: 1px solid rgba(255, 212, 0, 0.2);
   color: var(--vp-c-brand-1) !important;
   text-decoration: none !important;
   transition: all 0.2s;
 }
 
 .download-link:hover {
-  background: rgba(16, 185, 129, 0.2);
-  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(255, 212, 0, 0.2);
+  border-color: rgba(255, 212, 0, 0.35);
 }
 
 @media (max-width: 640px) {
@@ -1337,4 +1378,22 @@ html:not(.dark) .styled-details {
   .cert-tl-month-label {
     text-align: left;
   }
+}
+
+/* =========================================
+   Brand mono labels: small uppercase eyebrows, stats and tags use JetBrains Mono
+   (gobinath.com docs/DESIGN.md §3)
+   ========================================= */
+.provider-tag,
+.cert-date-item .date-label,
+.cert-hero-eyebrow,
+.cert-stat-label,
+.cert-tl-month-label,
+.radar-group-label,
+.VPSidebarItem.level-0 > .item .text {
+  font-family: var(--vp-font-family-mono);
+  letter-spacing: 0.06em;
+}
+.cert-stat-num {
+  font-family: var(--gobi-display);
 }
