@@ -6,11 +6,10 @@
 <title>AIP-C01 · AWS Service Decision Flowchart</title>
 <link rel="preconnect" href="https://api-gateway.umami.dev">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#060810;--text:#e8eaf6;--text-dim:#8892b0;--text-muted:#4a5580;
+  --bg:#0b0b0a;--text:#e8eaf6;--text-dim:#8892b0;--text-muted:#4a5580;
   --glass-1:rgba(255,255,255,0.04);--glass-2:rgba(255,255,255,0.08);--glass-3:rgba(255,255,255,0.12);
   --gb:rgba(255,255,255,0.10);--gbh:rgba(255,255,255,0.20);
   --gs:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);
@@ -30,7 +29,7 @@ body::before{content:'';position:fixed;inset:0;
 /* ── HEADER ── */
 header{
   position:sticky;top:0;z-index:100;
-  background:rgba(6,8,16,0.85);
+  background:rgba(11,11,10,0.85);
   backdrop-filter:blur(20px) saturate(180%);
   -webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--gb);
@@ -144,6 +143,23 @@ td strong{color:var(--text);font-weight:600}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+</style>
+<link rel="stylesheet" href="/fonts/brand/fonts.css">
+<style id="brand">
+/* Brand override (gobinath.com docs/DESIGN.md §3): brand neutrals, yellow accent and self-hosted fonts.
+   Domain, service and right/wrong colours are kept: they carry meaning here. */
+:root{
+  --bg:#0b0b0a;--text:#f2f1ea;--dim:#a3a297;--text-dim:#a3a297;--muted:#6a6961;--text-muted:#6a6961;
+  --accent:#ffd400;
+  --sans:'Archivo Variable',system-ui,sans-serif;
+  --serif:'Newsreader Variable',Georgia,serif;
+  --mono:'JetBrains Mono Variable',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+body::before{background:none !important}
+::selection{background:#ffd400;color:#121211}
+:focus-visible{outline:3px solid #ffd400;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important}}
 </style>
 </head>
 <body>

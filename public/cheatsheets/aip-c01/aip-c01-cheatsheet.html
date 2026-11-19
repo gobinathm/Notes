@@ -6,12 +6,11 @@
 <title>AIP-C01 · 5-Minute Cheat Sheet</title>
 <link rel="preconnect" href="https://api-gateway.umami.dev">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="52b95d7a-5cf9-4278-a601-63b61c782c1f"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:     #060810;
+  --bg:     #0b0b0a;
   --s1:     rgba(255,255,255,0.04);
   --s2:     rgba(255,255,255,0.07);
   --s3:     rgba(255,255,255,0.11);
@@ -61,7 +60,7 @@ body::before {
 /* ── MASTHEAD ── */
 .masthead {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(6,8,16,0.92);
+  background: rgba(11,11,10,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gb);
   padding: 14px 40px;
@@ -303,6 +302,23 @@ ul.pts li code {
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+</style>
+<link rel="stylesheet" href="/fonts/brand/fonts.css">
+<style id="brand">
+/* Brand override (gobinath.com docs/DESIGN.md §3): brand neutrals, yellow accent and self-hosted fonts.
+   Domain, service and right/wrong colours are kept: they carry meaning here. */
+:root{
+  --bg:#0b0b0a;--text:#f2f1ea;--dim:#a3a297;--text-dim:#a3a297;--muted:#6a6961;--text-muted:#6a6961;
+  --accent:#ffd400;
+  --sans:'Archivo Variable',system-ui,sans-serif;
+  --serif:'Newsreader Variable',Georgia,serif;
+  --mono:'JetBrains Mono Variable',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+body::before{background:none !important}
+::selection{background:#ffd400;color:#121211}
+:focus-visible{outline:3px solid #ffd400;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important}}
 </style>
 </head>
 <body>

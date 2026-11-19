@@ -4,11 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DP-800 · 5-Minute Cheat Sheet</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#060810;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.10);
+  --bg:#0b0b0a;--s1:rgba(255,255,255,0.04);--s2:rgba(255,255,255,0.07);--s3:rgba(255,255,255,0.10);
   --gb:rgba(255,255,255,0.08);--gbh:rgba(255,255,255,0.14);
   --text:#e2e8f6;--dim:#8892b0;--muted:#3a4060;
   --mono:'JetBrains Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
@@ -22,7 +21,7 @@ body::before{content:'';position:fixed;inset:0;background:
   pointer-events:none;z-index:0}
 
 /* HEADER */
-.masthead{position:sticky;top:0;z-index:100;background:rgba(6,8,16,0.94);backdrop-filter:blur(20px);
+.masthead{position:sticky;top:0;z-index:100;background:rgba(11,11,10,0.94);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--gb);padding:12px 36px;display:flex;align-items:center;justify-content:space-between}
 .mast-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
 .mast-title{font-size:16px;font-weight:800;letter-spacing:-.02em;
@@ -100,7 +99,7 @@ body::before{content:'';position:fixed;inset:0;background:
 .vs-item::before{content:'▸';flex-shrink:0;font-size:9px;margin-top:3px}
 
 /* CODE BLOCK */
-.codeblock{background:#0d1117;border:1px solid var(--gb);border-radius:6px;
+.codeblock{background:#161614;border:1px solid var(--gb);border-radius:6px;
   padding:10px 12px;font-family:var(--mono);font-size:10px;line-height:1.6;overflow-x:auto;margin:6px 0}
 .kw{color:#ff7b72}.fn{color:#79c0ff}.str{color:#a5d6ff}.cm{color:#8b949e}.op{color:#d2a8ff}
 
@@ -117,6 +116,23 @@ body::before{content:'';position:fixed;inset:0;background:
 .score-track{flex:1;height:6px;background:var(--muted);border-radius:3px;overflow:hidden}
 .score-fill{height:100%;border-radius:3px}
 .score-pct{font-family:var(--mono);font-size:10px;min-width:40px;text-align:right}
+</style>
+<link rel="stylesheet" href="/fonts/brand/fonts.css">
+<style id="brand">
+/* Brand override (gobinath.com docs/DESIGN.md §3): brand neutrals, yellow accent and self-hosted fonts.
+   Domain, service and right/wrong colours are kept: they carry meaning here. */
+:root{
+  --bg:#0b0b0a;--text:#f2f1ea;--dim:#a3a297;--text-dim:#a3a297;--muted:#6a6961;--text-muted:#6a6961;
+  --accent:#ffd400;
+  --sans:'Archivo Variable',system-ui,sans-serif;
+  --serif:'Newsreader Variable',Georgia,serif;
+  --mono:'JetBrains Mono Variable',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+body::before{background:none !important}
+::selection{background:#ffd400;color:#121211}
+:focus-visible{outline:3px solid #ffd400;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important}}
 </style>
 </head>
 <body>
