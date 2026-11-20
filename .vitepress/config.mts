@@ -132,6 +132,7 @@ export default defineConfig({
     // Navigation
     nav: [
       { text: 'Home', link: 'https://gobinath.com' },
+      { text: 'Thoughts', link: 'https://thoughts.gobinath.com' },
       {
         text: 'Microsoft',
         items: [
