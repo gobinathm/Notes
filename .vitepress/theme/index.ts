@@ -17,6 +17,7 @@ import AITag from './components/AITag.vue'
 import Flashcard from './components/Flashcard.vue'
 import FlashcardDeck from './components/FlashcardDeck.vue'
 import ExamMeta from './components/ExamMeta.vue'
+import SpotifyEpisode from './components/SpotifyEpisode.vue'
 
 export default {
   extends: DefaultTheme,
@@ -39,5 +40,6 @@ export default {
     app.component('AIAudioPlayer', AIAudioPlayer)
     app.component('AITag', AITag)
     app.component('ExamMeta', ExamMeta)
+    app.component('SpotifyEpisode', SpotifyEpisode)
   }
 }

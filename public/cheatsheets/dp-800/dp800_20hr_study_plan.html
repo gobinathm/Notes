@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
   :root {
-    --bg: #0a0d14;
+    --bg: #0b0b0a;
     --surface: rgba(255,255,255,0.04);
     --surface-hover: rgba(255,255,255,0.07);
     --border: rgba(255,255,255,0.08);
@@ -317,6 +316,23 @@
   .prog-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; font-family: var(--mono); }
   .prog-count { font-size: 12px; color: var(--muted); margin-top: 8px; }
   .prog-count span { color: var(--accent-teal); font-weight: 700; }
+</style>
+<link rel="stylesheet" href="/fonts/brand/fonts.css">
+<style id="brand">
+/* Brand override (gobinath.com docs/DESIGN.md §3): brand neutrals, yellow accent and self-hosted fonts.
+   Domain, service and right/wrong colours are kept: they carry meaning here. */
+:root{
+  --bg:#0b0b0a;--text:#f2f1ea;--dim:#a3a297;--text-dim:#a3a297;--muted:#6a6961;--text-muted:#6a6961;
+  --accent:#ffd400;
+  --sans:'Archivo Variable',system-ui,sans-serif;
+  --serif:'Newsreader Variable',Georgia,serif;
+  --mono:'JetBrains Mono Variable',ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+body::before{background:none !important}
+::selection{background:#ffd400;color:#121211}
+:focus-visible{outline:3px solid #ffd400;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important}}
 </style>
 </head>
 <body>

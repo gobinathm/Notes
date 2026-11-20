@@ -56,3 +56,6 @@ worker/.dev.vars
 AGENTS.md
 CLAUDE.md
 
+
+# private words list for the privacy check (CI uses the PRIVACY_TERMS secret)
+.privacy-terms

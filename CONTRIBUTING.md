@@ -290,6 +290,25 @@ Add to `index.md` for NotebookLM audio refreshers:
 </AIAudioPlayer>
 ```
 
+### SpotifyEpisode Component
+
+For an episode published on Spotify. Paste the **embed URL** Spotify gives you. The player only loads
+after the visitor clicks Play (privacy: nothing is requested from Spotify before that), and without
+JavaScript it is a plain "Listen on Spotify" link. Don't paste Spotify's `<iframe>` directly; the CI
+privacy and smoke checks fail on third-party iframes.
+
+```vue
+<SpotifyEpisode episode="https://open.spotify.com/embed/episode/[episode-id]" title="[CERT-CODE] audio refresher" />
+```
+
+### Standalone Cheatsheets (`public/cheatsheets/`)
+
+Self-contained HTML pages. Keep them on-brand and private:
+- Load fonts with `<link rel="stylesheet" href="/fonts/brand/fonts.css">`, never Google Fonts or another font CDN.
+- Copy the `<style id="brand">` block from an existing cheatsheet into `<head>` (after the page's own styles).
+  It sets the brand neutrals, yellow accent and fonts; keep domain/right/wrong colours as they are.
+- Nothing else may load from another host. `pnpm privacy` checks this.
+
 ### ImageModal Component
 
 Add to `index.md` for exam infographics:

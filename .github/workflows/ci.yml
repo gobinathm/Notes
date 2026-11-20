@@ -1,0 +1,80 @@
+name: CI
+
+# Quality gates from gobinath.com docs/DESIGN.md §8: build, privacy check, no-JS smoke test.
+# Deployment stays in deploy.yml / deploy-worker.yml; this workflow only checks.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site:
+    name: Build, privacy, no-JS smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        with:
+          version: 10.24.0
+          run_install: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build (also catches broken links)
+        run: pnpm docs:build
+
+      - name: Privacy check (GPS in images, third-party loads, private terms)
+        run: pnpm privacy
+        env:
+          PRIVACY_TERMS: ${{ secrets.PRIVACY_TERMS }}
+
+      - name: No-JS smoke test (pages readable, dark by default, no third-party iframes)
+        run: pnpm smoke
+
+  worker:
+    name: Worker dry run
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Bundle without deploying
+        working-directory: worker
+        run: npx --yes wrangler@4 deploy --dry-run --outdir dist
+
+  workflows:
+    name: Workflow lint (actionlint, zizmor)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: actionlint
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ./actionlint -color
+      - name: zizmor
+        run: pipx run zizmor==1.32.0 --min-severity medium .github/workflows

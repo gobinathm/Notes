@@ -35,7 +35,7 @@ No prior certification required. Suitable for developers, students, project mana
 
 A podcast-style walkthrough of key exam topics. Great for a last-minute refresher on the drive to the exam center.
 
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/7snTJuFxVAqNxlc0BaGHYp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<SpotifyEpisode episode="https://open.spotify.com/embed/episode/7snTJuFxVAqNxlc0BaGHYp?utm_source=generator&theme=0" title="GH-900 audio refresher" />
 
 ---
 

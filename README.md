@@ -40,11 +40,13 @@ This repo uses GitHub Actions for site deployment, worker deployment, code scann
 | **Deploy VitePress site** | `.github/workflows/deploy.yml` | Pushes to `main` except `worker/**`, or manual dispatch | Push site/content changes to `main` to deploy automatically. You can also run it manually from the **Actions** tab. |
 | **Deploy Cloudflare Worker** | `.github/workflows/deploy-worker.yml` | Pushes that touch `worker/**`, or manual dispatch | Make worker-only changes under `worker/` and push to `main`, or run it manually from the **Actions** tab. Requires Cloudflare secrets to be configured. |
 | **CodeQL Analysis** | `.github/workflows/codeql.yml` | Pushes to `main`, pull requests to `main`, and weekly schedule | Open a PR or push to `main` to trigger scanning automatically. Use it to catch JavaScript security and quality issues. |
+| **CI** | `.github/workflows/ci.yml` | Pull requests, pushes to `main`, or manual dispatch | Runs automatically. Builds the site, then the privacy check (no GPS in images, nothing loaded from hosts outside the allowlist, no private terms) and the no-JS smoke test (pages readable, dark by default, no third-party iframes), plus a Worker dry run and workflow lint. |
 | **Welcome First Timers** | `.github/workflows/first-interaction.yml` | First issue opened or first pull request opened | No manual action needed. It automatically posts a welcome comment for first-time contributors. |
 
 ### Maintainer Notes
 
-- Run `pnpm run docs:build` locally before pushing site/content changes.
+- Run `pnpm run verify` locally before pushing site/content changes (build + privacy check + no-JS smoke test, same as CI).
+- The privacy check reads private terms from the `PRIVACY_TERMS` repo secret in CI, or a local `.privacy-terms` file (gitignored). `scripts/privacy-check.mjs` is copied from gobinath.com; keep them in sync.
 - The worker workflow requires:
   - `CLOUDFLARE_API_TOKEN`
   - `CLOUDFLARE_ACCOUNT_ID`

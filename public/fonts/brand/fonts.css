@@ -1,0 +1,31 @@
+/* Brand fonts for the standalone pages in /cheatsheets (the VitePress site bundles its own copy).
+   Self-hosted, from Fontsource (OFL). gobinath.com docs/DESIGN.md §3: no font CDNs. Latin subset. */
+@font-face {
+  font-family: 'Archivo Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url(./archivo-latin-wdth-normal.woff2) format('woff2-variations');
+}
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(./newsreader-latin-opsz-normal.woff2) format('woff2-variations');
+}
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url(./newsreader-latin-opsz-italic.woff2) format('woff2-variations');
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url(./jetbrains-mono-latin-wght-normal.woff2) format('woff2-variations');
+}

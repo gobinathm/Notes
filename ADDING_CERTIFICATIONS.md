@@ -60,7 +60,7 @@ The landing page for each certification. Sections in order:
 
 2. **Info callout** — What kind of exam this is
 3. **ImageModal** — Exam overview infographic
-4. **Audio Refresher** — `<AIAudioPlayer>` for NotebookLM podcast
+4. **Audio Refresher** — `<AIAudioPlayer>` for NotebookLM podcast, or `<SpotifyEpisode>` for an episode on Spotify (never a raw Spotify `<iframe>`; CI rejects it)
 5. **Study Progress** — `<ProgressTracker>` with granular children per domain
 6. **Resources** — Official and external links
 7. **Navigation** — Links to domain-1 and cheatsheet
